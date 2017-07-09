@@ -44,5 +44,29 @@ namespace FinesSE.UnitTests
                 throw new InvalidOperationException();
             }
         }
+
+        [TestMethod]
+        public void InterceptsVoidAction()
+        {
+            var kernel = new DefaultKernel<CompositionRoot>();
+            kernel.Initialize();
+            kernel.AddVoidAction<CustomAction2>("CustomAction2");
+            Assert.ThrowsException<InvalidOperationException>(()
+                => kernel.SeleneseProvider.InvokeVoid<CustomAction2>("")
+            );
+        }
+
+        public class CustomAction2 : IVoidAction
+        {
+            public IEnumerable<Type> GetParameterTypes()
+            {
+                yield return typeof(string);
+            }
+
+            public void Invoke(params object[] parameters)
+            {
+                throw new InvalidOperationException();
+            }
+        }
     }
 }

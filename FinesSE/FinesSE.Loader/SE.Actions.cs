@@ -5,10 +5,10 @@ namespace FinesSE.Loader
     public partial class SE
     {
         public void Click(string locator)
-            => se.Invoke<Click>(locator);
+            => se.InvokeVoid<Click>(locator);
 
         public void ClickAt(string locator, string coordinates)
-            => se.Invoke<ClickAt>(locator, coordinates);
+            => se.InvokeVoid<ClickAt>(locator, coordinates);
 
         public void Close()
             => kernel.WebDriverProvider.Dispose();
@@ -17,12 +17,12 @@ namespace FinesSE.Loader
             => se.Invoke<GetText>(locator);
 
         public void Go(string url)
-            => se.Invoke<Go>(url);
+            => se.InvokeVoid<Go>(url);
 
         public void Pause(string ms)
-            => se.Invoke<Pause>(ms);
+            => se.InvokeVoid<Pause>(ms);
 
         public void TypeKeys(string locator, string keys)
-            => se.Invoke<TypeKeys>(locator, keys);
+            => se.InvokeVoid<TypeKeys>(locator, keys);
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FinesSE.Outil.Actions
 {
-    public class Pause : IAction
+    public class Pause : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
 
@@ -16,13 +16,10 @@ namespace FinesSE.Outil.Actions
             yield return typeof(int);
         }
 
-        public string Invoke(params object[] parameters)
+        public void Invoke(params object[] parameters)
             => Invoke(parameters.Cast<int>().First());
 
-        public string Invoke(int ms)
-        {
-            Task.Delay(ms).Wait();
-            return "";
-        }
+        public void Invoke(int ms)
+            => Task.Delay(ms).Wait();
     }
 }

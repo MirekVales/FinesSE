@@ -16,6 +16,7 @@ namespace FinesSE.Core.Parsing
             Set<int>(s => int.Parse(s));
             Set<Point>(x => Point.Parse(x));
             Set<IEnumerable<IWebElement>>(ParseLocator);
+            Set<IWebElement>(ParseLocatorSingleElement);
         }
 
         private object ParseLocator(string arg)
@@ -25,5 +26,8 @@ namespace FinesSE.Core.Parsing
             var locator = Kernel.GetLocators().First(x => matches(x, arg));
             return locator.Locate(Regex.Match(arg, locator.Regex).Groups[2].Value);
         }
+
+        private object ParseLocatorSingleElement(string arg)
+            => (ParseLocator(arg) as IEnumerable<IWebElement>).First();
     }
 }

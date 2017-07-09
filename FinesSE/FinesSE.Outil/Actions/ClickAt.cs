@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace FinesSE.Outil.Actions
 {
-    public class ClickAt : IAction
+    public class ClickAt : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
 
@@ -18,10 +18,10 @@ namespace FinesSE.Outil.Actions
             yield return typeof(Point);
         }
 
-        public string Invoke(params object[] parameters)
+        public void Invoke(params object[] parameters)
             => Invoke(parameters.Cast<IEnumerable<IWebElement>>().First(), parameters.Cast<Point>().Last());
 
-        public string Invoke(IEnumerable<IWebElement> elements, Point coordinates)
+        public void Invoke(IEnumerable<IWebElement> elements, Point coordinates)
         {
             var action = new OpenQA.Selenium.Interactions.Actions(DriverProvider.Get());
             foreach (var element in elements)
@@ -31,7 +31,6 @@ namespace FinesSE.Outil.Actions
                     .Click()
                     .Perform();
             }
-            return "";
         }
     }
 }

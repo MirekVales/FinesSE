@@ -10,13 +10,13 @@ namespace FinesSE.Outil.Actions
     {
         public IEnumerable<Type> GetParameterTypes()
         {
-            yield return typeof(IEnumerable<IWebElement>);
+            yield return typeof(IWebElement);
         }
 
         public string Invoke(params object[] parameters)
-            => Invoke(parameters.Cast<IEnumerable<IWebElement>>().First());
+            => Invoke(parameters.Cast<IWebElement>().First());
 
-        public string Invoke(IEnumerable<IWebElement> elements)
-            => elements.First().Text;
+        public string Invoke(IWebElement elements)
+            => elements.Text;
     }
 }

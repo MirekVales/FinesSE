@@ -35,12 +35,20 @@ namespace FinesSE.Core
         {
             Point Scrapheap = new Point(-2751, -2751);
 
-            driver.Manage().Window.Position = Scrapheap;
+            try
+            {
+                driver.Manage().Window.Position = Scrapheap;
+            }
+            catch (WebDriverException)
+            {
+                return;
+            }
+
             var window = WindowFromPoint(Scrapheap);
             if (window == IntPtr.Zero)
                 return;
-
             CloseWindow(window);
+
         }
     }
 }

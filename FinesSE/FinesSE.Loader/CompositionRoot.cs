@@ -13,6 +13,7 @@ namespace FinesSE.Loader
             container.RegisterAssembly("FinesSE.Outil.dll");
             container.RegisterInstance<IWebDriverProvider>(new WebDriverProvider());
             container.Register<IParameterParser, ParameterParser>();
+            container.Register<IVoidActionInterceptor, VoidActionInterceptor>();
             container.Register<IActionInterceptor, ActionInterceptor>();
             container.Register<ILoggingInterceptor, LoggingInterceptor>();
             container.Register<ISeleneseProxy, SeleneseProxy>();

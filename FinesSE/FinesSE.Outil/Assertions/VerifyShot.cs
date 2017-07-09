@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace FinesSE.Outil.Assertions
 {
-    public class VerifyShot : IAction
+    public class VerifyShot : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
         public IScreenshotStore ScreenshotStore { get; set; }
@@ -21,10 +21,10 @@ namespace FinesSE.Outil.Assertions
             yield return typeof(string);
         }
 
-        public string Invoke(params object[] parameters)
+        public void Invoke(params object[] parameters)
             => Invoke(parameters.First() as IEnumerable<IWebElement>, parameters.ElementAt(1) as string, parameters.Last() as string);
 
-        public string Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId)
+        public void Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId)
         {
             foreach (var element in elements)
             {
@@ -37,7 +37,6 @@ namespace FinesSE.Outil.Assertions
                     throw new Exception();
                 }
             }
-            return "";
         }
     }
 }

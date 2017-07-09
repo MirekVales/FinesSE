@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FinesSE.Outil.Actions
 {
-    public class Go : IAction
+    public class Go : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
 
@@ -15,13 +15,10 @@ namespace FinesSE.Outil.Actions
             yield return typeof(string);
         }
         
-        public string Invoke(params object[] parameters)
+        public void Invoke(params object[] parameters)
             => Invoke(parameters.Cast<string>().First());
 
-        public string Invoke(string url)
-        {
-            DriverProvider.Get().Navigate().GoToUrl(url);
-            return "";
-        }
+        public void Invoke(string url)
+            => DriverProvider.Get().Navigate().GoToUrl(url);
     }
 }

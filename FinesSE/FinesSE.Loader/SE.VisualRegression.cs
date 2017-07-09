@@ -6,9 +6,9 @@ namespace FinesSE.Loader
     public partial class SE
     {
         public void TakeShot(string locator, string versionId)
-            => se.Invoke<TakeShot>(locator, versionId);
+            => se.InvokeVoid<TakeShot>(locator, versionId);
 
         public void VerifyShot(string locator, string baseVersionId, string referenceVersionId)
-            => se.Invoke<VerifyShot>(locator, baseVersionId, referenceVersionId);
+            => se.InvokeVoid<VerifyShot>(locator, baseVersionId, referenceVersionId);
     }
 }

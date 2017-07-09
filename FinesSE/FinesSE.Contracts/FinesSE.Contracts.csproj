@@ -57,6 +57,7 @@
     <Compile Include="Infrastructure\IActionInterceptor.cs" />
     <Compile Include="Infrastructure\ILoggingInterceptor.cs" />
     <Compile Include="Infrastructure\IScreenshotStore.cs" />
+    <Compile Include="Infrastructure\IVoidActionInterceptor.cs" />
     <Compile Include="Infrastructure\IWebElementIdentityProvider.cs" />
     <Compile Include="Invokable\IAction.cs" />
     <Compile Include="Infrastructure\IKernel.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Infrastructure\IParameterParser.cs" />
     <Compile Include="Infrastructure\ISeleneseProxy.cs" />
     <Compile Include="Infrastructure\IWebDriverProvider.cs" />
+    <Compile Include="Invokable\IVoidAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebDrivers.cs" />
   </ItemGroup>

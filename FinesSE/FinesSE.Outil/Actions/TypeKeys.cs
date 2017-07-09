@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace FinesSE.Outil.Actions
 {
-    public class TypeKeys : IAction
+    public class TypeKeys : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
 
@@ -17,13 +17,10 @@ namespace FinesSE.Outil.Actions
             yield return typeof(string);
         }
 
-        public string Invoke(params object[] parameters)
+        public void Invoke(params object[] parameters)
             => Invoke(parameters.First() as IEnumerable<IWebElement>, parameters.Last() as string);
 
-        public string Invoke(IEnumerable<IWebElement> elements, string keys)
-        {
-            elements.ToList().ForEach(x => x.SendKeys(keys));
-            return "";
-        }
+        public void Invoke(IEnumerable<IWebElement> elements, string keys)
+            => elements.ToList().ForEach(x => x.SendKeys(keys));
     }
 }

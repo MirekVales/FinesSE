@@ -15,8 +15,6 @@ namespace FinesSE.Contracts.Infrastructure
 
         IEnumerable<ILocator> GetLocators();
 
-        void AddAction<T>(string serviceName) where T : IAction;
-
         void Initialize();
     }
 }

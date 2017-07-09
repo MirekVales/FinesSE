@@ -6,20 +6,17 @@ using FinesSE.Contracts.Invokable;
 
 namespace FinesSE.Outil.Actions
 {
-    public class Click : IAction
+    public class Click : IVoidAction
     {
         public IEnumerable<Type> GetParameterTypes()
         {
             yield return typeof(IEnumerable<IWebElement>);
         }
 
-        public string Invoke(params object[] parameters)
+        public void Invoke(params object[] parameters)
             => Invoke(parameters.Cast<IEnumerable<IWebElement>>().First());
 
-        public string Invoke(IEnumerable<IWebElement> elements)
-        {
-            elements.ToList().ForEach(x => x.Click());
-            return "";
-        }
+        public void Invoke(IEnumerable<IWebElement> elements)
+            => elements.ToList().ForEach(x => x.Click());
     }
 }

@@ -55,6 +55,7 @@
     <Compile Include="Injection\DefaultKernel.cs" />
     <Compile Include="Injection\ActionInterceptor.cs" />
     <Compile Include="Injection\LoggingInterceptor.cs" />
+    <Compile Include="Injection\VoidActionInterceptor.cs" />
     <Compile Include="Parsing\BaseParameterParser.cs" />
     <Compile Include="Parsing\ParameterParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

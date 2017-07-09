@@ -8,7 +8,7 @@ using FinesSE.Core;
 
 namespace FinesSE.Outil.Actions
 {
-    public class TakeShot : IAction
+    public class TakeShot : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
         public IScreenshotStore ScreenshotStore { get; set; }
@@ -20,10 +20,10 @@ namespace FinesSE.Outil.Actions
             yield return typeof(string);
         }
 
-        public string Invoke(params object[] parameters)
+        public void Invoke(params object[] parameters)
             => Invoke(parameters.First() as IEnumerable<IWebElement>, parameters.Last() as string);
 
-        public string Invoke(IEnumerable<IWebElement> elements, string versionId)
+        public void Invoke(IEnumerable<IWebElement> elements, string versionId)
         {
             foreach (var element in elements)
             {
@@ -31,8 +31,6 @@ namespace FinesSE.Outil.Actions
                 var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), element);
                 ScreenshotStore.Store(screenshot, elementId, versionId);
             }
-
-            return "";
         }
     }
 }
