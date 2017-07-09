@@ -1,0 +1,16 @@
+FinesSE/FinesSE.AcceptanceTests/bin/
+FinesSE/FinesSE.AcceptanceTests/obj/
+FinesSE/FinesSE.Contracts/bin/Debug/LightInject.xml
+FinesSE/FinesSE.Contracts/bin/Debug/WebDriver.xml
+FinesSE/FinesSE.Contracts/obj/Debug/FinesSE.Contracts.csproj.FileListAbsolute.txt
+FinesSE/FinesSE.Contracts/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+FinesSE/FinesSE.Contracts/obj/
+FinesSE/FinesSE.Core/bin/
+FinesSE/FinesSE.Core/obj/
+FinesSE/FinesSE.Loader/bin/
+FinesSE/FinesSE.Loader/obj/
+FinesSE/FinesSE.Outil/bin/
+FinesSE/FinesSE.Outil/obj/
+FinesSE/FinesSE.UnitTests/bin/
+FinesSE/FinesSE.UnitTests/obj/
+FinesSE/packages/
