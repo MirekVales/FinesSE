@@ -60,8 +60,10 @@
     <Compile Include="Actions\TypeKeys.cs" />
     <Compile Include="Assertions\VerifyText.cs" />
     <Compile Include="Locators\Identifier.cs" />
+    <Compile Include="Locators\Link.cs" />
     <Compile Include="Locators\Name.cs" />
     <Compile Include="Locators\TagName.cs" />
+    <Compile Include="Locators\XPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
