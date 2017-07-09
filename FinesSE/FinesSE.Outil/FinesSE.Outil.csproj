@@ -59,6 +59,7 @@
     <Compile Include="Actions\TakeShot.cs" />
     <Compile Include="Actions\TypeKeys.cs" />
     <Compile Include="Assertions\VerifyText.cs" />
+    <Compile Include="Locators\Css.cs" />
     <Compile Include="Locators\Identifier.cs" />
     <Compile Include="Locators\Link.cs" />
     <Compile Include="Locators\Name.cs" />
