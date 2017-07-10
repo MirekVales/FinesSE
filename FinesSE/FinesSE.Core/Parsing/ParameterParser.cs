@@ -1,33 +1,15 @@
-﻿using FinesSE.Contracts.Invokable;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Windows;
+﻿using FinesSE.Contracts.Infrastructure;
 
 namespace FinesSE.Core.Parsing
 {
     public class ParameterParser : BaseParameterParser
     {
-        public ParameterParser()
+        public ParameterParser(IKernel kernel)
         {
-            Set<string>(s => s);
-            Set<int>(s => int.Parse(s));
-            Set<Point>(x => Point.Parse(x));
-            Set<IEnumerable<IWebElement>>(ParseLocator);
-            Set<IWebElement>(ParseLocatorSingleElement);
+            foreach(var parseMethod in kernel.GetParserMethods())
+            {
+                Set(parseMethod.ParsedType, parseMethod.Invoke);
+            }
         }
-
-        private object ParseLocator(string arg)
-        {
-            Func<ILocator, string, bool> matches =
-                (l, s) => Regex.IsMatch(s, l.Regex);
-            var locator = Kernel.GetLocators().First(x => matches(x, arg));
-            return locator.Locate(Regex.Match(arg, locator.Regex).Groups[2].Value);
-        }
-
-        private object ParseLocatorSingleElement(string arg)
-            => (ParseLocator(arg) as IEnumerable<IWebElement>).First();
     }
 }

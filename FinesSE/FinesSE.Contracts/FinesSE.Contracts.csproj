@@ -57,6 +57,7 @@
     <Compile Include="Infrastructure\IActionInterceptor.cs" />
     <Compile Include="Infrastructure\ILoggingInterceptor.cs" />
     <Compile Include="Infrastructure\IScreenshotStore.cs" />
+    <Compile Include="Infrastructure\IParseMethod.cs" />
     <Compile Include="Infrastructure\IVoidActionInterceptor.cs" />
     <Compile Include="Infrastructure\IWebElementIdentityProvider.cs" />
     <Compile Include="Invokable\IAction.cs" />

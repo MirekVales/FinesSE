@@ -3,19 +3,22 @@ using FinesSE.Core.Parsing;
 using System;
 using System.Linq;
 using FinesSE.Contracts.Exceptions;
+using FinesSE.Core.Injection;
+using FinesSE.Loader;
 
 namespace FinesSE.UnitTests
 {
     [TestClass]
     public class ParserTest
     {
-        readonly ParameterParser parser = new ParameterParser();
+        readonly ParameterParser parser = new ParameterParser(new DefaultKernel<CompositionRoot>());
 
         public string RandomString => Guid.NewGuid().ToString();
 
         [TestMethod]
         public void ParsesString()
         {
+            parser.Set<string>(s => s);
             var value = RandomString;
             var actual = parser.Parse(new[] { value }, new[] { typeof(string)});
             Assert.AreEqual(value, actual.First());
@@ -24,6 +27,7 @@ namespace FinesSE.UnitTests
         [TestMethod]
         public void ParsesInteger()
         {
+            parser.Set<int>(s => int.Parse(s));
             var value = DateTime.Now.Millisecond.ToString();
             var actual = parser.Parse(new[] { value }, new[] { typeof(int)});
             Assert.AreEqual(value, actual.First().ToString());
@@ -32,8 +36,8 @@ namespace FinesSE.UnitTests
         [TestMethod]
         public void ParsesCustomType()
         {
-            var value = new CustomType(RandomString);
             parser.Set<CustomType>(s => new CustomType(s));
+            var value = new CustomType(RandomString);
             var actual = parser.Parse(new[] { value.Value }, new[] { typeof(CustomType) });
             Assert.AreEqual(value, actual.First());
         }

@@ -65,6 +65,11 @@
     <Compile Include="Locators\Name.cs" />
     <Compile Include="Locators\TagName.cs" />
     <Compile Include="Locators\XPath.cs" />
+    <Compile Include="ParseMethods\IntParse.cs" />
+    <Compile Include="ParseMethods\PointParse.cs" />
+    <Compile Include="ParseMethods\WebElementParse.cs" />
+    <Compile Include="ParseMethods\StringParse.cs" />
+    <Compile Include="ParseMethods\WebElementsParse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

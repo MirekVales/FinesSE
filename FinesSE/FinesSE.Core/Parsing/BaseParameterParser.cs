@@ -33,11 +33,14 @@ namespace FinesSE.Core.Parsing
         }
 
         public void Set<T>(Func<string, object> parser)
+            => Set(typeof(T), parser);
+
+        public void Set(Type type, Func<string, object> parser)
         {
-            if (parsers.ContainsKey(typeof(T)))
-                parsers[typeof(T)] = parser;
+            if (parsers.ContainsKey(type))
+                parsers[type] = parser;
             else
-                parsers.Add(typeof(T), parser);
+                parsers.Add(type, parser);
         }
     }
 }

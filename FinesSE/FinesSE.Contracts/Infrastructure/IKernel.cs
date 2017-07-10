@@ -15,6 +15,8 @@ namespace FinesSE.Contracts.Infrastructure
 
         IEnumerable<ILocator> GetLocators();
 
+        IEnumerable<IParseMethod> GetParserMethods();
+
         void Initialize();
     }
 }

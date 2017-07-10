@@ -51,6 +51,9 @@ namespace FinesSE.Core.Injection
         public IEnumerable<ILocator> GetLocators()
             => container.GetAllInstances<ILocator>();
 
+        public IEnumerable<IParseMethod> GetParserMethods()
+            => container.GetAllInstances<IParseMethod>();
+
         public void AddAction<T>(string serviceName) where T : IAction
             => container.Register<IAction, T>(serviceName);
 
