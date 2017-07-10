@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace FinesSE.Contracts.Exceptions
+﻿namespace FinesSE.Contracts.Exceptions
 {
-    public class AssertionException : Exception
+    public class AssertionException : SlimException
     {
         public AssertionException(string expected, string actual, WebDrivers drivers)
-            : base()
+            : base($"Expected '{expected}' Actual '{actual}' Driver '{drivers}'")
         { }
     }
 }

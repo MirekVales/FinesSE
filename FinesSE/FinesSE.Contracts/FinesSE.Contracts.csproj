@@ -53,6 +53,7 @@
     <Compile Include="Exceptions\ActionNotFoundException.cs" />
     <Compile Include="Exceptions\AssertionException.cs" />
     <Compile Include="Exceptions\ParserNotFoundException.cs" />
+    <Compile Include="Exceptions\SlimException.cs" />
     <Compile Include="Exceptions\WebDriverNotFoundException.cs" />
     <Compile Include="Infrastructure\IActionInterceptor.cs" />
     <Compile Include="Infrastructure\ILoggingInterceptor.cs" />

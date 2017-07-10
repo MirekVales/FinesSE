@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace FinesSE.Contracts.Exceptions
+﻿namespace FinesSE.Contracts.Exceptions
 {
-    public class WebDriverNotFoundException : Exception
+    public class WebDriverNotFoundException : SlimException
     {
         public WebDriverNotFoundException(WebDrivers driver)
             : base($"Web driver '{driver}' is not declared")
