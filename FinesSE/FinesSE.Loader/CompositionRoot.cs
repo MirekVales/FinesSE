@@ -2,6 +2,7 @@
 using FinesSE.Core.Injection;
 using FinesSE.Core.Parsing;
 using FinesSE.Core.WebDriver;
+using FinesSE.VisualRegression;
 using LightInject;
 
 namespace FinesSE.Loader
@@ -17,6 +18,9 @@ namespace FinesSE.Loader
             container.Register<IActionInterceptor, ActionInterceptor>();
             container.Register<ILoggingInterceptor, LoggingInterceptor>();
             container.Register<ISeleneseProxy, SeleneseProxy>();
+            container.Register<IWebElementIdentityProvider, IdProvider>();
+            container.Register<IScreenshotStore, DiskScreenshotStore>();
+            container.Register<IImageComparer, MagickImageComparer>();
         }
     }
 }

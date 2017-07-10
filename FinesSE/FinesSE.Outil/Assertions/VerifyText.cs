@@ -29,7 +29,7 @@ namespace FinesSE.Outil.Assertions
             }
 
             if (!elements.Any())
-                throw new Exception("No element found");
+                throw new Exception("message:<<No element found>>");
 
             return "";
         }

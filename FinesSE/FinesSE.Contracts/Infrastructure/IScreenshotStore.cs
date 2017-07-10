@@ -8,9 +8,10 @@
 
         byte[] Get(string objectId, string versionId);
 
+        string GetPath(string objectId, string versionId);
+
         double Compare(string objectId, string baseVersionId, string referenceVersionId);
 
         void Clear();
-        void Store(object takeScreenshot);
     }
 }

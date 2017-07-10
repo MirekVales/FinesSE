@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FinesSE.Outil.Assertions
+namespace FinesSE.Outil.Actions
 {
-    public class VerifyShot : IVoidAction
+    public class GetScreenDiff : IAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
         public IScreenshotStore ScreenshotStore { get; set; }
@@ -21,22 +21,21 @@ namespace FinesSE.Outil.Assertions
             yield return typeof(string);
         }
 
-        public void Invoke(params object[] parameters)
+        public string Invoke(params object[] parameters)
             => Invoke(parameters.First() as IEnumerable<IWebElement>, parameters.ElementAt(1) as string, parameters.Last() as string);
 
-        public void Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId)
+        public string Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId)
         {
             foreach (var element in elements)
             {
                 var screenshot = element.TakeScreenshot(DriverProvider.Get());
                 var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), element);
                 ScreenshotStore.Store(screenshot, elementId, referenceVersionId);
-                
-                if (ScreenshotStore.Compare(elementId, baseVersionId, referenceVersionId) > 0)
-                {
-                    throw new Exception();
-                }
+
+                return ScreenshotStore.Compare(elementId, baseVersionId, referenceVersionId).ToString();
             }
+
+            return null;
         }
     }
 }

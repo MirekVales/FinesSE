@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Contracts", "FinesSE.Contracts\FinesSE.Contracts.csproj", "{BC108868-ED68-4A88-A363-4D17CD745717}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.AcceptanceTests", "FinesSE.AcceptanceTests\FinesSE.AcceptanceTests.csproj", "{5DC04C1B-41B0-4F79-82DB-564FE2454137}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Core", "FinesSE.Core\FinesSE.Core.csproj", "{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.VisualRegression", "FinesSE.VisualRegression\FinesSE.VisualRegression.csproj", "{7867F561-6D22-4B8F-843C-603E998282C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7867F561-6D22-4B8F-843C-603E998282C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7867F561-6D22-4B8F-843C-603E998282C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7867F561-6D22-4B8F-843C-603E998282C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7867F561-6D22-4B8F-843C-603E998282C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

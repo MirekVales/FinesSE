@@ -40,6 +40,9 @@ namespace FinesSE.Core.WebDriver
             throw new WebDriverNotFoundException(CurrentDriver);
         }
 
+        public void SetBrowser(WebDrivers driver)
+            => CurrentDriver = driver;
+
         public IWebDriver Get()
             => driver.Value;
 

@@ -5,10 +5,13 @@ namespace FinesSE.Loader
 {
     public partial class SE
     {
-        public void TakeShot(string locator, string versionId)
-            => se.InvokeVoid<TakeShot>(locator, versionId);
+        public string TakeScreen(string locator, string versionId)
+            => se.Invoke<TakeScreen>(locator, versionId);
 
-        public void VerifyShot(string locator, string baseVersionId, string referenceVersionId)
-            => se.InvokeVoid<VerifyShot>(locator, baseVersionId, referenceVersionId);
+        public object VerifyScreen(string locator, string baseVersionId, string referenceVersionId, string tolerance)
+            => se.Invoke<VerifyScreen>(locator, baseVersionId, referenceVersionId, tolerance);
+
+        public string GetScreenDiff(string locator, string baseVersionId, string referenceVersionId)
+            => se.Invoke<GetScreenDiff>(locator, baseVersionId, referenceVersionId);
     }
 }

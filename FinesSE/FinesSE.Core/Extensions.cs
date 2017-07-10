@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -17,7 +19,36 @@ namespace FinesSE.Core
 
         public static byte[] TakeScreenshot(this IWebElement element, IWebDriver driver)
         {
-            throw new NotImplementedException();
+            var imageBytes = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
+            var image = new Bitmap(new MemoryStream(imageBytes));
+            var crop = image.Crop(element.Area());
+            return crop.ToByteArray();
+        }
+
+        public static Rectangle Area(this IWebElement element)
+            => new Rectangle(element.Location.X, element.Location.Y, element.Size.Width, element.Size.Height);
+
+        public static Image Crop(this Image image, Rectangle keptArea)
+        {
+            if (keptArea.Width * keptArea.Height == 0)
+                return null;
+
+            var cropped = new Bitmap(keptArea.Width, keptArea.Height);
+            using (var g = Graphics.FromImage(cropped))
+            {
+                g.DrawImage(image, 0, 0, keptArea, GraphicsUnit.Pixel);
+                return cropped;
+            }
+        }
+
+        public static byte[] ToByteArray(this Image bitmap)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                bitmap.Save(memoryStream, ImageFormat.Png);
+                memoryStream.Position = 0;
+                return memoryStream.ToArray();
+            }
         }
 
         [DllImport("user32.dll")]

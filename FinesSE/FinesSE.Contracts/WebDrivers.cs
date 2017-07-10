@@ -7,8 +7,8 @@ namespace FinesSE.Contracts
     {
         Default         = 1,
         AllAvailable    = 2,
-        Custom          = 4,
-        Random          = 8,
+        Random          = 4,
+        Custom          = 8,
 
         Chrome          = 16,
         Edge            = 32,

@@ -1,5 +1,6 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Core.Injection;
+using FinesSE.Outil.Actions;
 using System;
 
 namespace FinesSE.Loader
@@ -15,6 +16,9 @@ namespace FinesSE.Loader
             kernel.Initialize();
             se = kernel.SeleneseProvider;
         }
+
+        public void SetBrowser(string browser)
+            => se.Invoke<SetBrowser>(browser);
 
         public void Dispose()
         {

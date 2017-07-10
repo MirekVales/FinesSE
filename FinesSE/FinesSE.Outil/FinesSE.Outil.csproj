@@ -52,11 +52,13 @@
   <ItemGroup>
     <Compile Include="Actions\Click.cs" />
     <Compile Include="Actions\ClickAt.cs" />
+    <Compile Include="Actions\GetScreenDiff.cs" />
     <Compile Include="Actions\GetText.cs" />
-    <Compile Include="Assertions\VerifyShot.cs" />
+    <Compile Include="Actions\SetBrowser.cs" />
+    <Compile Include="Assertions\VerifyScreen.cs" />
     <Compile Include="Actions\Go.cs" />
     <Compile Include="Actions\Pause.cs" />
-    <Compile Include="Actions\TakeShot.cs" />
+    <Compile Include="Actions\TakeScreen.cs" />
     <Compile Include="Actions\TypeKeys.cs" />
     <Compile Include="Assertions\VerifyText.cs" />
     <Compile Include="Locators\Css.cs" />
@@ -65,8 +67,10 @@
     <Compile Include="Locators\Name.cs" />
     <Compile Include="Locators\TagName.cs" />
     <Compile Include="Locators\XPath.cs" />
+    <Compile Include="ParseMethods\DoubleParse.cs" />
     <Compile Include="ParseMethods\IntParse.cs" />
     <Compile Include="ParseMethods\PointParse.cs" />
+    <Compile Include="ParseMethods\WebDriverEnumParse.cs" />
     <Compile Include="ParseMethods\WebElementParse.cs" />
     <Compile Include="ParseMethods\StringParse.cs" />
     <Compile Include="ParseMethods\WebElementsParse.cs" />
