@@ -1,12 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿using System;
 
 namespace FinesSE.VisualRegression
 {
     public static class Extensions
     {
-        public static byte[] TakeScreenshot(this IWebElement element, IWebDriver driver)
-        {
-            return ((ITakesScreenshot)element).GetScreenshot().AsByteArray;
-        }
+        public static string FallbackEmptyString(this string value, Func<string> fallback)
+            => string.IsNullOrWhiteSpace(value) ? fallback() : value;
     }
 }

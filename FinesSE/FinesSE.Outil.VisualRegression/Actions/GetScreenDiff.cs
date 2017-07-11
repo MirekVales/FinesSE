@@ -1,6 +1,7 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using FinesSE.Core;
+using FinesSE.VisualRegression;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace FinesSE.Outil.VisualRegression.Actions
         public IWebDriverProvider DriverProvider { get; set; }
         public IScreenshotStore ScreenshotStore { get; set; }
         public IWebElementIdentityProvider IdentityProvider { get; set; }
+        public IConfigurationProvider ConfigurationProvider { get; set; }
 
         public IEnumerable<Type> GetParameterTypes()
         {
@@ -26,6 +28,10 @@ namespace FinesSE.Outil.VisualRegression.Actions
 
         public string Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId)
         {
+            var configuration = ConfigurationProvider.Get(Configuration.Default);
+            baseVersionId = baseVersionId.FallbackEmptyString(() => configuration.ScreenshotStoreBaseVersionId);
+            referenceVersionId = referenceVersionId.FallbackEmptyString(() => configuration.ScreenshotStoreReferenceVersionId);
+
             foreach (var element in elements)
             {
                 var screenshot = element.TakeScreenshot(DriverProvider.Get());

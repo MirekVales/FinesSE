@@ -45,8 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\GetScreenDiff.cs" />
+    <Compile Include="Actions\TakeBaseScreen.cs" />
     <Compile Include="Actions\TakeScreen.cs" />
-    <Compile Include="Assertions\VerifyScreen.cs" />
+    <Compile Include="Assertions\VerifyScreenDiff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

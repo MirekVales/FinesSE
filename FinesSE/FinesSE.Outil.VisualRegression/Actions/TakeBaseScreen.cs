@@ -9,7 +9,7 @@ using FinesSE.VisualRegression;
 
 namespace FinesSE.Outil.VisualRegression.Actions
 {
-    public class TakeScreen : IAction
+    public class TakeBaseScreen : IAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
         public IScreenshotStore ScreenshotStore { get; set; }
@@ -19,16 +19,15 @@ namespace FinesSE.Outil.VisualRegression.Actions
         public IEnumerable<Type> GetParameterTypes()
         {
             yield return typeof(IEnumerable<IWebElement>);
-            yield return typeof(string);
         }
 
         public string Invoke(params object[] parameters)
-            => Invoke(parameters.First() as IEnumerable<IWebElement>, parameters.Last() as string);
+            => Invoke(parameters.First() as IEnumerable<IWebElement>);
 
-        public string Invoke(IEnumerable<IWebElement> elements, string versionId)
+        public string Invoke(IEnumerable<IWebElement> elements)
         {
             var configuration = ConfigurationProvider.Get(Configuration.Default);
-            versionId = versionId.FallbackEmptyString(() => configuration.ScreenshotStoreReferenceVersionId);
+            var versionId = configuration.ScreenshotStoreBaseVersionId;
 
             foreach (var element in elements)
             {

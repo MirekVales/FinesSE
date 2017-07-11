@@ -1,3 +1,6 @@
 ﻿DefaultBrowser: IE
-ScreenshotStorePath: c:\TempScreenshotStore
+
+ScreenshotStorePath: c:\ScreenshotStore
 ScreenshotStoreFileExtension: .png
+ScreenshotStoreBaseVersionId: base
+ScreenshotStoreReferenceVersionId: ref
