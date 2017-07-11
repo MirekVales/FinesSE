@@ -5,25 +5,22 @@ namespace FinesSE.VisualRegression
 {
     public class DiskScreenshotStore : IScreenshotStore
     {
-        private readonly string BasePath;
-        private readonly string Prefix;
-        private readonly string Extension = ".png";
+        private readonly Configuration config;
 
         public IImageComparer ImageComparer { get; set; }
 
-        public DiskScreenshotStore()
+        public DiskScreenshotStore(IConfigurationProvider configuration)
         {
-            BasePath = @"C:\ScreenStore";
-            Prefix = "screen_";
+            config = configuration.Get(Configuration.Default);
         }
 
         public string GetPath(string objectId, string versionId)
-            => Path.Combine(BasePath, versionId, $"{Prefix}{objectId}{Extension}");
+            => Path.Combine(config.ScreenshotStorePath, versionId, $"{config.ScreenshotStoreFilePrefix}{objectId}{config.ScreenshotStoreFileExtension}");
 
         public void Clear()
         {
-            Directory.Delete(BasePath, true);
-            Directory.CreateDirectory(BasePath);
+            Directory.Delete(config.ScreenshotStorePath, true);
+            Directory.CreateDirectory(config.ScreenshotStorePath);
         }
 
         public double Compare(string objectId, string baseVersionId, string referenceVersionId)

@@ -11,11 +11,13 @@ namespace FinesSE.Core.WebDriver
     {
         private readonly Lazy<IWebDriver> driver;
         private readonly Dictionary<WebDrivers, Func<IWebDriver>> factory;
+        private readonly IConfigurationProvider configuration;
 
-        public WebDrivers CurrentDriver { get; set; } = WebDrivers.Opera;
+        public WebDrivers CurrentDriver { get; set; } = WebDrivers.Default;
 
-        public WebDriverProvider()
+        public WebDriverProvider(IConfigurationProvider configuration)
         {
+            this.configuration = configuration;
             driver = new Lazy<IWebDriver>(Initialize);
             factory = InitializeFactory();
         }
@@ -34,10 +36,14 @@ namespace FinesSE.Core.WebDriver
 
         private IWebDriver Initialize()
         {
-            if (factory.ContainsKey(CurrentDriver))
-                return factory[CurrentDriver]();
+            var driver = CurrentDriver;
+            if (driver == WebDrivers.Default)
+                driver = configuration.Get(CoreConfiguration.Default).DefaultBrowser;
 
-            throw new WebDriverNotFoundException(CurrentDriver);
+            if (factory.ContainsKey(driver))
+                return factory[driver]();
+
+            throw new WebDriverNotFoundException(driver);
         }
 
         public void SetBrowser(WebDrivers driver)

@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using FinesSE.Core.Configuration;
 using FinesSE.Core.Injection;
 using FinesSE.Core.Parsing;
 using FinesSE.Core.WebDriver;
@@ -12,7 +13,9 @@ namespace FinesSE.Loader
         public void Compose(IServiceRegistry container)
         {
             container.RegisterAssembly("FinesSE.Outil.dll");
-            container.RegisterInstance<IWebDriverProvider>(new WebDriverProvider());
+            container.Register<IConfigurationProvider, ConfigurationProvider>();
+            container.Register<IWebDriverProvider, WebDriverProvider>(new PerContainerLifetime());
+            //container.RegisterInstance<IWebDriverProvider>(new WebDriverProvider());
             container.Register<IParameterParser, ParameterParser>();
             container.Register<IVoidActionInterceptor, VoidActionInterceptor>();
             container.Register<IActionInterceptor, ActionInterceptor>();

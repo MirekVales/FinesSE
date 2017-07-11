@@ -8,15 +8,15 @@ namespace FinesSE.VisualRegression
     {
         public string GetIdentifier(IWebDriver driver, IWebElement element)
         {
-            var id = string.Join("_", 
-                element.TagName, 
-                element.GetAttribute("id"), 
-                element.GetAttribute("name"), 
-                element.GetAttribute("class"), 
+            var id = string.Join("_",
+                element.TagName,
+                element.GetAttribute("id"),
+                element.GetAttribute("name"),
+                element.GetAttribute("class"),
                 element.GetAttribute("style"),
                 element.GetAttribute("title"),
                 element.Text);
-            var safeId = string.Join("_", id.Split(Path.GetInvalidFileNameChars()));
+            var safeId = string.Join("_", id.Split(Path.GetInvalidFileNameChars(), '_'));
             return safeId.Length > 70 ? safeId.Substring(0, 70) : safeId;
         }
     }
