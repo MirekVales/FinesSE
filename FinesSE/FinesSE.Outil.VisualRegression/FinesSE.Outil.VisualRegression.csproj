@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{314F9978-45DE-4861-8D1D-0C1825DAF265}</ProjectGuid>
+    <ProjectGuid>{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FinesSE.Outil</RootNamespace>
-    <AssemblyName>FinesSE.Outil</AssemblyName>
+    <RootNamespace>FinesSE.Outil.VisualRegression</RootNamespace>
+    <AssemblyName>FinesSE.Outil.VisualRegression</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,48 +42,29 @@
     <Reference Include="WebDriver, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.3.4.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.3.4.0\lib\net40\WebDriver.Support.dll</HintPath>
-    </Reference>
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\Click.cs" />
-    <Compile Include="Actions\ClickAt.cs" />
-    <Compile Include="Actions\GetText.cs" />
-    <Compile Include="Actions\SetBrowser.cs" />
-    <Compile Include="Actions\Go.cs" />
-    <Compile Include="Actions\Pause.cs" />
-    <Compile Include="Actions\TypeKeys.cs" />
-    <Compile Include="Assertions\VerifyText.cs" />
-    <Compile Include="Locators\Css.cs" />
-    <Compile Include="Locators\Identifier.cs" />
-    <Compile Include="Locators\Link.cs" />
-    <Compile Include="Locators\Name.cs" />
-    <Compile Include="Locators\TagName.cs" />
-    <Compile Include="Locators\XPath.cs" />
-    <Compile Include="ParseMethods\DoubleParse.cs" />
-    <Compile Include="ParseMethods\IntParse.cs" />
-    <Compile Include="ParseMethods\PointParse.cs" />
-    <Compile Include="ParseMethods\WebDriverEnumParse.cs" />
-    <Compile Include="ParseMethods\WebElementParse.cs" />
-    <Compile Include="ParseMethods\StringParse.cs" />
-    <Compile Include="ParseMethods\WebElementsParse.cs" />
+    <Compile Include="Actions\GetScreenDiff.cs" />
+    <Compile Include="Actions\TakeScreen.cs" />
+    <Compile Include="Assertions\VerifyScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
+      <Project>{bc108868-ed68-4a88-a363-4d17cd745717}</Project>
+      <Name>FinesSE.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Core\FinesSE.Core.csproj">
+      <Project>{243dbada-3dfb-4a1a-b2fc-cf5e46fae4a2}</Project>
+      <Name>FinesSE.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.VisualRegression\FinesSE.VisualRegression.csproj">
+      <Project>{7867f561-6d22-4b8f-843c-603e998282c7}</Project>
+      <Name>FinesSE.VisualRegression</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
-      <Project>{BC108868-ED68-4A88-A363-4D17CD745717}</Project>
-      <Name>FinesSE.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FinesSE.Core\FinesSE.Core.csproj">
-      <Project>{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}</Project>
-      <Name>FinesSE.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

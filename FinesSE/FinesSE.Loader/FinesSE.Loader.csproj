@@ -61,6 +61,10 @@
       <Project>{243dbada-3dfb-4a1a-b2fc-cf5e46fae4a2}</Project>
       <Name>FinesSE.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Outil.VisualRegression\FinesSE.Outil.VisualRegression.csproj">
+      <Project>{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}</Project>
+      <Name>FinesSE.Outil.VisualRegression</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FinesSE.Outil\FinesSE.Outil.csproj">
       <Project>{314F9978-45DE-4861-8D1D-0C1825DAF265}</Project>
       <Name>FinesSE.Outil</Name>

@@ -1,7 +1,7 @@
 ﻿using ImageMagick;
 using System;
 
-namespace FinesSE.VisualRegression
+namespace FinesSE.VisualRegression.Infrastructure
 {
     public class MagickImageComparer : IImageComparer
     {

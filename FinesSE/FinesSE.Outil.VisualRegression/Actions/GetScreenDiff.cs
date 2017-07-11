@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FinesSE.Outil.Actions
+namespace FinesSE.Outil.VisualRegression.Actions
 {
     public class GetScreenDiff : IAction
     {

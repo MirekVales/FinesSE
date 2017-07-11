@@ -1,12 +1,13 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using FinesSE.Core;
+using FinesSE.VisualRegression.Contracts;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FinesSE.Outil.Assertions
+namespace FinesSE.Outil.VisualRegression.Assertions
 {
     public class VerifyScreen : IAction
     {
@@ -23,7 +24,11 @@ namespace FinesSE.Outil.Assertions
         }
 
         public string Invoke(params object[] parameters)
-            => Invoke(parameters.First() as IEnumerable<IWebElement>, parameters.ElementAt(1) as string, parameters.ElementAt(2) as string, (double)parameters.ElementAt(3));
+            => Invoke(
+                parameters.First() as IEnumerable<IWebElement>, 
+                parameters.ElementAt(1) as string, 
+                parameters.ElementAt(2) as string, 
+                (double)parameters.ElementAt(3));
 
         public string Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId, double tolerance)
         {
@@ -35,9 +40,7 @@ namespace FinesSE.Outil.Assertions
 
                 var diff = ScreenshotStore.Compare(elementId, baseVersionId, referenceVersionId);
                 if (diff > tolerance)
-                {
-                    throw new Exception($"message:<<Difference was {diff}>>");
-                }
+                    throw new ComparisonAssertionException(elementId, baseVersionId, referenceVersionId, diff, tolerance);
             }
 
             return "true";

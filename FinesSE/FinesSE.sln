@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Core", "FinesSE.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.VisualRegression", "FinesSE.VisualRegression\FinesSE.VisualRegression.csproj", "{7867F561-6D22-4B8F-843C-603E998282C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil.VisualRegression", "FinesSE.Outil.VisualRegression\FinesSE.Outil.VisualRegression.csproj", "{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{7867F561-6D22-4B8F-843C-603E998282C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7867F561-6D22-4B8F-843C-603E998282C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7867F561-6D22-4B8F-843C-603E998282C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

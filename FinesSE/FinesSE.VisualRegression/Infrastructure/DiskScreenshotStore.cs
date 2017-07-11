@@ -1,7 +1,8 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using FinesSE.VisualRegression.Contracts;
 using System.IO;
 
-namespace FinesSE.VisualRegression
+namespace FinesSE.VisualRegression.Infrastructure
 {
     public class DiskScreenshotStore : IScreenshotStore
     {
@@ -15,7 +16,10 @@ namespace FinesSE.VisualRegression
         }
 
         public string GetPath(string objectId, string versionId)
-            => Path.Combine(config.ScreenshotStorePath, versionId, $"{config.ScreenshotStoreFilePrefix}{objectId}{config.ScreenshotStoreFileExtension}");
+            => Path.Combine(
+                config.ScreenshotStorePath, 
+                versionId, 
+                $"{config.ScreenshotStoreFilePrefix}{objectId}{config.ScreenshotStoreFileExtension}");
 
         public void Clear()
         {
@@ -25,10 +29,16 @@ namespace FinesSE.VisualRegression
 
         public double Compare(string objectId, string baseVersionId, string referenceVersionId)
         {
-            if (!Exists(objectId, baseVersionId) || !Exists(objectId, referenceVersionId))
-                throw new System.Exception();
+            EnsureFileExistence(objectId, baseVersionId);
+            EnsureFileExistence(objectId, referenceVersionId);
 
             return ImageComparer.Compare(GetPath(objectId, baseVersionId), GetPath(objectId, referenceVersionId));
+        }
+
+        public void EnsureFileExistence(string objectId, string versionId)
+        {
+            if (!Exists(objectId, versionId))
+                throw new ScreenshotNotFoundException(GetPath(objectId, versionId), versionId);
         }
 
         public bool Exists(string objectId, string versionId)

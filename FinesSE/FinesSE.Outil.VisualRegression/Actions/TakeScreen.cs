@@ -6,7 +6,7 @@ using FinesSE.Contracts.Infrastructure;
 using System.Linq;
 using FinesSE.Core;
 
-namespace FinesSE.Outil.Actions
+namespace FinesSE.Outil.VisualRegression.Actions
 {
     public class TakeScreen : IAction
     {

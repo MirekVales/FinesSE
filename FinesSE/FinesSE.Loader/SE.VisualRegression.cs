@@ -1,5 +1,5 @@
-﻿using FinesSE.Outil.Actions;
-using FinesSE.Outil.Assertions;
+﻿using FinesSE.Outil.VisualRegression.Actions;
+using FinesSE.Outil.VisualRegression.Assertions;
 
 namespace FinesSE.Loader
 {

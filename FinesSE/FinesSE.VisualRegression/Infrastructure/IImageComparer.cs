@@ -1,4 +1,4 @@
-﻿namespace FinesSE.VisualRegression
+﻿namespace FinesSE.VisualRegression.Infrastructure
 {
     public interface IImageComparer
     {
