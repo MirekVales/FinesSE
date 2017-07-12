@@ -23,6 +23,9 @@ namespace FinesSE.Loader
         public object VerifyScreenDiff(string locator, string tolerance)
             => se.Invoke<VerifyScreenDiff>(locator, null, null, tolerance);
 
+        public object VerifyScreenDiff(string locator)
+            => se.Invoke<VerifyScreenDiff>(locator, null, null, null);
+
         [Obsolete]
         public object VerifyScreenDiff(string locator, string baseVersionId, string referenceVersionId, string tolerance)
             => se.Invoke<VerifyScreenDiff>(locator, baseVersionId, referenceVersionId, tolerance);

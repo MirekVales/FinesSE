@@ -22,7 +22,7 @@ namespace FinesSE.Outil.VisualRegression.Assertions
             yield return typeof(IEnumerable<IWebElement>);
             yield return typeof(string);
             yield return typeof(string);
-            yield return typeof(double);
+            yield return typeof(string);
         }
 
         public string Invoke(params object[] parameters)
@@ -30,14 +30,15 @@ namespace FinesSE.Outil.VisualRegression.Assertions
                 parameters.First() as IEnumerable<IWebElement>, 
                 parameters.ElementAt(1) as string, 
                 parameters.ElementAt(2) as string, 
-                (double)parameters.ElementAt(3));
+                parameters.ElementAt(3) as string);
 
-        public string Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId, double tolerance)
+        public string Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId, string toleranceValue)
         {
             var configuration = ConfigurationProvider.Get(Configuration.Default);
             baseVersionId = baseVersionId.FallbackEmptyString(() => configuration.ScreenshotStoreBaseVersionId);
             referenceVersionId = referenceVersionId.FallbackEmptyString(() => configuration.ScreenshotStoreReferenceVersionId);
-
+            var tolerance = ParseToleranceLevel(toleranceValue.FallbackEmptyString(() => configuration.ScreenshotDiffTolerance));
+            
             foreach (var element in elements)
             {
                 var screenshot = element.TakeScreenshot(DriverProvider.Get());
@@ -50,6 +51,14 @@ namespace FinesSE.Outil.VisualRegression.Assertions
             }
 
             return "true";
+        }
+
+        private double ParseToleranceLevel(string v)
+        {
+            if (v.EndsWith("%"))
+                return double.Parse(v.TrimEnd('%')) / 100;
+
+            return double.Parse(v);
         }
     }
 }
