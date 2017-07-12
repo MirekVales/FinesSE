@@ -22,7 +22,10 @@ namespace FinesSE.Loader
         public void Pause(string ms)
             => se.InvokeVoid<Pause>(ms);
 
-        public void TypeKeys(string locator, string keys)
-            => se.InvokeVoid<TypeKeys>(locator, keys);
+        public void Refresh()
+            => se.InvokeVoid<Refresh>();
+
+        public void Type(string locator, string keys)
+            => se.InvokeVoid<Type>(locator, keys);
     }
 }

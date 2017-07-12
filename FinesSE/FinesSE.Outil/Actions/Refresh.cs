@@ -2,24 +2,22 @@
 using FinesSE.Contracts.Invokable;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FinesSE.Outil.Actions
 {
-    public class Pause : IVoidAction
+    public class Refresh : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
 
         public IEnumerable<System.Type> GetParameterTypes()
         {
-            yield return typeof(int);
+            yield break;
         }
 
         public void Invoke(params object[] parameters)
-            => Invoke(parameters.Cast<int>().First());
+            => Invoke();
 
-        public void Invoke(int ms)
-            => Task.Delay(ms).Wait();
+        public void Invoke()
+            => DriverProvider.Get().Navigate().Refresh();
     }
 }

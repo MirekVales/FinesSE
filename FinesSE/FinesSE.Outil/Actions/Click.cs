@@ -8,7 +8,7 @@ namespace FinesSE.Outil.Actions
 {
     public class Click : IVoidAction
     {
-        public IEnumerable<Type> GetParameterTypes()
+        public IEnumerable<System.Type> GetParameterTypes()
         {
             yield return typeof(IEnumerable<IWebElement>);
         }

@@ -1,17 +1,16 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FinesSE.Outil.Actions
 {
-    public class TypeKeys : IVoidAction
+    public class Type : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
 
-        public IEnumerable<Type> GetParameterTypes()
+        public IEnumerable<System.Type> GetParameterTypes()
         {
             yield return typeof(IEnumerable<IWebElement>);
             yield return typeof(string);

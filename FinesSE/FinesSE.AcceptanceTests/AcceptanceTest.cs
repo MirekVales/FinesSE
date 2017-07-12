@@ -11,10 +11,10 @@ namespace FinesSE.AcceptanceTests
         {
             using (var se = new SE())
             {
-                se.Go("http://www.google.com");
-                se.TypeKeys("identifier=lst-ib", "There is something I am looking for... ");
+                se.Open("http://www.google.com");
+                se.Type("identifier=lst-ib", "There is something I am looking for... ");
                 se.Click("identifier=_fZl");
-                se.TypeKeys("identifier=lst-ib", "Something...");
+                se.Type("identifier=lst-ib", "Something...");
                 se.Pause("3000");
             }
         }

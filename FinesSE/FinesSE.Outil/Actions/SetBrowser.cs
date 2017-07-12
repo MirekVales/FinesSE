@@ -11,7 +11,7 @@ namespace FinesSE.Outil.Actions
     {
         public IWebDriverProvider DriverProvider { get; set; }
 
-        public IEnumerable<Type> GetParameterTypes()
+        public IEnumerable<System.Type> GetParameterTypes()
         {
             yield return typeof(WebDrivers);
         }
