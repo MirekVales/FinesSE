@@ -1,5 +1,6 @@
 ﻿using FinesSE.Contracts.Exceptions;
 using FinesSE.Contracts.Infrastructure;
+using log4net;
 using System;
 using System.Collections.Generic;
 
@@ -7,6 +8,8 @@ namespace FinesSE.Core.Parsing
 {
     public abstract class BaseParameterParser : IParameterParser
     {
+        public ILog Log { get; set; }
+
         private readonly Dictionary<Type, Func<string, object>> parsers;
 
         public BaseParameterParser()
@@ -27,7 +30,8 @@ namespace FinesSE.Core.Parsing
                 }
                 else
                 {
-                    throw new ParserNotFoundException(type);
+                    using (var e = new ParserNotFoundException(type))
+                        Log.Fatal($"Parameter parser was not found for {type}", e);
                 }
             }
         }

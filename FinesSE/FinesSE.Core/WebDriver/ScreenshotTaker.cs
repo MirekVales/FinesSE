@@ -49,7 +49,7 @@ namespace FinesSE.Core.WebDriver
         }
 
         private void SetOffset(int x, int y)
-            => ExecuteScript($"window.pageXOffset = {x};window.pageYOffset = {y}; scrollTo({x},{y});");
+            => ExecuteScript($"window.pageXOffset = {x}; window.pageYOffset = {y}; scrollTo({x},{y});");
 
         private string ExecuteScript(string command)
             => Executor.ExecuteScript(command) + "";

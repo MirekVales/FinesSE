@@ -2,12 +2,15 @@
 using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using LightInject.Interception;
+using log4net;
 using System.Linq;
 
 namespace FinesSE.Core.Injection
 {
     public class ActionInterceptor : IActionInterceptor
     {
+        public ILog Log { get; set; }
+
         public IKernel Kernel { get; set; }
         public IParameterParser Parser { get; set; }
 
@@ -21,7 +24,12 @@ namespace FinesSE.Core.Injection
                 return action.Invoke(parameters.ToArray());
             }
             else
-                throw new ActionNotFoundException(typeName);
+            {
+                using (var e = new ActionNotFoundException(typeName))
+                    Log.Fatal($"Implementation not found for action {typeName}", e);
+            }
+
+            return null;
         }
     }
 }

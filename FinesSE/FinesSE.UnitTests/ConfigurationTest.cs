@@ -10,7 +10,7 @@ namespace FinesSE.UnitTests
         [TestMethod]
         public void Deserializes()
         {
-            var configurationProvider = new ConfigurationProvider(GetConfiguration());
+            var configurationProvider = new ConfigurationProvider(null, GetConfiguration());
             Assert.IsTrue(configurationProvider.ConfigurationFound);
 
             var config = configurationProvider.Get<CustomConfiguration>(null);

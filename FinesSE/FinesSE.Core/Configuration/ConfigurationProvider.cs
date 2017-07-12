@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using log4net;
 using System;
 using System.IO;
 using YamlDotNet.Serialization;
@@ -8,6 +9,8 @@ namespace FinesSE.Core.Configuration
 {
     public class ConfigurationProvider : IConfigurationProvider
     {
+        private readonly ILog Log;
+
         public bool ConfigurationFound { get; private set; }
 
         public T Get<T>(T defaultFallback)
@@ -17,8 +20,9 @@ namespace FinesSE.Core.Configuration
             {
                 return deserializer.Deserialize<T>(configurationFile);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
+                Log.Warn($"Type {nameof(T)} configuration deserialization failed",e);
                 return defaultFallback;
             }
         }
@@ -26,16 +30,18 @@ namespace FinesSE.Core.Configuration
         private string configurationFile;
         private readonly Deserializer deserializer;
 
-        public ConfigurationProvider()
+        public ConfigurationProvider(ILog log)
         {
+            Log = log;
             deserializer = GetDeserializer();
 
             const string CONFIGURATION_FILE_NAME = "Configuration.yml";
             Initialize(AppDomain.CurrentDomain.BaseDirectory, CONFIGURATION_FILE_NAME);
         }
 
-        public ConfigurationProvider(string configuration)
+        public ConfigurationProvider(ILog log, string configuration)
         {
+            Log = log;
             deserializer = GetDeserializer();
 
             configurationFile = configuration;
@@ -55,6 +61,11 @@ namespace FinesSE.Core.Configuration
             {
                 configurationFile = File.ReadAllText(path);
                 ConfigurationFound = true;
+                Log.Debug($"Configuration file read from {path}");
+            }
+            else
+            {
+                Log.Debug($"Configuration file not found at {path}");
             }
         }
     }

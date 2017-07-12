@@ -1,6 +1,7 @@
 ﻿using FinesSE.Contracts;
 using FinesSE.Contracts.Exceptions;
 using FinesSE.Contracts.Infrastructure;
+using log4net;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace FinesSE.Core.WebDriver
 {
     public class WebDriverProvider : IWebDriverProvider
     {
+        public ILog Log { get; set; }
+
         private readonly Lazy<IWebDriver> driver;
         private readonly Dictionary<WebDrivers, Func<IWebDriver>> factory;
         private readonly IConfigurationProvider configuration;
@@ -46,7 +49,10 @@ namespace FinesSE.Core.WebDriver
             if (factory.ContainsKey(driver))
                 return factory[driver]();
 
-            throw new WebDriverNotFoundException(driver);
+            using (var e = new WebDriverNotFoundException(driver))
+                Log.Fatal($"Web driver factory not found for {driver}", e);
+
+            return null;
         }
 
         public void SetBrowser(WebDrivers driver)
@@ -57,6 +63,8 @@ namespace FinesSE.Core.WebDriver
 
         public void Dispose()
         {
+            Log.Debug("Web driver is about to be disposed");
+
             if (driver.IsValueCreated)
             {
                 driver.Value.CloseWindow();

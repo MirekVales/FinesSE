@@ -6,6 +6,7 @@ using FinesSE.Contracts.Invokable;
 using System.Linq;
 using System;
 using System.Reflection;
+using log4net;
 
 namespace FinesSE.Core.Injection
 {
@@ -27,6 +28,7 @@ namespace FinesSE.Core.Injection
 
         public void Initialize()
         {
+            container.RegisterInstance(LogManager.GetLogger("CoreLog"));
             container.RegisterFrom<C>();
             container.RegisterInstance<IKernel>(this);
             container.Intercept(x => x.ServiceType == typeof(ISeleneseProxy), (sf, pd) => DefineProxyType(pd));
