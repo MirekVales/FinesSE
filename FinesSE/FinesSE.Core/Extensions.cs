@@ -20,9 +20,12 @@ namespace FinesSE.Core
         public static byte[] TakeScreenshot(this IWebElement element, IWebDriver driver)
         {
             var imageBytes = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
-            var image = new Bitmap(new MemoryStream(imageBytes));
-            var crop = image.Crop(element.Area());
-            return crop.ToByteArray();
+            using (var stream = new MemoryStream(imageBytes))
+            using (var image = new Bitmap(stream))
+            {
+                var crop = image.Crop(element.Area());
+                return crop.ToByteArray();
+            }
         }
 
         public static Rectangle Area(this IWebElement element)
