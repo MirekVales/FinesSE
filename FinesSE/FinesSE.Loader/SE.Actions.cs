@@ -1,5 +1,4 @@
-﻿using FinesSE.Contracts.Exceptions;
-using FinesSE.Outil.Actions;
+﻿using FinesSE.Outil.Actions;
 
 namespace FinesSE.Loader
 {
@@ -17,8 +16,8 @@ namespace FinesSE.Loader
         public string GetText(string locator)
             => se.Invoke<GetText>(locator);
 
-        public void Go(string url)
-            => se.InvokeVoid<Go>(url);
+        public void Open(string url)
+            => se.InvokeVoid<Open>(url);
 
         public void Pause(string ms)
             => se.InvokeVoid<Pause>(ms);

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FinesSE.Outil.Actions
 {
-    public class Go : IVoidAction
+    public class Open : IVoidAction
     {
         public IWebDriverProvider DriverProvider { get; set; }
 
