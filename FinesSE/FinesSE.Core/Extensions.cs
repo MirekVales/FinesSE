@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using FinesSE.Core.WebDriver;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,15 +18,39 @@ namespace FinesSE.Core
             .GetGenericArguments()
             .Select(x => x.Name);
 
+        public static object ExecuteScript(this IWebDriver driver, string script)
+            => (driver as IJavaScriptExecutor).ExecuteScript(script);
+
+        public static Size PageSize(this IWebDriver driver)
+            => new Size()
+            {
+                Width = int.Parse("" + driver.ExecuteScript("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);")),
+                Height = int.Parse("" + driver.ExecuteScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);"))
+            };
+
+        public static Size ViewPort(this IWebDriver driver)
+            => new Size()
+            {
+                Width = int.Parse("" + driver.ExecuteScript("return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);")),
+                Height = int.Parse("" + driver.ExecuteScript("return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"))
+            };
+
         public static byte[] TakeScreenshot(this IWebElement element, IWebDriver driver)
         {
-            var imageBytes = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
+            var pageSize = driver.PageSize();
+            var browserSize = driver.ViewPort();
+            byte[] imageBytes;
+            if (pageSize.Width < browserSize.Width && pageSize.Height < browserSize.Height)
+                imageBytes = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
+            else
+                imageBytes = new ScreenshotTaker(driver).TakeImage();
+
             using (var stream = new MemoryStream(imageBytes))
-            using (var image = new Bitmap(stream))
-            {
-                var crop = image.Crop(element.Area());
-                return crop.ToByteArray();
-            }
+                using (var image = new Bitmap(stream))
+                {
+                    var crop = image.Crop(element.Area());
+                    return crop.ToByteArray();
+                }
         }
 
         public static Rectangle Area(this IWebElement element)

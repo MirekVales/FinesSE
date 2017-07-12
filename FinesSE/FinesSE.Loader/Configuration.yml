@@ -1,6 +1,8 @@
-﻿DefaultBrowser: IE
+﻿DefaultBrowser: Opera
 
+ScreenshotDiffTolerance: 1%
 ScreenshotStorePath: c:\ScreenshotStore
 ScreenshotStoreFileExtension: .png
 ScreenshotStoreBaseVersionId: base
 ScreenshotStoreReferenceVersionId: ref
+ScreenshotStoreDiffVersionId: diff

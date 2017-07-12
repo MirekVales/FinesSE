@@ -35,7 +35,7 @@ namespace FinesSE.Outil.VisualRegression.Actions
                 var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), element);
                 ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, versionId);
 
-                return ScreenshotStore.GetPath(DriverProvider.TopicId, elementId, versionId);
+                return ScreenshotStore.GetPath(DriverProvider.TopicId, elementId, configuration.ScreenshotStoreDiffVersionId);
             }
             return "";
         }

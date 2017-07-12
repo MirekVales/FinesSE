@@ -56,6 +56,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Infrastructure\IdProvider.cs" />
     <Compile Include="Infrastructure\IImageComparer.cs" />
+    <Compile Include="Infrastructure\IImageInliner.cs" />
+    <Compile Include="Infrastructure\ImageInliner.cs" />
     <Compile Include="Infrastructure\MagickImageComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration.cs" />

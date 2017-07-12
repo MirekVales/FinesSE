@@ -33,7 +33,11 @@ namespace FinesSE.VisualRegression.Infrastructure
             EnsureFileExistence(topicId, objectId, baseVersionId);
             EnsureFileExistence(topicId, objectId, referenceVersionId);
 
-            return ImageComparer.Compare(GetPath(topicId, objectId, baseVersionId), GetPath(topicId, objectId, referenceVersionId));
+            var path1 = GetPath(topicId, objectId, baseVersionId);
+            var path2 = GetPath(topicId, objectId, referenceVersionId);
+            var diff = ImageComparer.Compare(path1, path2);
+            ImageComparer.CreateDiffImage(path1, path2, GetPath(topicId, objectId, config.ScreenshotStoreDiffVersionId));
+            return diff;
         }
 
         public void EnsureFileExistence(string topicId, string objectId, string versionId)

@@ -46,7 +46,7 @@ namespace FinesSE.Outil.VisualRegression.Assertions
 
                 var diff = ScreenshotStore.Compare(DriverProvider.TopicId, elementId, baseVersionId, referenceVersionId);
                 if (diff > tolerance)
-                    throw new ComparisonAssertionException(elementId, baseVersionId, referenceVersionId, diff, tolerance);
+                    throw new ComparisonAssertionException(elementId, baseVersionId, referenceVersionId, diff * 100, tolerance * 100);
             }
 
             return "true";
