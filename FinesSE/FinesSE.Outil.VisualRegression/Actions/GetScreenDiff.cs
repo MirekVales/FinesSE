@@ -19,18 +19,16 @@ namespace FinesSE.Outil.VisualRegression.Actions
         public IEnumerable<Type> GetParameterTypes()
         {
             yield return typeof(IEnumerable<IWebElement>);
-            yield return typeof(string);
-            yield return typeof(string);
         }
 
         public string Invoke(params object[] parameters)
-            => Invoke(parameters.First() as IEnumerable<IWebElement>, parameters.ElementAt(1) as string, parameters.Last() as string);
+            => Invoke(parameters.First() as IEnumerable<IWebElement>);
 
-        public string Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId)
+        public string Invoke(IEnumerable<IWebElement> elements)
         {
             var configuration = ConfigurationProvider.Get(Configuration.Default);
-            baseVersionId = baseVersionId.FallbackEmptyString(() => configuration.ScreenshotStoreBaseVersionId);
-            referenceVersionId = referenceVersionId.FallbackEmptyString(() => configuration.ScreenshotStoreReferenceVersionId);
+            var baseVersionId = configuration.ScreenshotStoreBaseVersionId;
+            var referenceVersionId =configuration.ScreenshotStoreReferenceVersionId;
 
             foreach (var element in elements)
             {

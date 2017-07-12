@@ -1,6 +1,5 @@
 ﻿using FinesSE.Outil.VisualRegression.Actions;
 using FinesSE.Outil.VisualRegression.Assertions;
-using System;
 
 namespace FinesSE.Loader
 {
@@ -16,25 +15,13 @@ namespace FinesSE.Loader
         public string TakeScreen(string locator)
             => se.Invoke<TakeScreen>(locator, null);
 
-        [Obsolete]
-        public string TakeScreen(string locator, string versionId)
-            => se.Invoke<TakeScreen>(locator, versionId);
+        public object VerifyScreenDiff(string locator)
+            => se.Invoke<VerifyScreenDiff>(locator, null);
 
         public object VerifyScreenDiff(string locator, string tolerance)
-            => se.Invoke<VerifyScreenDiff>(locator, null, null, tolerance);
-
-        public object VerifyScreenDiff(string locator)
-            => se.Invoke<VerifyScreenDiff>(locator, null, null, null);
-
-        [Obsolete]
-        public object VerifyScreenDiff(string locator, string baseVersionId, string referenceVersionId, string tolerance)
-            => se.Invoke<VerifyScreenDiff>(locator, baseVersionId, referenceVersionId, tolerance);
+            => se.Invoke<VerifyScreenDiff>(locator, tolerance);
 
         public string GetScreenDiff(string locator)
-            => se.Invoke<GetScreenDiff>(locator, null, null);
-
-        [Obsolete]
-        public string GetScreenDiff(string locator, string baseVersionId, string referenceVersionId)
-            => se.Invoke<GetScreenDiff>(locator, baseVersionId, referenceVersionId);
+            => se.Invoke<GetScreenDiff>(locator);
     }
 }

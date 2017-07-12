@@ -21,22 +21,18 @@ namespace FinesSE.Outil.VisualRegression.Assertions
         {
             yield return typeof(IEnumerable<IWebElement>);
             yield return typeof(string);
-            yield return typeof(string);
-            yield return typeof(string);
         }
 
         public string Invoke(params object[] parameters)
             => Invoke(
                 parameters.First() as IEnumerable<IWebElement>, 
-                parameters.ElementAt(1) as string, 
-                parameters.ElementAt(2) as string, 
-                parameters.ElementAt(3) as string);
+                parameters.ElementAt(1) as string);
 
-        public string Invoke(IEnumerable<IWebElement> elements, string baseVersionId, string referenceVersionId, string toleranceValue)
+        public string Invoke(IEnumerable<IWebElement> elements, string toleranceValue)
         {
             var configuration = ConfigurationProvider.Get(Configuration.Default);
-            baseVersionId = baseVersionId.FallbackEmptyString(() => configuration.ScreenshotStoreBaseVersionId);
-            referenceVersionId = referenceVersionId.FallbackEmptyString(() => configuration.ScreenshotStoreReferenceVersionId);
+            var baseVersionId = configuration.ScreenshotStoreBaseVersionId;
+            var referenceVersionId = configuration.ScreenshotStoreReferenceVersionId;
             var tolerance = ParseToleranceLevel(toleranceValue.FallbackEmptyString(() => configuration.ScreenshotDiffTolerance));
             
             foreach (var element in elements)
