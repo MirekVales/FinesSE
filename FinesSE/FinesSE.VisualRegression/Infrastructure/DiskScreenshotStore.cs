@@ -15,9 +15,10 @@ namespace FinesSE.VisualRegression.Infrastructure
             config = configuration.Get(Configuration.Default);
         }
 
-        public string GetPath(string objectId, string versionId)
+        public string GetPath(string topicId, string objectId, string versionId)
             => Path.Combine(
                 config.ScreenshotStorePath, 
+                topicId,
                 versionId, 
                 $"{config.ScreenshotStoreFilePrefix}{objectId}{config.ScreenshotStoreFileExtension}");
 
@@ -27,29 +28,29 @@ namespace FinesSE.VisualRegression.Infrastructure
             Directory.CreateDirectory(config.ScreenshotStorePath);
         }
 
-        public double Compare(string objectId, string baseVersionId, string referenceVersionId)
+        public double Compare(string topicId, string objectId, string baseVersionId, string referenceVersionId)
         {
-            EnsureFileExistence(objectId, baseVersionId);
-            EnsureFileExistence(objectId, referenceVersionId);
+            EnsureFileExistence(topicId, objectId, baseVersionId);
+            EnsureFileExistence(topicId, objectId, referenceVersionId);
 
-            return ImageComparer.Compare(GetPath(objectId, baseVersionId), GetPath(objectId, referenceVersionId));
+            return ImageComparer.Compare(GetPath(topicId, objectId, baseVersionId), GetPath(topicId, objectId, referenceVersionId));
         }
 
-        public void EnsureFileExistence(string objectId, string versionId)
+        public void EnsureFileExistence(string topicId, string objectId, string versionId)
         {
-            if (!Exists(objectId, versionId))
-                throw new ScreenshotNotFoundException(GetPath(objectId, versionId), versionId);
+            if (!Exists(topicId, objectId, versionId))
+                throw new ScreenshotNotFoundException(GetPath(topicId, objectId, versionId), versionId);
         }
 
-        public bool Exists(string objectId, string versionId)
-            => File.Exists(GetPath(objectId, versionId));
+        public bool Exists(string topicId, string objectId, string versionId)
+            => File.Exists(GetPath(topicId, objectId, versionId));
 
-        public byte[] Get(string objectId, string versionId)
-            => File.ReadAllBytes(GetPath(objectId, versionId));
+        public byte[] Get(string topicId, string objectId, string versionId)
+            => File.ReadAllBytes(GetPath(topicId, objectId, versionId));
 
-        public void Store(byte[] image, string objectId, string versionId)
+        public void Store(byte[] image, string topicId, string objectId, string versionId)
         {
-            var path = GetPath(objectId, versionId);
+            var path = GetPath(topicId, objectId, versionId);
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path.Replace(Path.GetFileName(path),""));
 

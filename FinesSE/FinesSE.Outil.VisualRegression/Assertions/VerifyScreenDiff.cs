@@ -42,9 +42,9 @@ namespace FinesSE.Outil.VisualRegression.Assertions
             {
                 var screenshot = element.TakeScreenshot(DriverProvider.Get());
                 var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), element);
-                ScreenshotStore.Store(screenshot, elementId, referenceVersionId);
+                ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, referenceVersionId);
 
-                var diff = ScreenshotStore.Compare(elementId, baseVersionId, referenceVersionId);
+                var diff = ScreenshotStore.Compare(DriverProvider.TopicId, elementId, baseVersionId, referenceVersionId);
                 if (diff > tolerance)
                     throw new ComparisonAssertionException(elementId, baseVersionId, referenceVersionId, diff, tolerance);
             }

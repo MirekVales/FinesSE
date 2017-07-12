@@ -2,15 +2,15 @@
 {
     public interface IScreenshotStore
     {
-        void Store(byte[] image, string objectId, string versionId);
+        void Store(byte[] image, string topicId, string objectId, string versionId);
 
-        bool Exists(string objectId, string versionId);
+        bool Exists(string topicId, string objectId, string versionId);
 
-        byte[] Get(string objectId, string versionId);
+        byte[] Get(string topicId, string objectId, string versionId);
 
-        string GetPath(string objectId, string versionId);
+        string GetPath(string topicId, string objectId, string versionId);
 
-        double Compare(string objectId, string baseVersionId, string referenceVersionId);
+        double Compare(string topicId, string objectId, string baseVersionId, string referenceVersionId);
 
         void Clear();
     }

@@ -36,9 +36,9 @@ namespace FinesSE.Outil.VisualRegression.Actions
             {
                 var screenshot = element.TakeScreenshot(DriverProvider.Get());
                 var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), element);
-                ScreenshotStore.Store(screenshot, elementId, referenceVersionId);
+                ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, referenceVersionId);
 
-                return ScreenshotStore.Compare(elementId, baseVersionId, referenceVersionId).ToString();
+                return ScreenshotStore.Compare(DriverProvider.TopicId, elementId, baseVersionId, referenceVersionId).ToString();
             }
 
             return null;

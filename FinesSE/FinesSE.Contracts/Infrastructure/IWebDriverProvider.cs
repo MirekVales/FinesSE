@@ -8,5 +8,7 @@ namespace FinesSE.Contracts.Infrastructure
         IWebDriver Get();
 
         void SetBrowser(WebDrivers driver);
+#warning TBR EContext
+        string TopicId { get; set; }
     }
 }

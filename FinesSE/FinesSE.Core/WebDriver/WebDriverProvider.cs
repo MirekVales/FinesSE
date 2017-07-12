@@ -15,6 +15,9 @@ namespace FinesSE.Core.WebDriver
 
         public WebDrivers CurrentDriver { get; set; } = WebDrivers.Default;
 
+#warning TBR EContext
+        public string TopicId { get; set; } = "Default";
+
         public WebDriverProvider(IConfigurationProvider configuration)
         {
             this.configuration = configuration;
