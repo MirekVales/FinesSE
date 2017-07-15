@@ -19,18 +19,12 @@ namespace FinesSE.VisualRegression.Infrastructure
             var id = string.Join("_",
                 GetElementIndex(elements, element),
                 element.TagName,
-                GetRegexName(elements.Locator.Regex),
+                elements.Locator.Id,
                 elements.Parameter);
             var safeId = string.Join("_", id.Split(replacedCharacters, StringSplitOptions.RemoveEmptyEntries));
 
             return safeId.Length > MAX_ID_LENGTH ? safeId.Substring(0, MAX_ID_LENGTH) : safeId;
         }
-
-        private string GetRegexName(string regex)
-            => regex
-            .Split('=')
-            .First()
-            .Trim('(', ')');
 
         private int GetElementIndex(LocatedElements elements, IWebElement element)
             => elements

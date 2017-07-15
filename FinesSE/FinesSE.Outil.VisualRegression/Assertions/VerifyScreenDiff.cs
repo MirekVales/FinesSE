@@ -1,6 +1,7 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using FinesSE.Core;
+using FinesSE.Core.WebDriver;
 using FinesSE.VisualRegression;
 using FinesSE.VisualRegression.Contracts;
 using System;
@@ -29,6 +30,8 @@ namespace FinesSE.Outil.VisualRegression.Assertions
 
         public string Invoke(LocatedElements elements, string toleranceValue)
         {
+            elements.ConstraintCount(c => c > 0);
+
             var configuration = ConfigurationProvider.Get(Configuration.Default);
             var baseVersionId = configuration.ScreenshotStoreBaseVersionId;
             var referenceVersionId = configuration.ScreenshotStoreReferenceVersionId;

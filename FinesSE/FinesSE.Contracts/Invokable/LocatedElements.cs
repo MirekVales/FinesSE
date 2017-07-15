@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using FinesSE.Contracts.Exceptions;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +17,14 @@ namespace FinesSE.Contracts.Invokable
             Locator = locator;
             Parameter = parameter;
             Elements = elements.ToArray();
+        }
+
+        public LocatedElements ConstraintCount(Predicate<int> countPredicate)
+        {
+            if (!countPredicate(Elements.Count()))
+                throw new InvalidNumberOfWebElementsException(Elements.Count());
+
+            return this;
         }
     }
 }

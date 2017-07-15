@@ -2,6 +2,8 @@
 {
     public interface ILocator
     {
+        string Id { get; }
+
         string Regex { get; }
 
         LocatedElements Locate(string value);

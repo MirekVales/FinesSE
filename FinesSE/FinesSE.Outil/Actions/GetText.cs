@@ -15,6 +15,10 @@ namespace FinesSE.Outil.Actions
             => Invoke(parameters.Cast<LocatedElements>().First());
 
         public string Invoke(LocatedElements elements)
-            => elements.Elements.First().Text;
+            => elements
+            .ConstraintCount(c => c == 1)
+            .Elements
+            .First()
+            .Text;
     }
 }

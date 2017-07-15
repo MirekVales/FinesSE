@@ -19,6 +19,10 @@ namespace FinesSE.Outil.Actions
             => Invoke(parameters.First() as LocatedElements, parameters.Last() as string);
 
         public void Invoke(LocatedElements elements, string keys)
-            => elements.Elements.ToList().ForEach(x => x.SendKeys(keys));
+            => elements
+            .ConstraintCount(c => c > 0)
+            .Elements
+            .ToList()
+            .ForEach(x => x.SendKeys(keys));
     }
 }

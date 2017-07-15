@@ -1,6 +1,6 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
-using FinesSE.Core;
+using FinesSE.Core.WebDriver;
 using OpenQA.Selenium;
 
 namespace FinesSE.Outil.Locators
@@ -8,6 +8,9 @@ namespace FinesSE.Outil.Locators
     public class Identifier : ILocator
     {
         public IWebDriverProvider DriverProvider { get; set; }
+
+        public string Id
+            => "identifier";
 
         public string Regex
             => "(identifier=)(.+)";

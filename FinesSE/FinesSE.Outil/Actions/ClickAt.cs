@@ -22,13 +22,15 @@ namespace FinesSE.Outil.Actions
         public void Invoke(LocatedElements elements, Point coordinates)
         {
             var action = new OpenQA.Selenium.Interactions.Actions(DriverProvider.Get());
-            foreach (var element in elements.Elements)
-            {
-                action
-                    .MoveToElement(element, (int)coordinates.X, (int)coordinates.Y)
+            elements
+                .ConstraintCount(c => c > 0)
+                .Elements
+                .ToList()
+                .ForEach(e => 
+                    action
+                    .MoveToElement(e, (int)coordinates.X, (int)coordinates.Y)
                     .Click()
-                    .Perform();
-            }
+                    .Perform());
         }
     }
 }

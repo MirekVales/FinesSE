@@ -1,7 +1,5 @@
-﻿using OpenQA.Selenium;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System;
 using FinesSE.Contracts.Invokable;
 
 namespace FinesSE.Outil.Actions
@@ -17,6 +15,10 @@ namespace FinesSE.Outil.Actions
             => Invoke(parameters.Cast<LocatedElements>().First());
 
         public void Invoke(LocatedElements elements)
-            => elements.Elements.ToList().ForEach(x => x.Click());
+            => elements
+            .ConstraintCount(c => c > 0)
+            .Elements
+            .ToList()
+            .ForEach(x => x.Click());
     }
 }
