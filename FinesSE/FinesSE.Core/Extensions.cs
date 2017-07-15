@@ -26,21 +26,24 @@ namespace FinesSE.Core
         public static object ExecuteScript(this IWebDriver driver, string script)
             => (driver as IJavaScriptExecutor).ExecuteScript(script);
 
-        public static object ExecuteScript(this IWebDriver driver, string script, params object[] arguments)
+        public static object ExecuteScriptWithArguments(this IWebDriver driver, string script, params object[] arguments)
             => (driver as IJavaScriptExecutor).ExecuteScript(script, arguments);
+
+        public static T ExecuteScript<T>(this IWebDriver driver, string script, Func<object, T> convert)
+            => convert((driver as IJavaScriptExecutor).ExecuteScript(script));
 
         public static Size PageSize(this IWebDriver driver)
             => new Size()
             {
-                Width = int.Parse("" + driver.ExecuteScript("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);")),
-                Height = int.Parse("" + driver.ExecuteScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);"))
+                Width = driver.ExecuteScript(JavascriptCode.ReturnPageWidth, Convert.ToInt32),
+                Height = driver.ExecuteScript(JavascriptCode.ReturnPageHeight, Convert.ToInt32)
             };
 
         public static Size ViewPort(this IWebDriver driver)
             => new Size()
             {
-                Width = int.Parse("" + driver.ExecuteScript("return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);")),
-                Height = int.Parse("" + driver.ExecuteScript("return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"))
+                Width = driver.ExecuteScript(JavascriptCode.ReturnViewWidth, Convert.ToInt32),
+                Height = driver.ExecuteScript(JavascriptCode.ReturnViewHeight, Convert.ToInt32)
             };
 
         public static byte[] TakeScreenshot(this IWebElement element, IWebDriver driver, IConfigurationProvider configuration)
@@ -51,7 +54,10 @@ namespace FinesSE.Core
             if (pageSize.Width < browserSize.Width && pageSize.Height < browserSize.Height)
                 imageBytes = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
             else
-                imageBytes = new ScreenshotTaker(driver, configuration).TakeImage();
+            {
+                using (var screenshotTaker = new ScreenshotTaker(driver, configuration))
+                imageBytes = screenshotTaker.TakeImage();
+            }
 
             using (var stream = new MemoryStream(imageBytes))
             using (var image = new Bitmap(stream))

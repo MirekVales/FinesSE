@@ -7,28 +7,31 @@ using System.IO;
 
 namespace FinesSE.Core.WebDriver
 {
-    public class ScreenshotTaker
+    public class ScreenshotTaker : IDisposable
     {
-        public Size PageSize { get; private set; }
+        public IJavaScriptExecutor Executor { get; private set; }
+        public ITakesScreenshot TakesScreenshot { get; private set; }
+
+        public IWebDriver Driver { get; }
+        public Size PageSize { get; }
         public Size ViewSize { get; private set; }
         public double VerticalSnaps { get; private set; }
         public double HorizontalSnaps { get; private set; }
-        public IJavaScriptExecutor Executor { get; private set; }
+        
         public int InitialOffsetX { get; }
         public int InitialOffsetY { get; }
         public int OffsetX { get; private set; }
         public int OffsetY { get; private set; }
-        public ITakesScreenshot TakesScreenshot { get; private set; }
 
         public ScreenshotTaker(IWebDriver driver, IConfigurationProvider configurationProvider)
         {
+            Driver = driver;
             Executor = driver as IJavaScriptExecutor;
             TakesScreenshot = driver as ITakesScreenshot;
-
-            var configuration = configurationProvider.Get(ScreenshotTakerConfiguration.Default);
             PageSize = driver.PageSize();
             ViewSize = driver.ViewPort();
-            ViewSize = ApplyOverlap(PageSize, ViewSize, configuration);
+            ViewSize = ApplyOverlap(PageSize, ViewSize, configurationProvider.Get(ScreenshotTakerConfiguration.Default));
+
             HorizontalSnaps = Math.Ceiling((double)PageSize.Width / ViewSize.Width);
             VerticalSnaps = Math.Ceiling((double)PageSize.Height / ViewSize.Height);
 
@@ -66,7 +69,6 @@ namespace FinesSE.Core.WebDriver
                             }
                         }
                 }
-                SetOffset(InitialOffsetX, InitialOffsetY);
                 return image.ToByteArray();
             }
         }
@@ -86,15 +88,17 @@ namespace FinesSE.Core.WebDriver
         }
 
         private void SetOffset(int x, int y)
-            => ExecuteScript($"scrollTo({x},{y});");
+            => Driver.ExecuteScript(string.Format(JavascriptCode.ScrollTo, x, y));
 
         private int GetOffsetX()
-            => int.Parse(ExecuteScript("return (window.pageXOffset || document.documentElement.scrollLeft) - (document.documentElement.clientLeft || 0);"));
+            => Driver.ExecuteScript(JavascriptCode.ReturnPageOffsetX, Convert.ToInt32);
 
         private int GetOffsetY()
-            => int.Parse(ExecuteScript("return (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);"));
+            => Driver.ExecuteScript(JavascriptCode.ReturnPageOffsetY, Convert.ToInt32);
 
-        private string ExecuteScript(string command)
-            => Executor.ExecuteScript(command) + "";
+        public void Dispose()
+        {
+            SetOffset(InitialOffsetX, InitialOffsetY);
+        }
     }
 }
