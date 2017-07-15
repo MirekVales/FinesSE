@@ -37,7 +37,7 @@ namespace FinesSE.Outil.VisualRegression.Assertions
             
             foreach (var element in elements)
             {
-                var screenshot = element.TakeScreenshot(DriverProvider.Get());
+                var screenshot = element.TakeScreenshot(DriverProvider.Get(), ConfigurationProvider);
                 var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), element);
                 ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, referenceVersionId);
 

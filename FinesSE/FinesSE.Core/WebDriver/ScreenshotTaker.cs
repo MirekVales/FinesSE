@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using FinesSE.Contracts.Infrastructure;
+using FinesSE.Core.Configuration;
+using OpenQA.Selenium;
 using System;
 using System.Drawing;
 using System.IO;
@@ -12,20 +14,25 @@ namespace FinesSE.Core.WebDriver
         public double VerticalSnaps { get; private set; }
         public double HorizontalSnaps { get; private set; }
         public IJavaScriptExecutor Executor { get; private set; }
+        public int InitialOffsetX { get; }
+        public int InitialOffsetY { get; }
         public int OffsetX { get; private set; }
         public int OffsetY { get; private set; }
         public ITakesScreenshot TakesScreenshot { get; private set; }
 
-        public ScreenshotTaker(IWebDriver driver)
+        public ScreenshotTaker(IWebDriver driver, IConfigurationProvider configurationProvider)
         {
             Executor = driver as IJavaScriptExecutor;
             TakesScreenshot = driver as ITakesScreenshot;
+
+            var configuration = configurationProvider.Get(ScreenshotTakerConfiguration.Default);
             PageSize = driver.PageSize();
-            ViewSize = driver.ViewPort();
+            ViewSize = Size.Subtract(driver.ViewPort(), new Size(configuration.ScreenshotTakeHorizontalOverlap, configuration.ScreenshotTakeVerticalOverlap));
             HorizontalSnaps = Math.Ceiling((double)PageSize.Width / ViewSize.Width);
             VerticalSnaps = Math.Ceiling((double)PageSize.Height / ViewSize.Height);
-            OffsetX = int.Parse(ExecuteScript("return window.pageXOffset;"));
-            OffsetY = int.Parse(ExecuteScript("return window.pageYOffset;"));
+
+            InitialOffsetX = OffsetX = GetOffsetX();
+            InitialOffsetY = OffsetY = GetOffsetY();
         }
 
         public byte[] TakeImage()
@@ -40,16 +47,45 @@ namespace FinesSE.Core.WebDriver
                             SetOffset(x * ViewSize.Width, y * ViewSize.Height);
                             using (var stream = new MemoryStream(TakesScreenshot.GetScreenshot().AsByteArray))
                             using (var bitmap = new Bitmap(stream))
-                                g.DrawImage(bitmap, x * ViewSize.Width, y * ViewSize.Height);
+                            {
+                                UpdateOffsetX(out int oldOffsetX, out int diffX);
+                                UpdateOffsetY(out int oldOffsetY, out int diffY);
+
+                                var imageRectangle = new Rectangle(OffsetX, OffsetY, ViewSize.Width, ViewSize.Height);
+                                var horizontalRedundancy = Math.Max(0, imageRectangle.Right - PageSize.Width);
+                                var verticalRedundancy = Math.Max(0, imageRectangle.Bottom - PageSize.Height);
+
+                                g.DrawImage(bitmap, OffsetX - horizontalRedundancy, OffsetY - verticalRedundancy);
+                            }
                         }
                 }
-                SetOffset(OffsetX, OffsetY);
+                SetOffset(InitialOffsetX, InitialOffsetY);
                 return image.ToByteArray();
             }
         }
 
+        private void UpdateOffsetX(out int oldOffsetX, out int diffX)
+        {
+            oldOffsetX = OffsetX;
+            OffsetX = GetOffsetX();
+            diffX = OffsetX - oldOffsetX;
+        }
+
+        private void UpdateOffsetY(out int oldOffsetY, out int diffY)
+        {
+            oldOffsetY = OffsetY;
+            OffsetY = GetOffsetY();
+            diffY = OffsetY - oldOffsetY;
+        }
+
         private void SetOffset(int x, int y)
-            => ExecuteScript($"window.pageXOffset = {x}; window.pageYOffset = {y}; scrollTo({x},{y});");
+            => ExecuteScript($"scrollTo({x},{y});");
+
+        private int GetOffsetX()
+            => int.Parse(ExecuteScript("return (window.pageXOffset || document.documentElement.scrollLeft) - (document.documentElement.clientLeft || 0);"));
+
+        private int GetOffsetY()
+            => int.Parse(ExecuteScript("return (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);"));
 
         private string ExecuteScript(string command)
             => Executor.ExecuteScript(command) + "";

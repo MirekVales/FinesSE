@@ -5,7 +5,7 @@ namespace FinesSE.VisualRegression.Contracts
     public class ScreenshotNotFoundException : SlimException
     {
         public ScreenshotNotFoundException(string fileName, string version)
-            : base($"Saved screenshot not found. Version '{version}' File name '{fileName}'")
+            : base($"Screenshot version '{version}' not found. Expected location: '{fileName}'")
         {
         }
     }

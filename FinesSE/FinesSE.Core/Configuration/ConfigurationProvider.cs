@@ -9,8 +9,6 @@ namespace FinesSE.Core.Configuration
 {
     public class ConfigurationProvider : IConfigurationProvider
     {
-        private readonly ILog Log;
-
         public bool ConfigurationFound { get; private set; }
 
         public T Get<T>(T defaultFallback)
@@ -22,13 +20,14 @@ namespace FinesSE.Core.Configuration
             }
             catch (Exception e)
             {
-                Log.Warn($"Type {nameof(T)} configuration deserialization failed",e);
+                Log.Warn($"Type {nameof(T)} configuration deserialization failed", e);
                 return defaultFallback;
             }
         }
 
         private string configurationFile;
         private readonly Deserializer deserializer;
+        private readonly ILog Log;
 
         public ConfigurationProvider(ILog log)
         {

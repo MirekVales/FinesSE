@@ -1,4 +1,5 @@
-﻿using FinesSE.Core.WebDriver;
+﻿using FinesSE.Contracts.Infrastructure;
+using FinesSE.Core.WebDriver;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,9 @@ namespace FinesSE.Core
         public static object ExecuteScript(this IWebDriver driver, string script)
             => (driver as IJavaScriptExecutor).ExecuteScript(script);
 
+        public static object ExecuteScript(this IWebDriver driver, string script, params object[] arguments)
+            => (driver as IJavaScriptExecutor).ExecuteScript(script, arguments);
+
         public static Size PageSize(this IWebDriver driver)
             => new Size()
             {
@@ -35,7 +39,7 @@ namespace FinesSE.Core
                 Height = int.Parse("" + driver.ExecuteScript("return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"))
             };
 
-        public static byte[] TakeScreenshot(this IWebElement element, IWebDriver driver)
+        public static byte[] TakeScreenshot(this IWebElement element, IWebDriver driver, IConfigurationProvider configuration)
         {
             var pageSize = driver.PageSize();
             var browserSize = driver.ViewPort();
@@ -43,14 +47,14 @@ namespace FinesSE.Core
             if (pageSize.Width < browserSize.Width && pageSize.Height < browserSize.Height)
                 imageBytes = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
             else
-                imageBytes = new ScreenshotTaker(driver).TakeImage();
+                imageBytes = new ScreenshotTaker(driver, configuration).TakeImage();
 
             using (var stream = new MemoryStream(imageBytes))
-                using (var image = new Bitmap(stream))
-                {
-                    var crop = image.Crop(element.Area());
-                    return crop.ToByteArray();
-                }
+            using (var image = new Bitmap(stream))
+            {
+                var crop = image.Crop(element.Area());
+                return crop.ToByteArray();
+            }
         }
 
         public static Rectangle Area(this IWebElement element)
@@ -77,6 +81,12 @@ namespace FinesSE.Core
                 memoryStream.Position = 0;
                 return memoryStream.ToArray();
             }
+        }
+
+        public static Bitmap ToBitmap(this byte[] array)
+        {
+            var stream = new MemoryStream(array);
+            return new Bitmap(stream);
         }
 
         [DllImport("user32.dll")]

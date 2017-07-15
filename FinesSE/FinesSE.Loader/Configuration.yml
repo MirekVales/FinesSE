@@ -1,5 +1,8 @@
 ﻿DefaultBrowser: Opera
 
+ScreenshotTakeHorizontalOverlap: 35;
+ScreenshotTakeVerticalOverlap: 35;
+
 ScreenshotDiffTolerance: 1%
 ScreenshotStorePath: c:\ScreenshotStore
 ScreenshotStoreFileExtension: .png
