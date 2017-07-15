@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FinesSE.Contracts.Invokable;
-using OpenQA.Selenium;
 using FinesSE.Contracts.Infrastructure;
 using System.Linq;
 using FinesSE.Core;
@@ -18,21 +17,21 @@ namespace FinesSE.Outil.VisualRegression.Actions
 
         public IEnumerable<Type> GetParameterTypes()
         {
-            yield return typeof(IEnumerable<IWebElement>);
+            yield return typeof(LocatedElements);
         }
 
         public string Invoke(params object[] parameters)
-            => Invoke(parameters.First() as IEnumerable<IWebElement>);
+            => Invoke(parameters.First() as LocatedElements);
 
-        public string Invoke(IEnumerable<IWebElement> elements)
+        public string Invoke(LocatedElements elements)
         {
             var configuration = ConfigurationProvider.Get(Configuration.Default);
             var versionId = configuration.ScreenshotStoreBaseVersionId;
 
-            foreach (var element in elements)
+            foreach (var element in elements.Elements)
             {
                 var screenshot = element.TakeScreenshot(DriverProvider.Get(), ConfigurationProvider);
-                var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), element);
+                var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), elements, element);
                 ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, versionId);
 
                 return ScreenshotStore.GetPath(DriverProvider.TopicId, elementId, configuration.ScreenshotStoreDiffVersionId);

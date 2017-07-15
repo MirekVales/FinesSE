@@ -1,19 +1,17 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
-using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace FinesSE.Outil.ParseMethods
 {
-    public class WebElementsParse : IParseMethod
+    public class LocatedElementsParse : IParseMethod
     {
         public IKernel Kernel { get; set; }
 
         public Type ParsedType
-            => typeof(IEnumerable<IWebElement>);
+            => typeof(LocatedElements);
 
         public object Invoke(string input)
         {

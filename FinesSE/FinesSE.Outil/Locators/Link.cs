@@ -1,7 +1,7 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
+using FinesSE.Core;
 using OpenQA.Selenium;
-using System.Collections.Generic;
 
 namespace FinesSE.Outil.Locators
 {
@@ -12,7 +12,10 @@ namespace FinesSE.Outil.Locators
         public string Regex
             => "(link=)(.+)";
 
-        public IEnumerable<IWebElement> Locate(string value)
-            => DriverProvider.Get().FindElements(By.LinkText(value));
+        public LocatedElements Locate(string value)
+            => DriverProvider
+            .Get()
+            .FindElements(By.LinkText(value))
+            .AsLocatedElements(this, value);
     }
 }

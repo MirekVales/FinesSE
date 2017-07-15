@@ -3,7 +3,6 @@ using FinesSE.Contracts.Invokable;
 using FinesSE.Core;
 using FinesSE.VisualRegression;
 using FinesSE.VisualRegression.Contracts;
-using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,26 +18,26 @@ namespace FinesSE.Outil.VisualRegression.Assertions
 
         public IEnumerable<Type> GetParameterTypes()
         {
-            yield return typeof(IEnumerable<IWebElement>);
+            yield return typeof(LocatedElements);
             yield return typeof(string);
         }
 
         public string Invoke(params object[] parameters)
             => Invoke(
-                parameters.First() as IEnumerable<IWebElement>, 
+                parameters.First() as LocatedElements, 
                 parameters.ElementAt(1) as string);
 
-        public string Invoke(IEnumerable<IWebElement> elements, string toleranceValue)
+        public string Invoke(LocatedElements elements, string toleranceValue)
         {
             var configuration = ConfigurationProvider.Get(Configuration.Default);
             var baseVersionId = configuration.ScreenshotStoreBaseVersionId;
             var referenceVersionId = configuration.ScreenshotStoreReferenceVersionId;
             var tolerance = ParseToleranceLevel(toleranceValue.FallbackEmptyString(() => configuration.ScreenshotDiffTolerance));
             
-            foreach (var element in elements)
+            foreach (var element in elements.Elements)
             {
                 var screenshot = element.TakeScreenshot(DriverProvider.Get(), ConfigurationProvider);
-                var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), element);
+                var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), elements, element);
                 ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, referenceVersionId);
 
                 var diff = ScreenshotStore.Compare(DriverProvider.TopicId, elementId, baseVersionId, referenceVersionId);

@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using FinesSE.Contracts.Invokable;
 using FinesSE.Core.WebDriver;
 using OpenQA.Selenium;
 using System;
@@ -14,6 +15,9 @@ namespace FinesSE.Core
 {
     public static class Extensions
     {
+        public static LocatedElements AsLocatedElements(this IReadOnlyCollection<IWebElement> collection, ILocator locator, string parameter)
+            => new LocatedElements(locator, parameter, collection);
+
         public static IEnumerable<string> GetGenericArgumentsName(this MethodInfo methodInfo)
             => methodInfo
             .GetGenericArguments()

@@ -54,7 +54,7 @@
     <Compile Include="Contracts\ComparisonAssertionException.cs" />
     <Compile Include="Infrastructure\DiskScreenshotStore.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Infrastructure\IdProvider.cs" />
+    <Compile Include="Infrastructure\IdentityProvider.cs" />
     <Compile Include="Infrastructure\IImageComparer.cs" />
     <Compile Include="Infrastructure\IImageInliner.cs" />
     <Compile Include="Infrastructure\ImageInliner.cs" />

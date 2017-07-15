@@ -27,13 +27,20 @@ namespace FinesSE.Core.WebDriver
 
             var configuration = configurationProvider.Get(ScreenshotTakerConfiguration.Default);
             PageSize = driver.PageSize();
-            ViewSize = Size.Subtract(driver.ViewPort(), new Size(configuration.ScreenshotTakeHorizontalOverlap, configuration.ScreenshotTakeVerticalOverlap));
+            ViewSize = driver.ViewPort();
+            ViewSize = ApplyOverlap(PageSize, ViewSize, configuration);
             HorizontalSnaps = Math.Ceiling((double)PageSize.Width / ViewSize.Width);
             VerticalSnaps = Math.Ceiling((double)PageSize.Height / ViewSize.Height);
 
             InitialOffsetX = OffsetX = GetOffsetX();
             InitialOffsetY = OffsetY = GetOffsetY();
         }
+
+        private Size ApplyOverlap(Size pageSize, Size viewSize, ScreenshotTakerConfiguration configuration)
+            => Size.Subtract(viewSize, 
+                new Size(
+                    pageSize.Width < viewSize.Width ? 0 : configuration.ScreenshotTakeHorizontalOverlap,
+                    pageSize.Height < viewSize.Height ? 0 : configuration.ScreenshotTakeVerticalOverlap));
 
         public byte[] TakeImage()
         {

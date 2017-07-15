@@ -1,6 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
-using System;
 
 namespace FinesSE.Core.Injection
 {

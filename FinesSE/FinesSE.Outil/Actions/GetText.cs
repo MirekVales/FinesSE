@@ -1,6 +1,4 @@
 ﻿using FinesSE.Contracts.Invokable;
-using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,13 +8,13 @@ namespace FinesSE.Outil.Actions
     {
         public IEnumerable<System.Type> GetParameterTypes()
         {
-            yield return typeof(IWebElement);
+            yield return typeof(LocatedElements);
         }
 
         public string Invoke(params object[] parameters)
-            => Invoke(parameters.Cast<IWebElement>().First());
+            => Invoke(parameters.Cast<LocatedElements>().First());
 
-        public string Invoke(IWebElement elements)
-            => elements.Text;
+        public string Invoke(LocatedElements elements)
+            => elements.Elements.First().Text;
     }
 }
