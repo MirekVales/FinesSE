@@ -11,7 +11,7 @@ namespace FinesSE.VisualRegression.Infrastructure
             using (var image1 = new MagickImage(path1))
             using (var image2 = new MagickImage(path2))
             {
-                var pixels = image1.Width * image1.Height;
+                var pixels = Math.Max(image1.Width, image2.Width) * Math.Max(image1.Height, image2.Height);
                 return Math.Round(image1.Compare(image2, ErrorMetric.Absolute, Channels.All) / pixels, 2);
             }
         }

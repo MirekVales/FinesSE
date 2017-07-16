@@ -27,5 +27,8 @@ namespace FinesSE.Loader
 
         public void Type(string locator, string keys)
             => se.InvokeVoid<Type>(locator, keys);
+
+        public void WindowMaximize()
+            => se.InvokeVoid<WindowMaximize>();
     }
 }

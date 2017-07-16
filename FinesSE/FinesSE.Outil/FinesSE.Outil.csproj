@@ -58,6 +58,7 @@
     <Compile Include="Actions\Open.cs" />
     <Compile Include="Actions\Pause.cs" />
     <Compile Include="Actions\Type.cs" />
+    <Compile Include="Actions\WindowMaximize.cs" />
     <Compile Include="Assertions\VerifyText.cs" />
     <Compile Include="Locators\Css.cs" />
     <Compile Include="Locators\Identifier.cs" />

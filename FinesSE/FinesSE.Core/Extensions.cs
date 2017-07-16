@@ -45,7 +45,6 @@ namespace FinesSE.Core
             using (var memoryStream = new MemoryStream())
             {
                 bitmap.Save(memoryStream, ImageFormat.Png);
-                memoryStream.Position = 0;
                 return memoryStream.ToArray();
             }
         }
