@@ -10,10 +10,10 @@ namespace FinesSE.Outil.VisualRegression.Actions
 {
     public class TakeBaseScreen : IAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
+
         public IScreenshotStore ScreenshotStore { get; set; }
         public IWebElementIdentityProvider IdentityProvider { get; set; }
-        public IConfigurationProvider ConfigurationProvider { get; set; }
 
         public IEnumerable<Type> GetParameterTypes()
         {
@@ -27,16 +27,16 @@ namespace FinesSE.Outil.VisualRegression.Actions
         {
             elements.ConstraintCount(c => c > 0);
 
-            var configuration = ConfigurationProvider.Get(Configuration.Default);
+            var configuration = Context.ConfigurationProvider.Get(Configuration.Default);
             var versionId = configuration.ScreenshotStoreBaseVersionId;
 
             foreach (var element in elements.Elements)
             {
-                var screenshot = element.TakeScreenshot(DriverProvider.Get(), ConfigurationProvider);
-                var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), elements, element);
-                ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, versionId);
+                var screenshot = element.TakeScreenshot(Context.Driver, Context.ConfigurationProvider);
+                var elementId = IdentityProvider.GetIdentifier(Context.Driver, elements, element);
+                ScreenshotStore.Store(screenshot, Context.TopicId, elementId, versionId);
 
-                return ScreenshotStore.GetPath(DriverProvider.TopicId, elementId, configuration.ScreenshotStoreDiffVersionId);
+                return ScreenshotStore.GetPath(Context.TopicId, elementId, configuration.ScreenshotStoreDiffVersionId);
             }
             return "";
         }

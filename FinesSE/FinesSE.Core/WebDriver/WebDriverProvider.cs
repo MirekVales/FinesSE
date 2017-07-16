@@ -12,65 +12,58 @@ namespace FinesSE.Core.WebDriver
     {
         public ILog Log { get; set; }
 
-        private readonly Lazy<IWebDriver> driver;
         private readonly Dictionary<WebDrivers, Func<IWebDriver>> factory;
         private readonly IConfigurationProvider configuration;
 
-        public WebDrivers CurrentDriver { get; set; } = WebDrivers.Default;
-
-#warning TBR EContext
-        public string TopicId { get; set; } = "Default";
+        public WebDrivers LastDriver { get; set; } = WebDrivers.Default;
 
         public WebDriverProvider(IConfigurationProvider configuration)
         {
             this.configuration = configuration;
-            driver = new Lazy<IWebDriver>(Initialize);
-            factory = InitializeFactory();
+            factory = DriverFactory();
         }
 
-        private Dictionary<WebDrivers, Func<IWebDriver>> InitializeFactory()
+        private Dictionary<WebDrivers, Func<IWebDriver>> DriverFactory()
         {
             return new Dictionary<WebDrivers, Func<IWebDriver>>()
             {
                 { WebDrivers.Chrome,    () => new OpenQA.Selenium.Chrome.ChromeDriver() },
                 { WebDrivers.Edge,      () => new OpenQA.Selenium.Edge.EdgeDriver() },
-                { WebDrivers.FireFox,   () => new OpenQA.Selenium.Firefox.FirefoxDriver() },
+                { WebDrivers.Firefox,   () => new OpenQA.Selenium.Firefox.FirefoxDriver() },
                 { WebDrivers.IE,        () => new OpenQA.Selenium.IE.InternetExplorerDriver() },
                 { WebDrivers.Opera,     () => new OpenQA.Selenium.Opera.OperaDriver() },
             };
         }
 
-        private IWebDriver Initialize()
+        private IWebDriver GetDriver()
         {
-            var driver = CurrentDriver;
+            var driver = LastDriver;
             if (driver == WebDrivers.Default)
                 driver = configuration.Get(CoreConfiguration.Default).DefaultBrowser;
 
-            if (factory.ContainsKey(driver))
-                return factory[driver]();
+            if (driver.IsDynamic())
+            {
+                using (var e = new WebDriverNotFoundException(driver))
+                    Log.Fatal($"Cannot construct driver for dynamic {driver}", e);
+            }
+            else
+            {
+                if (factory.ContainsKey(driver))
+                    return factory[driver]();
 
-            using (var e = new WebDriverNotFoundException(driver))
-                Log.Fatal($"Web driver factory not found for {driver}", e);
-
+                using (var e = new WebDriverNotFoundException(driver))
+                    Log.Fatal($"Web driver factory not found for {driver}", e);
+            }
             return null;
         }
 
         public void SetBrowser(WebDrivers driver)
-            => CurrentDriver = driver;
+            => LastDriver = driver;
 
-        public IWebDriver Get()
-            => driver.Value;
-
-        public void Dispose()
+        public IWebDriver Get(WebDrivers driver)
         {
-            Log.Debug("Web driver is about to be disposed");
-
-            if (driver.IsValueCreated)
-            {
-                driver.Value.CloseWindow();
-                driver.Value.Quit();
-                driver.Value.Dispose();
-            }
+            LastDriver = driver;
+            return GetDriver();
         }
     }
 }

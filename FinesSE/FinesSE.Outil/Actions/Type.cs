@@ -1,5 +1,4 @@
-﻿using FinesSE.Contracts.Infrastructure;
-using FinesSE.Contracts.Invokable;
+﻿using FinesSE.Contracts.Invokable;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,8 +6,6 @@ namespace FinesSE.Outil.Actions
 {
     public class Type : IVoidAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
-
         public IEnumerable<System.Type> GetParameterTypes()
         {
             yield return typeof(LocatedElements);

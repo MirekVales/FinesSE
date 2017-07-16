@@ -17,9 +17,11 @@ namespace FinesSE.Loader
             container.Register<IConfigurationProvider, ConfigurationProvider>();
             container.Register<IWebDriverProvider, WebDriverProvider>(new PerContainerLifetime());
             container.Register<IParameterParser, ParameterParser>();
+            container.Register<IExecutionContextInterceptor, ExecutionContextInterceptor>();
             container.Register<IVoidActionInterceptor, VoidActionInterceptor>();
             container.Register<IActionInterceptor, ActionInterceptor>();
             container.Register<ILoggingInterceptor, LoggingInterceptor>();
+            container.Register<IExecutionContext, ExecutionContext>(new PerContainerLifetime());
             container.Register<ISeleneseProxy, SeleneseProxy>();
 
             container.RegisterAssembly("FinesSE.Outil.VisualRegression.dll");

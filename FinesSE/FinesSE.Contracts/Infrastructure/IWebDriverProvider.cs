@@ -3,12 +3,8 @@ using System;
 
 namespace FinesSE.Contracts.Infrastructure
 {
-    public interface IWebDriverProvider : IDisposable
+    public interface IWebDriverProvider
     {
-        IWebDriver Get();
-
-        void SetBrowser(WebDrivers driver);
-#warning TBR EContext
-        string TopicId { get; set; }
+        IWebDriver Get(WebDrivers driver);
     }
 }

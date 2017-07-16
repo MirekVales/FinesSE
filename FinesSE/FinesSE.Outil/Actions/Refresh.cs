@@ -1,13 +1,12 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
-using System;
 using System.Collections.Generic;
 
 namespace FinesSE.Outil.Actions
 {
     public class Refresh : IVoidAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
 
         public IEnumerable<System.Type> GetParameterTypes()
         {
@@ -18,6 +17,6 @@ namespace FinesSE.Outil.Actions
             => Invoke();
 
         public void Invoke()
-            => DriverProvider.Get().Navigate().Refresh();
+            => Context.Driver.Navigate().Refresh();
     }
 }

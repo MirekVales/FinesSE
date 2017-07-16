@@ -17,7 +17,7 @@
         public static string ReturnPageOffsetY
             => "return (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);";
 
-        public static string ScrollTo
-            => "scrollTo({0},{1});";
+        public static string ScrollTo(int x, int y)
+            => $"scrollTo({x},{y});";
     }
 }

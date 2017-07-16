@@ -7,7 +7,7 @@ namespace FinesSE.Contracts.Infrastructure
     {
         ISeleneseProxy SeleneseProvider { get; }
 
-        IWebDriverProvider WebDriverProvider { get; }
+        IExecutionContext Context { get; }
 
         T Get<T>(string name);
 

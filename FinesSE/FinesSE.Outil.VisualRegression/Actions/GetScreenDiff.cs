@@ -10,10 +10,10 @@ namespace FinesSE.Outil.VisualRegression.Actions
 {
     public class GetScreenDiff : IAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
+
         public IScreenshotStore ScreenshotStore { get; set; }
         public IWebElementIdentityProvider IdentityProvider { get; set; }
-        public IConfigurationProvider ConfigurationProvider { get; set; }
 
         public IEnumerable<Type> GetParameterTypes()
         {
@@ -27,17 +27,17 @@ namespace FinesSE.Outil.VisualRegression.Actions
         {
             elements.ConstraintCount(c => c > 0);
 
-            var configuration = ConfigurationProvider.Get(Configuration.Default);
+            var configuration = Context.ConfigurationProvider.Get(Configuration.Default);
             var baseVersionId = configuration.ScreenshotStoreBaseVersionId;
-            var referenceVersionId =configuration.ScreenshotStoreReferenceVersionId;
+            var referenceVersionId = configuration.ScreenshotStoreReferenceVersionId;
 
             foreach (var element in elements.Elements)
             {
-                var screenshot = element.TakeScreenshot(DriverProvider.Get(), ConfigurationProvider);
-                var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), elements, element);
-                ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, referenceVersionId);
+                var screenshot = element.TakeScreenshot(Context.Driver, Context.ConfigurationProvider);
+                var elementId = IdentityProvider.GetIdentifier(Context.Driver, elements, element);
+                ScreenshotStore.Store(screenshot, Context.TopicId, elementId, referenceVersionId);
 
-                return ScreenshotStore.Compare(DriverProvider.TopicId, elementId, baseVersionId, referenceVersionId).ToString();
+                return ScreenshotStore.Compare(Context.TopicId, elementId, baseVersionId, referenceVersionId).ToString();
             }
 
             return null;

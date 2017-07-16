@@ -5,9 +5,8 @@ namespace FinesSE.Loader
 {
     public partial class SE
     {
-#warning TBR EContext
-        public string SetTopic(string id)
-            => se.Invoke<SetTopic>(id);
+        public void SetTopic(string id)
+            => se.InvokeVoid<SetTopic>(id);
 
         public string TakeBaseScreen(string locator)
             => se.Invoke<TakeBaseScreen>(locator);

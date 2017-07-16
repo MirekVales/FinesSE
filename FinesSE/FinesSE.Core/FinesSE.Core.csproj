@@ -63,6 +63,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Injection\DefaultKernel.cs" />
     <Compile Include="Injection\ActionInterceptor.cs" />
+    <Compile Include="Injection\ExecutionContext.cs" />
+    <Compile Include="Injection\ExecutionContextInterceptor.cs" />
     <Compile Include="Injection\LoggingInterceptor.cs" />
     <Compile Include="Injection\VoidActionInterceptor.cs" />
     <Compile Include="Parsing\BaseParameterParser.cs" />

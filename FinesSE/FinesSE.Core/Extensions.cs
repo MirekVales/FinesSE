@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using FinesSE.Contracts.Infrastructure;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -19,7 +20,25 @@ namespace FinesSE.Core
 
         public static string FallbackEmptyString(this string value, Func<string> fallback)
             => string.IsNullOrWhiteSpace(value) ? fallback() : value;
-        
+
+        public static bool IsDynamic<T>(this T value)
+            where T : struct
+        {
+            var memberInfo = (typeof(T)).GetMember(value.ToString());
+            if (memberInfo.Length == 0)
+                throw new Exception($"Member value '{value}' not found");
+            return memberInfo[0].GetCustomAttributes(typeof(DynamicAttribute), true).Any();
+        }
+
+        public static IEnumerable<T> Split<T>(this T value)
+            where T : struct
+        {
+            return value
+                .ToString()
+                .Split(',')
+                .Select(flag => (T)Enum.Parse(typeof(T), flag))
+                .ToList();
+        }
 
         public static byte[] ToByteArray(this Image bitmap)
         {

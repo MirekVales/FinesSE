@@ -8,7 +8,7 @@ namespace FinesSE.Outil.Actions
 {
     public class ClickAt : IVoidAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
 
         public IEnumerable<System.Type> GetParameterTypes()
         {
@@ -21,7 +21,7 @@ namespace FinesSE.Outil.Actions
 
         public void Invoke(LocatedElements elements, Point coordinates)
         {
-            var action = new OpenQA.Selenium.Interactions.Actions(DriverProvider.Get());
+            var action = new OpenQA.Selenium.Interactions.Actions(Context.Driver);
             elements
                 .ConstraintCount(c => c > 0)
                 .Elements

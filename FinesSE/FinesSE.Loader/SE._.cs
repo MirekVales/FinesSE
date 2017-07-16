@@ -22,7 +22,7 @@ namespace FinesSE.Loader
 
         public void Dispose()
         {
-            kernel.WebDriverProvider.Dispose();
+            kernel.Context.Dispose();
         }
 
         ~SE()

@@ -88,7 +88,7 @@ namespace FinesSE.Core.WebDriver
         }
 
         private void SetOffset(int x, int y)
-            => Driver.ExecuteScript(string.Format(JavascriptCode.ScrollTo, x, y));
+            => Driver.ExecuteScript(JavascriptCode.ScrollTo(x, y));
 
         private int GetOffsetX()
             => Driver.ExecuteScript(JavascriptCode.ReturnPageOffsetX, Convert.ToInt32);

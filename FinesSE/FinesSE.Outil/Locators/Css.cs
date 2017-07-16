@@ -7,7 +7,7 @@ namespace FinesSE.Outil.Locators
 {
     public class Css : ILocator
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
 
         public string Id
             => "css";
@@ -16,8 +16,8 @@ namespace FinesSE.Outil.Locators
             => "(css=)(.+)";
 
         public LocatedElements Locate(string value)
-            => DriverProvider
-            .Get()
+            => Context
+            .Driver
             .FindElements(By.CssSelector(value))
             .AsLocatedElements(this, value);
     }

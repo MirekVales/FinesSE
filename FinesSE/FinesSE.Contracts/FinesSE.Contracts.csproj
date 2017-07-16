@@ -56,9 +56,12 @@
     <Compile Include="Exceptions\ParserNotFoundException.cs" />
     <Compile Include="Exceptions\SlimException.cs" />
     <Compile Include="Exceptions\WebDriverNotFoundException.cs" />
+    <Compile Include="Infrastructure\DynamicAttribute.cs" />
     <Compile Include="Infrastructure\IActionInterceptor.cs" />
     <Compile Include="Infrastructure\IConfigurationProvider.cs" />
     <Compile Include="Infrastructure\IConfigurationKeys.cs" />
+    <Compile Include="Infrastructure\IExecutionContext.cs" />
+    <Compile Include="Infrastructure\IExecutionContextInterceptor.cs" />
     <Compile Include="Infrastructure\ILoggingInterceptor.cs" />
     <Compile Include="Infrastructure\IScreenshotStore.cs" />
     <Compile Include="Infrastructure\IParseMethod.cs" />

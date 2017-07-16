@@ -18,8 +18,8 @@ namespace FinesSE.Core.Injection
         public ISeleneseProxy SeleneseProvider
             => container.GetInstance<ISeleneseProxy>();
 
-        public IWebDriverProvider WebDriverProvider
-            => container.GetInstance<IWebDriverProvider>();
+        public IExecutionContext Context
+            => container.GetInstance<IExecutionContext>();
 
         public DefaultKernel()
         {
@@ -39,6 +39,7 @@ namespace FinesSE.Core.Injection
             Func<MethodInfo, Type, bool> predicate =
                 (m, t) => m.GetGenericArguments().Any() && t.IsAssignableFrom(m.GetGenericArguments().First());
 
+            proxyDefinition.Implement(() => container.GetInstance<IExecutionContextInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IVoidActionInterceptor>(), m => predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IActionInterceptor>(), m => predicate(m, typeof(IAction)));
             proxyDefinition.Implement(() => container.GetInstance<ILoggingInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IVoidAction)));

@@ -7,7 +7,7 @@ namespace FinesSE.Outil.Locators
 {
     public class Identifier : ILocator
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
 
         public string Id
             => "identifier";
@@ -16,8 +16,8 @@ namespace FinesSE.Outil.Locators
             => "(identifier=)(.+)";
 
         public LocatedElements Locate(string value)
-            => DriverProvider
-            .Get()
+            => Context
+            .Driver
             .FindElements(By.Id(value))
             .AsLocatedElements(this, value);
     }

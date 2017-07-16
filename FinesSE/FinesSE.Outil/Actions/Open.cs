@@ -1,6 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +7,7 @@ namespace FinesSE.Outil.Actions
 {
     public class Open : IVoidAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
 
         public IEnumerable<System.Type> GetParameterTypes()
         {
@@ -19,6 +18,6 @@ namespace FinesSE.Outil.Actions
             => Invoke(parameters.Cast<string>().First());
 
         public void Invoke(string url)
-            => DriverProvider.Get().Navigate().GoToUrl(url);
+            => Context.Driver.Navigate().GoToUrl(url);
     }
 }

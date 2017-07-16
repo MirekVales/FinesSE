@@ -1,7 +1,6 @@
 ﻿using FinesSE.Contracts;
 using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +8,7 @@ namespace FinesSE.Outil.Actions
 {
     public class SetBrowser : IAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
 
         public IEnumerable<System.Type> GetParameterTypes()
         {
@@ -21,7 +20,7 @@ namespace FinesSE.Outil.Actions
 
         public string Invoke(WebDrivers drivers)
         {
-            DriverProvider.SetBrowser(drivers);
+            Context.SetBrowser(drivers);
             return $"Browser set to '{drivers}'";
         }
     }

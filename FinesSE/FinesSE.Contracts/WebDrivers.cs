@@ -1,18 +1,22 @@
-﻿using System;
+﻿using FinesSE.Contracts.Infrastructure;
+using System;
 
 namespace FinesSE.Contracts
 {
     [Flags]
     public enum WebDrivers
     {
+        [Dynamic]
         Default         = 1,
+        [Dynamic]
         AllAvailable    = 2,
+        [Dynamic]
         Random          = 4,
         Custom          = 8,
 
         Chrome          = 16,
         Edge            = 32,
-        FireFox         = 64,
+        Firefox         = 64,
         IE              = 128,
         Opera           = 256,
         Safari          = 512

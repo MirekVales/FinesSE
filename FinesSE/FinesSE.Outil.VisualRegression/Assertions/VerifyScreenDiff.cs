@@ -12,10 +12,10 @@ namespace FinesSE.Outil.VisualRegression.Assertions
 {
     public class VerifyScreenDiff : IAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
+        public IExecutionContext Context { get; set; }
+
         public IScreenshotStore ScreenshotStore { get; set; }
         public IWebElementIdentityProvider IdentityProvider { get; set; }
-        public IConfigurationProvider ConfigurationProvider { get; set; }
 
         public IEnumerable<Type> GetParameterTypes()
         {
@@ -32,18 +32,18 @@ namespace FinesSE.Outil.VisualRegression.Assertions
         {
             elements.ConstraintCount(c => c > 0);
 
-            var configuration = ConfigurationProvider.Get(Configuration.Default);
+            var configuration = Context.ConfigurationProvider.Get(Configuration.Default);
             var baseVersionId = configuration.ScreenshotStoreBaseVersionId;
             var referenceVersionId = configuration.ScreenshotStoreReferenceVersionId;
             var tolerance = ParseToleranceLevel(toleranceValue.FallbackEmptyString(() => configuration.ScreenshotDiffTolerance));
             
             foreach (var element in elements.Elements)
             {
-                var screenshot = element.TakeScreenshot(DriverProvider.Get(), ConfigurationProvider);
-                var elementId = IdentityProvider.GetIdentifier(DriverProvider.Get(), elements, element);
-                ScreenshotStore.Store(screenshot, DriverProvider.TopicId, elementId, referenceVersionId);
+                var screenshot = element.TakeScreenshot(Context.Driver, Context.ConfigurationProvider);
+                var elementId = IdentityProvider.GetIdentifier(Context.Driver, elements, element);
+                ScreenshotStore.Store(screenshot, Context.TopicId, elementId, referenceVersionId);
 
-                var diff = ScreenshotStore.Compare(DriverProvider.TopicId, elementId, baseVersionId, referenceVersionId);
+                var diff = ScreenshotStore.Compare(Context.TopicId, elementId, baseVersionId, referenceVersionId);
                 if (diff > tolerance)
                     throw new ComparisonAssertionException(elementId, baseVersionId, referenceVersionId, diff * 100, tolerance * 100);
             }

@@ -11,10 +11,20 @@ namespace FinesSE.Outil.ParseMethods
 
         public object Invoke(string input)
         {
-            if (Enum.TryParse(input.Replace(",", "|"), out WebDrivers parsed))
-                return parsed;
+            var values = input.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+            var parsed = WebDrivers.Default;
+            foreach (var value in values)
+            {
+                if (Enum.TryParse(value.Trim(' '), out WebDrivers nextValue))
+                {
+                    if (parsed == WebDrivers.Default)
+                        parsed = nextValue;
+                    else
+                        parsed |= nextValue;
+                }
+            }
 
-            return WebDrivers.Default;
+            return parsed;
         }
     }
 }

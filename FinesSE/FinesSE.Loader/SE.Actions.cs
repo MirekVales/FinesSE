@@ -11,7 +11,7 @@ namespace FinesSE.Loader
             => se.InvokeVoid<ClickAt>(locator, coordinates);
 
         public void Close()
-            => kernel.WebDriverProvider.Dispose();
+            => kernel.Context.Dispose();
 
         public string GetText(string locator)
             => se.Invoke<GetText>(locator);

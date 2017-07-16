@@ -1,6 +1,4 @@
-﻿using FinesSE.Contracts.Infrastructure;
-using FinesSE.Contracts.Invokable;
-using System;
+﻿using FinesSE.Contracts.Invokable;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,8 +7,6 @@ namespace FinesSE.Outil.Actions
 {
     public class Pause : IVoidAction
     {
-        public IWebDriverProvider DriverProvider { get; set; }
-
         public IEnumerable<System.Type> GetParameterTypes()
         {
             yield return typeof(int);
