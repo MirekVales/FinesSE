@@ -13,6 +13,9 @@ namespace FinesSE.Loader
         public void Close()
             => kernel.Context.Dispose();
 
+        public string Execute(string javascript)
+            => se.Invoke<Execute>(javascript);
+
         public string GetText(string locator)
             => se.Invoke<GetText>(locator);
 
