@@ -1,6 +1,7 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using log4net;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -16,7 +17,14 @@ namespace FinesSE.Core.Configuration
         {
             try
             {
-                return deserializer.Deserialize<T>(configurationFile);
+                var deserialized = deserializer.Deserialize<IDictionary<string, T>>(configurationFile);
+
+                if (deserialized.ContainsKey(typeof(T).Name))
+                    return deserialized[typeof(T).Name];
+                else if (deserialized.ContainsKey(typeof(T).Name.Replace("Configuration", "")))
+                    return deserialized[typeof(T).Name.Replace("Configuration", "")];
+                else
+                    throw new Exception($"Configuration section {typeof(T).Name} not found");
             }
             catch (Exception e)
             {

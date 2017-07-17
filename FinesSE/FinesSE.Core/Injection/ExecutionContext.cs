@@ -39,7 +39,7 @@ namespace FinesSE.Core.Injection
 
         private Dictionary<WebDrivers, IEnumerable<WebDrivers>> GetDynamicInitializers()
         {
-            return new Dictionary<WebDrivers, IEnumerable<WebDrivers>>()
+            return new Dictionary<WebDrivers, IEnumerable<WebDrivers>>
             {
                 { WebDrivers.Default, new WebDrivers[]{ ConfigurationProvider.Get(CoreConfiguration.Default).DefaultBrowser } },
                 { WebDrivers.AllAvailable, GetAllAvailableBrowsers() },

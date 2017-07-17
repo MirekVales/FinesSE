@@ -19,6 +19,9 @@ namespace FinesSE.Core.WebDriver
         public static object ExecuteScriptWithArguments(this IWebDriver driver, string script, params object[] arguments)
             => (driver as IJavaScriptExecutor).ExecuteScript(script, arguments);
 
+        public static T ExecuteScriptWithArguments<T>(this IWebDriver driver, string script, Func<object, T> convert, params object[] arguments)
+            => convert((driver as IJavaScriptExecutor).ExecuteScript(script, arguments));
+
         public static T ExecuteScript<T>(this IWebDriver driver, string script, Func<object, T> convert)
             => convert((driver as IJavaScriptExecutor).ExecuteScript(script));
 

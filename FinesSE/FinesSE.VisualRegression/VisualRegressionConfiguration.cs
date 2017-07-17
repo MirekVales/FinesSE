@@ -2,7 +2,7 @@
 
 namespace FinesSE.VisualRegression
 {
-    public class Configuration : IConfigurationKeys
+    public class VisualRegressionConfiguration : IConfigurationKeys
     {
         public string ScreenshotDiffTolerance { get; set; }
         public string ScreenshotStorePath { get; set; }
@@ -12,8 +12,8 @@ namespace FinesSE.VisualRegression
         public string ScreenshotStoreReferenceVersionId { get; set; }
         public string ScreenshotStoreDiffVersionId { get; set; }
 
-        public static Configuration Default =>
-            new Configuration()
+        public static VisualRegressionConfiguration Default =>
+            new VisualRegressionConfiguration()
             {
                 ScreenshotDiffTolerance = "1%",
                 ScreenshotStorePath = @"C:\ScreenStore",

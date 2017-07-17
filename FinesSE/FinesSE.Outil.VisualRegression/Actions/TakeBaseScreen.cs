@@ -27,7 +27,7 @@ namespace FinesSE.Outil.VisualRegression.Actions
         {
             elements.ConstraintCount(c => c > 0);
 
-            var configuration = Context.ConfigurationProvider.Get(Configuration.Default);
+            var configuration = Context.ConfigurationProvider.Get(VisualRegressionConfiguration.Default);
             var versionId = configuration.ScreenshotStoreBaseVersionId;
 
             foreach (var element in elements.Elements)

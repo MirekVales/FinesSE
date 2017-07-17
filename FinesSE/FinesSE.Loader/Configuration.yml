@@ -1,11 +1,14 @@
-﻿DefaultBrowser: Opera
+﻿CoreConfiguration:
+    DefaultBrowser: Chrome
 
-ScreenshotTakeHorizontalOverlap: 35
-ScreenshotTakeVerticalOverlap: 35
+ScreenshotTaker:
+    ScreenshotTakeHorizontalOverlap: 35
+    ScreenshotTakeVerticalOverlap: 35
 
-ScreenshotDiffTolerance: 1%
-ScreenshotStorePath: c:\ScreenshotStore
-ScreenshotStoreFileExtension: .png
-ScreenshotStoreBaseVersionId: base
-ScreenshotStoreReferenceVersionId: ref
-ScreenshotStoreDiffVersionId: diff
+VisualRegression:
+    ScreenshotDiffTolerance: 1%
+    ScreenshotStorePath: c:\ScreenshotStore
+    ScreenshotStoreFileExtension: .png
+    ScreenshotStoreBaseVersionId: base
+    ScreenshotStoreReferenceVersionId: ref
+    ScreenshotStoreDiffVersionId: diff

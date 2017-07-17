@@ -6,13 +6,13 @@ namespace FinesSE.VisualRegression.Infrastructure
 {
     public class DiskScreenshotStore : IScreenshotStore
     {
-        private readonly Configuration config;
+        private readonly VisualRegressionConfiguration config;
 
         public IImageComparer ImageComparer { get; set; }
 
         public DiskScreenshotStore(IConfigurationProvider configuration)
         {
-            config = configuration.Get(Configuration.Default);
+            config = configuration.Get(VisualRegressionConfiguration.Default);
         }
 
         public string GetPath(string topicId, string objectId, string versionId)

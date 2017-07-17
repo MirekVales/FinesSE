@@ -59,7 +59,7 @@
     <Compile Include="Infrastructure\ImageInliner.cs" />
     <Compile Include="Infrastructure\MagickImageComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration.cs" />
+    <Compile Include="VisualRegressionConfiguration.cs" />
     <Compile Include="Contracts\ScreenshotNotFoundException.cs" />
     <Compile Include="VisualRegressionCompositionRoot.cs" />
   </ItemGroup>
