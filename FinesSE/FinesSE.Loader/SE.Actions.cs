@@ -31,6 +31,9 @@ namespace FinesSE.Loader
         public void Type(string locator, string keys)
             => se.InvokeVoid<Type>(locator, keys);
 
+        public void WaitForCondition(string javascriptCondition, string msTimeout)
+            => se.InvokeVoid<WaitForCondition>(javascriptCondition, msTimeout);
+
         public void WindowMaximize()
             => se.InvokeVoid<WindowMaximize>();
     }
