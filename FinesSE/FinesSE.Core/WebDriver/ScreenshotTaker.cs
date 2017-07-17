@@ -35,8 +35,8 @@ namespace FinesSE.Core.WebDriver
             HorizontalSnaps = Math.Ceiling((double)PageSize.Width / ViewSize.Width);
             VerticalSnaps = Math.Ceiling((double)PageSize.Height / ViewSize.Height);
 
-            InitialOffsetX = OffsetX = GetOffsetX();
-            InitialOffsetY = OffsetY = GetOffsetY();
+            InitialOffsetX = OffsetX = Driver.GetOffsetX();
+            InitialOffsetY = OffsetY = Driver.GetOffsetY();
         }
 
         private Size ApplyOverlap(Size pageSize, Size viewSize, ScreenshotTakerConfiguration configuration)
@@ -54,7 +54,7 @@ namespace FinesSE.Core.WebDriver
                     for (var x = 0; x < HorizontalSnaps; x++)
                         for (var y = 0; y < VerticalSnaps; y++)
                         {
-                            SetOffset(x * ViewSize.Width, y * ViewSize.Height);
+                            Driver.SetOffset(x * ViewSize.Width, y * ViewSize.Height);
                             using (var stream = new MemoryStream(TakesScreenshot.GetScreenshot().AsByteArray))
                             using (var bitmap = new Bitmap(stream))
                             {
@@ -76,29 +76,20 @@ namespace FinesSE.Core.WebDriver
         private void UpdateOffsetX(out int oldOffsetX, out int diffX)
         {
             oldOffsetX = OffsetX;
-            OffsetX = GetOffsetX();
+            OffsetX = Driver.GetOffsetX();
             diffX = OffsetX - oldOffsetX;
         }
 
         private void UpdateOffsetY(out int oldOffsetY, out int diffY)
         {
             oldOffsetY = OffsetY;
-            OffsetY = GetOffsetY();
+            OffsetY = Driver.GetOffsetY();
             diffY = OffsetY - oldOffsetY;
         }
 
-        private void SetOffset(int x, int y)
-            => Driver.ExecuteScript(JavascriptCode.ScrollTo(x, y));
-
-        private int GetOffsetX()
-            => Driver.ExecuteScript(JavascriptCode.ReturnPageOffsetX, Convert.ToInt32);
-
-        private int GetOffsetY()
-            => Driver.ExecuteScript(JavascriptCode.ReturnPageOffsetY, Convert.ToInt32);
-
         public void Dispose()
         {
-            SetOffset(InitialOffsetX, InitialOffsetY);
+            Driver.SetOffset(InitialOffsetX, InitialOffsetY);
         }
     }
 }

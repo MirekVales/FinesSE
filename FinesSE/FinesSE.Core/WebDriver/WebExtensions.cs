@@ -44,6 +44,7 @@ namespace FinesSE.Core.WebDriver
             var pageSize = driver.PageSize();
             var browserSize = driver.ViewPort();
             byte[] imageBytes;
+
             if (pageSize.Width < browserSize.Width && pageSize.Height < browserSize.Height)
                 imageBytes = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
             else
@@ -75,5 +76,14 @@ namespace FinesSE.Core.WebDriver
                 return cropped;
             }
         }
+
+        public static void SetOffset(this IWebDriver driver, int x, int y)
+            => driver.ExecuteScript(JavascriptCode.ScrollTo(x, y));
+
+        public static int GetOffsetX(this IWebDriver driver)
+            => driver.ExecuteScript(JavascriptCode.ReturnPageOffsetX, Convert.ToInt32);
+
+        public static int GetOffsetY(this IWebDriver driver)
+            => driver.ExecuteScript(JavascriptCode.ReturnPageOffsetY, Convert.ToInt32);
     }
 }
