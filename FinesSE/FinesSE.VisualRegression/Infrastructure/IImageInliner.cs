@@ -2,6 +2,6 @@
 {
     public interface IImageInliner
     {
-        bool TryInlineImage(string imagePath, int width, int maxLength, out string base64src);
+        bool TryInlineImage(string imagePath, string width, long maxLength, out string base64src);
     }
 }

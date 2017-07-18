@@ -13,13 +13,14 @@ namespace FinesSE.Core.Injection
             if (!Context.Drivers.Any())
                 return invocationInfo.Proceed();
 
+            object lastResult = null;
             foreach (var driver in Context.Drivers)
             {
                 Context.SetBrowser(driver);
-                invocationInfo.Proceed();
+                lastResult = invocationInfo.Proceed();
             }
 
-            return null;
+            return lastResult;
         }
     }
 }

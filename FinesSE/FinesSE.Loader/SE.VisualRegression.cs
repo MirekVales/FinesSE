@@ -5,6 +5,12 @@ namespace FinesSE.Loader
 {
     public partial class SE
     {
+        public string GetScreenDiff(string locator)
+            => se.Invoke<GetScreenDiff>(locator);
+
+        public string InlineScreenDiff(string locator)
+            => se.Invoke<InlineScreenDiff>(locator);
+
         public void SetTopic(string id)
             => se.InvokeVoid<SetTopic>(id);
 
@@ -19,8 +25,5 @@ namespace FinesSE.Loader
 
         public object VerifyScreenDiff(string locator, string tolerance)
             => se.Invoke<VerifyScreenDiff>(locator, tolerance);
-
-        public string GetScreenDiff(string locator)
-            => se.Invoke<GetScreenDiff>(locator);
     }
 }
