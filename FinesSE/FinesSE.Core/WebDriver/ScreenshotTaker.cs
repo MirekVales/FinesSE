@@ -62,8 +62,8 @@ namespace FinesSE.Core.WebDriver
                                 UpdateOffsetY(out int oldOffsetY, out int diffY);
 
                                 var imageRectangle = new Rectangle(OffsetX, OffsetY, ViewSize.Width, ViewSize.Height);
-                                var horizontalRedundancy = Math.Max(0, imageRectangle.Right - PageSize.Width);
-                                var verticalRedundancy = Math.Max(0, imageRectangle.Bottom - PageSize.Height);
+                                var horizontalRedundancy = Math.Max(0, imageRectangle.Right - PageSize.Width) * Math.Min(x, 1);
+                                var verticalRedundancy = Math.Max(0, imageRectangle.Bottom - PageSize.Height) * Math.Min(y, 1);
 
                                 g.DrawImage(bitmap, OffsetX - horizontalRedundancy, OffsetY - verticalRedundancy);
                             }
