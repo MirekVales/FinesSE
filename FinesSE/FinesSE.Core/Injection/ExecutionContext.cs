@@ -50,7 +50,7 @@ namespace FinesSE.Core.Injection
         private IEnumerable<WebDrivers> GetRandomBrowser()
         {
             var available = GetAllAvailableBrowsers();
-            return new[] { available.ElementAt(DateTime.Now.Millisecond % available.Count()) };
+            return available.Any() ? new[] { available.ElementAt(DateTime.Now.Millisecond % available.Count()) } : new WebDrivers[0];
         }
 
         private IEnumerable<WebDrivers> GetAllAvailableBrowsers()
