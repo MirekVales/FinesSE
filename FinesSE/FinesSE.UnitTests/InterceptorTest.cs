@@ -46,6 +46,28 @@ namespace FinesSE.UnitTests
         }
 
         [TestMethod]
+        public void ActionReturnsValue()
+        {
+            var kernel = new DefaultKernel<CompositionRoot>();
+            kernel.Initialize();
+            kernel.AddAction<CustomAction3>("CustomAction3");
+
+            var value = Guid.NewGuid().ToString();
+            Assert.AreEqual(value, kernel.SeleneseProvider.Invoke<CustomAction3>(value));
+        }
+
+        public class CustomAction3 : IAction
+        {
+            public IEnumerable<Type> GetParameterTypes()
+            {
+                yield return typeof(string);
+            }
+
+            public string Invoke(params object[] parameters)
+                => parameters[0].ToString();
+        }
+
+        [TestMethod]
         public void InterceptsVoidAction()
         {
             var kernel = new DefaultKernel<CompositionRoot>();
