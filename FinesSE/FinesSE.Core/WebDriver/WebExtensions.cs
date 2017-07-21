@@ -51,21 +51,21 @@ namespace FinesSE.Core.WebDriver
         {
             var pageSize = driver.PageSize();
             var browserSize = driver.ViewPort();
+            var screenshotConfiguration = configuration.Get(ScreenshotTakerConfiguration.Default);
             byte[] imageBytes;
 
             if (pageSize.Width < browserSize.Width && pageSize.Height < browserSize.Height)
                 imageBytes = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
             else
-            {
-                using (var screenshotTaker = new ScreenshotTaker(driver, configuration))
+                using (var screenshotTaker = new ScreenshotTaker(driver, screenshotConfiguration))
                     imageBytes = screenshotTaker.TakeImage();
-            }
 
             using (var stream = new MemoryStream(imageBytes))
             using (var image = new Bitmap(stream))
             {
-                var crop = image.Crop(element.Area());
-                return crop.ToByteArray();
+                var elementArea = element.Area();
+                elementArea.Inflate(screenshotConfiguration.Margin, screenshotConfiguration.Margin);
+                return image.Crop(elementArea).ToByteArray();
             }
         }
 

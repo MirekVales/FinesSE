@@ -57,7 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ScreenshotTakerConfiguration.cs" />
+    <Compile Include="WebDriver\ScreenshotTakerConfiguration.cs" />
     <Compile Include="CoreConfiguration.cs" />
     <Compile Include="Configuration\ConfigurationProvider.cs" />
     <Compile Include="Extensions.cs" />

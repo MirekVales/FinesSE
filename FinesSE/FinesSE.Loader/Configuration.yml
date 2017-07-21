@@ -2,6 +2,7 @@
     DefaultBrowser: Chrome
 
 ScreenshotTaker:
+    Margin: 5
     ScreenshotTakeHorizontalOverlap: 35
     ScreenshotTakeVerticalOverlap: 35
 

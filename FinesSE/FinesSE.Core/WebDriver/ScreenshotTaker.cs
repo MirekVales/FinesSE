@@ -1,6 +1,4 @@
-﻿using FinesSE.Contracts.Infrastructure;
-using FinesSE.Core.Configuration;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System;
 using System.Drawing;
 using System.IO;
@@ -23,14 +21,14 @@ namespace FinesSE.Core.WebDriver
         public int OffsetX { get; private set; }
         public int OffsetY { get; private set; }
 
-        public ScreenshotTaker(IWebDriver driver, IConfigurationProvider configurationProvider)
+        public ScreenshotTaker(IWebDriver driver, ScreenshotTakerConfiguration configuration)
         {
             Driver = driver;
             Executor = driver as IJavaScriptExecutor;
             TakesScreenshot = driver as ITakesScreenshot;
             PageSize = driver.PageSize();
             ViewSize = driver.ViewPort();
-            ViewSize = ApplyOverlap(PageSize, ViewSize, configurationProvider.Get(ScreenshotTakerConfiguration.Default));
+            ViewSize = ApplyOverlap(PageSize, ViewSize, configuration);
 
             HorizontalSnaps = Math.Ceiling((double)PageSize.Width / ViewSize.Width);
             VerticalSnaps = Math.Ceiling((double)PageSize.Height / ViewSize.Height);
