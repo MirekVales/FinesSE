@@ -70,7 +70,7 @@
     <Compile Include="Parsing\BaseParameterParser.cs" />
     <Compile Include="Parsing\ParameterParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Injection\SeleneseProxy.cs" />
+    <Compile Include="Injection\InvokationProxy.cs" />
     <Compile Include="WebDriver\JavascriptCode.cs" />
     <Compile Include="WebDriver\ScreenshotTaker.cs" />
     <Compile Include="WebDriver\WebDriverProvider.cs" />

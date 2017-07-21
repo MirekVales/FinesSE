@@ -15,8 +15,8 @@ namespace FinesSE.Core.Injection
     {
         private readonly ServiceContainer container;
 
-        public ISeleneseProxy SeleneseProvider
-            => container.GetInstance<ISeleneseProxy>();
+        public IInvokationProxy SeleneseProvider
+            => container.GetInstance<IInvokationProxy>();
 
         public IExecutionContext Context
             => container.GetInstance<IExecutionContext>();
@@ -31,7 +31,7 @@ namespace FinesSE.Core.Injection
             container.RegisterInstance(LogManager.GetLogger("CoreLog"));
             container.RegisterFrom<C>();
             container.RegisterInstance<IKernel>(this);
-            container.Intercept(x => x.ServiceType == typeof(ISeleneseProxy), (sf, pd) => DefineProxyType(pd));
+            container.Intercept(x => x.ServiceType == typeof(IInvokationProxy), (sf, pd) => DefineProxyType(pd));
         }
 
         private void DefineProxyType(ProxyDefinition proxyDefinition)

@@ -22,7 +22,7 @@ namespace FinesSE.Loader
             container.Register<IActionInterceptor, ActionInterceptor>();
             container.Register<ILoggingInterceptor, LoggingInterceptor>();
             container.Register<IExecutionContext, ExecutionContext>(new PerContainerLifetime());
-            container.Register<ISeleneseProxy, SeleneseProxy>();
+            container.Register<IInvokationProxy, InvokationProxy>();
 
             container.RegisterAssembly("FinesSE.Outil.VisualRegression.dll");
             container.RegisterFrom<VisualRegressionCompositionRoot>();

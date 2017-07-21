@@ -8,7 +8,7 @@ namespace FinesSE.Loader
     public partial class SE : IDisposable
     {
         readonly IKernel kernel;
-        readonly ISeleneseProxy se;
+        readonly IInvokationProxy se;
 
         public SE()
         {

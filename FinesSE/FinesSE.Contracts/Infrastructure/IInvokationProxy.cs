@@ -2,7 +2,7 @@
 
 namespace FinesSE.Contracts.Infrastructure
 {
-    public interface ISeleneseProxy
+    public interface IInvokationProxy
     {
         string Invoke<T>(params string[] arguments) where T : IAction;
         void InvokeVoid<T>(params string[] arguments) where T : IVoidAction;

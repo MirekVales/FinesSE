@@ -3,7 +3,7 @@ using FinesSE.Contracts.Invokable;
 
 namespace FinesSE.Core.Injection
 {
-    public class SeleneseProxy : ISeleneseProxy
+    public class InvokationProxy : IInvokationProxy
     {
         public string Invoke<T>(params string[] arguments)
             where T : IAction
