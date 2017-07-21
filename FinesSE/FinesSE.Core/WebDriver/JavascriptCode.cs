@@ -20,6 +20,9 @@
         public static string ScrollTo(int x, int y)
             => $"scrollTo({x},{y});";
 
+        public static string SetStyle(string style)
+            => $"arguments[0].style = '{style}';";
+
         public static string GetLinkedCssUrls
             => @"
                 var urls = [];
