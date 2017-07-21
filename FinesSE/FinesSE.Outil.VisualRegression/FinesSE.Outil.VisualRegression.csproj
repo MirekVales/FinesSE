@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FinesSE.UnitTests\bin\Debug\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,6 +53,7 @@
     <Compile Include="Actions\SetTopic.cs" />
     <Compile Include="Actions\TakeBaseScreen.cs" />
     <Compile Include="Actions\TakeScreen.cs" />
+    <Compile Include="Assertions\VerifyCssValid.cs" />
     <Compile Include="Assertions\VerifyScreenDiff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

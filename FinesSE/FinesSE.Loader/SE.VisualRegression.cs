@@ -20,6 +20,9 @@ namespace FinesSE.Loader
         public string TakeScreen(string locator)
             => se.Invoke<TakeScreen>(locator, null);
 
+        public void VerifyCssValid()
+            => se.InvokeVoid<VerifyCssValid>();
+
         public object VerifyScreenDiff(string locator)
             => se.Invoke<VerifyScreenDiff>(locator, null);
 

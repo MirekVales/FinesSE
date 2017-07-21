@@ -12,6 +12,7 @@ namespace FinesSE.VisualRegression
             container.Register<IScreenshotStore, DiskScreenshotStore>();
             container.Register<IImageComparer, MagickImageComparer>();
             container.Register<IImageInliner, ImageInliner>();
+            container.Register<ICssValidator, CssValidator>();
         }
     }
 }

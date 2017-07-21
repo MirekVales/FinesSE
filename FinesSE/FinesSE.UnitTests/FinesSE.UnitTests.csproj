@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationTest.cs" />
+    <Compile Include="CssValidatorTest.cs" />
     <Compile Include="ExtensionTest.cs" />
     <Compile Include="InterceptorTest.cs" />
     <Compile Include="ParserTest.cs" />
@@ -74,6 +75,10 @@
     <ProjectReference Include="..\FinesSE.Loader\FinesSE.Loader.csproj">
       <Project>{93C7B308-AF59-4175-8C97-061C341A3721}</Project>
       <Name>FinesSE.Loader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.VisualRegression\FinesSE.VisualRegression.csproj">
+      <Project>{7867F561-6D22-4B8F-843C-603E998282C7}</Project>
+      <Name>FinesSE.VisualRegression</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
