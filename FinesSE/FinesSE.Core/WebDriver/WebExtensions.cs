@@ -25,6 +25,14 @@ namespace FinesSE.Core.WebDriver
         public static T ExecuteScript<T>(this IWebDriver driver, string script, Func<object, T> convert)
             => convert((driver as IJavaScriptExecutor).ExecuteScript(script));
 
+        public static string[] GetLinkedCssUrls(this IWebDriver driver)
+            => driver
+            .ExecuteScript(JavascriptCode.GetLinkedCssUrls, Convert.ToString)
+            .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+        public static string DownloadResource(this IWebDriver driver, string url)
+            => driver.ExecuteScriptWithArguments(JavascriptCode.DownloadResource(url), Convert.ToString);
+
         public static Size PageSize(this IWebDriver driver)
             => new Size()
             {

@@ -19,5 +19,33 @@
 
         public static string ScrollTo(int x, int y)
             => $"scrollTo({x},{y});";
+
+        public static string GetLinkedCssUrls
+            => @"
+                var urls = [];
+                var links = document.getElementsByTagName('link');
+                for (i = 0; i < links.length; i++)
+                {
+                    if (links[i].rel == 'stylesheet' ||  links[i].type == 'text/css')
+                        urls.push(links[i].href);
+                }
+                return urls.join();
+                ";
+
+        public static string DownloadResource(string url)
+            =>  $@"
+                if (window.XMLHttpRequest)
+                {{
+                    xmlhttp = new XMLHttpRequest();
+                }}
+                else
+                {{
+                    // IE5, IE6
+                    xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+                }}
+
+                xmlhttp.open('GET', '{url}', false);
+                xmlhttp.send();
+                return xmlhttp.responseText;";
     }
 }
