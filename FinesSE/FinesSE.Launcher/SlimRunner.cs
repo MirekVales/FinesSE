@@ -4,6 +4,7 @@ using fitSharp.Fit.Operators;
 using fitSharp.Fit.Service;
 using fitSharp.IO;
 using fitSharp.Machine.Engine;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,19 +22,31 @@ namespace FinesSE.Launcher
 
         private static Task<string> Execute(IEnumerable<string> assemblies, IEnumerable<string> namespaces, string input)
         {
-            CellProcessorBase processor = CreateProcessor(assemblies, namespaces);
-
-            var writer = new StoryTestStringWriter(processor);
-            var storyTest = new StoryTest(processor, writer)
-                .WithInput(new TableConvertor().ConvertToHtmlTables(input));
-
-            if (!storyTest.IsExecutable)
-                throw new InvalidFormatException("Input content is not in executable format");
+            CreateStoryTest(assemblies, namespaces, input, out StoryTestStringWriter writer, out StoryTest storyTest);
 
             var elapsedTime = new ElapsedTime();
             storyTest.Execute();
 
+            Console.WriteLine(writer.Counts.Description);
+
             return Task.FromResult(new PageResult("Result", writer.Tables, writer.Counts, elapsedTime).Content);
+        }
+
+        private static void CreateStoryTest(
+            IEnumerable<string> assemblies, 
+            IEnumerable<string> namespaces, 
+            string input, 
+            out StoryTestStringWriter writer, 
+            out StoryTest storyTest)
+        {
+            CellProcessorBase processor = CreateProcessor(assemblies, namespaces);
+
+            writer = new StoryTestStringWriter(processor);
+            storyTest = new StoryTest(processor, writer)
+                .WithInput(new TableConvertor().ConvertToHtmlTables(input));
+
+            if (!storyTest.IsExecutable)
+                throw new InvalidFormatException("Input content is not in executable format");
         }
 
         private static CellProcessorBase CreateProcessor(IEnumerable<string> assemblies, IEnumerable<string> namespaces)
