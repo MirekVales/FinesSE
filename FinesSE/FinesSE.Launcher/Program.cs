@@ -10,8 +10,8 @@ namespace FinesSE.Launcher
             if (!CommandLine.Parser.Default.ParseArgumentsStrict(args, startOptions))
                 throw new InvalidArgumentsException("Provided arguments are not valid");
 
-            var assemblies = new[] { $"{nameof(Loader)}.dll" };
-            var namespaces = new[] { nameof(Loader) };
+            var assemblies = new[] { $"{nameof(FinesSE)}.{nameof(Loader)}.dll" };
+            var namespaces = new[] { $"{nameof(FinesSE)}.{nameof(Loader)}" };
             SlimRunner
                 .ExecuteAsync(assemblies, namespaces, new FileInfo(startOptions.InputFile), startOptions.OutputFile)
                 .Wait();
