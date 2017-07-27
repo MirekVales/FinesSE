@@ -22,7 +22,6 @@ namespace FinesSE.Outil.Actions
             => elements
             .ConstraintCount(c => c > 0)
             .Elements
-            .ToList()
             .ForEach(x => Context.Driver.ExecuteScriptWithArguments(ChangeHighlightScript, x));
 
         private readonly string ChangeHighlightScript = JavascriptCode.SetStyle("background-color: yellow;");

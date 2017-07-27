@@ -1,5 +1,6 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
+using FinesSE.Core.WebDriver;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -25,7 +26,6 @@ namespace FinesSE.Outil.Actions
             elements
                 .ConstraintCount(c => c > 0)
                 .Elements
-                .ToList()
                 .ForEach(e => 
                     action
                     .MoveToElement(e, (int)coordinates.X, (int)coordinates.Y)

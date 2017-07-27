@@ -5,11 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace FinesSE.Core.WebDriver
 {
     public static class WebExtensions
     {
+        public static void ForEach(this IEnumerable<IWebElement> elements, Action<IWebElement> action)
+            => elements.ToList().ForEach(action);
+
         public static LocatedElements AsLocatedElements(this IReadOnlyCollection<IWebElement> collection, ILocator locator, string parameter)
             => new LocatedElements(locator, parameter, collection);
 

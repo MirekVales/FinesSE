@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using FinesSE.Contracts.Exceptions;
 using FinesSE.Contracts.Invokable;
+using FinesSE.Core.WebDriver;
 
 namespace FinesSE.Outil.Assertions
 {
-    public class VerifyText : IAction
+    public class VerifyText : IVoidAction
     {
         public IEnumerable<Type> GetParameterTypes()
         {
@@ -16,21 +17,19 @@ namespace FinesSE.Outil.Assertions
             yield return typeof(string);
         }
 
-        public string Invoke(params object[] parameters)
+        public void Invoke(params object[] parameters)
             => Invoke(parameters.First() as LocatedElements, parameters.Last() as string);
 
-        public string Invoke(LocatedElements elements, string pattern)
+        public void Invoke(LocatedElements elements, string pattern)
+            => elements
+                .ConstraintCount(c => c > 0)
+                .Elements
+                .ForEach(e => VerifyElement(pattern, e));
+
+        private static void VerifyElement(string pattern, OpenQA.Selenium.IWebElement element)
         {
-            foreach (var element in elements.Elements)
-            {
-                if (!Regex.IsMatch(element.Text, pattern))
-                    throw new AssertionException(pattern, element.Text, WebDrivers.Default);
-            }
-
-            if (!elements.Elements.Any())
-                throw new Exception("message:<<No element found>>");
-
-            return "";
+            if (!Regex.IsMatch(element.Text, pattern))
+                throw new AssertionException(pattern, element.Text, WebDrivers.Default);
         }
     }
 }

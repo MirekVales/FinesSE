@@ -1,5 +1,6 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
+using FinesSE.Core.WebDriver;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,7 +22,6 @@ namespace FinesSE.Outil.Actions
             => elements
             .ConstraintCount(c => c == 1)
             .Elements
-            .ToList()
             .ForEach(x => x.SendKeys(""));
     }
 }
