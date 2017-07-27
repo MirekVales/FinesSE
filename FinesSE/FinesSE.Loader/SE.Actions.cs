@@ -28,6 +28,9 @@ namespace FinesSE.Loader
         public void Highlight(string locator)
             => se.InvokeVoid<Highlight>(locator);
 
+        public void MouseDown(string locator)
+            => se.InvokeVoid<MouseDown>(locator);
+
         public void Open(string url)
             => se.InvokeVoid<Open>(url);
 
