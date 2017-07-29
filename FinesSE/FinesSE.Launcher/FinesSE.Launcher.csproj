@@ -26,7 +26,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -70,11 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FinesSE.Loader\FinesSE.Loader.csproj">
+    <ProjectReference Include="..\FinesSE.Bootstrapper\FinesSE.Bootstrapper.csproj">
       <Project>{93c7b308-af59-4175-8c97-061c341a3721}</Project>
-      <Name>FinesSE.Loader</Name>
+      <Name>FinesSE.Bootstrapper</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,8 +19,8 @@ namespace FinesSE.Launcher
 
         static SlimRunner CreateRunner()
         {
-            var assemblies = new[] { $"{nameof(FinesSE)}.{nameof(Loader)}.dll" };
-            var namespaces = new[] { $"{nameof(FinesSE)}.{nameof(Loader)}" };
+            var assemblies = new[] { $"{nameof(FinesSE)}.{nameof(Bootstrapper)}.dll" };
+            var namespaces = new[] { $"{nameof(FinesSE)}.{nameof(Bootstrapper)}" };
             return new SlimRunner(assemblies, namespaces);
         }
     }

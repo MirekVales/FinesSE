@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using FinesSE.Contracts.Exceptions;
 using FinesSE.Core.Injection;
-using FinesSE.Loader;
+using FinesSE.Bootstrapper;
 
 namespace FinesSE.UnitTests
 {

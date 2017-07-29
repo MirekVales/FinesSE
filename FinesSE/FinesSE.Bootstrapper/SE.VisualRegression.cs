@@ -1,7 +1,7 @@
 ﻿using FinesSE.Outil.VisualRegression.Actions;
 using FinesSE.Outil.VisualRegression.Assertions;
 
-namespace FinesSE.Loader
+namespace FinesSE.Bootstrapper
 {
     public partial class SE
     {

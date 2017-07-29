@@ -3,7 +3,7 @@ using FinesSE.Core.Injection;
 using FinesSE.Outil.Actions;
 using System;
 
-namespace FinesSE.Loader
+namespace FinesSE.Bootstrapper
 {
     public partial class SE : IDisposable
     {

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Contracts", "FinesS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil", "FinesSE.Outil\FinesSE.Outil.csproj", "{314F9978-45DE-4861-8D1D-0C1825DAF265}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Loader", "FinesSE.Loader\FinesSE.Loader.csproj", "{93C7B308-AF59-4175-8C97-061C341A3721}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Bootstrapper", "FinesSE.Bootstrapper\FinesSE.Bootstrapper.csproj", "{93C7B308-AF59-4175-8C97-061C341A3721}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.UnitTests", "FinesSE.UnitTests\FinesSE.UnitTests.csproj", "{35B129F6-5F18-470E-84E9-4E054E36794D}"
 EndProject

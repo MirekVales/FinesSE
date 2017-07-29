@@ -65,6 +65,10 @@
     <Compile Include="TableConvertorTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FinesSE.Bootstrapper\FinesSE.Bootstrapper.csproj">
+      <Project>{93c7b308-af59-4175-8c97-061c341a3721}</Project>
+      <Name>FinesSE.Bootstrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
       <Project>{BC108868-ED68-4A88-A363-4D17CD745717}</Project>
       <Name>FinesSE.Contracts</Name>
@@ -76,10 +80,6 @@
     <ProjectReference Include="..\FinesSE.Launcher\FinesSE.Launcher.csproj">
       <Project>{c76565ab-46e9-44b7-a575-266bcce92fa9}</Project>
       <Name>FinesSE.Launcher</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FinesSE.Loader\FinesSE.Loader.csproj">
-      <Project>{93C7B308-AF59-4175-8C97-061C341A3721}</Project>
-      <Name>FinesSE.Loader</Name>
     </ProjectReference>
     <ProjectReference Include="..\FinesSE.VisualRegression\FinesSE.VisualRegression.csproj">
       <Project>{7867F561-6D22-4B8F-843C-603E998282C7}</Project>

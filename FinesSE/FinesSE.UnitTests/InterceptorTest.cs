@@ -4,7 +4,7 @@ using FinesSE.Contracts.Invokable;
 using FinesSE.Core.Injection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FinesSE.Contracts.Exceptions;
-using FinesSE.Loader;
+using FinesSE.Bootstrapper;
 
 namespace FinesSE.UnitTests
 {

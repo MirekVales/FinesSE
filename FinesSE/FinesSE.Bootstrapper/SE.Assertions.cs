@@ -1,6 +1,6 @@
 ﻿using FinesSE.Outil.Assertions;
 
-namespace FinesSE.Loader
+namespace FinesSE.Bootstrapper
 {
     public partial class SE
     {

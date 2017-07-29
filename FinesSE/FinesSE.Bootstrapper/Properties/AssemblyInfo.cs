@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FinesSE.Loader")]
+[assembly: AssemblyTitle("FinesSE.Bootstrapper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FinesSE.Loader")]
+[assembly: AssemblyProduct("FinesSE.Bootstrapper")]
 [assembly: AssemblyCopyright("Copyright ©  2017 Mirek Vales")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

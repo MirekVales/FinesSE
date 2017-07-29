@@ -1,6 +1,6 @@
 ﻿using FinesSE.Outil.Actions;
 
-namespace FinesSE.Loader
+namespace FinesSE.Bootstrapper
 {
     public partial class SE
     {

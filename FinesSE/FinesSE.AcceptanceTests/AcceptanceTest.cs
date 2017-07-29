@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FinesSE.Loader;
+using FinesSE.Bootstrapper;
 
 namespace FinesSE.AcceptanceTests
 {

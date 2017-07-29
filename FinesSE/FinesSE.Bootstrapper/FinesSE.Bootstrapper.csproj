@@ -7,8 +7,8 @@
     <ProjectGuid>{93C7B308-AF59-4175-8C97-061C341A3721}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FinesSE.Loader</RootNamespace>
-    <AssemblyName>FinesSE.Loader</AssemblyName>
+    <RootNamespace>FinesSE.Bootstrapper</RootNamespace>
+    <AssemblyName>FinesSE.Bootstrapper</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

@@ -6,7 +6,7 @@ using FinesSE.Core.WebDriver;
 using FinesSE.VisualRegression;
 using LightInject;
 
-namespace FinesSE.Loader
+namespace FinesSE.Bootstrapper
 {
     public class CompositionRoot : ICompositionRoot
     {
