@@ -60,6 +60,7 @@
     <Compile Include="Actions\MouseDown.cs" />
     <Compile Include="Actions\MouseDownAt.cs" />
     <Compile Include="Actions\MouseUp.cs" />
+    <Compile Include="Actions\MouseUpAt.cs" />
     <Compile Include="Actions\Refresh.cs" />
     <Compile Include="Actions\SetBrowser.cs" />
     <Compile Include="Actions\Open.cs" />

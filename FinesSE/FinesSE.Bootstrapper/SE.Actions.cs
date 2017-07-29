@@ -37,6 +37,9 @@ namespace FinesSE.Bootstrapper
         public void MouseUp(string locator)
             => se.InvokeVoid<MouseUp>(locator);
 
+        public void MouseUpAt(string locator, string coordinates)
+            => se.InvokeVoid<MouseUpAt>(locator, coordinates);
+
         public void Open(string url)
             => se.InvokeVoid<Open>(url);
 
