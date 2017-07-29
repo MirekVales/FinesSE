@@ -1,4 +1,6 @@
-﻿using fitSharp.Fit.Fixtures;
+﻿using FinesSE.Launcher.Formats;
+using FinesSE.Launcher.Infrastructure;
+using fitSharp.Fit.Fixtures;
 using fitSharp.Fit.Model;
 using fitSharp.Fit.Operators;
 using fitSharp.Fit.Service;
@@ -12,44 +14,54 @@ using System.Threading.Tasks;
 
 namespace FinesSE.Launcher
 {
-    public static class SlimRunner
+    public class SlimRunner
     {
-        public static async Task ExecuteAsync(IEnumerable<string> assemblies, IEnumerable<string> namespaces, FileInfo inputPath, string outputFilePath)
+        private readonly IEnumerable<string> assemblies;
+        private readonly IEnumerable<string> namespaces;
+        private readonly FormatConvertor convertor;
+
+        public SlimRunner(IEnumerable<string> assemblies, IEnumerable<string> namespaces)
         {
-            var result = await Execute(assemblies, namespaces, File.ReadAllText(inputPath.FullName));
+            this.assemblies = assemblies;
+            this.namespaces = namespaces;
+            convertor = new FormatConvertor();
+        }
+
+        public async Task ExecuteAsync(FileInfo inputPath, TableFormat inputFormat, string outputFilePath)
+        {
+            var inputData = File.ReadAllText(inputPath.FullName);
+            var result = await Execute(convertor.Convert(inputData, inputFormat), System.IO.Path.GetFileName(inputPath.FullName));
             File.WriteAllText(outputFilePath, result);
         }
 
-        private static Task<string> Execute(IEnumerable<string> assemblies, IEnumerable<string> namespaces, string input)
+        private Task<string> Execute(string input, string inputAnnotation)
         {
-            CreateStoryTest(assemblies, namespaces, input, out StoryTestStringWriter writer, out StoryTest storyTest);
+            CreateStoryTest(input, out StoryTestStringWriter writer, out StoryTest storyTest);
 
             var elapsedTime = new ElapsedTime();
             storyTest.Execute();
 
-            Console.WriteLine(writer.Counts.Description);
+            var result = new PageResult(inputAnnotation, writer.Tables, writer.Counts, elapsedTime);
+            Console.WriteLine(FormatInfo(result));
 
-            return Task.FromResult(new PageResult("Result", writer.Tables, writer.Counts, elapsedTime).Content);
+            return Task.FromResult(result.Content);
         }
 
-        private static void CreateStoryTest(
-            IEnumerable<string> assemblies, 
-            IEnumerable<string> namespaces, 
-            string input, 
-            out StoryTestStringWriter writer, 
-            out StoryTest storyTest)
+        private string FormatInfo(PageResult result)
+            => $"{result.ElapsedTime}\t{result.Title}\t{result.TestCounts.Description}";
+
+        private void CreateStoryTest(string input, out StoryTestStringWriter writer, out StoryTest storyTest)
         {
-            CellProcessorBase processor = CreateProcessor(assemblies, namespaces);
+            CellProcessorBase processor = CreateProcessor();
 
             writer = new StoryTestStringWriter(processor);
-            storyTest = new StoryTest(processor, writer)
-                .WithInput(new TableConvertor().ConvertToHtmlTables(input));
+            storyTest = new StoryTest(processor, writer).WithInput(input);
 
             if (!storyTest.IsExecutable)
                 throw new InvalidFormatException("Input content is not in executable format");
         }
 
-        private static CellProcessorBase CreateProcessor(IEnumerable<string> assemblies, IEnumerable<string> namespaces)
+        private CellProcessorBase CreateProcessor()
         {
             var memory = new TypeDictionary();
             var processor = new CellProcessorBase(memory, memory.GetItem<CellOperators>());

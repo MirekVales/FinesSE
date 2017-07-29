@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FinesSE.Launcher
+namespace FinesSE.Launcher.Infrastructure
 {
     public class InvalidArgumentsException : Exception
     {

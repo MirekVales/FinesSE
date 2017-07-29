@@ -51,14 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InvalidArgumentsException.cs" />
-    <Compile Include="InvalidFormatException.cs" />
-    <Compile Include="ITableConvertor.cs" />
+    <Compile Include="Formats\FitNessePSVFormat.cs" />
+    <Compile Include="Formats\FitNesseTableFormat.cs" />
+    <Compile Include="Formats\FormatConvertor.cs" />
+    <Compile Include="Formats\IFormatParser.cs" />
+    <Compile Include="Formats\SeleneseTableFormat.cs" />
+    <Compile Include="Formats\TableFormat.cs" />
+    <Compile Include="Infrastructure\UnsupportedFormatException.cs" />
+    <Compile Include="Infrastructure\InvalidArgumentsException.cs" />
+    <Compile Include="Infrastructure\InvalidFormatException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlimRunner.cs" />
     <Compile Include="StartOptions.cs" />
-    <Compile Include="TableConvertor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -70,5 +75,6 @@
       <Name>FinesSE.Loader</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
