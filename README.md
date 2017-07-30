@@ -23,10 +23,10 @@ The long-term vision is to provide a .NET based fixtures library that would cove
 
 ## Requirements
 
-FinesSE fixtures are written in .NET, therefore besides FitNesse, it is necessary to have a FitSharp runner as well. There is no mandatory webdriver to install, choose the ones you want to invoke. 
+FinesSE fixtures are written in .NET, therefore if you want to run them from FitNesse, it is necessary to have a FitSharp runner as well. 
 
-- FitNesse
-- FitSharp
-- Selenium webdriver
+You may run fixtures directly, without FitNesse, using FinesSE.Launcher. 
+
+Regarding webdrivers, there is no mandatory webdriver to install, choose the ones you want to invoke. 
 
 ## ... to be continued
