@@ -55,6 +55,9 @@ namespace FinesSE.Bootstrapper
         public void WaitForCondition(string javascriptCondition, string msTimeout)
             => se.InvokeVoid<WaitForCondition>(javascriptCondition, msTimeout);
 
+        public void WindowFocus()
+            => se.InvokeVoid<WindowFocus>();
+
         public void WindowMaximize()
             => se.InvokeVoid<WindowMaximize>();
     }
