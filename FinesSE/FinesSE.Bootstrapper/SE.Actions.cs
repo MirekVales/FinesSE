@@ -5,60 +5,60 @@ namespace FinesSE.Bootstrapper
     public partial class SE
     {
         public void Click(string locator)
-            => se.InvokeVoid<Click>(locator);
+            => p.InvokeVoid<Click>(locator);
 
         public void ClickAt(string locator, string coordinates)
-            => se.InvokeVoid<ClickAt>(locator, coordinates);
+            => p.InvokeVoid<ClickAt>(locator, coordinates);
 
         public void DoubleClick(string locator)
-            => se.InvokeVoid<DoubleClick>(locator);
+            => p.InvokeVoid<DoubleClick>(locator);
 
         public void Close()
             => kernel.Context.Dispose();
 
         public string Execute(string javascript)
-            => se.Invoke<Execute>(javascript);
+            => p.Invoke<Execute>(javascript);
 
         public void Focus(string locator)
-            => se.InvokeVoid<Focus>(locator);
+            => p.InvokeVoid<Focus>(locator);
 
         public string GetText(string locator)
-            => se.Invoke<GetText>(locator);
+            => p.Invoke<GetText>(locator);
 
         public void Highlight(string locator)
-            => se.InvokeVoid<Highlight>(locator);
+            => p.InvokeVoid<Highlight>(locator);
 
         public void MouseDown(string locator)
-            => se.InvokeVoid<MouseDown>(locator);
+            => p.InvokeVoid<MouseDown>(locator);
 
         public void MouseDownAt(string locator, string coordinates)
-            => se.InvokeVoid<MouseDownAt>(locator, coordinates);
+            => p.InvokeVoid<MouseDownAt>(locator, coordinates);
 
         public void MouseUp(string locator)
-            => se.InvokeVoid<MouseUp>(locator);
+            => p.InvokeVoid<MouseUp>(locator);
 
         public void MouseUpAt(string locator, string coordinates)
-            => se.InvokeVoid<MouseUpAt>(locator, coordinates);
+            => p.InvokeVoid<MouseUpAt>(locator, coordinates);
 
         public void Open(string url)
-            => se.InvokeVoid<Open>(url);
+            => p.InvokeVoid<Open>(url);
 
         public void Pause(string ms)
-            => se.InvokeVoid<Pause>(ms);
+            => p.InvokeVoid<Pause>(ms);
 
         public void Refresh()
-            => se.InvokeVoid<Refresh>();
+            => p.InvokeVoid<Refresh>();
 
         public void Type(string locator, string keys)
-            => se.InvokeVoid<Type>(locator, keys);
+            => p.InvokeVoid<Type>(locator, keys);
 
         public void WaitForCondition(string javascriptCondition, string msTimeout)
-            => se.InvokeVoid<WaitForCondition>(javascriptCondition, msTimeout);
+            => p.InvokeVoid<WaitForCondition>(javascriptCondition, msTimeout);
 
         public void WindowFocus()
-            => se.InvokeVoid<WindowFocus>();
+            => p.InvokeVoid<WindowFocus>();
 
         public void WindowMaximize()
-            => se.InvokeVoid<WindowMaximize>();
+            => p.InvokeVoid<WindowMaximize>();
     }
 }

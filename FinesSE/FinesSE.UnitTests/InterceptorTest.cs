@@ -17,7 +17,7 @@ namespace FinesSE.UnitTests
             var kernel = new DefaultKernel<CompositionRoot>();
             kernel.Initialize();
             Assert.ThrowsException<ActionNotFoundException>(()
-                => kernel.SeleneseProvider.Invoke<CustomAction>("")
+                => kernel.Proxy.Invoke<CustomAction>("")
             );
         }
 
@@ -28,7 +28,7 @@ namespace FinesSE.UnitTests
             kernel.Initialize();
             kernel.AddAction<CustomAction>("CustomAction");
             Assert.ThrowsException<InvalidOperationException>(()
-                => kernel.SeleneseProvider.Invoke<CustomAction>("")
+                => kernel.Proxy.Invoke<CustomAction>("")
             );
         }
 
@@ -53,7 +53,7 @@ namespace FinesSE.UnitTests
             kernel.AddAction<CustomAction3>("CustomAction3");
 
             var value = Guid.NewGuid().ToString();
-            Assert.AreEqual(value, kernel.SeleneseProvider.Invoke<CustomAction3>(value));
+            Assert.AreEqual(value, kernel.Proxy.Invoke<CustomAction3>(value));
         }
 
         public class CustomAction3 : IAction
@@ -74,7 +74,7 @@ namespace FinesSE.UnitTests
             kernel.Initialize();
             kernel.AddVoidAction<CustomAction2>("CustomAction2");
             Assert.ThrowsException<InvalidOperationException>(()
-                => kernel.SeleneseProvider.InvokeVoid<CustomAction2>("")
+                => kernel.Proxy.InvokeVoid<CustomAction2>("")
             );
         }
 

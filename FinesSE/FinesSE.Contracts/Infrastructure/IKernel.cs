@@ -5,7 +5,7 @@ namespace FinesSE.Contracts.Infrastructure
 {
     public interface IKernel
     {
-        IInvokationProxy SeleneseProvider { get; }
+        IInvocationProxy Proxy { get; }
 
         IExecutionContext Context { get; }
 

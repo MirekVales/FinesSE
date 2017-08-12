@@ -71,7 +71,7 @@
     <Compile Include="Infrastructure\IKernel.cs" />
     <Compile Include="Invokable\ILocator.cs" />
     <Compile Include="Infrastructure\IParameterParser.cs" />
-    <Compile Include="Infrastructure\IInvokationProxy.cs" />
+    <Compile Include="Infrastructure\IInvocationProxy.cs" />
     <Compile Include="Infrastructure\IWebDriverProvider.cs" />
     <Compile Include="Invokable\IVoidAction.cs" />
     <Compile Include="Invokable\LocatedElements.cs" />

@@ -8,17 +8,17 @@ namespace FinesSE.Bootstrapper
     public partial class SE : IDisposable
     {
         readonly IKernel kernel;
-        readonly IInvokationProxy se;
+        readonly IInvocationProxy p;
 
         public SE()
         {
             kernel = new DefaultKernel<CompositionRoot>();
             kernel.Initialize();
-            se = kernel.SeleneseProvider;
+            p = kernel.Proxy;
         }
 
         public void SetBrowser(string browser)
-            => se.Invoke<SetBrowser>(browser);
+            => p.Invoke<SetBrowser>(browser);
 
         public void Dispose()
         {

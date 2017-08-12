@@ -6,27 +6,27 @@ namespace FinesSE.Bootstrapper
     public partial class SE
     {
         public string GetScreenDiff(string locator)
-            => se.Invoke<GetScreenDiff>(locator);
+            => p.Invoke<GetScreenDiff>(locator);
 
         public string InlineScreenDiff(string locator)
-            => se.Invoke<InlineScreenDiff>(locator);
+            => p.Invoke<InlineScreenDiff>(locator);
 
         public void SetTopic(string id)
-            => se.InvokeVoid<SetTopic>(id);
+            => p.InvokeVoid<SetTopic>(id);
 
         public string TakeBaseScreen(string locator)
-            => se.Invoke<TakeBaseScreen>(locator);
+            => p.Invoke<TakeBaseScreen>(locator);
 
         public string TakeScreen(string locator)
-            => se.Invoke<TakeScreen>(locator, null);
+            => p.Invoke<TakeScreen>(locator, null);
 
         public void VerifyCssValid()
-            => se.InvokeVoid<VerifyCssValid>();
+            => p.InvokeVoid<VerifyCssValid>();
 
         public object VerifyScreenDiff(string locator)
-            => se.Invoke<VerifyScreenDiff>(locator, null);
+            => p.Invoke<VerifyScreenDiff>(locator, null);
 
         public object VerifyScreenDiff(string locator, string tolerance)
-            => se.Invoke<VerifyScreenDiff>(locator, tolerance);
+            => p.Invoke<VerifyScreenDiff>(locator, tolerance);
     }
 }
