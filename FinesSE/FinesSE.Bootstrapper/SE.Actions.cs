@@ -49,6 +49,9 @@ namespace FinesSE.Bootstrapper
         public void Refresh()
             => p.InvokeVoid<Refresh>();
 
+        public void Select(string locator, string optionLocator)
+            => p.InvokeVoid<Select>(locator, optionLocator);
+
         public void Type(string locator, string keys)
             => p.InvokeVoid<Type>(locator, keys);
 

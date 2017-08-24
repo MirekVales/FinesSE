@@ -62,6 +62,7 @@
     <Compile Include="Actions\MouseUp.cs" />
     <Compile Include="Actions\MouseUpAt.cs" />
     <Compile Include="Actions\Refresh.cs" />
+    <Compile Include="Actions\Select.cs" />
     <Compile Include="Actions\SetBrowser.cs" />
     <Compile Include="Actions\Open.cs" />
     <Compile Include="Actions\Pause.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Locators\XPath.cs" />
     <Compile Include="ParseMethods\DoubleParse.cs" />
     <Compile Include="ParseMethods\IntParse.cs" />
+    <Compile Include="ParseMethods\OptionLocatorParse.cs" />
     <Compile Include="ParseMethods\PointParse.cs" />
     <Compile Include="ParseMethods\WebDriverEnumParse.cs" />
     <Compile Include="ParseMethods\StringParse.cs" />

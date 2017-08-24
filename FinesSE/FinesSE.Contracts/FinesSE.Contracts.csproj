@@ -53,6 +53,7 @@
     <Compile Include="Exceptions\ActionNotFoundException.cs" />
     <Compile Include="Exceptions\AssertionException.cs" />
     <Compile Include="Exceptions\InvalidNumberOfWebElementsException.cs" />
+    <Compile Include="Exceptions\OptionNotFoundException.cs" />
     <Compile Include="Exceptions\ParserNotFoundException.cs" />
     <Compile Include="Exceptions\SlimException.cs" />
     <Compile Include="Exceptions\WebDriverNotFoundException.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Infrastructure\IWebDriverProvider.cs" />
     <Compile Include="Invokable\IVoidAction.cs" />
     <Compile Include="Invokable\LocatedElements.cs" />
+    <Compile Include="Invokable\OptionLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebDrivers.cs" />
   </ItemGroup>
