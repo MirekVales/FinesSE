@@ -10,6 +10,9 @@ namespace FinesSE.Bootstrapper
         public void ClickAt(string locator, string coordinates)
             => p.InvokeVoid<ClickAt>(locator, coordinates);
 
+        public void Deselect(string locator, string optionLocator)
+            => p.InvokeVoid<Deselect>(locator, optionLocator);
+
         public void DoubleClick(string locator)
             => p.InvokeVoid<DoubleClick>(locator);
 
