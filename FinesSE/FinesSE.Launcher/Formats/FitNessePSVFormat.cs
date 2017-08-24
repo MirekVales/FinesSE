@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace FinesSE.Launcher.Formats
@@ -27,6 +28,17 @@ namespace FinesSE.Launcher.Formats
                 );
 
         private string GetRow(string row)
-            => $"<tr><td>{string.Join("</td><td>", row.Trim('|').Split('|'))}</td></tr>";
+        {
+            var builder = new StringBuilder("<tr>");
+
+            const string RowPattern = @"((?<=\|)((\!\-)(.*?)(\-\!))|([^|]+?)(?=\|))|((?<=\|)(?=\|))";
+            foreach (Match match in Regex.Matches(row, RowPattern))
+                builder.Append($"<td>{match.Value}</td>");
+
+            builder.Append("</tr>");
+            builder.Replace("!-", "");
+            builder.Replace("-!", "");
+            return builder.ToString();
+        }
     }
 }
