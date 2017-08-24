@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts;
+using FinesSE.Contracts.Exceptions;
 using FinesSE.Contracts.Infrastructure;
 using log4net;
 using OpenQA.Selenium;
@@ -13,9 +14,8 @@ namespace FinesSE.Core.Injection
     {
         public IConfigurationProvider ConfigurationProvider { get; }
         public string TopicId => $"{currentBrowser}_{topicId}";
-        public IWebDriver Driver => drivers[currentBrowser];
-        public IEnumerable<WebDrivers> Drivers
-            => drivers.Keys;
+        public IWebDriver Driver => GetCurrentDriver();
+        public IEnumerable<WebDrivers> Drivers => drivers.Keys;
 
         private string topicId = "Default";
         private readonly ILog log;
@@ -23,7 +23,7 @@ namespace FinesSE.Core.Injection
         private WebDrivers currentBrowser;
         private readonly IWebDriverProvider driverProvider;
         private readonly Dictionary<WebDrivers, IWebDriver> drivers;
-        
+
         private Dictionary<WebDrivers, IEnumerable<WebDrivers>> dynamicInitializers;
 
         public ExecutionContext(ILog log, IWebDriverProvider driverProvider, IConfigurationProvider configurationProvider)
@@ -91,6 +91,15 @@ namespace FinesSE.Core.Injection
                 else
                     yield return browser;
             }
+        }
+
+        private IWebDriver GetCurrentDriver()
+        {
+            if (drivers.ContainsKey(currentBrowser))
+                return drivers[currentBrowser];
+
+            log.Debug($"Driver {currentBrowser} not found in {drivers.Count} drivers");
+            throw new WebDriverNotFoundException(currentBrowser);
         }
 
         public void Dispose()
