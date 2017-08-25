@@ -30,11 +30,16 @@ namespace FinesSE.Launcher
         public async Task ExecuteAsync(FileInfo inputPath, TableFormat inputFormat, string outputFilePath)
         {
             var inputData = File.ReadAllText(inputPath.FullName);
-            var result = await Execute(convertor.Convert(inputData, inputFormat), System.IO.Path.GetFileName(inputPath.FullName));
+            var result = await ExecuteAsync(convertor.Convert(inputData, inputFormat), System.IO.Path.GetFileName(inputPath.FullName));
             File.WriteAllText(outputFilePath, result);
         }
 
-        private Task<string> Execute(string input, string inputAnnotation)
+        public async Task<string> ExecuteAsync(string inputData, TableFormat inputFormat, string inputAnnotation)
+        {
+            return await ExecuteAsync(convertor.Convert(inputData, inputFormat), inputAnnotation);
+        }
+
+        private Task<string> ExecuteAsync(string input, string inputAnnotation)
         {
             CreateStoryTest(input, out StoryTestStringWriter writer, out StoryTest storyTest);
 
