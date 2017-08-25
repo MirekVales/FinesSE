@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using LightInject;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -83,7 +84,15 @@ namespace FinesSE.Core
             if (window == IntPtr.Zero)
                 return;
             CloseWindow(window);
+        }
 
+        public static void RegisterRequiredAssembly(this IServiceRegistry registry, string fileName)
+        {
+            var directory = AppDomain.CurrentDomain.BaseDirectory;
+            if (!File.Exists(Path.Combine(directory, fileName)))
+                throw new FileNotFoundException("Required component was not found", fileName);
+
+            registry.RegisterAssembly(fileName);
         }
     }
 }

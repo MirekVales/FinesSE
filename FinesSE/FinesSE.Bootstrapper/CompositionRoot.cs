@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using FinesSE.Core;
 using FinesSE.Core.Configuration;
 using FinesSE.Core.Injection;
 using FinesSE.Core.Parsing;
@@ -12,9 +13,8 @@ namespace FinesSE.Bootstrapper
     {
         public void Compose(IServiceRegistry container)
         {
-            container.RegisterAssembly("FinesSE.Drivers.dll");
-
-            container.RegisterAssembly("FinesSE.Outil.dll");
+            container.RegisterRequiredAssembly("FinesSE.Drivers.dll");
+            container.RegisterRequiredAssembly("FinesSE.Outil.dll");
 
             container.Register<IConfigurationProvider, ConfigurationProvider>();
             container.Register<IWebDriverProvider, WebDriverProvider>(new PerContainerLifetime());
@@ -26,7 +26,7 @@ namespace FinesSE.Bootstrapper
             container.Register<IExecutionContext, ExecutionContext>(new PerContainerLifetime());
             container.Register<IInvocationProxy, InvokationProxy>();
 
-            container.RegisterAssembly("FinesSE.Outil.VisualRegression.dll");
+            container.RegisterRequiredAssembly("FinesSE.Outil.VisualRegression.dll");
             container.RegisterFrom<VisualRegressionCompositionRoot>();
         }
     }
