@@ -12,6 +12,8 @@ namespace FinesSE.Bootstrapper
     {
         public void Compose(IServiceRegistry container)
         {
+            container.RegisterAssembly("FinesSE.Drivers.dll");
+
             container.RegisterAssembly("FinesSE.Outil.dll");
 
             container.Register<IConfigurationProvider, ConfigurationProvider>();

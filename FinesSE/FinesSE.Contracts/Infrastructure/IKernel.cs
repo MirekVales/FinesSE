@@ -17,6 +17,8 @@ namespace FinesSE.Contracts.Infrastructure
 
         IEnumerable<IParseMethod> GetParserMethods();
 
+        IEnumerable<IWebDriverActivator> GetWebDriverActivators();
+
         void Initialize();
     }
 }

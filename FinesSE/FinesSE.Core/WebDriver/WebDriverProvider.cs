@@ -3,8 +3,7 @@ using FinesSE.Contracts.Exceptions;
 using FinesSE.Contracts.Infrastructure;
 using log4net;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace FinesSE.Core.WebDriver
 {
@@ -12,27 +11,15 @@ namespace FinesSE.Core.WebDriver
     {
         public ILog Log { get; set; }
 
-        private readonly Dictionary<WebDrivers, Func<IWebDriver>> factory;
+        private readonly IKernel kernel;
         private readonly IConfigurationProvider configuration;
 
         public WebDrivers LastDriver { get; set; } = WebDrivers.Default;
 
-        public WebDriverProvider(IConfigurationProvider configuration)
+        public WebDriverProvider(IKernel kernel, IConfigurationProvider configuration)
         {
+            this.kernel = kernel;
             this.configuration = configuration;
-            factory = DriverFactory();
-        }
-
-        private Dictionary<WebDrivers, Func<IWebDriver>> DriverFactory()
-        {
-            return new Dictionary<WebDrivers, Func<IWebDriver>>()
-            {
-                { WebDrivers.Chrome,    () => new OpenQA.Selenium.Chrome.ChromeDriver() },
-                { WebDrivers.Edge,      () => new OpenQA.Selenium.Edge.EdgeDriver() },
-                { WebDrivers.Firefox,   () => new OpenQA.Selenium.Firefox.FirefoxDriver() },
-                { WebDrivers.IE,        () => new OpenQA.Selenium.IE.InternetExplorerDriver() },
-                { WebDrivers.Opera,     () => new OpenQA.Selenium.Opera.OperaDriver() },
-            };
         }
 
         private IWebDriver GetDriver()
@@ -48,12 +35,23 @@ namespace FinesSE.Core.WebDriver
             }
             else
             {
-                if (factory.ContainsKey(driver))
-                    return factory[driver]();
-
-                using (var e = new WebDriverNotFoundException(driver))
-                    Log.Fatal($"Web driver factory not found for {driver}", e);
+                return TryActivate(driver);
             }
+            return null;
+        }
+
+        private IWebDriver TryActivate(WebDrivers driver)
+        {
+            var activator = kernel
+                .GetWebDriverActivators()
+                .FirstOrDefault(wa => wa.Id == driver);
+
+            if (activator != null)
+                return activator.Activate(configuration);
+
+            using (var e = new WebDriverNotFoundException(driver))
+                Log.Fatal($"Web driver factory not found for {driver}", e);
+
             return null;
         }
 

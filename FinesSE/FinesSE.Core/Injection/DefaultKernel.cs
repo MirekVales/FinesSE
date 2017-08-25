@@ -57,6 +57,9 @@ namespace FinesSE.Core.Injection
         public IEnumerable<IParseMethod> GetParserMethods()
             => container.GetAllInstances<IParseMethod>();
 
+        public IEnumerable<IWebDriverActivator> GetWebDriverActivators()
+            => container.GetAllInstances<IWebDriverActivator>();
+
         public void AddAction<T>(string serviceName) where T : IAction
             => container.Register<IAction, T>(serviceName);
 

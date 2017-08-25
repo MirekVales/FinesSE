@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{93C7B308-AF59-4175-8C97-061C341A3721}</ProjectGuid>
+    <ProjectGuid>{0E08B552-9A47-466A-82E7-5B09209EC4FD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FinesSE.Bootstrapper</RootNamespace>
-    <AssemblyName>FinesSE.Bootstrapper</AssemblyName>
+    <RootNamespace>FinesSE.Drivers</RootNamespace>
+    <AssemblyName>FinesSE.Drivers</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,59 +31,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LightInject, Version=5.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LightInject.5.0.3\lib\net46\LightInject.dll</HintPath>
-    </Reference>
-    <Reference Include="LightInject.Interception, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebDriver, Version=3.4.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="WebDriver, Version=3.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.5.1\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompositionRoot.cs" />
-    <Compile Include="SE.Actions.cs" />
-    <Compile Include="SE.Assertions.cs" />
-    <Compile Include="SE._.cs" />
+    <Compile Include="Chrome.cs" />
+    <Compile Include="ChromeConfiguration.cs" />
+    <Compile Include="Edge.cs" />
+    <Compile Include="EdgeConfiguration.cs" />
+    <Compile Include="Firefox.cs" />
+    <Compile Include="FirefoxConfiguration.cs" />
+    <Compile Include="IE.cs" />
+    <Compile Include="IEConfiguration.cs" />
+    <Compile Include="Opera.cs" />
+    <Compile Include="OperaConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SE.VisualRegression.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
-      <Project>{BC108868-ED68-4A88-A363-4D17CD745717}</Project>
+      <Project>{bc108868-ed68-4a88-a363-4d17cd745717}</Project>
       <Name>FinesSE.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\FinesSE.Core\FinesSE.Core.csproj">
       <Project>{243dbada-3dfb-4a1a-b2fc-cf5e46fae4a2}</Project>
       <Name>FinesSE.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FinesSE.Drivers\FinesSE.Drivers.csproj">
-      <Project>{0e08b552-9a47-466a-82e7-5b09209ec4fd}</Project>
-      <Name>FinesSE.Drivers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FinesSE.Outil.VisualRegression\FinesSE.Outil.VisualRegression.csproj">
-      <Project>{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}</Project>
-      <Name>FinesSE.Outil.VisualRegression</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FinesSE.Outil\FinesSE.Outil.csproj">
-      <Project>{314F9978-45DE-4861-8D1D-0C1825DAF265}</Project>
-      <Name>FinesSE.Outil</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FinesSE.VisualRegression\FinesSE.VisualRegression.csproj">
-      <Project>{7867f561-6d22-4b8f-843c-603e998282c7}</Project>
-      <Name>FinesSE.VisualRegression</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration.yml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

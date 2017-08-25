@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil.VisualRegress
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Launcher", "FinesSE.Launcher\FinesSE.Launcher.csproj", "{C76565AB-46E9-44B7-A575-266BCCE92FA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Drivers", "FinesSE.Drivers\FinesSE.Drivers.csproj", "{0E08B552-9A47-466A-82E7-5B09209EC4FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,8 +65,15 @@ Global
 		{C76565AB-46E9-44B7-A575-266BCCE92FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C76565AB-46E9-44B7-A575-266BCCE92FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C76565AB-46E9-44B7-A575-266BCCE92FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E08B552-9A47-466A-82E7-5B09209EC4FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E08B552-9A47-466A-82E7-5B09209EC4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E08B552-9A47-466A-82E7-5B09209EC4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E08B552-9A47-466A-82E7-5B09209EC4FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17D5EA27-5308-4C39-964B-190E03CBCBA1}
 	EndGlobalSection
 EndGlobal

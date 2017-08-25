@@ -67,6 +67,7 @@
     <Compile Include="Infrastructure\IScreenshotStore.cs" />
     <Compile Include="Infrastructure\IParseMethod.cs" />
     <Compile Include="Infrastructure\IVoidActionInterceptor.cs" />
+    <Compile Include="Infrastructure\IWebDriverActivator.cs" />
     <Compile Include="Infrastructure\IWebElementIdentityProvider.cs" />
     <Compile Include="Invokable\IAction.cs" />
     <Compile Include="Infrastructure\IKernel.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Invokable\LocatedElements.cs" />
     <Compile Include="Invokable\OptionLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebDriverConfiguration.cs" />
     <Compile Include="WebDrivers.cs" />
   </ItemGroup>
   <ItemGroup>
