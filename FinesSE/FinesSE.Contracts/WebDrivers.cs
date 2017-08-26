@@ -19,6 +19,8 @@ namespace FinesSE.Contracts
         Firefox         = 64,
         IE              = 128,
         Opera           = 256,
-        Safari          = 512
+        PhantomJS       = 512,
+        Remote          = 1024,
+        Safari          = 2048
     }
 }
