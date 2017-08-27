@@ -3,6 +3,8 @@ using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -37,13 +39,27 @@ namespace FinesSE.Core.Configuration
         private readonly Deserializer deserializer;
         private readonly ILog Log;
 
+        const string CONFIGURATION_FILE_NAME = "Configuration.yml";
+
         public ConfigurationProvider(ILog log)
         {
             Log = log;
             deserializer = GetDeserializer();
 
-            const string CONFIGURATION_FILE_NAME = "Configuration.yml";
-            Initialize(AppDomain.CurrentDomain.BaseDirectory, CONFIGURATION_FILE_NAME);
+            InitializeConfigurationFromFile();
+        }
+
+        private void InitializeConfigurationFromFile()
+        {
+            var assemblyPath = Assembly
+                .GetAssembly(typeof(ConfigurationProvider))
+                .Location;
+            var paths = new[]
+            {
+                Path.GetDirectoryName(assemblyPath),
+                AppDomain.CurrentDomain.BaseDirectory
+            };
+            paths.Any(TryInitializeFromFile);
         }
 
         public ConfigurationProvider(ILog log, string configuration)
@@ -61,18 +77,20 @@ namespace FinesSE.Core.Configuration
             .IgnoreUnmatchedProperties()
             .Build();
 
-        private void Initialize(string basePath, string configurationFileName)
+        private bool TryInitializeFromFile(string basePath)
         {
-            var path = Path.Combine(basePath, configurationFileName);
+            var path = Path.Combine(basePath, CONFIGURATION_FILE_NAME);
             if (File.Exists(path))
             {
                 configurationFile = File.ReadAllText(path);
                 ConfigurationFound = true;
                 Log.Debug($"Configuration file read from {path}");
+                return true;
             }
             else
             {
                 Log.Debug($"Configuration file not found at {path}");
+                return false;
             }
         }
     }
