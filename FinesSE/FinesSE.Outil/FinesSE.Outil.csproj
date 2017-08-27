@@ -68,6 +68,7 @@
     <Compile Include="Actions\Open.cs" />
     <Compile Include="Actions\Pause.cs" />
     <Compile Include="Actions\Type.cs" />
+    <Compile Include="Actions\TypeKeys.cs" />
     <Compile Include="Actions\WindowFocus.cs" />
     <Compile Include="Actions\WaitForCondition.cs" />
     <Compile Include="Actions\WindowMaximize.cs" />

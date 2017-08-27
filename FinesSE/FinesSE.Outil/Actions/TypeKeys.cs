@@ -1,15 +1,12 @@
-﻿using FinesSE.Contracts.Infrastructure;
-using FinesSE.Contracts.Invokable;
+﻿using FinesSE.Contracts.Invokable;
 using FinesSE.Core.WebDriver;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FinesSE.Outil.Actions
 {
-    public class Type : IVoidAction
+    public class TypeKeys : IVoidAction
     {
-        public IExecutionContext Context { get; set; }
-
         public IEnumerable<System.Type> GetParameterTypes()
         {
             yield return typeof(LocatedElements);
@@ -19,13 +16,10 @@ namespace FinesSE.Outil.Actions
         public void Invoke(params object[] parameters)
             => Invoke(parameters.First() as LocatedElements, parameters.Last() as string);
 
-        public void Invoke(LocatedElements elements, string value)
+        public void Invoke(LocatedElements elements, string keys)
             => elements
             .ConstraintCount(c => c > 0)
             .Elements
-            .ForEach(
-                x => Context
-                    .Driver
-                    .ExecuteScriptWithArguments(JavascriptCode.SetValue(value), x));
+            .ForEach(x => x.SendKeys(keys));
     }
 }

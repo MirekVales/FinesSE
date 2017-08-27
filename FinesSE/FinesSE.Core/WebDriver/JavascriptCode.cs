@@ -50,5 +50,8 @@
                 xmlhttp.open('GET', '{url}', false);
                 xmlhttp.send();
                 return xmlhttp.responseText;";
+
+        public static string SetValue(string value)
+            => $"arguments[0].value = '{value}';";
     }
 }

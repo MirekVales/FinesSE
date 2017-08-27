@@ -55,8 +55,11 @@ namespace FinesSE.Bootstrapper
         public void Select(string locator, string optionLocator)
             => p.InvokeVoid<Select>(locator, optionLocator);
 
-        public void Type(string locator, string keys)
-            => p.InvokeVoid<Type>(locator, keys);
+        public void Type(string locator, string value)
+            => p.InvokeVoid<Type>(locator, value);
+
+        public void TypeKeys(string locator, string keys)
+            => p.InvokeVoid<TypeKeys>(locator, keys);
 
         public void WaitForCondition(string javascriptCondition, string msTimeout)
             => p.InvokeVoid<WaitForCondition>(javascriptCondition, msTimeout);
