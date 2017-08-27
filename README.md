@@ -23,10 +23,23 @@ The long-term vision is to provide a .NET based fixtures library that would cove
 
 ## Requirements
 
-FinesSE fixtures are written in .NET, therefore if you want to run them from FitNesse, it is necessary to have a FitSharp runner as well. 
+Tests may be run directly from file using a console application - FinesSE.Launcher. 
+> Check the application to find out arguments needed to execute a script
 
-You may run fixtures directly, without FitNesse, using FinesSE.Launcher. 
+To integrate fixtures with FitNesse, it is necessary to use a FitSharp runner as well. 
+> Use import command to load namespace FinesSE.Bootstrapper
+>
+> Use !path command to load FinesSE assemblies (e.g. !path FinesSE\*.dll)
 
-Regarding webdrivers, there is no mandatory webdriver to install, choose the ones you want to invoke. 
+## Supported Webdrivers
+
+- ✔️ Chrome
+- ✔️ Edge
+- ✔️ Firefox
+- ✔️ Internet Explorer
+- ✔️ Opera
+- ✔️ PhantomJS
+- ❌ Remote webdriver
+- ✔️ Safari
 
 ## ... to be continued
