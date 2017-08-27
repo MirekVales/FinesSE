@@ -6,6 +6,8 @@ using FinesSE.Core.Parsing;
 using FinesSE.Core.WebDriver;
 using FinesSE.VisualRegression;
 using LightInject;
+using System.IO;
+using System.Reflection;
 
 namespace FinesSE.Bootstrapper
 {
@@ -13,8 +15,10 @@ namespace FinesSE.Bootstrapper
     {
         public void Compose(IServiceRegistry container)
         {
-            container.RegisterRequiredAssembly("FinesSE.Drivers.dll");
-            container.RegisterRequiredAssembly("FinesSE.Outil.dll");
+            var directory = GetLocation();
+
+            container.RegisterRequiredAssembly(directory, "FinesSE.Drivers.dll");
+            container.RegisterRequiredAssembly(directory, "FinesSE.Outil.dll");
 
             container.Register<IConfigurationProvider, ConfigurationProvider>();
             container.Register<IWebDriverProvider, WebDriverProvider>(new PerContainerLifetime());
@@ -26,8 +30,14 @@ namespace FinesSE.Bootstrapper
             container.Register<IExecutionContext, ExecutionContext>(new PerContainerLifetime());
             container.Register<IInvocationProxy, InvokationProxy>();
 
-            container.RegisterRequiredAssembly("FinesSE.Outil.VisualRegression.dll");
+            container.RegisterRequiredAssembly(directory, "FinesSE.Outil.VisualRegression.dll");
             container.RegisterFrom<VisualRegressionCompositionRoot>();
+        }
+
+        private string GetLocation()
+        {
+            var uncLocation = Assembly.GetAssembly(typeof(CompositionRoot)).Location;
+            return Path.GetDirectoryName(uncLocation);
         }
     }
 }

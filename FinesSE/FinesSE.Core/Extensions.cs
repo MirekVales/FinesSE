@@ -86,9 +86,12 @@ namespace FinesSE.Core
             CloseWindow(window);
         }
 
-        public static void RegisterRequiredAssembly(this IServiceRegistry registry, string fileName)
+        public static void RegisterRequiredAssembly(this IServiceRegistry registry, string parentDirectory, string fileName)
         {
-            var directory = AppDomain.CurrentDomain.BaseDirectory;
+            var directory = string.IsNullOrEmpty(parentDirectory)
+                ? AppDomain.CurrentDomain.BaseDirectory
+                : parentDirectory;
+
             if (!File.Exists(Path.Combine(directory, fileName)))
                 throw new FileNotFoundException("Required component was not found", fileName);
 
