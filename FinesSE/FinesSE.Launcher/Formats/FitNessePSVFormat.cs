@@ -21,7 +21,7 @@ namespace FinesSE.Launcher.Formats
 
         private string GetTable(string tableSegment)
             => string.Join(
-                Environment.NewLine, 
+                Environment.NewLine,
                 Regex.Split(tableSegment, @"\n")
                     .Select(r => r.Trim())
                     .Select(GetRow)
@@ -38,7 +38,15 @@ namespace FinesSE.Launcher.Formats
             builder.Append("</tr>");
             builder.Replace("!-", "");
             builder.Replace("-!", "");
+            RemoveCommentedOutLines(ref builder);
             return builder.ToString();
+        }
+
+        private void RemoveCommentedOutLines(ref StringBuilder builder)
+        {
+            const string CommentedOutLinePattern = @"(?m)^\#.*\n";
+            foreach (Match match in Regex.Matches(builder.ToString(), CommentedOutLinePattern))
+                builder.Replace(match.Value, "");
         }
     }
 }
