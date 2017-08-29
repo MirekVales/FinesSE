@@ -14,8 +14,8 @@ namespace FinesSE.Core.WebDriver
         public static void ForEach(this IEnumerable<IWebElement> elements, Action<IWebElement> action)
             => elements.ToList().ForEach(action);
 
-        public static LocatedElements AsLocatedElements(this IReadOnlyCollection<IWebElement> collection, ILocator locator, string parameter)
-            => new LocatedElements(locator, parameter, collection);
+        public static LocatedElements AsLocatedElements(this IReadOnlyCollection<IWebElement> collection, ILocator locator, string parameter, string modifiers)
+            => new LocatedElements(locator, parameter, modifiers, collection);
 
         public static object ExecuteScript(this IWebDriver driver, string script)
             => (driver as IJavaScriptExecutor).ExecuteScript(script);

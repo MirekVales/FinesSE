@@ -13,12 +13,12 @@ namespace FinesSE.Outil.Locators
             => "tagname";
 
         public string Regex
-            => "(tagname=)(.+)";
+            => @"^(\(\?.+\))?(tagname=)(.+)";
 
-        public LocatedElements Locate(string value)
+        public LocatedElements Locate(string value, string modifiers)
             => Context
             .Driver
             .FindElements(By.TagName(value))
-            .AsLocatedElements(this, value);
+            .AsLocatedElements(this, value, modifiers);
     }
 }

@@ -6,6 +6,6 @@
 
         string Regex { get; }
 
-        LocatedElements Locate(string value);
+        LocatedElements Locate(string value, string modifiers);
     }
 }

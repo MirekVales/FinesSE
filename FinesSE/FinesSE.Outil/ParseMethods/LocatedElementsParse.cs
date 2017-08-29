@@ -18,7 +18,12 @@ namespace FinesSE.Outil.ParseMethods
             Func<ILocator, string, bool> matches =
                 (l, s) => Regex.IsMatch(s, l.Regex);
             var locator = Kernel.GetLocators().First(x => matches(x, input));
-            return locator.Locate(Regex.Match(input, locator.Regex).Groups[2].Value);
+            var match = Regex.Match(input, locator.Regex);
+            var containsModifiers = match.Groups.Count > 3;
+
+            var modifiers = containsModifiers  ? match.Groups[1].Value : "";
+            var value = containsModifiers ? match.Groups[3].Value : match.Groups[2].Value;
+            return locator.Locate(value, modifiers);
         }
     }
 }

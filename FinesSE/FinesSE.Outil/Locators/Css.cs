@@ -13,12 +13,12 @@ namespace FinesSE.Outil.Locators
             => "css";
 
         public string Regex
-            => "(css=)(.+)";
+            => @"^(\(\?.+\))?(css=)(.+)";
 
-        public LocatedElements Locate(string value)
+        public LocatedElements Locate(string value, string modifiers)
             => Context
             .Driver
             .FindElements(By.CssSelector(value))
-            .AsLocatedElements(this, value);
+            .AsLocatedElements(this, value, modifiers);
     }
 }

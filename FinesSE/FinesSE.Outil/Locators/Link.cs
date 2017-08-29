@@ -13,12 +13,12 @@ namespace FinesSE.Outil.Locators
             => "link";
 
         public string Regex
-            => "(link=)(.+)";
+            => @"^(\(\?.+\))?(link=)(.+)";
 
-        public LocatedElements Locate(string value)
+        public LocatedElements Locate(string value, string modifiers)
             => Context
             .Driver
             .FindElements(By.LinkText(value))
-            .AsLocatedElements(this, value);
+            .AsLocatedElements(this, value, modifiers);
     }
 }

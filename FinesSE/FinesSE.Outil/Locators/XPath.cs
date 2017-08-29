@@ -13,12 +13,12 @@ namespace FinesSE.Outil.Locators
             => "xpath";
 
         public string Regex
-            => "(xpath=)(.+)";
+            => @"^(\(\?.+\))?(xpath=)(.+)";
 
-        public LocatedElements Locate(string value)
+        public LocatedElements Locate(string value, string modifiers)
             => Context
             .Driver
             .FindElements(By.XPath(value))
-            .AsLocatedElements(this, value);
+            .AsLocatedElements(this, value, modifiers);
     }
 }

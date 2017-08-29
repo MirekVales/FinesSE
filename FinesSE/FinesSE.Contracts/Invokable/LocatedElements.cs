@@ -10,12 +10,18 @@ namespace FinesSE.Contracts.Invokable
     {
         public ILocator Locator { get; }
         public string Parameter { get; }
+        public string Modifiers { get; }
         public IEnumerable<IWebElement> Elements { get; }
 
-        public LocatedElements(ILocator locator, string parameter, IEnumerable<IWebElement> elements)
+        public LocatedElements(
+            ILocator locator,
+            string parameter,
+            string modifiers,
+            IEnumerable<IWebElement> elements)
         {
             Locator = locator;
             Parameter = parameter;
+            Modifiers = modifiers;
             Elements = elements.ToArray();
         }
 
