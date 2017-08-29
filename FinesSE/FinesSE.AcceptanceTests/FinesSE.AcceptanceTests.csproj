@@ -59,6 +59,18 @@
       <Project>{93c7b308-af59-4175-8c97-061c341a3721}</Project>
       <Name>FinesSE.Bootstrapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Drivers\FinesSE.Drivers.csproj">
+      <Project>{0e08b552-9a47-466a-82e7-5b09209ec4fd}</Project>
+      <Name>FinesSE.Drivers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Outil.VisualRegression\FinesSE.Outil.VisualRegression.csproj">
+      <Project>{6f4588b6-fcf8-430b-a314-4a35dfe56ae5}</Project>
+      <Name>FinesSE.Outil.VisualRegression</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Outil\FinesSE.Outil.csproj">
+      <Project>{314f9978-45de-4861-8d1d-0c1825daf265}</Project>
+      <Name>FinesSE.Outil</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

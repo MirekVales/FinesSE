@@ -77,6 +77,10 @@
       <Project>{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}</Project>
       <Name>FinesSE.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Drivers\FinesSE.Drivers.csproj">
+      <Project>{0e08b552-9a47-466a-82e7-5b09209ec4fd}</Project>
+      <Name>FinesSE.Drivers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FinesSE.Launcher\FinesSE.Launcher.csproj">
       <Project>{c76565ab-46e9-44b7-a575-266bcce92fa9}</Project>
       <Name>FinesSE.Launcher</Name>
