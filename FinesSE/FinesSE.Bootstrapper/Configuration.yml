@@ -1,5 +1,6 @@
 ﻿CoreConfiguration:
     DefaultBrowser: Chrome
+    WaitForDocumentCompleteState: 00:00:01
 
 ScreenshotTaker:
     Margin: 5

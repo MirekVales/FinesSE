@@ -53,5 +53,8 @@
 
         public static string SetValue(string value)
             => $"arguments[0].value = '{value}';";
+
+        public static string IsComplete
+            => "return document.readyState != 'loading';";
     }
 }

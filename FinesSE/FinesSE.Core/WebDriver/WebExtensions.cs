@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FinesSE.Core.WebDriver
 {
@@ -120,6 +121,15 @@ namespace FinesSE.Core.WebDriver
                 }
 
             return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
+        }
+
+        public static void WaitForDocumentCompleteness(this IWebDriver driver, TimeSpan timeoutValue)
+        {
+            using (var timeout = new Timeoutable(timeoutValue))
+                while (!timeout.Timeouted && !driver.ExecuteScript(JavascriptCode.IsComplete, Convert.ToBoolean))
+                {
+                    Task.Delay(100).Wait();
+                }
         }
     }
 }
