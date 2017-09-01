@@ -31,7 +31,7 @@ namespace FinesSE.Contracts.Infrastructure
                 var match = Regex.Match(modifiers, parser.Key);
                 if (match.Success)
                 {
-                    parser.Value(match.Groups[1].Value);
+                    parser.Value(match.Groups[2].Value);
                     return;
                 }
             }

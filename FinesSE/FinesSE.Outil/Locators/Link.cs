@@ -21,7 +21,7 @@ namespace FinesSE.Outil.Locators
 
             return Context
                 .Driver
-                .FindElements(By.LinkText(value))
+                .FindElements(By.LinkText(value), locatorModifiers)
                 .AsLocatedElements(this, value, locatorModifiers);
         }
     }

@@ -35,6 +35,7 @@ namespace FinesSE.Core.Injection
             dynamicInitializers = GetDynamicInitializers();
             drivers = new Dictionary<WebDrivers, IWebDriver>();
             currentBrowser = ConfigurationProvider.Get(CoreConfiguration.Default).DefaultBrowser;
+            SetBrowser(currentBrowser);
         }
 
         private Dictionary<WebDrivers, IEnumerable<WebDrivers>> GetDynamicInitializers()
