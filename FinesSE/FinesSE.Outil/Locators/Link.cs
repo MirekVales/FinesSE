@@ -16,9 +16,13 @@ namespace FinesSE.Outil.Locators
             => @"^(\(\?.+\))?(link=)(.+)";
 
         public LocatedElements Locate(string value, string modifiers)
-            => Context
-            .Driver
-            .FindElements(By.LinkText(value))
-            .AsLocatedElements(this, value, modifiers);
+        {
+            var locatorModifiers = new LocatorModifiers(modifiers);
+
+            return Context
+                .Driver
+                .FindElements(By.LinkText(value))
+                .AsLocatedElements(this, value, locatorModifiers);
+        }
     }
 }

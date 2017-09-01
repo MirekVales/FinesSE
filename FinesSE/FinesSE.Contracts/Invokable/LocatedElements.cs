@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts.Exceptions;
+using FinesSE.Contracts.Infrastructure;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,13 @@ namespace FinesSE.Contracts.Invokable
     {
         public ILocator Locator { get; }
         public string Parameter { get; }
-        public string Modifiers { get; }
+        public LocatorModifiers Modifiers { get; }
         public IEnumerable<IWebElement> Elements { get; }
 
         public LocatedElements(
             ILocator locator,
             string parameter,
-            string modifiers,
+            LocatorModifiers modifiers,
             IEnumerable<IWebElement> elements)
         {
             Locator = locator;

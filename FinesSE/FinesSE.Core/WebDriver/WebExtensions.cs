@@ -3,6 +3,7 @@ using FinesSE.Contracts.Invokable;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,7 +15,11 @@ namespace FinesSE.Core.WebDriver
         public static void ForEach(this IEnumerable<IWebElement> elements, Action<IWebElement> action)
             => elements.ToList().ForEach(action);
 
-        public static LocatedElements AsLocatedElements(this IReadOnlyCollection<IWebElement> collection, ILocator locator, string parameter, string modifiers)
+        public static LocatedElements AsLocatedElements(
+            this IReadOnlyCollection<IWebElement> collection,
+            ILocator locator,
+            string parameter,
+            LocatorModifiers modifiers)
             => new LocatedElements(locator, parameter, modifiers, collection);
 
         public static object ExecuteScript(this IWebDriver driver, string script)
@@ -97,5 +102,24 @@ namespace FinesSE.Core.WebDriver
 
         public static int GetOffsetY(this IWebDriver driver)
             => driver.ExecuteScript(JavascriptCode.ReturnPageOffsetY, Convert.ToInt32);
+
+        public static ReadOnlyCollection<IWebElement> FindElements(
+            this IWebDriver driver,
+            By by,
+            LocatorModifiers modifiers)
+        {
+            if (!modifiers.WaitForExistence.HasValue)
+                return driver.FindElements(by);
+
+            using (var timeout = new Timeoutable(modifiers.WaitForExistence))
+                while (!timeout.Timeouted)
+                {
+                    var elements = driver.FindElements(by);
+                    if (elements.Any())
+                        return elements;
+                }
+
+            return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
+        }
     }
 }

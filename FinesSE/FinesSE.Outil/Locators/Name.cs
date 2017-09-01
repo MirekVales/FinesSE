@@ -16,9 +16,13 @@ namespace FinesSE.Outil.Locators
             => @"^(\(\?.+\))?(name=)(.+)";
 
         public LocatedElements Locate(string value, string modifiers)
-            => Context
-            .Driver
-            .FindElements(By.Name(value))
-            .AsLocatedElements(this, value, modifiers);
+        {
+            var locatorModifiers = new LocatorModifiers(modifiers);
+
+            return Context
+                .Driver
+                .FindElements(By.Name(value))
+                .AsLocatedElements(this, value, locatorModifiers);
+        }
     }
 }

@@ -69,6 +69,7 @@
     <Compile Include="Infrastructure\IVoidActionInterceptor.cs" />
     <Compile Include="Infrastructure\IWebDriverActivator.cs" />
     <Compile Include="Infrastructure\IWebElementIdentityProvider.cs" />
+    <Compile Include="Infrastructure\LocatorModifiers.cs" />
     <Compile Include="Invokable\IAction.cs" />
     <Compile Include="Infrastructure\IKernel.cs" />
     <Compile Include="Invokable\ILocator.cs" />

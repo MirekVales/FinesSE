@@ -73,6 +73,7 @@
     <Compile Include="Injection\InvokationProxy.cs" />
     <Compile Include="WebDriver\JavascriptCode.cs" />
     <Compile Include="WebDriver\ScreenshotTaker.cs" />
+    <Compile Include="WebDriver\Timeoutable.cs" />
     <Compile Include="WebDriver\WebDriverProvider.cs" />
     <Compile Include="WebDriver\WebExtensions.cs" />
   </ItemGroup>
