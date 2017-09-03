@@ -19,6 +19,23 @@ The long-term vision is to provide a .NET based fixtures library that would cove
   * TagName
   * XPath
 - Actions
+  * Click
+  * ClickAt
+  * Close
+  * DoubleClick
+  * Focus
+  * Highlight
+  * MouseDown
+  * MouseDownAt
+  * MouseUp
+  * MouseUpAt
+  * Open
+  * Pause
+  * Select
+  * Type
+  * TypeKeys
+  * WaitForCondition
+  * WindowMaximize
 - Verifications
 - Screenshots
 
