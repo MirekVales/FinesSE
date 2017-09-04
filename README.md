@@ -37,7 +37,15 @@ The long-term vision is to provide a .NET based fixtures library that would cove
   * WaitForCondition
   * WindowMaximize
 - Verifications
+  * VerifyText
+  * VerifyScreenDiff
+  * VerifyCssValid
 - Screenshots
+  * TakeScreen
+  * TakeBaseScreen
+  * GetScreenDiff
+  * InlineScreenDiff
+  * SetTopic
 
 ### Visual Regression
 - Screenshots comparison (using ImageMagick and a great wrapper [Magick.NET](https://github.com/dlemstra/Magick.NET))
