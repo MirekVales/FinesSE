@@ -32,6 +32,7 @@ The long-term vision is to provide a .NET based fixtures library that would cove
   * Open
   * Pause
   * Select
+  * SetZoom
   * Type
   * TypeKeys
   * WaitForCondition
