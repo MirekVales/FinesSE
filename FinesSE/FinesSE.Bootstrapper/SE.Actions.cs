@@ -55,6 +55,9 @@ namespace FinesSE.Bootstrapper
         public void Select(string locator, string optionLocator)
             => p.InvokeVoid<Select>(locator, optionLocator);
 
+        public void SetZoom(string zoomLevel)
+            => p.InvokeVoid<SetZoom>(zoomLevel);
+
         public void Type(string locator, string value)
             => p.InvokeVoid<Type>(locator, value);
 

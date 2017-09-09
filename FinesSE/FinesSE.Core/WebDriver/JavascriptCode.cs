@@ -41,7 +41,7 @@
                 ";
 
         public static string DownloadResource(string url)
-            =>  $@"
+            => $@"
                 if (window.XMLHttpRequest)
                 {{
                     xmlhttp = new XMLHttpRequest();
@@ -61,5 +61,8 @@
 
         public static string IsComplete
             => "return document.readyState != 'loading';";
+
+        public static string SetZoomLevel(int zoomLevel)
+            => $"document.body.style.zoom = '{zoomLevel}%'";
     }
 }

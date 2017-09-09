@@ -135,5 +135,8 @@ namespace FinesSE.Core.WebDriver
                     Task.Delay(100).Wait();
                 }
         }
+
+        public static void SetZoomLevel(this IWebDriver driver, int zoomLevel)
+            => driver.ExecuteScript(JavascriptCode.SetZoomLevel(zoomLevel));
     }
 }

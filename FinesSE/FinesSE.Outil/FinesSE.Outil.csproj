@@ -67,6 +67,7 @@
     <Compile Include="Actions\SetBrowser.cs" />
     <Compile Include="Actions\Open.cs" />
     <Compile Include="Actions\Pause.cs" />
+    <Compile Include="Actions\SetZoom.cs" />
     <Compile Include="Actions\Type.cs" />
     <Compile Include="Actions\TypeKeys.cs" />
     <Compile Include="Actions\WindowFocus.cs" />
