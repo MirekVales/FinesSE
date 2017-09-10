@@ -25,6 +25,9 @@ namespace FinesSE.Bootstrapper
         public void Focus(string locator)
             => p.InvokeVoid<Focus>(locator);
 
+        public string GetCookies()
+            => p.Invoke<GetCookies>();
+
         public string GetText(string locator)
             => p.Invoke<GetText>(locator);
 

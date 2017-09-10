@@ -138,5 +138,8 @@ namespace FinesSE.Core.WebDriver
 
         public static void SetZoomLevel(this IWebDriver driver, int zoomLevel)
             => driver.ExecuteScript(JavascriptCode.SetZoomLevel(zoomLevel));
+
+        public static IEnumerable<Cookie> GetCookies(this IWebDriver driver)
+            => driver.Manage().Cookies.AllCookies;
     }
 }
