@@ -141,5 +141,8 @@ namespace FinesSE.Core.WebDriver
 
         public static IEnumerable<Cookie> GetCookies(this IWebDriver driver)
             => driver.Manage().Cookies.AllCookies;
+
+        public static Cookie GetCookieNamed(this IWebDriver driver, string name)
+            => driver.Manage().Cookies.GetCookieNamed(name);
     }
 }

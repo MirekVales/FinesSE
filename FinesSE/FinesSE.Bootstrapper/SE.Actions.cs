@@ -28,6 +28,9 @@ namespace FinesSE.Bootstrapper
         public string GetCookies()
             => p.Invoke<GetCookies>();
 
+        public string GetCookieNamed(string name)
+            => p.Invoke<GetCookieNamed>(name);
+
         public string GetText(string locator)
             => p.Invoke<GetText>(locator);
 

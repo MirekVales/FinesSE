@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WebDriver\GetCookieNamed.cs" />
     <Compile Include="WebDriver\ScreenshotTakerConfiguration.cs" />
     <Compile Include="CoreConfiguration.cs" />
     <Compile Include="Configuration\ConfigurationProvider.cs" />
