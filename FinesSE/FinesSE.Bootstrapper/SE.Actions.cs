@@ -19,6 +19,9 @@ namespace FinesSE.Bootstrapper
         public void Close()
             => kernel.Context.Dispose();
 
+        public void DeleteAllCookies()
+            => p.InvokeVoid<DeleteAllCookies>();
+
         public string Execute(string javascript)
             => p.Invoke<Execute>(javascript);
 
