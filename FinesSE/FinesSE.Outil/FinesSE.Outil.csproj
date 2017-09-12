@@ -60,6 +60,7 @@
     <Compile Include="Actions\GetCookies.cs" />
     <Compile Include="Actions\GetText.cs" />
     <Compile Include="Actions\Highlight.cs" />
+    <Compile Include="Actions\IsDisplayed.cs" />
     <Compile Include="Actions\MouseDown.cs" />
     <Compile Include="Actions\MouseDownAt.cs" />
     <Compile Include="Actions\MouseUp.cs" />

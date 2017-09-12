@@ -40,6 +40,9 @@ namespace FinesSE.Bootstrapper
         public void Highlight(string locator)
             => p.InvokeVoid<Highlight>(locator);
 
+        public string IsDisplayed(string locator)
+            => p.Invoke<IsDisplayed>(locator);
+
         public void MouseDown(string locator)
             => p.InvokeVoid<MouseDown>(locator);
 
