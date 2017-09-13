@@ -53,6 +53,7 @@
     <Compile Include="Actions\Click.cs" />
     <Compile Include="Actions\ClickAt.cs" />
     <Compile Include="Actions\DeleteAllCookies.cs" />
+    <Compile Include="Actions\DeleteCookieNamed.cs" />
     <Compile Include="Actions\Deselect.cs" />
     <Compile Include="Actions\DoubleClick.cs" />
     <Compile Include="Actions\Execute.cs" />

@@ -22,6 +22,9 @@ namespace FinesSE.Bootstrapper
         public void DeleteAllCookies()
             => p.InvokeVoid<DeleteAllCookies>();
 
+        public void DeleteCookieNamed()
+            => p.InvokeVoid<DeleteCookieNamed>();
+
         public string Execute(string javascript)
             => p.Invoke<Execute>(javascript);
 
