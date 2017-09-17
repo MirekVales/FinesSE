@@ -22,8 +22,12 @@ The long-term vision is to provide a .NET based fixtures library that would cove
   * Click
   * ClickAt
   * Close
+  * DeleteAllCookies
+  * DeleteCookieNamed
   * DoubleClick
   * Focus
+  * GetAllCookies
+  * GetCookieNamed
   * Highlight
   * MouseDown
   * MouseDownAt
