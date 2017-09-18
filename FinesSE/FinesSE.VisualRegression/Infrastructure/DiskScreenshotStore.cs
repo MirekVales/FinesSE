@@ -1,5 +1,6 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.VisualRegression.Contracts;
+using System;
 using System.IO;
 
 namespace FinesSE.VisualRegression.Infrastructure
@@ -15,17 +16,22 @@ namespace FinesSE.VisualRegression.Infrastructure
             config = configuration.Get(VisualRegressionConfiguration.Default);
         }
 
+        string GetPath()
+            => Path.IsPathRooted(config.ScreenshotStorePath) ?
+            config.ScreenshotStorePath :
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.ScreenshotStorePath);
+
         public string GetPath(string topicId, string objectId, string versionId)
             => Path.Combine(
-                config.ScreenshotStorePath, 
+                GetPath(),
                 topicId,
-                versionId, 
+                versionId,
                 $"{config.ScreenshotStoreFilePrefix}{objectId}{config.ScreenshotStoreFileExtension}");
 
         public void Clear()
         {
-            Directory.Delete(config.ScreenshotStorePath, true);
-            Directory.CreateDirectory(config.ScreenshotStorePath);
+            Directory.Delete(GetPath(), true);
+            Directory.CreateDirectory(GetPath());
         }
 
         public double Compare(string topicId, string objectId, string baseVersionId, string referenceVersionId)
