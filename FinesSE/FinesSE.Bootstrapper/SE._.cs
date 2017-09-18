@@ -21,9 +21,7 @@ namespace FinesSE.Bootstrapper
             => p.Invoke<SetBrowser>(browser);
 
         public void Dispose()
-        {
-            kernel.Context.Dispose();
-        }
+            => kernel.DisposeKernel();
 
         ~SE()
             => Dispose();

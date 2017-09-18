@@ -20,5 +20,7 @@ namespace FinesSE.Contracts.Infrastructure
         IEnumerable<IWebDriverActivator> GetWebDriverActivators();
 
         void Initialize();
+
+        void DisposeKernel();
     }
 }

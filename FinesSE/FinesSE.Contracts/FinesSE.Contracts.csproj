@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +58,7 @@
     <Compile Include="Exceptions\ParserNotFoundException.cs" />
     <Compile Include="Exceptions\SlimException.cs" />
     <Compile Include="Exceptions\WebDriverNotFoundException.cs" />
+    <Compile Include="Infrastructure\ChildProcess.cs" />
     <Compile Include="Infrastructure\DynamicAttribute.cs" />
     <Compile Include="Infrastructure\IActionInterceptor.cs" />
     <Compile Include="Infrastructure\IConfigurationProvider.cs" />

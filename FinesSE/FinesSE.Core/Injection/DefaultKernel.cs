@@ -65,5 +65,8 @@ namespace FinesSE.Core.Injection
 
         public void AddVoidAction<T>(string serviceName) where T : IVoidAction
             => container.Register<IVoidAction, T>(serviceName);
+
+        public void DisposeKernel()
+            => container.Dispose();
     }
 }

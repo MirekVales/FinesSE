@@ -105,13 +105,13 @@ namespace FinesSE.Core.Injection
 
         public void Dispose()
         {
-            foreach (var driver in drivers.Values)
+            foreach (var driver in drivers)
             {
-                log.Debug($"Driver {driver} is about to be disposed");
+                log.Debug($"Driver {driver.Value} is about to be disposed");
 
-                driver.CloseWindow();
-                driver.Quit();
-                driver.Dispose();
+                driver.Value.Quit();
+                driver.Value.Dispose();
+                driverProvider.EndDriverProcess(driver.Key);
             }
             drivers.Clear();
         }
