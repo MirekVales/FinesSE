@@ -20,7 +20,7 @@ namespace FinesSE.Bootstrapper
             container.RegisterRequiredAssembly(directory, "FinesSE.Drivers.dll");
             container.RegisterRequiredAssembly(directory, "FinesSE.Outil.dll");
 
-            container.Register<IConfigurationProvider, ConfigurationProvider>();
+            container.Register<IConfigurationProvider, ConfigurationProvider>(new PerContainerLifetime());
             container.Register<IWebDriverProvider, WebDriverProvider>(new PerContainerLifetime());
             container.Register<IParameterParser, ParameterParser>();
             container.Register<IExecutionContextInterceptor, ExecutionContextInterceptor>();

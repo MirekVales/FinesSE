@@ -25,7 +25,7 @@ namespace FinesSE.Outil.VisualRegression.Assertions
 
         public string Invoke(params object[] parameters)
             => Invoke(
-                parameters.First() as LocatedElements, 
+                parameters.First() as LocatedElements,
                 parameters.ElementAt(1) as string);
 
         public string Invoke(LocatedElements elements, string toleranceValue)
@@ -36,7 +36,7 @@ namespace FinesSE.Outil.VisualRegression.Assertions
             var baseVersionId = configuration.ScreenshotStoreBaseVersionId;
             var referenceVersionId = configuration.ScreenshotStoreReferenceVersionId;
             var tolerance = ParseToleranceLevel(toleranceValue.FallbackEmptyString(() => configuration.ScreenshotDiffTolerance));
-            
+
             foreach (var element in elements.Elements)
             {
                 var screenshot = element.TakeScreenshot(Context.Driver, Context.ConfigurationProvider);

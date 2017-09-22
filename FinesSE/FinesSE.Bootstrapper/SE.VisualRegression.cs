@@ -11,6 +11,9 @@ namespace FinesSE.Bootstrapper
         public string InlineScreenDiff(string locator)
             => p.Invoke<InlineScreenDiff>(locator);
 
+        public void SetScreenDiffTolerance(string tolerance)
+            => p.InvokeVoid<SetScreenDiffTolerance>(tolerance);
+
         public void SetTopic(string id)
             => p.InvokeVoid<SetTopic>(id);
 

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Actions\GetScreenDiff.cs" />
     <Compile Include="Actions\InlineScreenDiff.cs" />
+    <Compile Include="Actions\SetScreenDiffTolerance.cs" />
     <Compile Include="Actions\SetTopic.cs" />
     <Compile Include="Actions\TakeBaseScreen.cs" />
     <Compile Include="Actions\TakeScreen.cs" />

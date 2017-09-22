@@ -14,8 +14,22 @@ namespace FinesSE.Core.Configuration
     {
         public bool ConfigurationFound { get; private set; }
 
+        readonly Dictionary<string, IConfigurationKeys> configurationCache
+            = new Dictionary<string, IConfigurationKeys>();
+
         public T Get<T>(T defaultFallback)
             where T : IConfigurationKeys
+        {
+            var cached = GetFromCache<T>();
+            if (cached != null)
+                return cached;
+
+            cached = Parse(defaultFallback);
+            configurationCache.Add(typeof(T).Name, cached);
+            return cached;
+        }
+
+        T Parse<T>(T defaultFallback) where T : IConfigurationKeys
         {
             try
             {
@@ -33,6 +47,15 @@ namespace FinesSE.Core.Configuration
                 Log.Warn($"Type {nameof(T)} configuration deserialization failed", e);
                 return defaultFallback;
             }
+        }
+
+        T GetFromCache<T>()
+        where T : IConfigurationKeys
+        {
+            if (!configurationCache.ContainsKey(typeof(T).Name))
+                return default(T);
+
+            return (T)configurationCache[typeof(T).Name];
         }
 
         private string configurationFile;
