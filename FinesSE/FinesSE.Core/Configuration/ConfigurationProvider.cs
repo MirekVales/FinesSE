@@ -44,7 +44,7 @@ namespace FinesSE.Core.Configuration
             }
             catch (Exception e)
             {
-                Log.Warn($"Type {nameof(T)} configuration deserialization failed", e);
+                Log.Warn($"Type {typeof(T).Name} configuration deserialization failed", e);
                 return defaultFallback;
             }
         }

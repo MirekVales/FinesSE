@@ -7,6 +7,8 @@ using System.Linq;
 using System;
 using System.Reflection;
 using log4net;
+using FinesSE.Core.Environment;
+using log4net.Config;
 
 namespace FinesSE.Core.Injection
 {
@@ -14,6 +16,8 @@ namespace FinesSE.Core.Injection
         where C : ICompositionRoot, new()
     {
         private readonly ServiceContainer container;
+        private ILog coreLog;
+        private LogAppender appender;
 
         public IInvocationProxy Proxy
             => container.GetInstance<IInvocationProxy>();
@@ -28,10 +32,16 @@ namespace FinesSE.Core.Injection
 
         public void Initialize()
         {
-            container.RegisterInstance(LogManager.GetLogger("CoreLog"));
+            container.RegisterInstance(coreLog = LogManager.GetLogger("CoreLog"));
             container.RegisterFrom<C>();
             container.RegisterInstance<IKernel>(this);
             container.Intercept(x => x.ServiceType == typeof(IInvocationProxy), (sf, pd) => DefineProxyType(pd));
+
+            if (container.GetInstance<IConfigurationProvider>().Get(CoreConfiguration.Default).LogToFile)
+            {
+                appender = new LogAppender(container.GetInstance<IConfigurationProvider>());
+                BasicConfigurator.Configure(LogManager.GetRepository(), appender);
+            }
         }
 
         private void DefineProxyType(ProxyDefinition proxyDefinition)
@@ -67,6 +77,9 @@ namespace FinesSE.Core.Injection
             => container.Register<IVoidAction, T>(serviceName);
 
         public void DisposeKernel()
-            => container.Dispose();
+        {
+            container.Dispose();
+            appender?.Dispose();
+        }
     }
 }

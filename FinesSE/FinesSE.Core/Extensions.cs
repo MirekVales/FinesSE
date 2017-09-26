@@ -15,7 +15,7 @@ namespace FinesSE.Core
         public static IEnumerable<string> GetGenericArgumentsName(this MethodInfo methodInfo)
             => methodInfo
             .GetGenericArguments()
-            .Select(x => x.Name);
+            .Select(x => x.FullName);
 
         public static string FallbackEmptyString(this string value, Func<string> fallback)
             => string.IsNullOrWhiteSpace(value) ? fallback() : value;

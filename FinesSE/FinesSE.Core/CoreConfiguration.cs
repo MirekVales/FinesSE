@@ -8,12 +8,15 @@ namespace FinesSE.Core
     {
         public WebDrivers DefaultBrowser { get; set; }
         public TimeSpan WaitForDocumentCompleteState { get; set; }
+        public bool LogToFile { get; set; }
+        public string LogPath { get; set; }
 
         public static CoreConfiguration Default
             => new CoreConfiguration()
             {
                 DefaultBrowser = WebDrivers.IE,
-                WaitForDocumentCompleteState = TimeSpan.FromSeconds(1)
+                WaitForDocumentCompleteState = TimeSpan.FromSeconds(1),
+                LogToFile = false
             };
 
     }

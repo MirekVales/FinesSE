@@ -112,6 +112,8 @@ namespace FinesSE.Core.Injection
                 driver.Value.Quit();
                 driver.Value.Dispose();
                 driverProvider.EndDriverProcess(driver.Key);
+
+                log.Debug($"Driver {driver.Value} disposed");
             }
             drivers.Clear();
         }
