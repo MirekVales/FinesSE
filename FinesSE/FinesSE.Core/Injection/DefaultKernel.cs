@@ -32,6 +32,8 @@ namespace FinesSE.Core.Injection
 
         public void Initialize()
         {
+            ProcessList.LoadFromDisk().CleanList();
+
             container.RegisterInstance(coreLog = LogManager.GetLogger("CoreLog"));
             container.RegisterFrom<C>();
             container.RegisterInstance<IKernel>(this);
@@ -79,6 +81,9 @@ namespace FinesSE.Core.Injection
         public void DisposeKernel()
         {
             container.Dispose();
+
+            ProcessList.LoadFromDisk().CleanList();
+
             appender?.Dispose();
         }
     }

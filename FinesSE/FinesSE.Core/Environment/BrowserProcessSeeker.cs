@@ -22,10 +22,11 @@ namespace FinesSE.Core.Environment
             this.driverType = driverType;
             this.endAction = endAction;
             startProcesses = GetChildProcesses(PID, driverType).ToArray();
+            ProcessList.LoadFromDisk().AddProcesses(startProcesses);
         }
 
         public void Dispose()
-        { 
+        {
             var incrementalProcesses = GetChildProcesses(PID, driverType)
                                         .Except(startProcesses)
                                         .ToArray();

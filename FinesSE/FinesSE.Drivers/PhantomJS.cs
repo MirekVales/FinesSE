@@ -15,7 +15,7 @@ namespace FinesSE.Drivers
             var configuration = provider.Get<PhantomJSConfiguration>(null);
             if (configuration == null)
                 return new PhantomJSDriver();
-            
+
             return new PhantomJSDriver(
                 configuration.WebDriverDirectory,
                 GetOptions(configuration),
