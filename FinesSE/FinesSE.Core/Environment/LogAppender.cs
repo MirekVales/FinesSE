@@ -7,6 +7,7 @@ using System.Threading;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
+using log4net.Layout;
 
 namespace FinesSE.Core.Environment
 {
@@ -15,16 +16,19 @@ namespace FinesSE.Core.Environment
         public string LogPath => configuration.LogPath;
 
         readonly CoreConfiguration configuration;
+        readonly PatternLayout patternLayout;
+
         readonly Queue<string> messages = new Queue<string>();
         DateTime lastChange;
         readonly object @lock = new object();
 
-        readonly int MaxBufferSize = 100;
+        public const int MaxBufferSize = 100;
 
         public LogAppender(IConfigurationProvider provider)
         {
             configuration = provider.Get(CoreConfiguration.Default);
-            
+            patternLayout = new PatternLayout(configuration.LogPattern);
+
             if (!File.Exists(LogPath))
                 File.Create(LogPath).Dispose();
 
@@ -38,7 +42,7 @@ namespace FinesSE.Core.Environment
         {
             lock (@lock)
             {
-                messages.Enqueue(loggingEvent.RenderedMessage);
+                messages.Enqueue(patternLayout.Format(loggingEvent));
 
                 lastChange = DateTime.Now;
 
@@ -48,31 +52,35 @@ namespace FinesSE.Core.Environment
 
         void Writer()
         {
-            lock (@lock)
+            while (!disposedValue)
             {
-                while (!disposedValue)
+                lock (@lock)
                 {
                     if (messages.Count >= MaxBufferSize)
                         WriteToFile();
 
                     Monitor.Wait(@lock);
                 }
-
-                if (messages.Any())
-                    WriteToFile();
             }
+
+            if (messages.Any())
+                WriteToFile();
         }
 
         void WriteToFile()
         {
             string[] messagesToWriter = null;
-            messagesToWriter = messages.ToArray();
-            messages.Clear();
+
+            lock (@lock)
+            {
+                messagesToWriter = messages.ToArray();
+                messages.Clear();
+            }
 
             File.AppendAllLines(LogPath, messagesToWriter);
         }
 
-        private bool disposedValue = false;
+        bool disposedValue = false;
 
         protected virtual void Dispose(bool disposing)
         {

@@ -10,13 +10,15 @@ namespace FinesSE.Core
         public TimeSpan WaitForDocumentCompleteState { get; set; }
         public bool LogToFile { get; set; }
         public string LogPath { get; set; }
+        public string LogPattern { get; set; }
 
         public static CoreConfiguration Default
             => new CoreConfiguration()
             {
-                DefaultBrowser = WebDrivers.IE,
+                DefaultBrowser = WebDrivers.Chrome,
                 WaitForDocumentCompleteState = TimeSpan.FromSeconds(1),
-                LogToFile = false
+                LogToFile = false,
+                LogPattern = "%date [%level] %message"
             };
 
     }
