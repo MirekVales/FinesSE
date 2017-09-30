@@ -15,6 +15,6 @@ namespace FinesSE.Contracts.Infrastructure
         void SetBrowser(WebDrivers drivers);
 
         void AddWorkflowBranch(BranchType branchType);
-        bool IgnoreAction();
+        bool IsActionIgnored();
     }
 }

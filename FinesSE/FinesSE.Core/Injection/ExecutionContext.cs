@@ -35,7 +35,6 @@ namespace FinesSE.Core.Injection
             dynamicInitializers = GetDynamicInitializers();
             drivers = new Dictionary<WebDrivers, IWebDriver>();
             currentBrowser = ConfigurationProvider.Get(CoreConfiguration.Default).DefaultBrowser;
-            //SetBrowser(currentBrowser);
         }
 
         readonly Stack<BranchType> branches = new Stack<BranchType>();
@@ -50,10 +49,10 @@ namespace FinesSE.Core.Injection
                 branches.Push(branchType);
         }
 
-        public bool IgnoreAction()
+        public bool IsActionIgnored()
             => branches.Any() && branches.Peek() == BranchType.Open;
 
-        private Dictionary<WebDrivers, IEnumerable<WebDrivers>> GetDynamicInitializers()
+        Dictionary<WebDrivers, IEnumerable<WebDrivers>> GetDynamicInitializers()
         {
             return new Dictionary<WebDrivers, IEnumerable<WebDrivers>>
             {
@@ -63,13 +62,13 @@ namespace FinesSE.Core.Injection
             };
         }
 
-        private IEnumerable<WebDrivers> GetRandomBrowser()
+        IEnumerable<WebDrivers> GetRandomBrowser()
         {
             var available = GetAllAvailableBrowsers();
             return available.Any() ? new[] { available.ElementAt(DateTime.Now.Millisecond % available.Count()) } : new WebDrivers[0];
         }
 
-        private IEnumerable<WebDrivers> GetAllAvailableBrowsers()
+        IEnumerable<WebDrivers> GetAllAvailableBrowsers()
         {
             foreach (var name in Enum.GetNames(typeof(WebDrivers)))
             {
@@ -111,6 +110,9 @@ namespace FinesSE.Core.Injection
 
         IWebDriver GetCurrentDriver()
         {
+            if (!drivers.ContainsKey(currentBrowser))
+                SetBrowser(currentBrowser);
+
             if (drivers.ContainsKey(currentBrowser))
                 return drivers[currentBrowser];
 

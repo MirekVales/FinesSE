@@ -27,7 +27,7 @@ namespace FinesSE.UnitTests
             var kernel = new DefaultKernel<CompositionRoot>();
             kernel.Initialize();
             kernel.AddAction<CustomAction>(typeof(CustomAction).FullName);
-            Assert.ThrowsException<InvalidOperationException>(()
+            Assert.ThrowsException<ActionException>(()
                 => kernel.Proxy.Invoke<CustomAction>("")
             );
         }
@@ -73,7 +73,7 @@ namespace FinesSE.UnitTests
             var kernel = new DefaultKernel<CompositionRoot>();
             kernel.Initialize();
             kernel.AddVoidAction<CustomAction2>(typeof(CustomAction2).FullName);
-            Assert.ThrowsException<InvalidOperationException>(()
+            Assert.ThrowsException<ActionException>(()
                 => kernel.Proxy.InvokeVoid<CustomAction2>("")
             );
         }

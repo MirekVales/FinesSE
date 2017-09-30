@@ -57,6 +57,7 @@
     <Compile Include="Exceptions\OptionNotFoundException.cs" />
     <Compile Include="Exceptions\ParserNotFoundException.cs" />
     <Compile Include="Exceptions\SlimException.cs" />
+    <Compile Include="Exceptions\ActionException.cs" />
     <Compile Include="Exceptions\WebDriverNotFoundException.cs" />
     <Compile Include="Infrastructure\BranchType.cs" />
     <Compile Include="Infrastructure\ChildProcess.cs" />

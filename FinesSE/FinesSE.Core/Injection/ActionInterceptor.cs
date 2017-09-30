@@ -3,6 +3,7 @@ using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using LightInject.Interception;
 using log4net;
+using System;
 using System.Linq;
 
 namespace FinesSE.Core.Injection
@@ -17,13 +18,23 @@ namespace FinesSE.Core.Injection
         public object Invoke(IInvocationInfo invocationInfo)
         {
             var typeName = invocationInfo.Method.GetGenericArgumentsName().First();
+            var userFriendlyName = typeName.Split('.').Last();
             if (Kernel.CanGet<IAction>(typeName))
             {
                 var action = Kernel.Get<IAction>(typeName);
                 var parameters = Parser.Parse(invocationInfo.Arguments.First() as string[], action.GetParameterTypes());
 
                 Log.Debug($"Invoking action {typeName} ({string.Join(", ", parameters)})");
-                return action.Invoke(parameters.ToArray());
+
+                try
+                {
+                    return action.Invoke(parameters.ToArray());
+                }
+                catch (Exception e)
+                {
+                    Log.Fatal($"Action {typeName} threw exception: {e.Message}");
+                    throw new ActionException($"Action {userFriendlyName} threw an exception: {e.Message}");
+                }
             }
             else
             {

@@ -11,7 +11,7 @@ namespace FinesSE.Core.Injection
 
         public object Invoke(IInvocationInfo invocationInfo)
         {
-            if (Context.IgnoreAction())
+            if (Context.IsActionIgnored())
                 return "";
 
             if (!Context.Drivers.Any())
