@@ -1,0 +1,8 @@
+D:\Projekty\ThirdParty\FinesSE\FinesSE\FinesSE.Expressions\bin\Debug\FinesSE.Expressions.dll
+D:\Projekty\ThirdParty\FinesSE\FinesSE\FinesSE.Expressions\bin\Debug\FinesSE.Expressions.pdb
+D:\Projekty\ThirdParty\FinesSE\FinesSE\FinesSE.Expressions\bin\Debug\Jint.dll
+D:\Projekty\ThirdParty\FinesSE\FinesSE\FinesSE.Expressions\bin\Debug\LightInject.dll
+D:\Projekty\ThirdParty\FinesSE\FinesSE\FinesSE.Expressions\obj\Debug\FinesSE.Expressions.csproj.CoreCompileInputs.cache
+D:\Projekty\ThirdParty\FinesSE\FinesSE\FinesSE.Expressions\obj\Debug\FinesSE.Expressions.dll
+D:\Projekty\ThirdParty\FinesSE\FinesSE\FinesSE.Expressions\obj\Debug\FinesSE.Expressions.pdb
+D:\Projekty\ThirdParty\FinesSE\FinesSE\FinesSE.Expressions\obj\Debug\FinesSE.Expressions.csprojResolveAssemblyReference.cache

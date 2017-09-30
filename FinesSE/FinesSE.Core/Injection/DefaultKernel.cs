@@ -51,6 +51,7 @@ namespace FinesSE.Core.Injection
             Func<MethodInfo, Type, bool> predicate =
                 (m, t) => m.GetGenericArguments().Any() && t.IsAssignableFrom(m.GetGenericArguments().First());
 
+            proxyDefinition.Implement(() => container.GetInstance<IWorkflowInterceptor>(), m => predicate(m, typeof(IWorkflowAction)));
             proxyDefinition.Implement(() => container.GetInstance<IExecutionContextInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IVoidActionInterceptor>(), m => predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IActionInterceptor>(), m => predicate(m, typeof(IAction)));

@@ -7,28 +7,33 @@ using System.Linq;
 
 namespace FinesSE.Core.Injection
 {
-    public class ActionInterceptor : IActionInterceptor
+    public class WorkflowInterceptor : IWorkflowInterceptor
     {
         public ILog Log { get; set; }
 
         public IKernel Kernel { get; set; }
         public IParameterParser Parser { get; set; }
 
+        public IExecutionContext Context { get; set; }
+
         public object Invoke(IInvocationInfo invocationInfo)
         {
             var typeName = invocationInfo.Method.GetGenericArgumentsName().First();
-            if (Kernel.CanGet<IAction>(typeName))
+            if (Kernel.CanGet<IWorkflowAction>(typeName))
             {
-                var action = Kernel.Get<IAction>(typeName);
-                var parameters = Parser.Parse(invocationInfo.Arguments.First() as string[], action.GetParameterTypes());
+                var action = Kernel.Get<IWorkflowAction>(typeName);
+                var parameter = invocationInfo.Arguments.First() + "";
 
-                Log.Debug($"Invoking action {typeName} ({string.Join(", ", parameters)})");
-                return action.Invoke(parameters.ToArray());
+                Log.Debug($"Invoking workflow action {typeName} (parameter)");
+                if (action.Evaluate(parameter))
+                    Context.AddWorkflowBranch(action.BranchType);
+
+                return null;
             }
             else
             {
                 using (var e = new ActionNotFoundException(typeName))
-                    Log.Fatal($"Implementation not found for action {typeName}", e);
+                    Log.Fatal($"Implementation not found for workflow action {typeName}", e);
             }
 
             return null;

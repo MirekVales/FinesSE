@@ -4,6 +4,7 @@ using FinesSE.Core.Configuration;
 using FinesSE.Core.Injection;
 using FinesSE.Core.Parsing;
 using FinesSE.Core.WebDriver;
+using FinesSE.Expressions;
 using FinesSE.VisualRegression;
 using LightInject;
 using System.IO;
@@ -23,6 +24,7 @@ namespace FinesSE.Bootstrapper
             container.Register<IConfigurationProvider, ConfigurationProvider>(new PerContainerLifetime());
             container.Register<IWebDriverProvider, WebDriverProvider>(new PerContainerLifetime());
             container.Register<IParameterParser, ParameterParser>();
+            container.Register<IWorkflowInterceptor, WorkflowInterceptor>();
             container.Register<IExecutionContextInterceptor, ExecutionContextInterceptor>();
             container.Register<IVoidActionInterceptor, VoidActionInterceptor>();
             container.Register<IActionInterceptor, ActionInterceptor>();
@@ -32,6 +34,9 @@ namespace FinesSE.Bootstrapper
 
             container.RegisterRequiredAssembly(directory, "FinesSE.Outil.VisualRegression.dll");
             container.RegisterFrom<VisualRegressionCompositionRoot>();
+
+            container.RegisterRequiredAssembly(directory, "FinesSE.Outil.Expressions.dll");
+            container.RegisterFrom<ExpressionsCompositionRoot>();
         }
 
         private string GetLocation()

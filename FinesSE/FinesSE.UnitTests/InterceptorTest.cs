@@ -26,7 +26,7 @@ namespace FinesSE.UnitTests
         {
             var kernel = new DefaultKernel<CompositionRoot>();
             kernel.Initialize();
-            kernel.AddAction<CustomAction>("CustomAction");
+            kernel.AddAction<CustomAction>(typeof(CustomAction).FullName);
             Assert.ThrowsException<InvalidOperationException>(()
                 => kernel.Proxy.Invoke<CustomAction>("")
             );
@@ -50,7 +50,7 @@ namespace FinesSE.UnitTests
         {
             var kernel = new DefaultKernel<CompositionRoot>();
             kernel.Initialize();
-            kernel.AddAction<CustomAction3>("CustomAction3");
+            kernel.AddAction<CustomAction3>(typeof(CustomAction3).FullName);
 
             var value = Guid.NewGuid().ToString();
             Assert.AreEqual(value, kernel.Proxy.Invoke<CustomAction3>(value));
@@ -72,7 +72,7 @@ namespace FinesSE.UnitTests
         {
             var kernel = new DefaultKernel<CompositionRoot>();
             kernel.Initialize();
-            kernel.AddVoidAction<CustomAction2>("CustomAction2");
+            kernel.AddVoidAction<CustomAction2>(typeof(CustomAction2).FullName);
             Assert.ThrowsException<InvalidOperationException>(()
                 => kernel.Proxy.InvokeVoid<CustomAction2>("")
             );

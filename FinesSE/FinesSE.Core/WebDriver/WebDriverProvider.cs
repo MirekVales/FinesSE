@@ -27,7 +27,7 @@ namespace FinesSE.Core.WebDriver
             this.configuration = configuration;
         }
 
-        private IWebDriver GetDriver()
+        IWebDriver GetDriver()
         {
             var driver = LastDriver;
             if (driver == WebDrivers.Default)
@@ -45,7 +45,7 @@ namespace FinesSE.Core.WebDriver
             return null;
         }
 
-        private IWebDriver TryActivate(WebDrivers driver)
+        IWebDriver TryActivate(WebDrivers driver)
         {
             using (var processSeeker = new BrowserProcessSeeker(
                 driver, p => browserProcesses.AddRange(p)))
@@ -80,6 +80,7 @@ namespace FinesSE.Core.WebDriver
         {
             try
             {
+                Log.Debug($"Silently killing process ({process.Name}, pid {process.ProcessId})");
                 process.Kill();
             }
             catch { }

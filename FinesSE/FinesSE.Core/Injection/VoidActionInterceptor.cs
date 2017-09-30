@@ -21,6 +21,8 @@ namespace FinesSE.Core.Injection
             {
                 var action = Kernel.Get<IVoidAction>(typeName);
                 var parameters = Parser.Parse(invocationInfo.Arguments.First() as string[], action.GetParameterTypes());
+
+                Log.Debug($"Invoking void action {typeName} ({string.Join(", ", parameters)})");
                 action.Invoke(parameters.ToArray());
                 return null;
             }

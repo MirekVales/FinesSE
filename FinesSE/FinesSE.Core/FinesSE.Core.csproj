@@ -61,6 +61,7 @@
     <Compile Include="Environment\BrowserProcessSeeker.cs" />
     <Compile Include="Environment\LogAppender.cs" />
     <Compile Include="Environment\ProcessList.cs" />
+    <Compile Include="Injection\WorkflowInterceptor.cs" />
     <Compile Include="WebDriver\GetCookieNamed.cs" />
     <Compile Include="WebDriver\ScreenshotTakerConfiguration.cs" />
     <Compile Include="CoreConfiguration.cs" />

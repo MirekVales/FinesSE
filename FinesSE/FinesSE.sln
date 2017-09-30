@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Contracts", "FinesSE.Contracts\FinesSE.Contracts.csproj", "{BC108868-ED68-4A88-A363-4D17CD745717}"
 EndProject
@@ -22,6 +22,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Launcher", "FinesSE.Launcher\FinesSE.Launcher.csproj", "{C76565AB-46E9-44B7-A575-266BCCE92FA9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Drivers", "FinesSE.Drivers\FinesSE.Drivers.csproj", "{0E08B552-9A47-466A-82E7-5B09209EC4FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil.Expressions", "FinesSE.Outil.Expressions\FinesSE.Outil.Expressions.csproj", "{32F632A3-A0B9-430B-9FFC-25CE9FE8CC0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Expressions", "FinesSE.Expressions\FinesSE.Expressions.csproj", "{244D301F-4761-4B7C-BF66-7E24E44F5F7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{0E08B552-9A47-466A-82E7-5B09209EC4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E08B552-9A47-466A-82E7-5B09209EC4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E08B552-9A47-466A-82E7-5B09209EC4FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32F632A3-A0B9-430B-9FFC-25CE9FE8CC0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32F632A3-A0B9-430B-9FFC-25CE9FE8CC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32F632A3-A0B9-430B-9FFC-25CE9FE8CC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32F632A3-A0B9-430B-9FFC-25CE9FE8CC0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244D301F-4761-4B7C-BF66-7E24E44F5F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244D301F-4761-4B7C-BF66-7E24E44F5F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244D301F-4761-4B7C-BF66-7E24E44F5F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244D301F-4761-4B7C-BF66-7E24E44F5F7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

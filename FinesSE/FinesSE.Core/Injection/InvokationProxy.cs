@@ -15,5 +15,10 @@ namespace FinesSE.Core.Injection
             where T : IVoidAction
         {
         }
+
+        public void InvokeWorkflowExpression<T>(string expression)
+            where T : IWorkflowAction
+        {
+        }
     }
 }

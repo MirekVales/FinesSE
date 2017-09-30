@@ -13,5 +13,8 @@ namespace FinesSE.Contracts.Infrastructure
 
         void SetTopicId(string id);
         void SetBrowser(WebDrivers drivers);
+
+        void AddWorkflowBranch(BranchType branchType);
+        bool IgnoreAction();
     }
 }

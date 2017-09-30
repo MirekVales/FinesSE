@@ -58,6 +58,7 @@
     <Compile Include="Exceptions\ParserNotFoundException.cs" />
     <Compile Include="Exceptions\SlimException.cs" />
     <Compile Include="Exceptions\WebDriverNotFoundException.cs" />
+    <Compile Include="Infrastructure\BranchType.cs" />
     <Compile Include="Infrastructure\ChildProcess.cs" />
     <Compile Include="Infrastructure\DynamicAttribute.cs" />
     <Compile Include="Infrastructure\IActionInterceptor.cs" />
@@ -71,9 +72,11 @@
     <Compile Include="Infrastructure\IVoidActionInterceptor.cs" />
     <Compile Include="Infrastructure\IWebDriverActivator.cs" />
     <Compile Include="Infrastructure\IWebElementIdentityProvider.cs" />
+    <Compile Include="Infrastructure\IWorkflowInterceptor.cs" />
     <Compile Include="Infrastructure\LocatorModifiers.cs" />
     <Compile Include="Invokable\IAction.cs" />
     <Compile Include="Infrastructure\IKernel.cs" />
+    <Compile Include="Invokable\IWorkflowAction.cs" />
     <Compile Include="Invokable\ILocator.cs" />
     <Compile Include="Infrastructure\IParameterParser.cs" />
     <Compile Include="Infrastructure\IInvocationProxy.cs" />

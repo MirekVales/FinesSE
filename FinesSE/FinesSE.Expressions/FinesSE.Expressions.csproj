@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C76565AB-46E9-44B7-A575-266BCCE92FA9}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>FinesSE.Launcher</RootNamespace>
-    <AssemblyName>FinesSE.Launcher</AssemblyName>
+    <ProjectGuid>{244D301F-4761-4B7C-BF66-7E24E44F5F7A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FinesSE.Expressions</RootNamespace>
+    <AssemblyName>FinesSE.Expressions</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\Release\</OutputPath>
@@ -32,17 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
-    </Reference>
-    <Reference Include="fit, Version=2.5.6165.37488, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FitSharp.2.5.0\lib\net40\fit.dll</HintPath>
-    </Reference>
-    <Reference Include="fitSharp, Version=2.5.6165.37488, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FitSharp.2.5.0\lib\net40\fitSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Jint, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
       <HintPath>..\packages\Jint.2.11.23\lib\net451\Jint.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.5.1.0\lib\net46\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,29 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Formats\FitNessePSVFormat.cs" />
-    <Compile Include="Formats\FitNesseTableFormat.cs" />
-    <Compile Include="Formats\FormatConvertor.cs" />
-    <Compile Include="Formats\IFormatParser.cs" />
-    <Compile Include="Formats\SeleneseTableFormat.cs" />
-    <Compile Include="Formats\TableFormat.cs" />
-    <Compile Include="Infrastructure\UnsupportedFormatException.cs" />
-    <Compile Include="Infrastructure\InvalidArgumentsException.cs" />
-    <Compile Include="Infrastructure\InvalidFormatException.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Contracts\IExpressionEngine.cs" />
+    <Compile Include="ExpressionsCompositionRoot.cs" />
+    <Compile Include="Infrastructure\ExpressionEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SlimRunner.cs" />
-    <Compile Include="StartOptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FinesSE.Bootstrapper\FinesSE.Bootstrapper.csproj">
-      <Project>{93c7b308-af59-4175-8c97-061c341a3721}</Project>
-      <Name>FinesSE.Bootstrapper</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
