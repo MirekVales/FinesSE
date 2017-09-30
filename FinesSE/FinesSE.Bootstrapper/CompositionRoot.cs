@@ -1,6 +1,7 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Core;
 using FinesSE.Core.Configuration;
+using FinesSE.Core.Environment;
 using FinesSE.Core.Injection;
 using FinesSE.Core.Parsing;
 using FinesSE.Core.WebDriver;
@@ -22,6 +23,7 @@ namespace FinesSE.Bootstrapper
             container.RegisterRequiredAssembly(directory, "FinesSE.Outil.dll");
 
             container.Register<IConfigurationProvider, ConfigurationProvider>(new PerContainerLifetime());
+            container.Register<IProcessListStorage, ProcessListStorage>(new PerContainerLifetime());
             container.Register<IWebDriverProvider, WebDriverProvider>(new PerContainerLifetime());
             container.Register<IParameterParser, ParameterParser>();
             container.Register<IWorkflowInterceptor, WorkflowInterceptor>();
@@ -39,7 +41,7 @@ namespace FinesSE.Bootstrapper
             container.RegisterFrom<ExpressionsCompositionRoot>();
         }
 
-        private string GetLocation()
+        string GetLocation()
         {
             var uncLocation = Assembly.GetAssembly(typeof(CompositionRoot)).Location;
             return Path.GetDirectoryName(uncLocation);

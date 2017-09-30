@@ -13,18 +13,20 @@ namespace FinesSE.Core.WebDriver
     {
         public ILog Log { get; set; }
 
-        private readonly IKernel kernel;
-        private readonly IConfigurationProvider configuration;
+        readonly IKernel kernel;
+        readonly IConfigurationProvider configuration;
+        readonly IProcessListStorage storage;
 
         public WebDrivers LastDriver { get; set; } = WebDrivers.Default;
 
         public IEnumerable<ChildProcess> BrowserProcesses { get => browserProcesses; }
         readonly List<ChildProcess> browserProcesses = new List<ChildProcess>();
 
-        public WebDriverProvider(IKernel kernel, IConfigurationProvider configuration)
+        public WebDriverProvider(IKernel kernel, IConfigurationProvider configuration, IProcessListStorage storage)
         {
             this.kernel = kernel;
             this.configuration = configuration;
+            this.storage = storage;
         }
 
         IWebDriver GetDriver()
@@ -48,7 +50,9 @@ namespace FinesSE.Core.WebDriver
         IWebDriver TryActivate(WebDrivers driver)
         {
             using (var processSeeker = new BrowserProcessSeeker(
-                driver, p => browserProcesses.AddRange(p)))
+                storage,
+                driver,
+                p => browserProcesses.AddRange(p)))
             {
                 var activator = kernel
                     .GetWebDriverActivators()

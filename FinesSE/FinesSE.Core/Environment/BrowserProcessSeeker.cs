@@ -16,13 +16,14 @@ namespace FinesSE.Core.Environment
         readonly IEnumerable<ChildProcess> startProcesses;
 
         public BrowserProcessSeeker(
+            IProcessListStorage storage,
             WebDrivers driverType,
             Action<IEnumerable<ChildProcess>> endAction)
         {
             this.driverType = driverType;
             this.endAction = endAction;
             startProcesses = GetChildProcesses(PID, driverType).ToArray();
-            ProcessList.LoadFromDisk().AddProcesses(startProcesses);
+            storage.AddProcesses(startProcesses);
         }
 
         public void Dispose()
