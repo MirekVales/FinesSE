@@ -38,12 +38,22 @@ namespace FinesSE.Core.Environment
 
         public static IEnumerable<ChildProcess> GetChildProcesses(int pid, WebDrivers driverType)
         {
-            var query = new ObjectQuery($"select * from win32_process where ParentProcessId={pid}");
-            using (var searcher = new ManagementObjectSearcher(query))
-            using (var collection = searcher.Get())
-                foreach (ManagementObject item in collection)
-                    using (item)
-                        yield return new ChildProcess(item, driverType);
+            var processes = new HashSet<ChildProcess>();
+
+            try
+            {
+                var query = new ObjectQuery($"select * from win32_process where ParentProcessId={pid}");
+                using (var searcher = new ManagementObjectSearcher(query))
+                using (var collection = searcher.Get())
+                    foreach (ManagementObject item in collection)
+                    {
+                        using (item)
+                            processes.Add(new ChildProcess(item, driverType));
+                    }
+            }
+            catch { }
+
+            return processes;
         }
     }
 }
