@@ -2,6 +2,7 @@
 using FinesSE.Contracts.Infrastructure;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Collections.Generic;
 
 namespace FinesSE.Drivers
 {
@@ -9,6 +10,12 @@ namespace FinesSE.Drivers
     {
         public WebDrivers Id
             => WebDrivers.Chrome;
+
+        public IEnumerable<string> GetExecutableNamePatterns()
+        {
+            yield return "chrome";
+            yield return "chromedriver";
+        }
 
         public IWebDriver Activate(IConfigurationProvider provider)
         {

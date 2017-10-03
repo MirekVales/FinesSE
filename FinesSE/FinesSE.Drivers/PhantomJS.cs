@@ -2,6 +2,7 @@
 using FinesSE.Contracts.Infrastructure;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
+using System.Collections.Generic;
 
 namespace FinesSE.Drivers
 {
@@ -9,6 +10,11 @@ namespace FinesSE.Drivers
     {
         public WebDrivers Id
             => WebDrivers.PhantomJS;
+
+        public IEnumerable<string> GetExecutableNamePatterns()
+        {
+            yield return "phantomjs";
+        }
 
         public IWebDriver Activate(IConfigurationProvider provider)
         {

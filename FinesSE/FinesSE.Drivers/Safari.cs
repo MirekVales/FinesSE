@@ -2,6 +2,7 @@
 using FinesSE.Contracts.Infrastructure;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Safari;
+using System.Collections.Generic;
 
 namespace FinesSE.Drivers
 {
@@ -9,6 +10,12 @@ namespace FinesSE.Drivers
     {
         public WebDrivers Id
             => WebDrivers.Safari;
+
+        public IEnumerable<string> GetExecutableNamePatterns()
+        {
+            yield return "safari";
+            yield return "safaridriver";
+        }
 
         public IWebDriver Activate(IConfigurationProvider provider)
         {

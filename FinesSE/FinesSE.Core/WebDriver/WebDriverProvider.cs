@@ -49,13 +49,15 @@ namespace FinesSE.Core.WebDriver
 
         IWebDriver TryActivate(WebDrivers driver)
         {
+            var activators = kernel.GetWebDriverActivators();
+
             using (var processSeeker = new BrowserProcessSeeker(
+                activators.SelectMany(a => a.GetExecutableNamePatterns()),
                 storage,
                 driver,
                 p => browserProcesses.AddRange(p)))
             {
-                var activator = kernel
-                    .GetWebDriverActivators()
+                var activator = activators
                     .FirstOrDefault(wa => wa.Id == driver);
 
                 if (activator != null)

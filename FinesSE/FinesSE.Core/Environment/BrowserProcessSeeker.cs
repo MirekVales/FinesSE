@@ -11,16 +11,19 @@ namespace FinesSE.Core.Environment
 {
     public class BrowserProcessSeeker : IDisposable
     {
+        readonly IEnumerable<string> driverExecutableNames;
         readonly WebDrivers driverType;
         readonly Action<IEnumerable<ChildProcess>> endAction;
 
         readonly IEnumerable<ChildProcess> startProcesses;
 
         public BrowserProcessSeeker(
+            IEnumerable<string> driverExecutableNames,
             IProcessListStorage storage,
             WebDrivers driverType,
             Action<IEnumerable<ChildProcess>> endAction)
         {
+            this.driverExecutableNames = driverExecutableNames;
             this.driverType = driverType;
             this.endAction = endAction;
             startProcesses = GetChildProcesses(PID, driverType).ToArray();
@@ -37,7 +40,7 @@ namespace FinesSE.Core.Environment
 
         public static int PID => Process.GetCurrentProcess().Id;
 
-        public static IEnumerable<ChildProcess> GetChildProcesses(int pid, WebDrivers driverType)
+        public IEnumerable<ChildProcess> GetChildProcesses(int pid, WebDrivers driverType)
         {
             var processes = new HashSet<ChildProcess>();
 
@@ -52,11 +55,11 @@ namespace FinesSE.Core.Environment
                         {
                             var childProcess = new ChildProcess(item, driverType);
                             var processExecutable = Path.GetFileNameWithoutExtension(childProcess.ExecutablePath);
-                            if (WebDriverExecutableNames().Any(
+                            if (driverExecutableNames.Any(
                                 n => string.Equals(
-                                    processExecutable,
-                                    n,
-                                    StringComparison.InvariantCultureIgnoreCase)))
+                                        processExecutable,
+                                        n,
+                                        StringComparison.InvariantCultureIgnoreCase)))
                                 processes.Add(childProcess);
                         }
                     }
@@ -64,19 +67,6 @@ namespace FinesSE.Core.Environment
             catch { }
 
             return processes;
-        }
-
-        public static IEnumerable<string> WebDriverExecutableNames()
-        {
-            yield return "Chrome";
-            yield return "Edge";
-            yield return "Firefox";
-            yield return "Gecko";
-            yield return "GeckoDriver";
-            yield return "IE";
-            yield return "Opera";
-            yield return "PhantomJS";
-            yield return "Safari";
         }
     }
 }

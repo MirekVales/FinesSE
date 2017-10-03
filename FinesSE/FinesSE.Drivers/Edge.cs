@@ -2,6 +2,7 @@
 using FinesSE.Contracts.Infrastructure;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using System.Collections.Generic;
 
 namespace FinesSE.Drivers
 {
@@ -9,6 +10,12 @@ namespace FinesSE.Drivers
     {
         public WebDrivers Id
             => WebDrivers.Edge;
+
+        public IEnumerable<string> GetExecutableNamePatterns()
+        {
+            yield return "edge";
+            yield return "microsoftwebdriver";
+        }
 
         public IWebDriver Activate(IConfigurationProvider provider)
         {

@@ -2,6 +2,7 @@
 using FinesSE.Contracts.Infrastructure;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using System.Collections.Generic;
 
 namespace FinesSE.Drivers
 {
@@ -9,6 +10,12 @@ namespace FinesSE.Drivers
     {
         public WebDrivers Id
             => WebDrivers.Firefox;
+
+        public IEnumerable<string> GetExecutableNamePatterns()
+        {
+            yield return "firefox";
+            yield return "geckodriver";
+        }
 
         public IWebDriver Activate(IConfigurationProvider provider)
         {
