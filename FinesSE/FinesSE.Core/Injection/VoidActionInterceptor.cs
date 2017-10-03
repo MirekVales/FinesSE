@@ -30,6 +30,10 @@ namespace FinesSE.Core.Injection
                 {
                     action.Invoke(parameters.ToArray());
                 }
+                catch (SlimException e)
+                {
+                    throw e;
+                }
                 catch (Exception e)
                 {
                     Log.Fatal($"Action {typeName} threw exception: {e.Message}");

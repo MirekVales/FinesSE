@@ -3,6 +3,7 @@ using FinesSE.Contracts.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Management;
 
@@ -48,12 +49,34 @@ namespace FinesSE.Core.Environment
                     foreach (ManagementObject item in collection)
                     {
                         using (item)
-                            processes.Add(new ChildProcess(item, driverType));
+                        {
+                            var childProcess = new ChildProcess(item, driverType);
+                            var processExecutable = Path.GetFileNameWithoutExtension(childProcess.ExecutablePath);
+                            if (WebDriverExecutableNames().Any(
+                                n => string.Equals(
+                                    processExecutable,
+                                    n,
+                                    StringComparison.InvariantCultureIgnoreCase)))
+                                processes.Add(childProcess);
+                        }
                     }
             }
             catch { }
 
             return processes;
+        }
+
+        public static IEnumerable<string> WebDriverExecutableNames()
+        {
+            yield return "Chrome";
+            yield return "Edge";
+            yield return "Firefox";
+            yield return "Gecko";
+            yield return "GeckoDriver";
+            yield return "IE";
+            yield return "Opera";
+            yield return "PhantomJS";
+            yield return "Safari";
         }
     }
 }

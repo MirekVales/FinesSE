@@ -74,7 +74,8 @@ namespace FinesSE.Core.WebDriver
                 using (var screenshotTaker = new ScreenshotTaker(driver, screenshotConfiguration))
                     imageBytes = screenshotTaker.TakeImage();
 
-            using (var stream = new MemoryStream(imageBytes))
+            // You must keep the stream open for the lifetime of the Bitmap.
+            var stream = new MemoryStream(imageBytes);
             using (var image = new Bitmap(stream))
             {
                 var elementArea = element.Area();

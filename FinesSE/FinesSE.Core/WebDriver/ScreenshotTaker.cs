@@ -15,7 +15,7 @@ namespace FinesSE.Core.WebDriver
         public Size ViewSize { get; private set; }
         public double VerticalSnaps { get; private set; }
         public double HorizontalSnaps { get; private set; }
-        
+
         public int InitialOffsetX { get; }
         public int InitialOffsetY { get; }
         public int OffsetX { get; private set; }
@@ -38,7 +38,7 @@ namespace FinesSE.Core.WebDriver
         }
 
         private Size ApplyOverlap(Size pageSize, Size viewSize, ScreenshotTakerConfiguration configuration)
-            => Size.Subtract(viewSize, 
+            => Size.Subtract(viewSize,
                 new Size(
                     pageSize.Width < viewSize.Width ? 0 : configuration.ScreenshotTakeHorizontalOverlap,
                     pageSize.Height < viewSize.Height ? 0 : configuration.ScreenshotTakeVerticalOverlap));

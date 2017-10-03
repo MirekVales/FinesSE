@@ -20,8 +20,7 @@ namespace FinesSE.Core.Configuration
         public T Get<T>(T defaultFallback)
             where T : IConfigurationKeys
         {
-            var cached = GetFromCache<T>();
-            if (cached != null)
+            if (GetFromCache<T>(out T cached))
                 return cached;
 
             cached = Parse(defaultFallback);
@@ -49,13 +48,15 @@ namespace FinesSE.Core.Configuration
             }
         }
 
-        T GetFromCache<T>()
+        bool GetFromCache<T>(out T value)
         where T : IConfigurationKeys
         {
+            value = default(T);
             if (!configurationCache.ContainsKey(typeof(T).Name))
-                return default(T);
+                return false;
 
-            return (T)configurationCache[typeof(T).Name];
+            value = (T)configurationCache[typeof(T).Name];
+            return true;
         }
 
         private string configurationFile;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Management;
 
 namespace FinesSE.Contracts.Infrastructure
@@ -15,6 +16,7 @@ namespace FinesSE.Contracts.Infrastructure
             ProcessId = Convert.ToInt32(item["ProcessId"]);
             ParentProcessId = Convert.ToInt32(item["ProcessId"]);
             Name = Convert.ToString(item["Name"]);
+            ExecutablePath = Convert.ToString(item["ExecutablePath"]);
             WebDriver = webDriver;
             RegistrationDate = DateTime.UtcNow;
         }
@@ -22,10 +24,11 @@ namespace FinesSE.Contracts.Infrastructure
         public int ProcessId { get; set; }
         public int ParentProcessId { get; set; }
         public string Name { get; set; }
+        public string ExecutablePath { get; set; }
         public WebDrivers WebDriver { get; set; }
         public DateTime RegistrationDate { get; set; }
 
         public void Kill()
-            => Process.GetProcessById(ProcessId).Kill();
+           => Process.GetProcessById(ProcessId).Kill();
     }
 }

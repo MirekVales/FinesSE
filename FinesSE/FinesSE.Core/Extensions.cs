@@ -50,6 +50,7 @@ namespace FinesSE.Core
 
         public static Bitmap ToBitmap(this byte[] array)
         {
+            // You must keep the stream open for the lifetime of the Bitmap.
             var stream = new MemoryStream(array);
             return new Bitmap(stream);
         }
