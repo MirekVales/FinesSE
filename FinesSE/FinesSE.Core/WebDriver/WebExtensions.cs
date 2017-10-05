@@ -80,23 +80,24 @@ namespace FinesSE.Core.WebDriver
             {
                 var elementArea = element.Area();
                 elementArea.Inflate(screenshotConfiguration.Margin, screenshotConfiguration.Margin);
-                return image.Crop(elementArea).ToByteArray();
+                return image.Crop(elementArea);
             }
         }
 
         public static Rectangle Area(this IWebElement element)
             => new Rectangle(element.Location.X, element.Location.Y, element.Size.Width, element.Size.Height);
 
-        public static Image Crop(this Image image, Rectangle keptArea)
+        public static byte[] Crop(this Image image, Rectangle keptArea)
         {
             if (keptArea.Width * keptArea.Height == 0)
                 return null;
 
-            var cropped = new Bitmap(keptArea.Width, keptArea.Height);
-            using (var g = Graphics.FromImage(cropped))
+            using (var cropped = new Bitmap(keptArea.Width, keptArea.Height))
             {
-                g.DrawImage(image, 0, 0, keptArea, GraphicsUnit.Pixel);
-                return cropped;
+                using (var g = Graphics.FromImage(cropped))
+                    g.DrawImage(image, 0, 0, keptArea, GraphicsUnit.Pixel);
+
+                return cropped.ToByteArray();
             }
         }
 

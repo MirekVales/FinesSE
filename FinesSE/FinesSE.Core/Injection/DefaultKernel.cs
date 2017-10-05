@@ -15,9 +15,9 @@ namespace FinesSE.Core.Injection
     public class DefaultKernel<C> : IKernel
         where C : ICompositionRoot, new()
     {
-        private readonly ServiceContainer container;
-        private ILog coreLog;
-        private LogAppender appender;
+        readonly ServiceContainer container;
+        ILog coreLog;
+        LogAppender appender;
 
         public IInvocationProxy Proxy
             => container.GetInstance<IInvocationProxy>();
@@ -46,16 +46,16 @@ namespace FinesSE.Core.Injection
             container.GetInstance<IProcessListStorage>().CleanList();
         }
 
-        private void DefineProxyType(ProxyDefinition proxyDefinition)
+        void DefineProxyType(ProxyDefinition proxyDefinition)
         {
             Func<MethodInfo, Type, bool> predicate =
                 (m, t) => m.GetGenericArguments().Any() && t.IsAssignableFrom(m.GetGenericArguments().First());
 
+            proxyDefinition.Implement(() => container.GetInstance<ILoggingInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IWorkflowInterceptor>(), m => predicate(m, typeof(IWorkflowAction)));
             proxyDefinition.Implement(() => container.GetInstance<IExecutionContextInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IVoidAction)));
-            proxyDefinition.Implement(() => container.GetInstance<IVoidActionInterceptor>(), m => predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IActionInterceptor>(), m => predicate(m, typeof(IAction)));
-            proxyDefinition.Implement(() => container.GetInstance<ILoggingInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IVoidAction)));
+            proxyDefinition.Implement(() => container.GetInstance<IVoidActionInterceptor>(), m => predicate(m, typeof(IVoidAction)));
         }
 
         public T Get<T>(string name)
@@ -83,7 +83,6 @@ namespace FinesSE.Core.Injection
         {
             container.GetInstance<IProcessListStorage>().CleanList();
             container.Dispose();
-            
             appender?.Dispose();
         }
     }

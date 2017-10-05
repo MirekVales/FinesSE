@@ -32,6 +32,7 @@ namespace FinesSE.Core.Injection
                 }
                 catch (SlimException e)
                 {
+                    Log.Warn($"Action {typeName} threw a slim exception: {e.Message}");
                     throw e;
                 }
                 catch (Exception e)

@@ -20,6 +20,5 @@ namespace FinesSE.Core
                 LogToFile = false,
                 LogPattern = "%date [%level] %message"
             };
-
     }
 }

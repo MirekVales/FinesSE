@@ -61,7 +61,10 @@ namespace FinesSE.Core.WebDriver
                     .FirstOrDefault(wa => wa.Id == driver);
 
                 if (activator != null)
+                {
+                    Log.Debug($"Activating web driver {driver}");
                     return activator.Activate(configuration);
+                }
 
                 using (var e = new WebDriverNotFoundException(driver))
                     Log.Fatal($"Web driver factory not found for {driver}", e);

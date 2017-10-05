@@ -10,7 +10,7 @@ namespace FinesSE.Core.Parsing
     {
         public ILog Log { get; set; }
 
-        private readonly Dictionary<Type, Func<string, object>> parsers;
+        readonly Dictionary<Type, Func<string, object>> parsers;
 
         public BaseParameterParser()
         {

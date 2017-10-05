@@ -20,7 +20,7 @@ namespace FinesSE.Core.Configuration
         public T Get<T>(T defaultFallback)
             where T : IConfigurationKeys
         {
-            if (GetFromCache<T>(out T cached))
+            if (GetFromCache(out T cached))
                 return cached;
 
             cached = Parse(defaultFallback);
@@ -59,9 +59,9 @@ namespace FinesSE.Core.Configuration
             return true;
         }
 
-        private string configurationFile;
-        private readonly Deserializer deserializer;
-        private readonly ILog Log;
+        string configurationFile;
+        readonly Deserializer deserializer;
+        readonly ILog Log;
 
         const string CONFIGURATION_FILE_NAME = "Configuration.yml";
 
@@ -73,7 +73,7 @@ namespace FinesSE.Core.Configuration
             InitializeConfigurationFromFile();
         }
 
-        private void InitializeConfigurationFromFile()
+        void InitializeConfigurationFromFile()
         {
             var assemblyPath = Assembly
                 .GetAssembly(typeof(ConfigurationProvider))
@@ -95,13 +95,13 @@ namespace FinesSE.Core.Configuration
             ConfigurationFound = true;
         }
 
-        private Deserializer GetDeserializer()
+        Deserializer GetDeserializer()
             => new DeserializerBuilder()
             .WithNamingConvention(new PascalCaseNamingConvention())
             .IgnoreUnmatchedProperties()
             .Build();
 
-        private bool TryInitializeFromFile(string basePath)
+        bool TryInitializeFromFile(string basePath)
         {
             var path = Path.Combine(basePath, CONFIGURATION_FILE_NAME);
             if (File.Exists(path))

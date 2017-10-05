@@ -11,8 +11,7 @@ namespace FinesSE.Core.Injection
 
         public void InvokeVoid<T>(params string[] arguments)
             where T : IVoidAction
-        {
-        }
+        {}
 
         public string InvokeWorkflowExpression<T>(string expression)
             where T : IWorkflowAction

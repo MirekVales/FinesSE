@@ -86,8 +86,6 @@ namespace FinesSE.Core.WebDriver
         }
 
         public void Dispose()
-        {
-            Driver.SetOffset(InitialOffsetX, InitialOffsetY);
-        }
+            => Driver.SetOffset(InitialOffsetX, InitialOffsetY);
     }
 }

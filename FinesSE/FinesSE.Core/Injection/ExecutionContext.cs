@@ -17,14 +17,14 @@ namespace FinesSE.Core.Injection
         public IWebDriver Driver => GetCurrentDriver();
         public IEnumerable<WebDrivers> Drivers => drivers.Keys;
 
-        private string topicId = "Default";
-        private readonly ILog log;
+        string topicId = "Default";
+        readonly ILog log;
 
-        private WebDrivers currentBrowser;
-        private readonly IWebDriverProvider driverProvider;
-        private readonly Dictionary<WebDrivers, IWebDriver> drivers;
+        WebDrivers currentBrowser;
+        readonly IWebDriverProvider driverProvider;
+        readonly Dictionary<WebDrivers, IWebDriver> drivers;
 
-        private Dictionary<WebDrivers, IEnumerable<WebDrivers>> dynamicInitializers;
+        Dictionary<WebDrivers, IEnumerable<WebDrivers>> dynamicInitializers;
 
         public ExecutionContext(ILog log, IWebDriverProvider driverProvider, IConfigurationProvider configurationProvider)
         {
@@ -65,7 +65,9 @@ namespace FinesSE.Core.Injection
         IEnumerable<WebDrivers> GetRandomBrowser()
         {
             var available = GetAllAvailableBrowsers();
-            return available.Any() ? new[] { available.ElementAt(DateTime.Now.Millisecond % available.Count()) } : new WebDrivers[0];
+            return available.Any()
+                ? new[] { available.ElementAt(DateTime.Now.Millisecond % available.Count()) }
+                : new WebDrivers[0];
         }
 
         IEnumerable<WebDrivers> GetAllAvailableBrowsers()

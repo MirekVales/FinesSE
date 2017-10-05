@@ -31,13 +31,11 @@ namespace FinesSE.Core
 
         public static IEnumerable<T> Split<T>(this T value)
             where T : struct
-        {
-            return value
+            => value
                 .ToString()
                 .Split(',')
                 .Select(flag => (T)Enum.Parse(typeof(T), flag))
                 .ToList();
-        }
 
         public static byte[] ToByteArray(this Image bitmap)
         {

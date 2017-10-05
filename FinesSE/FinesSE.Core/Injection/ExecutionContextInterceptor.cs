@@ -17,9 +17,9 @@ namespace FinesSE.Core.Injection
             if (!Context.Drivers.Any())
                 return invocationInfo.Proceed();
 
-            var coreConfiguration = Context.
-                ConfigurationProvider.
-                Get(CoreConfiguration.Default);
+            var coreConfiguration = Context
+                .ConfigurationProvider
+                .Get(CoreConfiguration.Default);
 
             object lastResult = null;
             foreach (var driver in Context.Drivers)

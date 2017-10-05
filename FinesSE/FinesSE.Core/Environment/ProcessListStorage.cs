@@ -1,6 +1,8 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using log4net;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using YamlDotNet.Serialization;
@@ -15,6 +17,8 @@ namespace FinesSE.Core.Environment
         string GetFilePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ProcessListFileName);
 
+        public ILog Log { get; set; }
+
         public void AddProcesses(IEnumerable<ChildProcess> processes)
         {
             var list = LoadFromDisk();
@@ -25,8 +29,33 @@ namespace FinesSE.Core.Environment
         public void CleanList()
         {
             var list = LoadFromDisk();
-            list.KillAllProcesses();
+            KillAllProcesses(list.Processes);
             SaveToDisk(list);
+        }
+
+        void KillAllProcesses(IEnumerable<ChildProcess> processes)
+        {
+            foreach (var processItem in processes)
+            {
+                try
+                {
+                    var process = Process.GetProcessById(processItem.ProcessId);
+
+                    Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} is evaluated for termination");
+
+                    if (string.Equals(
+                        processItem.Name,
+                        process.ProcessName,
+                        StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} is about to be terminated");
+                        process.Kill();
+                        Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} was terminated");
+                    }
+                }
+                catch { }
+            }
+            processes = new ChildProcess[0];
         }
 
         void SaveToDisk(ProcessList list)
