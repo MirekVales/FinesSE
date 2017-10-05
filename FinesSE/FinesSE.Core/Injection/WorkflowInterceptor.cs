@@ -25,10 +25,11 @@ namespace FinesSE.Core.Injection
                 var parameter = invocationInfo.Arguments.First() + "";
 
                 Log.Debug($"Invoking workflow action {typeName} (parameter)");
-                if (action.Evaluate(parameter))
-                    Context.AddWorkflowBranch(action.BranchType);
+                if (!action.Evaluate(parameter))
+                    return false.ToString();
 
-                return null;
+                Context.AddWorkflowBranch(action.BranchType);
+                return true.ToString();
             }
             else
             {

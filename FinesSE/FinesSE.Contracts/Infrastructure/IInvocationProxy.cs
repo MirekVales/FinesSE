@@ -6,6 +6,6 @@ namespace FinesSE.Contracts.Infrastructure
     {
         string Invoke<T>(params string[] arguments) where T : IAction;
         void InvokeVoid<T>(params string[] arguments) where T : IVoidAction;
-        void InvokeWorkflowExpression<T>(string expression) where T : IWorkflowAction;
+        string InvokeWorkflowExpression<T>(string expression) where T : IWorkflowAction;
     }
 }

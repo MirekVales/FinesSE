@@ -7,18 +7,15 @@ namespace FinesSE.Core.Injection
     {
         public string Invoke<T>(params string[] arguments)
             where T : IAction
-        {
-            return "";
-        }
+            => "";
 
         public void InvokeVoid<T>(params string[] arguments)
             where T : IVoidAction
         {
         }
 
-        public void InvokeWorkflowExpression<T>(string expression)
+        public string InvokeWorkflowExpression<T>(string expression)
             where T : IWorkflowAction
-        {
-        }
+            => "";
     }
 }

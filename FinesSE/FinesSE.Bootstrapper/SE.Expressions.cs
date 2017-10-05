@@ -7,7 +7,7 @@ namespace FinesSE.Bootstrapper
         public string Do(string command)
             => p.Invoke<Do>(command);
 
-        public void If(string expression)
+        public string If(string expression)
             => p.InvokeWorkflowExpression<If>(expression);
 
         public void Endif()
