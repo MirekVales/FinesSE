@@ -44,6 +44,9 @@ namespace FinesSE.Core.Injection
             }
 
             container.GetInstance<IProcessListStorage>().CleanList();
+
+            coreLog.Info(new string('=', 10));
+            coreLog.Debug($"Kernel initialized");
         }
 
         void DefineProxyType(ProxyDefinition proxyDefinition)
@@ -81,6 +84,8 @@ namespace FinesSE.Core.Injection
 
         public void DisposeKernel()
         {
+            coreLog.Debug($"Disposing kernel");
+
             container.GetInstance<IProcessListStorage>().CleanList();
             container.Dispose();
             appender?.Dispose();
