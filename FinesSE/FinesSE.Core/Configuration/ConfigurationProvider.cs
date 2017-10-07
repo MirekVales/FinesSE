@@ -49,7 +49,7 @@ namespace FinesSE.Core.Configuration
         }
 
         bool GetFromCache<T>(out T value)
-        where T : IConfigurationKeys
+            where T : IConfigurationKeys
         {
             value = default(T);
             if (!configurationCache.ContainsKey(typeof(T).Name))
