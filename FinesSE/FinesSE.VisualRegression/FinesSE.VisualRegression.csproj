@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Contracts\ComparisonAssertionException.cs" />
     <Compile Include="Contracts\CssValidationException.cs" />
+    <Compile Include="Infrastructure\Channels.cs" />
     <Compile Include="Infrastructure\CssValidationIncident.cs" />
     <Compile Include="Infrastructure\CssValidator.cs" />
     <Compile Include="Infrastructure\DiskScreenshotStore.cs" />

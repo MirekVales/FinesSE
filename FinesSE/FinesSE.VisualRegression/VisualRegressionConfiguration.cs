@@ -1,10 +1,12 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using FinesSE.VisualRegression.Infrastructure;
 
 namespace FinesSE.VisualRegression
 {
     public class VisualRegressionConfiguration : IConfigurationKeys
     {
         public string ScreenshotDiffTolerance { get; set; }
+        public Channels ScreenshotDiffComparedChannels { get; set; }
         public string ScreenshotStorePath { get; set; }
         public string ScreenshotStoreFilePrefix { get; set; }
         public string ScreenshotStoreFileExtension { get; set; }
@@ -16,6 +18,7 @@ namespace FinesSE.VisualRegression
             new VisualRegressionConfiguration()
             {
                 ScreenshotDiffTolerance = "1%",
+                ScreenshotDiffComparedChannels = Channels.All,
                 ScreenshotStorePath = @"C:\ScreenStore",
                 ScreenshotStoreFileExtension = ".png",
                 ScreenshotStoreFilePrefix = "",

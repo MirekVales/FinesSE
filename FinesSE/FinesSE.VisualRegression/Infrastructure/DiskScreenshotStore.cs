@@ -41,7 +41,10 @@ namespace FinesSE.VisualRegression.Infrastructure
 
             var path1 = GetPath(topicId, objectId, baseVersionId);
             var path2 = GetPath(topicId, objectId, referenceVersionId);
-            var diff = ImageComparer.Compare(path1, path2);
+            var diff = ImageComparer.Compare(
+                path1,
+                path2,
+                config.ScreenshotDiffComparedChannels);
             ImageComparer.CreateDiffImage(path1, path2, GetPath(topicId, objectId, config.ScreenshotStoreDiffVersionId));
             return diff;
         }

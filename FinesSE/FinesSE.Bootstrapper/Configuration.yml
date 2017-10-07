@@ -9,6 +9,7 @@ ScreenshotTaker:
 
 VisualRegression:
     ScreenshotDiffTolerance: 1%
+    ScreenshotDiffComparedChannels: All
     ScreenshotStorePath: c:\ScreenshotStore
     ScreenshotStoreFileExtension: .png
     ScreenshotStoreBaseVersionId: base
