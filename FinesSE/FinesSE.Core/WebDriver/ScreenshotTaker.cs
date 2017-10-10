@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
+using ImageMagick;
 using System;
 using System.Drawing;
-using System.IO;
 
 namespace FinesSE.Core.WebDriver
 {
@@ -37,7 +37,7 @@ namespace FinesSE.Core.WebDriver
             InitialOffsetY = OffsetY = Driver.GetOffsetY();
         }
 
-        private Size ApplyOverlap(Size pageSize, Size viewSize, ScreenshotTakerConfiguration configuration)
+        Size ApplyOverlap(Size pageSize, Size viewSize, ScreenshotTakerConfiguration configuration)
             => Size.Subtract(viewSize,
                 new Size(
                     pageSize.Width < viewSize.Width ? 0 : configuration.ScreenshotTakeHorizontalOverlap,
@@ -45,40 +45,36 @@ namespace FinesSE.Core.WebDriver
 
         public byte[] TakeImage()
         {
-            using (var image = new Bitmap(PageSize.Width, PageSize.Height))
+            using (var image = new MagickImage(MagickColor.FromRgba(0, 0, 0, 0), PageSize.Width, PageSize.Height))
             {
-                using (var g = Graphics.FromImage(image))
-                {
-                    for (var x = 0; x < HorizontalSnaps; x++)
-                        for (var y = 0; y < VerticalSnaps; y++)
+                for (var x = 0; x < HorizontalSnaps; x++)
+                    for (var y = 0; y < VerticalSnaps; y++)
+                    {
+                        Driver.SetOffset(x * ViewSize.Width, y * ViewSize.Height);
+                        using (var part = new MagickImage(TakesScreenshot.GetScreenshot().AsByteArray))
                         {
-                            Driver.SetOffset(x * ViewSize.Width, y * ViewSize.Height);
-                            using (var stream = new MemoryStream(TakesScreenshot.GetScreenshot().AsByteArray))
-                            using (var bitmap = new Bitmap(stream))
-                            {
-                                UpdateOffsetX(out int oldOffsetX, out int diffX);
-                                UpdateOffsetY(out int oldOffsetY, out int diffY);
+                            UpdateOffsetX(out int oldOffsetX, out int diffX);
+                            UpdateOffsetY(out int oldOffsetY, out int diffY);
 
-                                var imageRectangle = new Rectangle(OffsetX, OffsetY, ViewSize.Width, ViewSize.Height);
-                                var horizontalRedundancy = Math.Max(0, imageRectangle.Right - PageSize.Width) * Math.Min(x, 1);
-                                var verticalRedundancy = Math.Max(0, imageRectangle.Bottom - PageSize.Height) * Math.Min(y, 1);
+                            var imageRectangle = new Rectangle(OffsetX, OffsetY, ViewSize.Width, ViewSize.Height);
+                            var horizontalRedundancy = Math.Max(0, imageRectangle.Right - PageSize.Width) * Math.Min(x, 1);
+                            var verticalRedundancy = Math.Max(0, imageRectangle.Bottom - PageSize.Height) * Math.Min(y, 1);
 
-                                g.DrawImage(bitmap, OffsetX - horizontalRedundancy, OffsetY - verticalRedundancy);
-                            }
+                            image.Composite(part, OffsetX - horizontalRedundancy, OffsetY - verticalRedundancy, CompositeOperator.Over);
                         }
-                }
-                return image.ToByteArray();
+                    }
+                return image.ToByteArray(MagickFormat.Png);
             }
         }
 
-        private void UpdateOffsetX(out int oldOffsetX, out int diffX)
+        void UpdateOffsetX(out int oldOffsetX, out int diffX)
         {
             oldOffsetX = OffsetX;
             OffsetX = Driver.GetOffsetX();
             diffX = OffsetX - oldOffsetX;
         }
 
-        private void UpdateOffsetY(out int oldOffsetY, out int diffY)
+        void UpdateOffsetY(out int oldOffsetY, out int diffY)
         {
             oldOffsetY = OffsetY;
             OffsetY = Driver.GetOffsetY();

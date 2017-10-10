@@ -1,11 +1,11 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
+using ImageMagick;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -61,7 +61,22 @@ namespace FinesSE.Core.WebDriver
                 Height = driver.ExecuteScript(JavascriptCode.ReturnViewHeight, Convert.ToInt32)
             };
 
-        public static byte[] TakeScreenshot(this IWebElement element, IWebDriver driver, IConfigurationProvider configuration)
+        public static Rectangle Area(this IWebElement element)
+            => new Rectangle(element.Location.X, element.Location.Y, element.Size.Width, element.Size.Height);
+
+        public static void SetOffset(this IWebDriver driver, int x, int y)
+            => driver.ExecuteScript(JavascriptCode.ScrollTo(x, y));
+
+        public static int GetOffsetX(this IWebDriver driver)
+            => driver.ExecuteScript(JavascriptCode.ReturnPageOffsetX, Convert.ToInt32);
+
+        public static int GetOffsetY(this IWebDriver driver)
+            => driver.ExecuteScript(JavascriptCode.ReturnPageOffsetY, Convert.ToInt32);
+
+        public static byte[] TakeScreenshot(
+            this IWebElement element,
+            IWebDriver driver,
+            IConfigurationProvider configuration)
         {
             var pageSize = driver.PageSize();
             var browserSize = driver.ViewPort();
@@ -74,41 +89,23 @@ namespace FinesSE.Core.WebDriver
                 using (var screenshotTaker = new ScreenshotTaker(driver, screenshotConfiguration))
                     imageBytes = screenshotTaker.TakeImage();
 
-            // You must keep the stream open for the lifetime of the Bitmap.
-            var stream = new MemoryStream(imageBytes);
-            using (var image = new Bitmap(stream))
-            {
-                var elementArea = element.Area();
-                elementArea.Inflate(screenshotConfiguration.Margin, screenshotConfiguration.Margin);
-                return image.Crop(elementArea);
-            }
+            var elementArea = element.Area();
+            elementArea.Inflate(screenshotConfiguration.Margin, screenshotConfiguration.Margin);
+            return imageBytes.Crop(elementArea);
         }
 
-        public static Rectangle Area(this IWebElement element)
-            => new Rectangle(element.Location.X, element.Location.Y, element.Size.Width, element.Size.Height);
-
-        public static byte[] Crop(this Image image, Rectangle keptArea)
+        public static byte[] Crop(this byte[] source, Rectangle keptArea)
         {
             if (keptArea.Width * keptArea.Height == 0)
-                return null;
+                using (var image = new MagickImage(MagickColor.FromRgb(0, 0, 0), 0, 0))
+                    return image.ToByteArray();
 
-            using (var cropped = new Bitmap(keptArea.Width, keptArea.Height))
+            using (var image = new MagickImage(source))
             {
-                using (var g = Graphics.FromImage(cropped))
-                    g.DrawImage(image, 0, 0, keptArea, GraphicsUnit.Pixel);
-
-                return cropped.ToByteArray();
+                image.Crop(0, 0, keptArea.Width, keptArea.Height);
+                return image.ToByteArray();
             }
         }
-
-        public static void SetOffset(this IWebDriver driver, int x, int y)
-            => driver.ExecuteScript(JavascriptCode.ScrollTo(x, y));
-
-        public static int GetOffsetX(this IWebDriver driver)
-            => driver.ExecuteScript(JavascriptCode.ReturnPageOffsetX, Convert.ToInt32);
-
-        public static int GetOffsetY(this IWebDriver driver)
-            => driver.ExecuteScript(JavascriptCode.ReturnPageOffsetY, Convert.ToInt32);
 
         public static ReadOnlyCollection<IWebElement> FindElements(
             this IWebDriver driver,
