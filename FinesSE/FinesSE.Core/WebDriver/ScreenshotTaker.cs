@@ -47,6 +47,7 @@ namespace FinesSE.Core.WebDriver
         {
             using (var image = new MagickImage(MagickColor.FromRgba(0, 0, 0, 0), PageSize.Width, PageSize.Height))
             {
+                image.Format = MagickFormat.Png32;
                 for (var x = 0; x < HorizontalSnaps; x++)
                     for (var y = 0; y < VerticalSnaps; y++)
                     {
@@ -63,7 +64,7 @@ namespace FinesSE.Core.WebDriver
                             image.Composite(part, OffsetX - horizontalRedundancy, OffsetY - verticalRedundancy, CompositeOperator.Over);
                         }
                     }
-                return image.ToByteArray(MagickFormat.Png);
+                return image.ToByteArray();
             }
         }
 

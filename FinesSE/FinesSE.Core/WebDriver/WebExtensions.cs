@@ -102,7 +102,7 @@ namespace FinesSE.Core.WebDriver
 
             using (var image = new MagickImage(source))
             {
-                image.Crop(0, 0, keptArea.Width, keptArea.Height);
+                image.Crop(keptArea.Left, keptArea.Top, keptArea.Width, keptArea.Height);
                 return image.ToByteArray();
             }
         }
