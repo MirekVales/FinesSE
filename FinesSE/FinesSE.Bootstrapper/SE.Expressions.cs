@@ -12,5 +12,8 @@ namespace FinesSE.Bootstrapper
 
         public void Endif()
             => p.InvokeWorkflowExpression<Endif>("");
+
+        public string Run(string filePath, string arguments)
+            => p.Invoke<Run>(filePath, arguments);
     }
 }
