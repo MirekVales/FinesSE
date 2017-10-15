@@ -13,7 +13,7 @@ namespace FinesSE.Outil.Locators
             => "identifier";
 
         public string Regex
-            => @"^(\(\?.+\))?((identifier|id)=)(.+)";
+            => @"^(\(\?.+\))?(id.*?=)(.+)";
 
         public LocatedElements Locate(string value, string modifiers)
         {
