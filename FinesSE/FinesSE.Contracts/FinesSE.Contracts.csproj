@@ -76,6 +76,7 @@
     <Compile Include="Infrastructure\IWebElementIdentityProvider.cs" />
     <Compile Include="Infrastructure\IWorkflowInterceptor.cs" />
     <Compile Include="Infrastructure\LocatorModifiers.cs" />
+    <Compile Include="Infrastructure\BrowserSize.cs" />
     <Compile Include="Invokable\IAction.cs" />
     <Compile Include="Infrastructure\IKernel.cs" />
     <Compile Include="Invokable\IWorkflowAction.cs" />

@@ -6,6 +6,7 @@ using log4net;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace FinesSE.Core.WebDriver
 {
@@ -63,7 +64,9 @@ namespace FinesSE.Core.WebDriver
                 if (activator != null)
                 {
                     Log.Debug($"Activating web driver {driver}");
-                    return activator.Activate(configuration);
+                    var activatedDriver = activator.Activate(configuration);
+                    SetDefaultSize(ref activatedDriver);
+                    return activatedDriver;
                 }
 
                 using (var e = new WebDriverNotFoundException(driver))
@@ -71,6 +74,18 @@ namespace FinesSE.Core.WebDriver
             }
 
             return null;
+        }
+
+        void SetDefaultSize(ref IWebDriver driver)
+        {
+            var size = configuration.Get(CoreConfiguration.Default).DefaultBrowserSize;
+            if (size == null)
+                return;
+
+            driver
+                .Manage()
+                .Window
+                .Size = new System.Drawing.Size(size.Width, size.Height);
         }
 
         public void SetBrowser(WebDrivers driver)

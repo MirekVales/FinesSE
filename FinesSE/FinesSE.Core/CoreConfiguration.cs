@@ -1,6 +1,7 @@
 ﻿using FinesSE.Contracts;
 using FinesSE.Contracts.Infrastructure;
 using System;
+using System.Linq;
 
 namespace FinesSE.Core
 {
@@ -11,6 +12,8 @@ namespace FinesSE.Core
         public bool LogToFile { get; set; }
         public string LogPath { get; set; }
         public string LogPattern { get; set; }
+        public BrowserSize DefaultBrowserSize { get; set; }
+        public BrowserSize[] BrowserSizes { get; set; }
 
         public static CoreConfiguration Default
             => new CoreConfiguration()
@@ -18,7 +21,9 @@ namespace FinesSE.Core
                 DefaultBrowser = WebDrivers.Chrome,
                 WaitForDocumentCompleteState = TimeSpan.FromSeconds(1),
                 LogToFile = false,
-                LogPattern = "%date [%level] %message"
+                LogPattern = "%date [%level] %message",
+                DefaultBrowserSize = new BrowserSize("Default", 1024, 768),
+                BrowserSizes = BrowserSize.GetDefaultBrowserSizes().ToArray()
             };
     }
 }
