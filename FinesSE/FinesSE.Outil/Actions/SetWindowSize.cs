@@ -1,6 +1,7 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace FinesSE.Outil.Actions
@@ -23,6 +24,6 @@ namespace FinesSE.Outil.Actions
                 .Driver
                 .Manage()
                 .Window
-                .Size = new System.Drawing.Size(width, height);
+                .Size = new Size(width, height);
     }
 }

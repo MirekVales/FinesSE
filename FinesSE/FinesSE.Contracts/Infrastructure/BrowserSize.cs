@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace FinesSE.Contracts.Infrastructure
 {
@@ -34,5 +35,8 @@ namespace FinesSE.Contracts.Infrastructure
             yield return new BrowserSize("H1440x900", 1440, 900);
             yield return new BrowserSize("H1920x1080", 1920, 1080);
         }
+
+        public Size AsDrawingSize()
+            => new Size(Width, Height);
     }
 }

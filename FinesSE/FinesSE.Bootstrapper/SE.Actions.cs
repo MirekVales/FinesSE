@@ -70,6 +70,9 @@ namespace FinesSE.Bootstrapper
         public void Select(string locator, string optionLocator)
             => p.InvokeVoid<Select>(locator, optionLocator);
 
+        public void SetDefaultBrowserSize(string browserSizeName)
+            => p.InvokeVoid<SetDefaultBrowserSize>(browserSizeName);
+
         public void SetZoom(string zoomLevel)
             => p.InvokeVoid<SetZoom>(zoomLevel);
 
