@@ -22,7 +22,9 @@ namespace FinesSE.Core.Injection
             if (Kernel.CanGet<IAction>(typeName))
             {
                 var action = Kernel.Get<IAction>(typeName);
-                var parameters = Parser.Parse(invocationInfo.Arguments.First() as string[], action.GetParameterTypes());
+                var parameters = Parser.Parse(
+                    invocationInfo.Arguments.First() as string[],
+                    action.GetParameterTypes());
 
                 Log.Debug($"Invoking action {typeName} ({string.Join(", ", parameters)})");
 

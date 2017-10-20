@@ -19,7 +19,7 @@ namespace FinesSE.Outil.Actions
         }
 
         public void Invoke(params object[] parameters)
-            => Invoke(parameters.First());
+            => Invoke(parameters.First() as string);
 
         public void Invoke(string identifier)
         {
