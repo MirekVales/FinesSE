@@ -50,12 +50,17 @@
   <ItemGroup>
     <Compile Include="LocatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisualRegressionTest.cs" />
     <Compile Include="WorkflowTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FinesSE.Bootstrapper\FinesSE.Bootstrapper.csproj">
       <Project>{93c7b308-af59-4175-8c97-061c341a3721}</Project>
       <Name>FinesSE.Bootstrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
+      <Project>{BC108868-ED68-4A88-A363-4D17CD745717}</Project>
+      <Name>FinesSE.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\FinesSE.Drivers\FinesSE.Drivers.csproj">
       <Project>{0e08b552-9a47-466a-82e7-5b09209ec4fd}</Project>

@@ -39,7 +39,7 @@ namespace FinesSE.Core.Injection
         public string Invoke(params object[] parameters)
         {
             var parameterTypes = parameters
-                .Select(p => p.GetType())
+                .Select(p => p?.GetType())
                 .ToArray();
 
             if (TypesMatchable(entryPointParameters, parameterTypes))
@@ -57,7 +57,9 @@ namespace FinesSE.Core.Injection
             foreach (var entryPointParameterType in entryPointTypes)
             {
                 var passedParameter = passedParameterTypes.Dequeue();
-                if (!entryPointParameterType.IsAssignableFrom(passedParameter))
+
+                if (passedParameter != null
+                    && !entryPointParameterType.IsAssignableFrom(passedParameter))
                     return false;
             }
             return true;
