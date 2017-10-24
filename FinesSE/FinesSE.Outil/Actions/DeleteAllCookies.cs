@@ -8,12 +8,8 @@ namespace FinesSE.Outil.Actions
     {
         public IExecutionContext Context { get; set; }
 
-        public IEnumerable<System.Type> GetParameterTypes()
-        {
-            yield break;
-        }
-
-        public void Invoke(params object[] parameters)
+        [EntryPoint]
+        public void Invoke()
             => Context
             .Driver
             .Manage()

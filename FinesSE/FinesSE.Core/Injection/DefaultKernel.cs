@@ -54,10 +54,10 @@ namespace FinesSE.Core.Injection
             Func<MethodInfo, Type, bool> predicate =
                 (m, t) => m.GetGenericArguments().Any() && t.IsAssignableFrom(m.GetGenericArguments().First());
 
-            proxyDefinition.Implement(() => container.GetInstance<ILoggingInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IVoidAction)));
+            proxyDefinition.Implement(() => container.GetInstance<ILoggingInterceptor>(), m => predicate(m, typeof(IStringAction)) || predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IWorkflowInterceptor>(), m => predicate(m, typeof(IWorkflowAction)));
-            proxyDefinition.Implement(() => container.GetInstance<IExecutionContextInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IVoidAction)));
-            proxyDefinition.Implement(() => container.GetInstance<IActionInterceptor>(), m => predicate(m, typeof(IAction)));
+            proxyDefinition.Implement(() => container.GetInstance<IExecutionContextInterceptor>(), m => predicate(m, typeof(IStringAction)) || predicate(m, typeof(IVoidAction)));
+            proxyDefinition.Implement(() => container.GetInstance<IActionInterceptor>(), m => predicate(m, typeof(IStringAction)));
             proxyDefinition.Implement(() => container.GetInstance<IVoidActionInterceptor>(), m => predicate(m, typeof(IVoidAction)));
         }
 
@@ -76,8 +76,8 @@ namespace FinesSE.Core.Injection
         public IEnumerable<IWebDriverActivator> GetWebDriverActivators()
             => container.GetAllInstances<IWebDriverActivator>();
 
-        public void AddAction<T>(string serviceName) where T : IAction
-            => container.Register<IAction, T>(serviceName);
+        public void AddAction<T>(string serviceName) where T : IStringAction
+            => container.Register<IStringAction, T>(serviceName);
 
         public void AddVoidAction<T>(string serviceName) where T : IVoidAction
             => container.Register<IVoidAction, T>(serviceName);

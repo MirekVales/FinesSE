@@ -11,7 +11,9 @@ namespace FinesSE.AcceptanceTests
         private SE se;
 
         public string TestSiteUrl =>
-            @"file://" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"TestSites\1\index.html");
+            @"file://" + Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                @"TestSites\1\index.html");
 
         [TestInitialize]
         public void Initialize()

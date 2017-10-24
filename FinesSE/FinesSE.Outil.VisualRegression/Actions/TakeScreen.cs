@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using FinesSE.Contracts.Invokable;
+﻿using FinesSE.Contracts.Invokable;
 using FinesSE.Contracts.Infrastructure;
-using System.Linq;
 using FinesSE.VisualRegression;
 using FinesSE.Core.WebDriver;
 
 namespace FinesSE.Outil.VisualRegression.Actions
 {
-    public class TakeScreen : IAction
+    public class TakeScreen : IStringAction
     {
         public IExecutionContext Context { get; set; }
 
         public IScreenshotStore ScreenshotStore { get; set; }
         public IWebElementIdentityProvider IdentityProvider { get; set; }
 
-        public IEnumerable<Type> GetParameterTypes()
-        {
-            yield return typeof(LocatedElements);
-        }
-
-        public string Invoke(params object[] parameters)
-            => Invoke(parameters.First() as LocatedElements);
-
+        [EntryPoint]
         public string Invoke(LocatedElements elements)
         {
             elements.ConstraintCount(c => c > 0);

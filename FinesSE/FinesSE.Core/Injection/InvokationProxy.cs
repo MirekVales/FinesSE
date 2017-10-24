@@ -6,7 +6,7 @@ namespace FinesSE.Core.Injection
     public class InvokationProxy : IInvocationProxy
     {
         public string Invoke<T>(params string[] arguments)
-            where T : IAction
+            where T : IStringAction
             => "";
 
         public void InvokeVoid<T>(params string[] arguments)

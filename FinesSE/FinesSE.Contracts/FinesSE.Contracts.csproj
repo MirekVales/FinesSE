@@ -54,6 +54,7 @@
     <Compile Include="Exceptions\ActionNotFoundException.cs" />
     <Compile Include="Exceptions\AssertionException.cs" />
     <Compile Include="Exceptions\InvalidNumberOfWebElementsException.cs" />
+    <Compile Include="Exceptions\MethodNotFoundException.cs" />
     <Compile Include="Exceptions\OptionNotFoundException.cs" />
     <Compile Include="Exceptions\ParserNotFoundException.cs" />
     <Compile Include="Exceptions\SlimException.cs" />
@@ -77,7 +78,9 @@
     <Compile Include="Infrastructure\IWorkflowInterceptor.cs" />
     <Compile Include="Infrastructure\LocatorModifiers.cs" />
     <Compile Include="Infrastructure\BrowserSize.cs" />
+    <Compile Include="Invokable\EntryPointAttribute.cs" />
     <Compile Include="Invokable\IAction.cs" />
+    <Compile Include="Invokable\IStringAction.cs" />
     <Compile Include="Infrastructure\IKernel.cs" />
     <Compile Include="Invokable\IWorkflowAction.cs" />
     <Compile Include="Invokable\ILocator.cs" />

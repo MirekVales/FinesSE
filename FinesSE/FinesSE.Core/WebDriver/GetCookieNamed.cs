@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FinesSE.Outil.Actions
 {
-    public class GetCookieNamed : IAction
+    public class GetCookieNamed : IStringAction
     {
         public IExecutionContext Context { get; set; }
 

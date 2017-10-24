@@ -19,18 +19,20 @@ namespace FinesSE.Core.Injection
         {
             var typeName = invocationInfo.Method.GetGenericArgumentsName().First();
             var userFriendlyName = typeName.Split('.').Last();
-            if (Kernel.CanGet<IAction>(typeName))
+            if (Kernel.CanGet<IStringAction>(typeName))
             {
-                var action = Kernel.Get<IAction>(typeName);
+                var action = Kernel.Get<IStringAction>(typeName);
+                var invoker = new Invoker(action);
                 var parameters = Parser.Parse(
                     invocationInfo.Arguments.First() as string[],
-                    action.GetParameterTypes());
+                    invoker.ParameterTypes);
 
                 Log.Debug($"Invoking action {typeName} ({string.Join(", ", parameters)})");
 
                 try
                 {
-                    return action.Invoke(parameters.ToArray());
+                    return invoker.Invoke(parameters.ToArray());
+                    //return action.Invoke(parameters.ToArray());
                 }
                 catch (SlimException e)
                 {

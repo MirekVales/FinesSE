@@ -5,7 +5,6 @@ using FinesSE.VisualRegression.Contracts;
 using FinesSE.VisualRegression.Infrastructure;
 using log4net;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FinesSE.Outil.VisualRegression.Assertions
@@ -16,17 +15,16 @@ namespace FinesSE.Outil.VisualRegression.Assertions
         public ICssValidator Validator { get; set; }
         public ILog Log { get; set; }
 
-        public IEnumerable<Type> GetParameterTypes()
-        {
-            yield break;
-        }
-
-        public void Invoke(params object[] parameters)
+        [EntryPoint]
+        public void Invoke()
         {
             foreach (var url in GetCssUrls())
             {
                 var resource = Context.Driver.DownloadResource(url);
-                Log.DebugFormat("Resource (length {0}) retrieved from {1}", resource.Length, url);
+                Log.DebugFormat(
+                    "Resource (length {0}) retrieved from {1}",
+                    resource.Length,
+                    url);
 
                 var incidents = Validator.Validate(resource).ToArray();
                 if (incidents.Any())

@@ -1,8 +1,6 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using FinesSE.Core.WebDriver;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 
 namespace FinesSE.Outil.Actions
@@ -11,15 +9,7 @@ namespace FinesSE.Outil.Actions
     {
         public IExecutionContext Context { get; set; }
 
-        public IEnumerable<System.Type> GetParameterTypes()
-        {
-            yield return typeof(LocatedElements);
-            yield return typeof(Point);
-        }
-
-        public void Invoke(params object[] parameters)
-            => Invoke(parameters.First() as LocatedElements, (Point)parameters.Last());
-
+        [EntryPoint]
         public void Invoke(LocatedElements elements, Point coordinate)
         {
             var action = new OpenQA.Selenium.Interactions.Actions(Context.Driver);

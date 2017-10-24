@@ -4,30 +4,17 @@ using FinesSE.Core;
 using FinesSE.Core.WebDriver;
 using FinesSE.VisualRegression;
 using FinesSE.VisualRegression.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FinesSE.Outil.VisualRegression.Assertions
 {
-    public class VerifyScreenDiff : IAction
+    public class VerifyScreenDiff : IStringAction
     {
         public IExecutionContext Context { get; set; }
 
         public IScreenshotStore ScreenshotStore { get; set; }
         public IWebElementIdentityProvider IdentityProvider { get; set; }
 
-        public IEnumerable<Type> GetParameterTypes()
-        {
-            yield return typeof(LocatedElements);
-            yield return typeof(string);
-        }
-
-        public string Invoke(params object[] parameters)
-            => Invoke(
-                parameters.First() as LocatedElements,
-                parameters.ElementAt(1) as string);
-
+        [EntryPoint]
         public string Invoke(LocatedElements elements, string toleranceValue)
         {
             elements.ConstraintCount(c => c > 0);

@@ -1,19 +1,11 @@
 ﻿using FinesSE.Contracts.Invokable;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FinesSE.Outil.Actions
 {
-    public class GetText : IAction
+    public class GetText : IStringAction
     {
-        public IEnumerable<System.Type> GetParameterTypes()
-        {
-            yield return typeof(LocatedElements);
-        }
-
-        public string Invoke(params object[] parameters)
-            => Invoke(parameters.Cast<LocatedElements>().First());
-
+        [EntryPoint]
         public string Invoke(LocatedElements elements)
             => elements
             .ConstraintCount(c => c == 1)

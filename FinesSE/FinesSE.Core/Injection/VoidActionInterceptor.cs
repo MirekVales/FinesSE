@@ -22,13 +22,15 @@ namespace FinesSE.Core.Injection
             if (Kernel.CanGet<IVoidAction>(typeName))
             {
                 var action = Kernel.Get<IVoidAction>(typeName);
-                var parameters = Parser.Parse(invocationInfo.Arguments.First() as string[], action.GetParameterTypes());
+                var invoker = new Invoker(action);
+                var parameters = Parser.Parse(invocationInfo.Arguments.First() as string[], invoker.ParameterTypes);
 
                 Log.Debug($"Invoking void action {typeName} ({string.Join(", ", parameters)})");
 
                 try
                 {
-                    action.Invoke(parameters.ToArray());
+                    invoker.Invoke(parameters.ToArray());
+                    //action.Invoke(parameters.ToArray());
                 }
                 catch (SlimException e)
                 {

@@ -1,6 +1,6 @@
 ﻿namespace FinesSE.Contracts.Invokable
 {
-    public interface IAction
+    public interface IStringAction : IAction
     {
     }
 }

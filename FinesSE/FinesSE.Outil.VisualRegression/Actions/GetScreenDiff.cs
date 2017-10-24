@@ -2,27 +2,17 @@
 using FinesSE.Contracts.Invokable;
 using FinesSE.Core.WebDriver;
 using FinesSE.VisualRegression;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FinesSE.Outil.VisualRegression.Actions
 {
-    public class GetScreenDiff : IAction
+    public class GetScreenDiff : IStringAction
     {
         public IExecutionContext Context { get; set; }
 
         public IScreenshotStore ScreenshotStore { get; set; }
         public IWebElementIdentityProvider IdentityProvider { get; set; }
 
-        public IEnumerable<Type> GetParameterTypes()
-        {
-            yield return typeof(LocatedElements);
-        }
-
-        public string Invoke(params object[] parameters)
-            => Invoke(parameters.First() as LocatedElements);
-
+        [EntryPoint]
         public string Invoke(LocatedElements elements)
         {
             elements.ConstraintCount(c => c > 0);

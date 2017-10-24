@@ -1,21 +1,14 @@
 ﻿using FinesSE.Contracts.Invokable;
 using FinesSE.Expressions.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FinesSE.Outil.Expressions
 {
-    public class Do : IAction
+    public class Do : IStringAction
     {
         public IExpressionEngine Engine { get; set; }
 
-        public IEnumerable<Type> GetParameterTypes()
-        {
-            yield return typeof(string);
-        }
-
-        public string Invoke(params object[] parameters)
-            => Engine.Execute(parameters.First() + "") + "";
+        [EntryPoint]
+        public string Invoke(string script)
+            => Engine.Execute(script) + "";
     }
 }

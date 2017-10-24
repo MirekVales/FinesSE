@@ -1,6 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
-using System.Collections.Generic;
 
 namespace FinesSE.Outil.Actions
 {
@@ -8,14 +7,7 @@ namespace FinesSE.Outil.Actions
     {
         public IExecutionContext Context { get; set; }
 
-        public IEnumerable<System.Type> GetParameterTypes()
-        {
-            yield break;
-        }
-
-        public void Invoke(params object[] parameters)
-            => Invoke();
-
+        [EntryPoint]
         public void Invoke()
             => Context.Driver.Navigate().Refresh();
     }

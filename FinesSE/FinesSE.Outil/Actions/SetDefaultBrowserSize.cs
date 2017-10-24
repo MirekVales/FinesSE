@@ -2,7 +2,6 @@
 using FinesSE.Contracts.Invokable;
 using FinesSE.Core;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FinesSE.Outil.Actions
@@ -13,14 +12,7 @@ namespace FinesSE.Outil.Actions
 
         public IExecutionContext Context { get; set; }
 
-        public IEnumerable<System.Type> GetParameterTypes()
-        {
-            yield return typeof(string);
-        }
-
-        public void Invoke(params object[] parameters)
-            => Invoke(parameters.First() as string);
-
+        [EntryPoint]
         public void Invoke(string identifier)
         {
             var configuration = ConfigurationProvider.Get(CoreConfiguration.Default);

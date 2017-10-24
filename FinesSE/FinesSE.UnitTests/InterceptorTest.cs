@@ -32,14 +32,10 @@ namespace FinesSE.UnitTests
             );
         }
 
-        public class CustomAction : IAction
+        public class CustomAction : IStringAction
         {
-            public IEnumerable<Type> GetParameterTypes()
-            {
-                yield return typeof(string);
-            }
-
-            public string Invoke(params object[] parameters)
+            [EntryPoint]
+            public string Invoke(string parameter)
             {
                 throw new InvalidOperationException();
             }
@@ -56,15 +52,11 @@ namespace FinesSE.UnitTests
             Assert.AreEqual(value, kernel.Proxy.Invoke<CustomAction3>(value));
         }
 
-        public class CustomAction3 : IAction
+        public class CustomAction3 : IStringAction
         {
-            public IEnumerable<Type> GetParameterTypes()
-            {
-                yield return typeof(string);
-            }
-
-            public string Invoke(params object[] parameters)
-                => parameters[0].ToString();
+            [EntryPoint]
+            public string Invoke(string parameter)
+                => parameter;
         }
 
         [TestMethod]
@@ -80,12 +72,8 @@ namespace FinesSE.UnitTests
 
         public class CustomAction2 : IVoidAction
         {
-            public IEnumerable<Type> GetParameterTypes()
-            {
-                yield return typeof(string);
-            }
-
-            public void Invoke(params object[] parameters)
+            [EntryPoint]
+            public void Invoke(string parameter)
             {
                 throw new InvalidOperationException();
             }

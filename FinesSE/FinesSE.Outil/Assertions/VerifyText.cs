@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using FinesSE.Contracts;
-using System.Linq;
+﻿using FinesSE.Contracts;
 using System.Text.RegularExpressions;
 using FinesSE.Contracts.Exceptions;
 using FinesSE.Contracts.Invokable;
@@ -11,15 +8,7 @@ namespace FinesSE.Outil.Assertions
 {
     public class VerifyText : IVoidAction
     {
-        public IEnumerable<Type> GetParameterTypes()
-        {
-            yield return typeof(LocatedElements);
-            yield return typeof(string);
-        }
-
-        public void Invoke(params object[] parameters)
-            => Invoke(parameters.First() as LocatedElements, parameters.Last() as string);
-
+        [EntryPoint]
         public void Invoke(LocatedElements elements, string pattern)
             => elements
                 .ConstraintCount(c => c > 0)

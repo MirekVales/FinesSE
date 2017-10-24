@@ -3,24 +3,15 @@ using FinesSE.Contracts.Invokable;
 using FinesSE.Core.WebDriver;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
-using System.Linq;
 using System;
 
 namespace FinesSE.Outil.Actions
 {
     public class Deselect : IVoidAction
     {
-        public IEnumerable<System.Type> GetParameterTypes()
-        {
-            yield return typeof(LocatedElements);
-            yield return typeof(OptionLocator);
-        }
-
-        public void Invoke(params object[] parameters)
-            => Invoke(parameters.First() as LocatedElements, parameters.Last() as OptionLocator);
-
         public IExecutionContext Context { get; set; }
 
+        [EntryPoint]
         public void Invoke(LocatedElements elements, OptionLocator optionLocator)
         {
             var action = new OpenQA.Selenium.Interactions.Actions(Context.Driver);

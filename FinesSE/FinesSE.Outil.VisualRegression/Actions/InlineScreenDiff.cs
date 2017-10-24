@@ -2,13 +2,11 @@
 using FinesSE.Contracts.Invokable;
 using FinesSE.VisualRegression;
 using FinesSE.VisualRegression.Infrastructure;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FinesSE.Outil.VisualRegression.Actions
 {
-    public class InlineScreenDiff : IAction
+    public class InlineScreenDiff : IStringAction
     {
         public IExecutionContext Context { get; set; }
 
@@ -16,14 +14,7 @@ namespace FinesSE.Outil.VisualRegression.Actions
         public IWebElementIdentityProvider IdentityProvider { get; set; }
         public IImageInliner ImageInliner { get; set; }
 
-        public IEnumerable<Type> GetParameterTypes()
-        {
-            yield return typeof(LocatedElements);
-        }
-
-        public string Invoke(params object[] parameters)
-            => Invoke(parameters.First() as LocatedElements);
-
+        [EntryPoint]
         public string Invoke(LocatedElements elements)
         {
             elements.ConstraintCount(c => c == 1);
@@ -39,5 +30,5 @@ namespace FinesSE.Outil.VisualRegression.Actions
             else
                 return $"Image has reached a size limit of {BYTE_LIMIT} bytes";
         }
-}
+    }
 }
