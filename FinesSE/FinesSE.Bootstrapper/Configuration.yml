@@ -1,7 +1,7 @@
 ﻿CoreConfiguration:
     DefaultBrowser: Chrome
     WaitForDocumentCompleteState: 00:00:01
-    DefaultBrowserSize: 
+    DefaultBrowserSize:
         Name: Default
         Width: 1024
         Height: 768
