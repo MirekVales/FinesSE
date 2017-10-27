@@ -61,7 +61,7 @@ namespace FinesSE.Core.WebDriver
                             var horizontalRedundancy = Math.Max(0, imageRectangle.Right - PageSize.Width) * Math.Min(x, 1);
                             var verticalRedundancy = Math.Max(0, imageRectangle.Bottom - PageSize.Height) * Math.Min(y, 1);
 
-                            image.Composite(part, OffsetX - horizontalRedundancy, OffsetY - verticalRedundancy, CompositeOperator.Over);
+                            image.Composite(part, OffsetX - horizontalRedundancy, OffsetY - verticalRedundancy, CompositeOperator.Copy);
                         }
                     }
                 return image.ToByteArray();

@@ -34,15 +34,18 @@ namespace FinesSE.Core.Injection
                     return invoker.Invoke(parameters.ToArray());
                     //return action.Invoke(parameters.ToArray());
                 }
-                catch (SlimException e)
-                {
-                    Log.Warn($"Action {typeName} threw a slim exception: {e.Message}");
-                    throw e;
-                }
                 catch (Exception e)
                 {
-                    Log.Fatal($"Action {typeName} threw exception: {e.Message}");
-                    throw new ActionException($"Action {userFriendlyName} threw an exception: {e.Message}");
+                    if (e.InnerException is SlimException)
+                    {
+                        Log.Warn($"Action {typeName} threw a slim exception: {e.Message}");
+                        throw e.InnerException;
+                    }
+                    else
+                    {
+                        Log.Fatal($"Action {typeName} threw exception: {e.Message}");
+                        throw new ActionException($"Action {userFriendlyName} threw an exception: {e.Message}");
+                    }
                 }
             }
             else

@@ -74,6 +74,10 @@
       <Project>{314f9978-45de-4861-8d1d-0c1825daf265}</Project>
       <Name>FinesSE.Outil</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FinesSE.VisualRegression\FinesSE.VisualRegression.csproj">
+      <Project>{7867f561-6d22-4b8f-843c-603e998282c7}</Project>
+      <Name>FinesSE.VisualRegression</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

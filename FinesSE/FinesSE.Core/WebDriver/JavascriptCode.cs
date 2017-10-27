@@ -11,10 +11,10 @@
             "document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);";
 
         public static string ReturnViewWidth
-            => "return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);";
+            => "return Math.min(document.documentElement.clientWidth, window.innerWidth || 0);";
 
         public static string ReturnViewHeight
-            => "return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);";
+            => "return Math.min(document.documentElement.clientHeight, window.innerHeight || 0);";
 
         public static string ReturnPageOffsetX
             => "return (window.pageXOffset || document.documentElement.scrollLeft) - (document.documentElement.clientLeft || 0);";
