@@ -16,9 +16,9 @@ namespace FinesSE.Launcher
 {
     public class SlimRunner
     {
-        private readonly IEnumerable<string> assemblies;
-        private readonly IEnumerable<string> namespaces;
-        private readonly FormatConvertor convertor;
+        readonly IEnumerable<string> assemblies;
+        readonly IEnumerable<string> namespaces;
+        readonly FormatConvertor convertor;
 
         public SlimRunner(IEnumerable<string> assemblies, IEnumerable<string> namespaces)
         {
@@ -39,7 +39,7 @@ namespace FinesSE.Launcher
             return await ExecuteAsync(convertor.Convert(inputData, inputFormat), inputAnnotation);
         }
 
-        private Task<string> ExecuteAsync(string input, string inputAnnotation)
+        Task<string> ExecuteAsync(string input, string inputAnnotation)
         {
             CreateStoryTest(input, out StoryTestStringWriter writer, out StoryTest storyTest);
 
@@ -52,10 +52,10 @@ namespace FinesSE.Launcher
             return Task.FromResult(result.Content);
         }
 
-        private string FormatInfo(PageResult result)
+        string FormatInfo(PageResult result)
             => $"{result.ElapsedTime}\t{result.Title}\t{result.TestCounts.Description}";
 
-        private void CreateStoryTest(string input, out StoryTestStringWriter writer, out StoryTest storyTest)
+        void CreateStoryTest(string input, out StoryTestStringWriter writer, out StoryTest storyTest)
         {
             CellProcessorBase processor = CreateProcessor();
 
@@ -66,7 +66,7 @@ namespace FinesSE.Launcher
                 throw new InvalidFormatException("Input content is not in executable format");
         }
 
-        private CellProcessorBase CreateProcessor()
+        CellProcessorBase CreateProcessor()
         {
             var memory = new TypeDictionary();
             var processor = new CellProcessorBase(memory, memory.GetItem<CellOperators>());

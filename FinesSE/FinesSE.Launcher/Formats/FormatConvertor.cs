@@ -6,7 +6,7 @@ namespace FinesSE.Launcher.Formats
 {
     public class FormatConvertor
     {
-        private readonly Dictionary<TableFormat, Func<IFormatParser>> convertors;
+        readonly Dictionary<TableFormat, Func<IFormatParser>> convertors;
 
         public FormatConvertor()
         {

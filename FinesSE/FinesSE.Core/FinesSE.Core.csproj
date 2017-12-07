@@ -67,7 +67,6 @@
     <Compile Include="Environment\ProcessListStorage.cs" />
     <Compile Include="Injection\Invoker.cs" />
     <Compile Include="Injection\WorkflowInterceptor.cs" />
-    <Compile Include="WebDriver\GetCookieNamed.cs" />
     <Compile Include="WebDriver\ScreenshotTakerConfiguration.cs" />
     <Compile Include="CoreConfiguration.cs" />
     <Compile Include="Configuration\ConfigurationProvider.cs" />

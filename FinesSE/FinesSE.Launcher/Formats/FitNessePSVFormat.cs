@@ -13,13 +13,13 @@ namespace FinesSE.Launcher.Formats
         public string Parse(string input)
             => string.Join(Environment.NewLine, GetTables(input));
 
-        private IEnumerable<string> GetTables(string pipeSeparatedFormat)
+        IEnumerable<string> GetTables(string pipeSeparatedFormat)
         {
             foreach (var tableSegment in Regex.Split(pipeSeparatedFormat, @"\n\n"))
                 yield return $"<table>{GetTable(tableSegment)}</table>";
         }
 
-        private string GetTable(string tableSegment)
+        string GetTable(string tableSegment)
             => string.Join(
                 Environment.NewLine,
                 Regex.Split(tableSegment, @"\n")
@@ -27,7 +27,7 @@ namespace FinesSE.Launcher.Formats
                     .Select(GetRow)
                 );
 
-        private string GetRow(string row)
+        string GetRow(string row)
         {
             var builder = new StringBuilder("<tr>");
 
@@ -42,7 +42,7 @@ namespace FinesSE.Launcher.Formats
             return builder.ToString();
         }
 
-        private void RemoveCommentedOutLines(ref StringBuilder builder)
+        void RemoveCommentedOutLines(ref StringBuilder builder)
         {
             const string CommentedOutLinePattern = @"(?m)^\#.*\n";
             foreach (Match match in Regex.Matches(builder.ToString(), CommentedOutLinePattern))
