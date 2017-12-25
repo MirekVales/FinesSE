@@ -9,6 +9,10 @@ namespace FinesSE.Contracts.Infrastructure
         public int Width { get; set; }
         public int Height { get; set; }
 
+        public BrowserSize()
+        {
+        }
+
         public BrowserSize(string name, int width, int height)
         {
             Name = name;
