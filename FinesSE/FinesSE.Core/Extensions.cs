@@ -64,5 +64,34 @@ namespace FinesSE.Core
 
             registry.RegisterAssembly(fileName);
         }
+
+        public static string GetRootedPath(this string path)
+        {
+            if (Path.IsPathRooted(path))
+                return path;
+
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+        }
+
+        public static string EnsureDirectoryExistence(this string path)
+        {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            return path;
+        }
+
+        public static string ExpandErrorMessage(this Exception e)
+        {
+            IEnumerable<string> GetMessages(Exception exception)
+            {
+                yield return exception.Message;
+
+                if (exception.InnerException != null)
+                    foreach (var message in GetMessages(exception.InnerException))
+                        yield return message;
+            }
+
+            return string.Join(System.Environment.NewLine, GetMessages(e));
+        }
     }
 }

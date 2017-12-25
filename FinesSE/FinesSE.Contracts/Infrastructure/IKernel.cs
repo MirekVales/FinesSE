@@ -11,6 +11,10 @@ namespace FinesSE.Contracts.Infrastructure
 
         T Get<T>(string name);
 
+        TService Get<T, TService>(T value, string name);
+
+        TService Get<T1, T2, TService>(T1 value, T2 value2, string name);
+
         bool CanGet<T>(string name);
 
         IEnumerable<ILocator> GetLocators();

@@ -16,6 +16,7 @@ namespace FinesSE.Core.Injection
         public string TopicId => $"{currentBrowser}_{topicId}";
         public IWebDriver Driver => GetCurrentDriver();
         public IEnumerable<WebDrivers> Drivers => drivers.Keys;
+        public IInvoker Invoker { get; set; }
 
         string topicId = "Default";
         readonly ILog log;

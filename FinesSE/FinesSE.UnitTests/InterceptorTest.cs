@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using FinesSE.Contracts.Invokable;
 using FinesSE.Core.Injection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts.Exceptions;
+using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
 using System;
 using System.Collections.Generic;
@@ -7,19 +8,27 @@ using System.Reflection;
 
 namespace FinesSE.Core.Injection
 {
-    public class Invoker
+    public class Invoker : IInvoker
     {
-        readonly IAction action;
-        readonly Type actionType;
-        readonly MethodInfo entryPointMethod;
-        readonly Type[] entryPointParameters;
+        IAction action;
+        IExecutionContext context;
+        Type actionType;
+        MethodInfo entryPointMethod;
+        Type[] entryPointParameters;
+        Guid currentTestId;
+
+        public IReportBuilder Builder { get; set; }
 
         public IEnumerable<Type> ParameterTypes
             => entryPointParameters;
 
-        public Invoker(IAction action)
+        public Invoker()
+        { }
+
+        public void SetAction(IAction action, IExecutionContext context)
         {
             this.action = action;
+            this.context = context;
             actionType = action.GetType();
 
             entryPointMethod = actionType
@@ -38,14 +47,72 @@ namespace FinesSE.Core.Injection
 
         public string Invoke(params object[] parameters)
         {
+            var testScopeStarted = StartInvocationScope(out Guid id);
+            currentTestId = id;
+
             var parameterTypes = parameters
                 .Select(p => p?.GetType())
                 .ToArray();
 
             if (TypesMatchable(entryPointParameters, parameterTypes))
-                return entryPointMethod.Invoke(action, parameters) + "";
+            {
+                string result;
+                try
+                {
+                    result = entryPointMethod.Invoke(action, parameters) + "";
+                    if (testScopeStarted)
+                        SetTestInfo();
+                }
+                catch (SlimException e)
+                {
+                    if (testScopeStarted)
+                    {
+                        SetTestInfo();
+                        Builder.EndTest(id, LogStatus.Error, e);
+                    }
 
-            throw new MethodNotFoundException(actionType.Name, parameterTypes);
+                    throw e;
+                }
+
+                if (testScopeStarted)
+                    Builder.EndTest(id, LogStatus.Pass);
+
+                return result;
+            }
+
+            var errorException = new MethodNotFoundException(actionType.Name, parameterTypes);
+            if (testScopeStarted)
+                Builder.EndTest(id, LogStatus.Error, errorException);
+            throw errorException;
+        }
+
+        public void AddInfo(string info)
+            => Builder.LogTest(currentTestId, LogStatus.Info, info);
+
+        public void AddImage(string pathToImage)
+            => Builder.AppendScreenshot(currentTestId, pathToImage);
+
+        bool StartInvocationScope(out Guid id)
+        {
+            if (typeof(IReportable).IsAssignableFrom(action.GetType()))
+            {
+                id = Guid.NewGuid();
+                var reportable = action as IReportable;
+                Builder.StartTest(id, reportable.Name, reportable.Description);
+                return true;
+            }
+            id = Guid.Empty;
+            return false;
+        }
+
+        void SetTestInfo()
+        {
+            if (typeof(IReportable).IsAssignableFrom(action.GetType()))
+            {
+                var reportable = action as IReportable;
+                var tags = Builder.GetTags(reportable, context).ToArray();
+                Builder.SetTestInfo(currentTestId, reportable.Name, reportable.Description, tags);
+            }
         }
 
         bool TypesMatchable(Type[] entryPointTypes, Type[] passedTypes)

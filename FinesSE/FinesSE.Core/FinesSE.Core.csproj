@@ -46,6 +46,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Environment\BrowserProcessSeeker.cs" />
+    <Compile Include="Environment\EnvironmentInfo.cs" />
     <Compile Include="Environment\LogAppender.cs" />
     <Compile Include="Environment\ProcessList.cs" />
     <Compile Include="Environment\ProcessListStorage.cs" />
@@ -80,7 +84,7 @@
     <Compile Include="Parsing\BaseParameterParser.cs" />
     <Compile Include="Parsing\ParameterParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Injection\InvokationProxy.cs" />
+    <Compile Include="Injection\InvocationProxy.cs" />
     <Compile Include="WebDriver\JavascriptCode.cs" />
     <Compile Include="WebDriver\ScreenshotTaker.cs" />
     <Compile Include="WebDriver\Timeoutable.cs" />

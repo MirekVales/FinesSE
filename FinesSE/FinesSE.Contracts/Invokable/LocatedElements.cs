@@ -33,5 +33,8 @@ namespace FinesSE.Contracts.Invokable
 
             return this;
         }
+
+        public override string ToString()
+            => Locator.Regex + " " + string.Join(" ,", Elements.Select(e => e.TagName));
     }
 }

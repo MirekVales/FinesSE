@@ -1,10 +1,17 @@
-﻿CoreConfiguration:
+CoreConfiguration:
     DefaultBrowser: Chrome
     WaitForDocumentCompleteState: 00:00:01
     DefaultBrowserSize:
         Name: Default
         Width: 1024
         Height: 768
+
+ReportsConfiguration:
+    ReportsFolder: Reports
+    ReportEnabled: false
+    ReportStyleFile: DefaultReportStyle.xml
+    Tags: 'Category, Url, Topic'
+    UrlFormat: Document
 
 ScreenshotTaker:
     Margin: 5

@@ -64,6 +64,12 @@ namespace FinesSE.Core.Injection
         public T Get<T>(string name)
             => container.GetInstance<T>(name);
 
+        public TService Get<T, TService>(T value, string name)
+            => container.GetInstance<T, TService>(value, name);
+
+        public TService Get<T1, T2, TService>(T1 value, T2 value2, string name)
+            => container.GetInstance<T1, T2, TService>(value, value2, name);
+
         public bool CanGet<T>(string name)
             => container.CanGetInstance(typeof(T), name);
 

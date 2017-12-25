@@ -14,6 +14,9 @@ namespace FinesSE.Core.Injection
 
         public IKernel Kernel { get; set; }
         public IParameterParser Parser { get; set; }
+        public IReportBuilder ReportBuilder { get; set; }
+
+        public IExecutionContext Context { get; set; }
 
         public object Invoke(IInvocationInfo invocationInfo)
         {
@@ -22,7 +25,8 @@ namespace FinesSE.Core.Injection
             if (Kernel.CanGet<IStringAction>(typeName))
             {
                 var action = Kernel.Get<IStringAction>(typeName);
-                var invoker = new Invoker(action);
+                var invoker = Kernel.Get<IInvoker>("Invoker");
+                invoker.SetAction(action, Context);
                 var parameters = Parser.Parse(
                     invocationInfo.Arguments.First() as string[],
                     invoker.ParameterTypes);
@@ -32,19 +36,18 @@ namespace FinesSE.Core.Injection
                 try
                 {
                     return invoker.Invoke(parameters.ToArray());
-                    //return action.Invoke(parameters.ToArray());
                 }
                 catch (Exception e)
                 {
                     if (e.InnerException is SlimException)
                     {
-                        Log.Warn($"Action {typeName} threw a slim exception: {e.Message}");
+                        Log.Warn($"Action {typeName} threw a slim exception: {e.ExpandErrorMessage()}");
                         throw e.InnerException;
                     }
                     else
                     {
-                        Log.Fatal($"Action {typeName} threw exception: {e.Message}");
-                        throw new ActionException($"Action {userFriendlyName} threw an exception: {e.Message}");
+                        Log.Fatal($"Action {typeName} threw exception: {e.ExpandErrorMessage()}");
+                        throw new ActionException($"Action {userFriendlyName} threw an exception: {e.ExpandErrorMessage()}");
                     }
                 }
             }

@@ -81,6 +81,7 @@
     <Compile Include="Actions\WaitForCondition.cs" />
     <Compile Include="Actions\WindowMaximize.cs" />
     <Compile Include="Assertions\VerifyText.cs" />
+    <Compile Include="IdTag.cs" />
     <Compile Include="Locators\Css.cs" />
     <Compile Include="Locators\Identifier.cs" />
     <Compile Include="Locators\Link.cs" />

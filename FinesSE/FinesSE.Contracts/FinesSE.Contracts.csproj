@@ -66,10 +66,13 @@
     <Compile Include="Infrastructure\IActionInterceptor.cs" />
     <Compile Include="Infrastructure\IConfigurationProvider.cs" />
     <Compile Include="Infrastructure\IConfigurationKeys.cs" />
+    <Compile Include="Infrastructure\ICustomInterceptor.cs" />
     <Compile Include="Infrastructure\IExecutionContext.cs" />
     <Compile Include="Infrastructure\IExecutionContextInterceptor.cs" />
+    <Compile Include="Infrastructure\IInvoker.cs" />
     <Compile Include="Infrastructure\ILoggingInterceptor.cs" />
     <Compile Include="Infrastructure\IProcessListStorage.cs" />
+    <Compile Include="Infrastructure\IReportBuilder.cs" />
     <Compile Include="Infrastructure\IScreenshotStore.cs" />
     <Compile Include="Infrastructure\IParseMethod.cs" />
     <Compile Include="Infrastructure\IVoidActionInterceptor.cs" />
@@ -78,8 +81,10 @@
     <Compile Include="Infrastructure\IWorkflowInterceptor.cs" />
     <Compile Include="Infrastructure\LocatorModifiers.cs" />
     <Compile Include="Infrastructure\BrowserSize.cs" />
+    <Compile Include="Infrastructure\LogStatus.cs" />
     <Compile Include="Invokable\EntryPointAttribute.cs" />
     <Compile Include="Invokable\IAction.cs" />
+    <Compile Include="Invokable\IReportable.cs" />
     <Compile Include="Invokable\IStringAction.cs" />
     <Compile Include="Infrastructure\IKernel.cs" />
     <Compile Include="Invokable\IWorkflowAction.cs" />

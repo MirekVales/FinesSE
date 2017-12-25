@@ -88,6 +88,10 @@
       <Project>{c76565ab-46e9-44b7-a575-266bcce92fa9}</Project>
       <Name>FinesSE.Launcher</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Reports\FinesSE.Reports.csproj">
+      <Project>{d292b6e8-909f-45dc-a59f-8bb72fc163c5}</Project>
+      <Name>FinesSE.Reports</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FinesSE.VisualRegression\FinesSE.VisualRegression.csproj">
       <Project>{7867F561-6D22-4B8F-843C-603E998282C7}</Project>
       <Name>FinesSE.VisualRegression</Name>
