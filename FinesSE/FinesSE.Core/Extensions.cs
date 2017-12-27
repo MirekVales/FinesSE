@@ -53,6 +53,17 @@ namespace FinesSE.Core
             return new Bitmap(stream);
         }
 
+        public static string GetImageBase64(this string imagePath, ImageFormat format)
+        {
+            using (var image = new Bitmap(imagePath))
+            using (var stream = new MemoryStream())
+            {
+                image.Save(stream, format);
+                byte[] imageBytes = stream.ToArray();
+                return $"data:image/{format.ToString()};base64," + Convert.ToBase64String(imageBytes);
+            }
+        }
+
         public static void RegisterRequiredAssembly(this IServiceRegistry registry, string parentDirectory, string fileName)
         {
             var directory = string.IsNullOrEmpty(parentDirectory)

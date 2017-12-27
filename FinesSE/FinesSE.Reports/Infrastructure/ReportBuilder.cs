@@ -7,7 +7,6 @@ using OpenQA.Selenium;
 using RelevantCodes.ExtentReports;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using LogStatus = FinesSE.Contracts.Infrastructure.LogStatus;
@@ -66,18 +65,7 @@ namespace FinesSE.Reports.Infrastructure
         public void AppendScreenshot(Guid id, string path)
             => tests[id].Log(
                 RelevantCodes.ExtentReports.LogStatus.Info,
-                tests[id].AddBase64ScreenCapture(GetBase64(path)));
-
-        string GetBase64(string imagePath)
-        {
-            using (var image = new Bitmap(imagePath))
-            using (var stream = new MemoryStream())
-            {
-                image.Save(stream, ImageFormat.Png);
-                byte[] imageBytes = stream.ToArray();
-                return "data:image/png;base64," + System.Convert.ToBase64String(imageBytes);
-            }
-        }
+                tests[id].AddBase64ScreenCapture(path.GetImageBase64(ImageFormat.Png)));
 
         public void AddLog(string log)
             => report.AddTestRunnerOutput(log);
