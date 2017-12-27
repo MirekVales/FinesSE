@@ -1,9 +1,6 @@
 FinesSE/FinesSE.AcceptanceTests/bin/
 FinesSE/FinesSE.AcceptanceTests/obj/
-FinesSE/FinesSE.Contracts/bin/Debug/LightInject.xml
-FinesSE/FinesSE.Contracts/bin/Debug/WebDriver.xml
-FinesSE/FinesSE.Contracts/obj/Debug/FinesSE.Contracts.csproj.FileListAbsolute.txt
-FinesSE/FinesSE.Contracts/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+FinesSE/FinesSE.Contracts/bin/
 FinesSE/FinesSE.Contracts/obj/
 FinesSE/FinesSE.Core/bin/
 FinesSE/FinesSE.Core/obj/
@@ -26,8 +23,8 @@ Release/
 FinesSE/FinesSE.Drivers/obj/
 FinesSE/FinesSE.Drivers/bin/
 FinesSE/FinesSE.Expressions/obj/
+FinesSE/FinesSE.Expressions/bin/
 FinesSE/FinesSE.Outil.Expressions/obj/
 FinesSE/FinesSE.Outil.Expressions/bin/
-FinesSE/FinesSE.Contracts/bin/
 FinesSE/FinesSE.Reports/bin/
 FinesSE/FinesSE.Reports/obj/
