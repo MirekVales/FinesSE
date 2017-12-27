@@ -9,6 +9,7 @@ namespace FinesSE.Reports
         public string ReportsFolder { get; set; }
         public bool ReportEnabled { get; set; }
         public string ReportStyleFile { get; set; }
+        public bool RewriteExistingReport { get; set; }
         public bool UseEmbeddedSnapshots { get; set; }
         public UrlFormat UrlFormat { get; set; }
         public Tags Tags { get; set; }
@@ -20,6 +21,7 @@ namespace FinesSE.Reports
                 ReportsFolder = "Reports",
                 ReportEnabled = false,
                 ReportStyleFile = "DefaultReportStyle.xml",
+                RewriteExistingReport = false,
                 UseEmbeddedSnapshots = false,
                 UrlFormat = UrlFormat.Document,
                 Tags = Tags.Category | Tags.Url | Tags.Topic,

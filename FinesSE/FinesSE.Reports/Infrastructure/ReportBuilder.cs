@@ -42,7 +42,7 @@ namespace FinesSE.Reports.Infrastructure
             log.Info($"Report style taken from {stylePath}");
             log.Info($"Report being rendered to {reportPath}");
 
-            report = new ExtentReports(reportPath, false, DisplayOrder.NewestFirst);
+            report = new ExtentReports(reportPath, configuration.RewriteExistingReport, DisplayOrder.NewestFirst);
             report.LoadConfig(stylePath);
 
             AppendEnvironmentInfo();
