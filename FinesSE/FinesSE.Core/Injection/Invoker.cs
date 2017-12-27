@@ -59,11 +59,29 @@ namespace FinesSE.Core.Injection
                 string result;
                 try
                 {
-                    result = entryPointMethod.Invoke(action, parameters) + "";
-                    if (testScopeStarted)
-                        SetTestInfo();
+                    try
+                    {
+                        result = entryPointMethod.Invoke(action, parameters) + "";
+                        if (testScopeStarted)
+                            SetTestInfo();
+                    }
+                    catch (TargetInvocationException e)
+                    {
+                        throw e.InnerException;
+                    }
                 }
                 catch (SlimException e)
+                {
+                    if (testScopeStarted)
+                    {
+                        SetTestInfo();
+                        Builder.EndTest(id, LogStatus.Fail, e.InnerMessage);
+                    }
+
+                    throw;
+                }
+
+                catch (Exception e)
                 {
                     if (testScopeStarted)
                     {
@@ -71,7 +89,7 @@ namespace FinesSE.Core.Injection
                         Builder.EndTest(id, LogStatus.Error, e);
                     }
 
-                    throw e;
+                    throw;
                 }
 
                 if (testScopeStarted)
@@ -96,9 +114,8 @@ namespace FinesSE.Core.Injection
         {
             if (typeof(IReportable).IsAssignableFrom(action.GetType()))
             {
-                id = Guid.NewGuid();
                 var reportable = action as IReportable;
-                Builder.StartTest(id, reportable.Name, reportable.Description);
+                Builder.StartTest(id = Guid.NewGuid(), reportable.Name, reportable.Description);
                 return true;
             }
             id = Guid.Empty;

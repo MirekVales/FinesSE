@@ -7,6 +7,8 @@ using OpenQA.Selenium;
 using RelevantCodes.ExtentReports;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using LogStatus = FinesSE.Contracts.Infrastructure.LogStatus;
 
@@ -31,14 +33,17 @@ namespace FinesSE.Reports.Infrastructure
             tests = new Dictionary<Guid, ExtentTest>();
 
             var reportPath = Path.Combine(
-                configuration.ReportsFolder.EnsureDirectoryExistence(),
+                configuration
+                    .ReportsFolder
+                    .GetRootedPath()
+                    .EnsureDirectoryExistence(),
                 $"Report.html").GetRootedPath();
             var stylePath = configuration.ReportStyleFile.GetRootedPath();
 
             log.Info($"Report style taken from {stylePath}");
             log.Info($"Report being rendered to {reportPath}");
 
-            report = new ExtentReports(reportPath);
+            report = new ExtentReports(reportPath, false, DisplayOrder.NewestFirst);
             report.LoadConfig(stylePath);
 
             AppendEnvironmentInfo();
@@ -59,7 +64,20 @@ namespace FinesSE.Reports.Infrastructure
         }
 
         public void AppendScreenshot(Guid id, string path)
-            => tests[id].Log(RelevantCodes.ExtentReports.LogStatus.Info, tests[id].AddScreenCapture(path));
+            => tests[id].Log(
+                RelevantCodes.ExtentReports.LogStatus.Info,
+                tests[id].AddBase64ScreenCapture(GetBase64(path)));
+
+        string GetBase64(string imagePath)
+        {
+            using (var image = new Bitmap(imagePath))
+            using (var stream = new MemoryStream())
+            {
+                image.Save(stream, ImageFormat.Png);
+                byte[] imageBytes = stream.ToArray();
+                return "data:image/png;base64," + System.Convert.ToBase64String(imageBytes);
+            }
+        }
 
         public void AddLog(string log)
             => report.AddTestRunnerOutput(log);
