@@ -41,7 +41,7 @@ namespace FinesSE.Core.Injection
                 {
                     if (e.InnerException is SlimException)
                     {
-                        Log.Warn($"Action {typeName} threw a slim exception: {e.ExpandErrorMessage()}");
+                        Log.Warn($"Action {typeName} threw a slim exception: {e.InnerException.ExpandErrorMessage()}");
                         throw e.InnerException;
                     }
                     else
