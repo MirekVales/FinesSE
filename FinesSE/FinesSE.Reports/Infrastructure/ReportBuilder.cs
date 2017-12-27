@@ -65,7 +65,9 @@ namespace FinesSE.Reports.Infrastructure
         public void AppendScreenshot(Guid id, string path)
             => tests[id].Log(
                 RelevantCodes.ExtentReports.LogStatus.Info,
-                tests[id].AddBase64ScreenCapture(path.GetImageBase64(ImageFormat.Png)));
+                    configuration.UseEmbeddedSnapshots
+                    ? tests[id].AddBase64ScreenCapture(path.GetImageBase64(ImageFormat.Png))
+                    : tests[id].AddScreenCapture(path));
 
         public void AddLog(string log)
             => report.AddTestRunnerOutput(log);
@@ -103,6 +105,10 @@ namespace FinesSE.Reports.Infrastructure
                 yield return GetFormattedUrl(context.Driver);
             if (configuration.Tags.HasFlag(Tags.Topic))
                 yield return context.TopicId;
+
+            if (configuration.CustomTags != null)
+                foreach (var tag in configuration.CustomTags)
+                    yield return tag;
         }
 
         public string GetFormattedUrl(IWebDriver driver)
