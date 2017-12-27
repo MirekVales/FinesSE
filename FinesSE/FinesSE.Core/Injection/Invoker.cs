@@ -78,7 +78,7 @@ namespace FinesSE.Core.Injection
                         Builder.EndTest(id, LogStatus.Fail, e.InnerMessage);
                     }
 
-                    throw;
+                    throw new TargetInvocationException(e);
                 }
 
                 catch (Exception e)
@@ -89,7 +89,7 @@ namespace FinesSE.Core.Injection
                         Builder.EndTest(id, LogStatus.Error, e);
                     }
 
-                    throw;
+                    throw new TargetInvocationException(e);
                 }
 
                 if (testScopeStarted)
