@@ -80,6 +80,7 @@
     <Compile Include="Actions\WindowFocus.cs" />
     <Compile Include="Actions\WaitForCondition.cs" />
     <Compile Include="Actions\WindowMaximize.cs" />
+    <Compile Include="Assertions\VerifyEquality.cs" />
     <Compile Include="Assertions\VerifyText.cs" />
     <Compile Include="IdTag.cs" />
     <Compile Include="Locators\Css.cs" />
