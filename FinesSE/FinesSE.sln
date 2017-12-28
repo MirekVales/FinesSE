@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Contracts", "FinesSE.Contracts\FinesSE.Contracts.csproj", "{BC108868-ED68-4A88-A363-4D17CD745717}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Expressions", "FinesSE.Expressions\FinesSE.Expressions.csproj", "{244D301F-4761-4B7C-BF66-7E24E44F5F7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Reports", "FinesSE.Reports\FinesSE.Reports.csproj", "{D292B6E8-909F-45DC-A59F-8BB72FC163C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil.Reports", "FinesSE.Outil.Reports\FinesSE.Outil.Reports.csproj", "{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{D292B6E8-909F-45DC-A59F-8BB72FC163C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D292B6E8-909F-45DC-A59F-8BB72FC163C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D292B6E8-909F-45DC-A59F-8BB72FC163C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

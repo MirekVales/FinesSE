@@ -49,6 +49,7 @@
     <Compile Include="SE.Actions.cs" />
     <Compile Include="SE.Assertions.cs" />
     <Compile Include="SE.Expressions.cs" />
+    <Compile Include="SE.Reports.cs" />
     <Compile Include="SE._.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SE.VisualRegression.cs" />
@@ -73,6 +74,10 @@
     <ProjectReference Include="..\FinesSE.Outil.Expressions\FinesSE.Outil.Expressions.csproj">
       <Project>{32F632A3-A0B9-430B-9FFC-25CE9FE8CC0C}</Project>
       <Name>FinesSE.Outil.Expressions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Outil.Reports\FinesSE.Outil.Reports.csproj">
+      <Project>{5f4ccddc-e684-47a7-9aa3-608d6f330e5a}</Project>
+      <Name>FinesSE.Outil.Reports</Name>
     </ProjectReference>
     <ProjectReference Include="..\FinesSE.Outil.VisualRegression\FinesSE.Outil.VisualRegression.csproj">
       <Project>{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}</Project>

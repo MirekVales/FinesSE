@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FinesSE.Reports")]
+[assembly: AssemblyTitle("FinesSE.Outil.Reports")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FinesSE.Reports")]
+[assembly: AssemblyProduct("FinesSE.Outil.Reports")]
 [assembly: AssemblyCopyright("Copyright ©  2017 Mirek Vales")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d292b6e8-909f-45dc-a59f-8bb72fc163c5")]
+[assembly: Guid("5f4ccddc-e684-47a7-9aa3-608d6f330e5a")]
 
 // Version information for an assembly consists of the following four values:
 //
