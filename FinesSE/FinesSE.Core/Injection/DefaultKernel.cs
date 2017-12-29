@@ -46,6 +46,10 @@ namespace FinesSE.Core.Injection
             container.GetInstance<IProcessListStorage>().CleanList();
 
             coreLog.Info(new string('=', 10));
+            coreLog.Info("Following actions found:");
+            coreLog.Info(string.Join(System.Environment.NewLine, container.GetAllInstances<IAction>().Select(a => a.GetType().Name)));
+            coreLog.Info("Following workflow actions found:");
+            coreLog.Info(string.Join(System.Environment.NewLine, container.GetAllInstances<IWorkflowAction>().Select(a => a.GetType().Name)));
             coreLog.Debug($"Kernel initialized");
         }
 
