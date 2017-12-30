@@ -9,5 +9,23 @@ namespace FinesSE.Bootstrapper
 
         public void VerifyText(string locator, string pattern)
             => p.InvokeVoid<VerifyText>(locator, pattern);
+
+        public void Equals(string first, string second)
+            => p.InvokeVoid<Equals>(first, second);
+
+        public void NotEquals(string first, string second)
+            => p.InvokeVoid<NotEquals>(first, second);
+
+        public void GreaterThan(string first, string second)
+            => p.InvokeVoid<GreaterThan>(first, second);
+
+        public void GreaterThanOrEqual(string first, string second)
+            => p.InvokeVoid<GreaterThanOrEqual>(first, second);
+
+        public void SmallerThan(string first, string second)
+            => p.InvokeVoid<SmallerThan>(first, second);
+
+        public void SmallerThanOrEqual(string first, string second)
+            => p.InvokeVoid<SmallerThanOrEqual>(first, second);
     }
 }

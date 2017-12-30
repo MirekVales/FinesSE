@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -104,5 +105,11 @@ namespace FinesSE.Core
 
             return string.Join(System.Environment.NewLine, GetMessages(e));
         }
+
+        public static double ToDouble(this string value)
+            =>  double.Parse(
+                    value
+                    .Replace(",", NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)
+                    .Replace(".", NumberFormatInfo.CurrentInfo.NumberDecimalSeparator));
     }
 }
