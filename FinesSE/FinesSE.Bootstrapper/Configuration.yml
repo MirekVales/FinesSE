@@ -1,31 +1,61 @@
+
+# Defines core parameters that are essential for the FinesSE engine
 CoreConfiguration:
+    # A default webdriver to use if no particular was chosen
     DefaultBrowser: Chrome
+    # A maximum amount of time the engine waits untill the current document state is 'Complete' 
     WaitForDocumentCompleteState: 00:00:01
+    # If enabled, the engine writes all info and debug infotmation into a log file 
     LogToFile: true
+    # A path to the log file
     LogPath: log.txt
+    # A format of logged data
     LogPattern: '%date [%level] %message'
+    # A default width and height of a browser
     DefaultBrowserSize:
         Name: Default
         Width: 1024
         Height: 768
 
+# Defines settings relevant to test report creation only
 ReportsConfiguration:
+    # A path to a folder where a report file should be placed
     ReportsFolder: Reports
-    ReportEnabled: false
+    # If enabled, the report is created automatically to a chosen folder
+    ReportEnabled: true
+    # A path to a report template file
     ReportStyleFile: DefaultReportStyle.xml
+    # If enabled, the report file is overwritten if aready exists (otherwise a data is appended)
+    RewriteExistingReport: true
+    # If enabled, all snapshots attached to the report are inlined as a base64 resource
+    UseEmbeddedSnapshots: false
+    # Enabled test tags
     Tags: 'Category, Url, Topic'
+    # A format of url tag
     UrlFormat: Document
 
+# Defines settings related to screenshot taking
 ScreenshotTaker:
+    # A number of extra pixels around a screenshoted element
     Margin: 5
+    # A number of extra pixels around a page segment 
     ScreenshotTakeHorizontalOverlap: 35
+    # A number of extra pixels around a page segment 
     ScreenshotTakeVerticalOverlap: 35
 
+# A configuration of visual regression feature
 VisualRegression:
+    # A default visual difference tolerance
     ScreenshotDiffTolerance: 1%
+    # A method of processing visual difference
     ScreenshotDiffComparedChannels: All
+    # A path to a folder where screenshots are placed
     ScreenshotStorePath: c:\ScreenshotStore
+    # A screenshot file extension
     ScreenshotStoreFileExtension: .png
+    # An identifier of base version screenshot
     ScreenshotStoreBaseVersionId: base
+    # An identifier of reference version screenshot
     ScreenshotStoreReferenceVersionId: ref
+    # An identifier of comparison screenshot
     ScreenshotStoreDiffVersionId: diff
