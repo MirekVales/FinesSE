@@ -1,6 +1,9 @@
 CoreConfiguration:
     DefaultBrowser: Chrome
     WaitForDocumentCompleteState: 00:00:01
+    LogToFile: true
+    LogPath: log.txt
+    LogPattern: '%date [%level] %message'
     DefaultBrowserSize:
         Name: Default
         Width: 1024

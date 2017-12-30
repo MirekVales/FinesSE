@@ -31,7 +31,7 @@ namespace FinesSE.Core.Injection
                     invocationInfo.Arguments.First() as string[],
                     invoker.ParameterTypes);
 
-                Log.Debug($"Invoking action {typeName} ({string.Join(", ", parameters)})");
+                Log.Debug($"Invoking action {typeName}");
 
                 try
                 {

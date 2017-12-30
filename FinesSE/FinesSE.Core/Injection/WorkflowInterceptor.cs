@@ -24,7 +24,7 @@ namespace FinesSE.Core.Injection
                 var action = Kernel.Get<IWorkflowAction>(typeName);
                 var parameter = invocationInfo.Arguments.First() + "";
 
-                Log.Debug($"Invoking workflow action {typeName} (parameter)");
+                Log.Debug($"Invoking workflow action {typeName}");
                 if (!action.Evaluate(parameter))
                     return false.ToString();
 
