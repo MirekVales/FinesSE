@@ -15,6 +15,16 @@ See [Wiki documentation](https://github.com/MirekVales/FinesSE/wiki) for more de
 - Actions
 - Assertions
 
+#### Supported Webdrivers
+
+- ✔️ Chrome
+- ✔️ Edge
+- ✔️ Firefox
+- ✔️ Internet Explorer
+- ✔️ Opera
+- ✔️ PhantomJS
+- ✔️ Safari
+
 ### Workflow Expressions
 - If *to conditionally execute only a branch of commands* 
 - Run *command to start an external process*
@@ -29,22 +39,12 @@ See [Wiki documentation](https://github.com/MirekVales/FinesSE/wiki) for more de
 
 ## Requirements
 
-Tests may be run directly from file using a console application - FinesSE.Launcher. 
-> Check the application to find out arguments needed to execute a script
+See [Wiki documentation](https://github.com/MirekVales/FinesSE/wiki) for more details.
 
-To integrate fixtures with FitNesse, it is necessary to use a FitSharp runner as well. 
+Tests may be executed directly from a file using a console application - FinesSE.Launcher. In this case, FitNesse is not needed and FinesSE plays a role of a stand-alone processor of Selenium/FitNesse test definition files.   
+> Check the launcher application to find out arguments needed to execute a script
+
+FinesSE may be involved as a FitNesse extension that invokes fixtures over FitSharp runner. 
 > Use import command to load namespace FinesSE.Bootstrapper
 >
 > Use !path command to load FinesSE assemblies (e.g. !path FinesSE\*.dll)
-
-## Supported Webdrivers
-
-- ✔️ Chrome
-- ✔️ Edge
-- ✔️ Firefox
-- ✔️ Internet Explorer
-- ✔️ Opera
-- ✔️ PhantomJS
-- ✔️ Safari
-
-## ... to be continued
