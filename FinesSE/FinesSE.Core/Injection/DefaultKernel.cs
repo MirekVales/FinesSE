@@ -59,6 +59,7 @@ namespace FinesSE.Core.Injection
                 (m, t) => m.GetGenericArguments().Any() && t.IsAssignableFrom(m.GetGenericArguments().First());
 
             proxyDefinition.Implement(() => container.GetInstance<ILoggingInterceptor>(), m => predicate(m, typeof(IStringAction)) || predicate(m, typeof(IVoidAction)));
+            proxyDefinition.Implement(() => container.GetInstance<ICustomInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IWorkflowAction)));
             proxyDefinition.Implement(() => container.GetInstance<IWorkflowInterceptor>(), m => predicate(m, typeof(IWorkflowAction)));
             proxyDefinition.Implement(() => container.GetInstance<IExecutionContextInterceptor>(), m => predicate(m, typeof(IStringAction)) || predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IActionInterceptor>(), m => predicate(m, typeof(IStringAction)));

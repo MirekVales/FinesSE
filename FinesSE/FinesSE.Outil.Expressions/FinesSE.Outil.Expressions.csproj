@@ -33,6 +33,10 @@
     <Reference Include="Jint, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
       <HintPath>..\packages\Jint.2.11.23\lib\net451\Jint.dll</HintPath>
     </Reference>
+    <Reference Include="LightInject.Interception, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="log4net">
+      <HintPath>..\FinesSE.UnitTests\bin\Debug\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +50,8 @@
     <Compile Include="Do.cs" />
     <Compile Include="Endif.cs" />
     <Compile Include="If.cs" />
+    <Compile Include="Import.cs" />
+    <Compile Include="InterpolationInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Run.cs" />
   </ItemGroup>
@@ -53,6 +59,10 @@
     <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
       <Project>{BC108868-ED68-4A88-A363-4D17CD745717}</Project>
       <Name>FinesSE.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Core\FinesSE.Core.csproj">
+      <Project>{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}</Project>
+      <Name>FinesSE.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\FinesSE.Expressions\FinesSE.Expressions.csproj">
       <Project>{244D301F-4761-4B7C-BF66-7E24E44F5F7A}</Project>

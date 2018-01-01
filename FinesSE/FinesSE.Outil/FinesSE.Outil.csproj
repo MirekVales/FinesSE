@@ -113,6 +113,10 @@
       <Project>{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}</Project>
       <Name>FinesSE.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Expressions\FinesSE.Expressions.csproj">
+      <Project>{244D301F-4761-4B7C-BF66-7E24E44F5F7A}</Project>
+      <Name>FinesSE.Expressions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

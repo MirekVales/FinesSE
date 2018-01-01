@@ -15,5 +15,8 @@ namespace FinesSE.Bootstrapper
 
         public string Run(string filePath, string arguments)
             => p.Invoke<Run>(filePath, arguments);
+
+        public void Import(string path)
+            => p.InvokeVoid<Import>(path);
     }
 }
