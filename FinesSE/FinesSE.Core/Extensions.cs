@@ -68,7 +68,7 @@ namespace FinesSE.Core
         public static void RegisterRequiredAssembly(this IServiceRegistry registry, string parentDirectory, string fileName)
         {
             var directory = string.IsNullOrEmpty(parentDirectory)
-                ? AppDomain.CurrentDomain.BaseDirectory
+                ? GetRootedPath("")
                 : parentDirectory;
 
             if (!File.Exists(Path.Combine(directory, fileName)))
@@ -82,7 +82,11 @@ namespace FinesSE.Core
             if (Path.IsPathRooted(path))
                 return path;
 
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+            var defaultPath = Path.GetDirectoryName(Assembly
+                .GetAssembly(typeof(IKernel))
+                .Location);
+
+            return Path.Combine(defaultPath, path);
         }
 
         public static string EnsureDirectoryExistence(this string path)

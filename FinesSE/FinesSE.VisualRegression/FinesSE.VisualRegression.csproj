@@ -76,6 +76,10 @@
       <Project>{bc108868-ed68-4a88-a363-4d17cd745717}</Project>
       <Name>FinesSE.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Core\FinesSE.Core.csproj">
+      <Project>{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}</Project>
+      <Name>FinesSE.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

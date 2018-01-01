@@ -78,7 +78,7 @@ namespace FinesSE.Core.Injection
                 if (((WebDrivers)Enum.Parse(typeof(WebDrivers), name)).IsDynamic())
                     continue;
 
-                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{name}driver.exe")))
+                if (File.Exists($"{name}driver.exe".GetRootedPath()))
                     yield return (WebDrivers)Enum.Parse(typeof(WebDrivers), name);
             }
         }

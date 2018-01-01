@@ -1,4 +1,5 @@
 ﻿using FinesSE.Contracts.Infrastructure;
+using FinesSE.Core;
 using FinesSE.VisualRegression.Contracts;
 using System;
 using System.IO;
@@ -16,10 +17,7 @@ namespace FinesSE.VisualRegression.Infrastructure
             config = configuration.Get(VisualRegressionConfiguration.Default);
         }
 
-        string GetPath()
-            => Path.IsPathRooted(config.ScreenshotStorePath) ?
-            config.ScreenshotStorePath :
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.ScreenshotStorePath);
+        string GetPath() => config.ScreenshotStorePath.GetRootedPath();
 
         public string GetPath(string topicId, string objectId, string versionId)
             => Path.Combine(

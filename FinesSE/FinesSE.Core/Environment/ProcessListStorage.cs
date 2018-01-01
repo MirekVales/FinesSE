@@ -14,8 +14,7 @@ namespace FinesSE.Core.Environment
     {
         const string ProcessListFileName = "WebDriverProcesses.yaml";
 
-        string GetFilePath =>
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ProcessListFileName);
+        string GetFilePath => ProcessListFileName.GetRootedPath();
 
         public ILog Log { get; set; }
 
