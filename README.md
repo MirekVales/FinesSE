@@ -6,6 +6,10 @@ As Selenium is a widespread standard for web browser automation and Fitnesse is 
 
 The long-term vision is to provide a .NET based fixtures library that would cover essentials of Selenium webdrivers and broaden automated testing capabilites (e.g. with visual regression testing, workflow expressions, generating reports). 
 
+## Download
+
+[Version 1.0](https://github.com/MirekVales/FinesSE/releases/tag/v1.0.0)
+
 ## Features
 
 See [Wiki documentation](https://github.com/MirekVales/FinesSE/wiki) for more details.
@@ -37,13 +41,15 @@ See [Wiki documentation](https://github.com/MirekVales/FinesSE/wiki) for more de
 ### Generating Automation Reports
 - Allows to take all evaluated assertions and aggregate results into a pretty test report (using [ExtentReports](https://github.com/anshooarora/extentreports-csharp), an HTML test report generator)  
 
-## Requirements
+## Use Cases
 
 See [Wiki documentation](https://github.com/MirekVales/FinesSE/wiki) for more details.
 
+### Stand-alone invocation
 Tests may be executed directly from a file using a console application - FinesSE.Launcher. In this case, FitNesse is not needed and FinesSE plays a role of a stand-alone processor of Selenium/FitNesse test definition files.   
 > Check the launcher application to find out arguments needed to execute a script
 
+### As FitNesse plug-in
 FinesSE may be involved as a FitNesse extension that invokes fixtures over FitSharp runner. 
 > Use import command to load namespace FinesSE.Bootstrapper
 >
