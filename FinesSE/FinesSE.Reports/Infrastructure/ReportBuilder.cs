@@ -23,7 +23,6 @@ namespace FinesSE.Reports.Infrastructure
 
         public bool ReportingEnabled => configuration.ReportEnabled;
 
-
         public ReportBuilder(IConfigurationProvider provider, ILog log)
         {
             configuration = provider.Get(ReportsConfiguration.Default);
@@ -38,9 +37,6 @@ namespace FinesSE.Reports.Infrastructure
                     .EnsureDirectoryExistence(),
                 $"Report.html").GetRootedPath();
             var stylePath = configuration.ReportStyleFile.GetRootedPath();
-
-            log.Info($"Report style taken from {stylePath}");
-            log.Info($"Report being rendered to {reportPath}");
 
             report = new ExtentReports(reportPath, configuration.RewriteExistingReport, DisplayOrder.NewestFirst);
             report.LoadConfig(stylePath);
