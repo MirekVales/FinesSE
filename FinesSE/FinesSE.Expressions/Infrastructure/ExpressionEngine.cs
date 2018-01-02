@@ -6,9 +6,9 @@ namespace FinesSE.Expressions
 {
     public class ExpressionEngine : IExpressionEngine
     {
-        readonly static Engine engine;
+        readonly Engine engine;
 
-        static ExpressionEngine()
+        public ExpressionEngine()
         {
             engine = new Engine();
         }
@@ -19,8 +19,6 @@ namespace FinesSE.Expressions
             .GetCompletionValue();
 
         public T Execute<T>(string expression, Func<object, T> converter)
-            => converter(engine
-            .Execute(expression)
-            .GetCompletionValue() + "");
+            => converter(Execute(expression) + "");
     }
 }
