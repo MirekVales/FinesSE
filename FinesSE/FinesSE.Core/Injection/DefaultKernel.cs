@@ -51,11 +51,14 @@ namespace FinesSE.Core.Injection
 
         void DefineProxyType(ProxyDefinition proxyDefinition)
         {
-            Func<MethodInfo, Type, bool> predicate =
-                (m, t) => m.GetGenericArguments().Any() && t.IsAssignableFrom(m.GetGenericArguments().First());
+            bool predicate(MethodInfo m, Type t) => m.GetGenericArguments().Any() && t.IsAssignableFrom(m.GetGenericArguments().First());
 
             proxyDefinition.Implement(() => container.GetInstance<ILoggingInterceptor>(), m => predicate(m, typeof(IStringAction)) || predicate(m, typeof(IVoidAction)));
-            proxyDefinition.Implement(() => container.GetInstance<ICustomInterceptor>(), m => predicate(m, typeof(IAction)) || predicate(m, typeof(IWorkflowAction)));
+
+            var customInterceptors = container.GetAllInstances<ICustomInterceptor>();
+            foreach (var customInterceptor in customInterceptors)
+                proxyDefinition.Implement(() => customInterceptor, m => predicate(m, typeof(IAction)) || predicate(m, typeof(IWorkflowAction)));
+
             proxyDefinition.Implement(() => container.GetInstance<IWorkflowInterceptor>(), m => predicate(m, typeof(IWorkflowAction)));
             proxyDefinition.Implement(() => container.GetInstance<IExecutionContextInterceptor>(), m => predicate(m, typeof(IStringAction)) || predicate(m, typeof(IVoidAction)));
             proxyDefinition.Implement(() => container.GetInstance<IActionInterceptor>(), m => predicate(m, typeof(IStringAction)));
