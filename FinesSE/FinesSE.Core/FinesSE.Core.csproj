@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Environment\BrowserProcessSeeker.cs" />
+    <Compile Include="Environment\DelayerInterceptor.cs" />
     <Compile Include="Environment\EnvironmentInfo.cs" />
     <Compile Include="Environment\LogAppender.cs" />
     <Compile Include="Environment\ProcessList.cs" />

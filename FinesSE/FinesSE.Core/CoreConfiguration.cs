@@ -14,6 +14,7 @@ namespace FinesSE.Core
         public string LogPattern { get; set; }
         public BrowserSize DefaultBrowserSize { get; set; }
         public BrowserSize[] BrowserSizes { get; set; }
+        public TimeSpan DelayerTime { get; set; }
 
         public static CoreConfiguration Default
             => new CoreConfiguration()
@@ -23,7 +24,8 @@ namespace FinesSE.Core
                 LogToFile = false,
                 LogPattern = "%date [%level] %message",
                 DefaultBrowserSize = new BrowserSize("Default", 1024, 768),
-                BrowserSizes = BrowserSize.GetDefaultBrowserSizes().ToArray()
+                BrowserSizes = BrowserSize.GetDefaultBrowserSizes().ToArray(),
+                DelayerTime = TimeSpan.Zero
             };
     }
 }

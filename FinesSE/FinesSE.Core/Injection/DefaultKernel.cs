@@ -36,6 +36,7 @@ namespace FinesSE.Core.Injection
             container.RegisterFrom<C>();
             container.RegisterInstance<IKernel>(this);
             container.Intercept(x => x.ServiceType == typeof(IInvocationProxy), (sf, pd) => DefineProxyType(pd));
+            container.Register<DelayerInterceptor>(new PerContainerLifetime());
 
             if (container.GetInstance<IConfigurationProvider>().Get(CoreConfiguration.Default).LogToFile)
             {

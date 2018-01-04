@@ -4,6 +4,9 @@ using FinesSE.Core.Injection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FinesSE.Contracts.Exceptions;
 using FinesSE.Bootstrapper;
+using System.Diagnostics;
+using FinesSE.Contracts.Infrastructure;
+using FinesSE.Core;
 
 namespace FinesSE.UnitTests
 {
@@ -76,6 +79,28 @@ namespace FinesSE.UnitTests
             {
                 throw new InvalidOperationException();
             }
+        }
+
+        [TestMethod]
+        [DataRow(0)]
+        [DataRow(100)]
+        [DataRow(200)]
+        [DataRow(300)]
+        [DataRow(400)]
+        public void CanDelayActions(int minProcessingTime)
+        {
+            var kernel = new DefaultKernel<CompositionRoot>();
+            kernel.Initialize();
+            kernel.AddAction<CustomAction3>(typeof(CustomAction3).FullName);
+            var configuration = kernel
+                .Get<IConfigurationProvider>("")
+                .Get(CoreConfiguration.Default);
+            configuration.DelayerTime = TimeSpan.FromMilliseconds(minProcessingTime);
+
+            var watch = Stopwatch.StartNew();
+            var value = Guid.NewGuid().ToString();
+            Assert.AreEqual(value, kernel.Proxy.Invoke<CustomAction3>(value));
+            Assert.IsTrue(watch.ElapsedMilliseconds > minProcessingTime);
         }
     }
 }

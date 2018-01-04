@@ -16,6 +16,8 @@ CoreConfiguration:
         Name: Default
         Width: 1024
         Height: 768
+    # An amount of time every action is delayed
+    DelayerTime: 00:00:00
 
 # Defines settings relevant to test report creation only
 ReportsConfiguration:
