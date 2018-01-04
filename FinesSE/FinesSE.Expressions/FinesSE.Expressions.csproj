@@ -36,6 +36,12 @@
     <Reference Include="LightInject, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LightInject.5.1.0\lib\net46\LightInject.dll</HintPath>
     </Reference>
+    <Reference Include="LightInject.Interception, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.Interception.2.0.0\lib\netstandard1.1\LightInject.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\FinesSE.UnitTests\bin\Debug\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,10 +55,21 @@
     <Compile Include="Contracts\IExpressionEngine.cs" />
     <Compile Include="ExpressionsCompositionRoot.cs" />
     <Compile Include="Infrastructure\ExpressionEngine.cs" />
+    <Compile Include="Infrastructure\InterpolationInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
+      <Project>{BC108868-ED68-4A88-A363-4D17CD745717}</Project>
+      <Name>FinesSE.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Core\FinesSE.Core.csproj">
+      <Project>{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}</Project>
+      <Name>FinesSE.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
