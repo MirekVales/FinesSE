@@ -33,7 +33,12 @@
     <Reference Include="Jint, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
       <HintPath>..\packages\Jint.2.11.23\lib\net451\Jint.dll</HintPath>
     </Reference>
-    <Reference Include="LightInject.Interception, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="LightInject, Version=5.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.5.1.1\lib\net46\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.Interception, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.Interception.2.0.0\lib\netstandard1.1\LightInject.Interception.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\FinesSE.UnitTests\bin\Debug\log4net.dll</HintPath>
     </Reference>
