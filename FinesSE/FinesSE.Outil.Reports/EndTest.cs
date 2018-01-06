@@ -11,7 +11,7 @@ namespace FinesSE.Outil.Reports
         [EntryPoint]
         public void Invoke(string id, string status, string description)
             => ReportBuilder.EndTest(
-                Guid.Parse(id),
+                string.IsNullOrWhiteSpace(id) ? ReportBuilder.LastTestId : Guid.Parse(id),
                 (LogStatus)Enum.Parse(typeof(LogStatus), status),
                 description);
     }

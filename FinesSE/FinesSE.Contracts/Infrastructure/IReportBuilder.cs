@@ -8,6 +8,7 @@ namespace FinesSE.Contracts.Infrastructure
     public interface IReportBuilder
     {
         bool ReportingEnabled { get; }
+        Guid LastTestId { get; }
 
         void SetTestInfo(Guid id, string name, string description, params string[] tags);
 

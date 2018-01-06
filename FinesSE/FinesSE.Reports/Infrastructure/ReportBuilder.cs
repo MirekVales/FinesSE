@@ -23,6 +23,8 @@ namespace FinesSE.Reports.Infrastructure
 
         public bool ReportingEnabled => configuration.ReportEnabled;
 
+        public Guid LastTestId { get; private set; }
+
         public ReportBuilder(IConfigurationProvider provider, ILog log)
         {
             configuration = provider.Get(ReportsConfiguration.Default);
@@ -69,7 +71,7 @@ namespace FinesSE.Reports.Infrastructure
             => report.AddTestRunnerOutput(log);
 
         public void StartTest(Guid id, string name, string description = null)
-            => tests.Add(id, report.StartTest(name, description));
+            => tests.Add(LastTestId = id, report.StartTest(name, description));
 
         public void LogTest(Guid id, LogStatus status, string description = null)
             => tests[id].Log(Convert(status), description);
