@@ -10,17 +10,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FinesSE.Launcher
 {
-    public class SlimRunner
+    public class FitRunner
     {
         readonly IEnumerable<string> assemblies;
         readonly IEnumerable<string> namespaces;
         readonly FormatConvertor convertor;
 
-        public SlimRunner(IEnumerable<string> assemblies, IEnumerable<string> namespaces)
+        public FitRunner(IEnumerable<string> assemblies, IEnumerable<string> namespaces)
         {
             this.assemblies = assemblies;
             this.namespaces = namespaces;
@@ -58,9 +59,11 @@ namespace FinesSE.Launcher
         void CreateStoryTest(string input, out StoryTestStringWriter writer, out StoryTest storyTest)
         {
             CellProcessorBase processor = CreateProcessor();
-
+            
             writer = new StoryTestStringWriter(processor);
             storyTest = new StoryTest(processor, writer).WithInput(input);
+
+            var tree = new fitSharp.Slim.Model.SlimTree();
 
             if (!storyTest.IsExecutable)
                 throw new InvalidFormatException("Input content is not in executable format");
@@ -71,6 +74,7 @@ namespace FinesSE.Launcher
             var memory = new TypeDictionary();
             var processor = new CellProcessorBase(memory, memory.GetItem<CellOperators>());
             processor.ApplicationUnderTest.AddAssemblies(assemblies);
+            processor.AddNamespace("fitnesse.slim.test");
             namespaces.ToList().ForEach(processor.AddNamespace);
             return processor;
         }

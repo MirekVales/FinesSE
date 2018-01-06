@@ -17,11 +17,23 @@ namespace FinesSE.Launcher
                 .Wait();
         }
 
-        static SlimRunner CreateRunner()
+        static FitRunner CreateRunner()
         {
-            var assemblies = new[] { $"{nameof(FinesSE)}.{nameof(Bootstrapper)}.dll" };
+            var assemblies = new[] {
+                $"{nameof(FinesSE)}.{nameof(Bootstrapper)}.dll",
+                $"{nameof(FinesSE)}.Contracts.dll",
+                $"{nameof(FinesSE)}.Core.dll",
+                $"{nameof(FinesSE)}.Drivers.dll",
+                $"{nameof(FinesSE)}.Expressions.dll",
+                $"{nameof(FinesSE)}.Outil.dll",
+                $"{nameof(FinesSE)}.Outil.Expressions.dll",
+                $"{nameof(FinesSE)}.Outil.Reports.dll",
+                $"{nameof(FinesSE)}.Outil.VisualRegression.dll",
+                $"{nameof(FinesSE)}.Reports.dll",
+                $"{nameof(FinesSE)}.VisualRegression.dll",
+            };
             var namespaces = new[] { $"{nameof(FinesSE)}.{nameof(Bootstrapper)}" };
-            return new SlimRunner(assemblies, namespaces);
+            return new FitRunner(assemblies, namespaces);
         }
     }
 }
