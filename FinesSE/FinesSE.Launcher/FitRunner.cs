@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FinesSE.Launcher
@@ -40,9 +41,44 @@ namespace FinesSE.Launcher
             return await ExecuteAsync(convertor.Convert(inputData, inputFormat), inputAnnotation);
         }
 
+        string ApplyInterposedArguments(string input)
+        {
+            const string tdPattern = @"<td>.*?<\/td>";
+            const string interposeCharacter = ";";
+
+            var builder = new StringBuilder();
+            foreach (var line in input.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+            {
+                var tdIndex = 0;
+                foreach (Match td in Regex.Matches(line, tdPattern))
+                {
+                    if (tdIndex == 0 && !td.Value.Contains(interposeCharacter))
+                    {
+                        builder.Append(line);
+                        builder.AppendLine();
+                        break;
+                    }
+                    else if (tdIndex == 0)
+                        builder.Append("<tr>");
+
+                    builder.Append(td.Value);
+
+                    if (tdIndex != 0)
+                        builder.Append(@"<td></td>");
+
+                    tdIndex++;
+                }
+
+                builder.Append("</tr>");
+                builder.AppendLine();
+            }
+
+            return builder.ToString();
+        }
+
         Task<string> ExecuteAsync(string input, string inputAnnotation)
         {
-            CreateStoryTest(input, out StoryTestStringWriter writer, out StoryTest storyTest);
+            CreateStoryTest(ApplyInterposedArguments(input), out StoryTestStringWriter writer, out StoryTest storyTest);
 
             var elapsedTime = new ElapsedTime();
             storyTest.Execute();
@@ -59,7 +95,7 @@ namespace FinesSE.Launcher
         void CreateStoryTest(string input, out StoryTestStringWriter writer, out StoryTest storyTest)
         {
             CellProcessorBase processor = CreateProcessor();
-            
+
             writer = new StoryTestStringWriter(processor);
             storyTest = new StoryTest(processor, writer).WithInput(input);
 
