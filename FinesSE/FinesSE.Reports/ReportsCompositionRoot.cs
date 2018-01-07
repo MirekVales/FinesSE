@@ -8,7 +8,7 @@ namespace FinesSE.Reports
     {
         public void Compose(IServiceRegistry container)
         {
-            container.Register<IReportBuilder, ReportBuilder>();
+            container.Register<IReportBuilder, ReportBuilder>(new PerContainerLifetime());
         }
     }
 }
