@@ -18,6 +18,8 @@ CoreConfiguration:
         Height: 768
     # An amount of time every action is delayed
     DelayerTime: 00:00:00
+    # If enabled, when the execution finishes the engine kills a hanging web driver process (if any) 
+    ProcessTerminationEnabled: true
 
 # Defines settings relevant to test report creation only
 ReportsConfiguration:

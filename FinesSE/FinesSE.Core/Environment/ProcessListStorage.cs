@@ -18,6 +18,13 @@ namespace FinesSE.Core.Environment
 
         public ILog Log { get; set; }
 
+        readonly CoreConfiguration configuration;
+
+        public ProcessListStorage(IConfigurationProvider ConfigurationProvider)
+        {
+            configuration = ConfigurationProvider.Get(CoreConfiguration.Default);
+        }
+
         public void AddProcesses(IEnumerable<ChildProcess> processes)
         {
             var list = LoadFromDisk();
@@ -34,25 +41,31 @@ namespace FinesSE.Core.Environment
 
         void KillAllProcesses(IEnumerable<ChildProcess> processes)
         {
-            foreach (var processItem in processes)
+            if (configuration.ProcessTerminationEnabled)
             {
-                try
+                foreach (var processItem in processes)
                 {
-                    var process = Process.GetProcessById(processItem.ProcessId);
-
-                    Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} is evaluated for termination");
-
-                    if (string.Equals(
-                        processItem.Name,
-                        process.ProcessName,
-                        StringComparison.InvariantCultureIgnoreCase))
+                    try
                     {
-                        Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} is about to be terminated");
-                        process.Kill();
-                        Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} was terminated");
+                        var process = Process.GetProcessById(processItem.ProcessId);
+
+                        Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} is evaluated for termination");
+
+                        if (string.Equals(
+                            processItem.Name,
+                            process.ProcessName,
+                            StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} is about to be terminated");
+                            process.Kill();
+                            Log.Debug($"Process {processItem.Name} PID {processItem.ProcessId} was terminated");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Debug($"An exception when terminating process {processItem.Name} PID {processItem.ProcessId} {e.Message}");
                     }
                 }
-                catch { }
             }
             processes = new ChildProcess[0];
         }

@@ -15,6 +15,7 @@ namespace FinesSE.Core
         public BrowserSize DefaultBrowserSize { get; set; }
         public BrowserSize[] BrowserSizes { get; set; }
         public TimeSpan DelayerTime { get; set; }
+        public bool ProcessTerminationEnabled { get; set; }
 
         public static CoreConfiguration Default
             => new CoreConfiguration()
@@ -25,7 +26,8 @@ namespace FinesSE.Core
                 LogPattern = "%date [%level] %message",
                 DefaultBrowserSize = new BrowserSize("Default", 1024, 768),
                 BrowserSizes = BrowserSize.GetDefaultBrowserSizes().ToArray(),
-                DelayerTime = TimeSpan.Zero
+                DelayerTime = TimeSpan.Zero,
+                ProcessTerminationEnabled = true
             };
     }
 }
