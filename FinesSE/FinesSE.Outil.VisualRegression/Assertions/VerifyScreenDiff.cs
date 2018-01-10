@@ -36,11 +36,11 @@ namespace FinesSE.Outil.VisualRegression.Assertions
                 var elementId = IdentityProvider.GetIdentifier(Context.Driver, elements, element);
                 ScreenshotStore.Store(screenshot, Context.TopicId, elementId, referenceVersionId);
 
+                var diff = ScreenshotStore.Compare(Context.TopicId, elementId, baseVersionId, referenceVersionId);
                 Invoker.AddImage(ScreenshotStore.GetPath(Context.TopicId, elementId, configuration.ScreenshotStoreBaseVersionId));
                 Invoker.AddImage(ScreenshotStore.GetPath(Context.TopicId, elementId, configuration.ScreenshotStoreReferenceVersionId));
                 Invoker.AddImage(ScreenshotStore.GetPath(Context.TopicId, elementId, configuration.ScreenshotStoreDiffVersionId));
 
-                var diff = ScreenshotStore.Compare(Context.TopicId, elementId, baseVersionId, referenceVersionId);
                 Invoker.AddInfo($"Total difference {diff}");
                 if (diff > tolerance)
                     throw new ComparisonAssertionException(elementId, baseVersionId, referenceVersionId, diff * 100, tolerance * 100);
