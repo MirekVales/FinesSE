@@ -20,7 +20,7 @@ namespace FinesSE.Drivers
         public bool IgnoreZoomLevel { get; internal set; }
         public string InitialBrowserUrl { get; internal set; }
         public bool IntroduceInstabilityByIgnoringProtectedModeSettings { get; internal set; }
-        public InternetExplorerPageLoadStrategy PageLoadStrategy { get; internal set; }
+        public PageLoadStrategy PageLoadStrategy { get; internal set; }
         public Proxy Proxy { get; internal set; }
         public bool RequireWindowFocus { get; internal set; }
         public InternetExplorerUnexpectedAlertBehavior UnexpectedAlertBehavior { get; internal set; }
