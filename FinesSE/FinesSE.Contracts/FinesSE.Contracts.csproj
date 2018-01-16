@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\ActionNotFoundException.cs" />
     <Compile Include="Exceptions\AssertionException.cs" />
+    <Compile Include="Exceptions\FileNotFoundException.cs" />
     <Compile Include="Exceptions\InvalidNumberOfWebElementsException.cs" />
     <Compile Include="Exceptions\MethodNotFoundException.cs" />
     <Compile Include="Exceptions\OptionNotFoundException.cs" />

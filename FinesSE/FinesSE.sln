@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Contracts", "FinesSE.Contracts\FinesSE.Contracts.csproj", "{BC108868-ED68-4A88-A363-4D17CD745717}"
 EndProject
@@ -30,6 +30,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Reports", "FinesSE.Reports\FinesSE.Reports.csproj", "{D292B6E8-909F-45DC-A59F-8BB72FC163C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil.Reports", "FinesSE.Outil.Reports\FinesSE.Outil.Reports.csproj", "{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.SoapUI", "FinesSE.SoapUI\FinesSE.SoapUI.csproj", "{418241AA-A5FF-44F8-BDED-A9B36FE09677}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil.SoapUI", "FinesSE.Outil.SoapUI\FinesSE.Outil.SoapUI.csproj", "{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{418241AA-A5FF-44F8-BDED-A9B36FE09677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418241AA-A5FF-44F8-BDED-A9B36FE09677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418241AA-A5FF-44F8-BDED-A9B36FE09677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{418241AA-A5FF-44F8-BDED-A9B36FE09677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

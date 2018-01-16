@@ -60,6 +60,12 @@ namespace FinesSE.Reports.Infrastructure
                 tests[id].AssignCategory(tags);
         }
 
+        public void SetTestTimeInfo(Guid id, DateTime startTime, DateTime endTime)
+        {
+            tests[id].StartTime = startTime;
+            tests[id].EndTime = endTime;
+        }
+
         public void AppendScreenshot(Guid id, string path)
             => tests[id].Log(
                 RelevantCodes.ExtentReports.LogStatus.Info,

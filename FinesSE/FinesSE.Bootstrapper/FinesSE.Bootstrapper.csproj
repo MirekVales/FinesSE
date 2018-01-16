@@ -82,6 +82,10 @@
       <Project>{5f4ccddc-e684-47a7-9aa3-608d6f330e5a}</Project>
       <Name>FinesSE.Outil.Reports</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Outil.SoapUI\FinesSE.Outil.SoapUI.csproj">
+      <Project>{3461d1e9-63c5-4cc8-b239-ec0ccaffe20e}</Project>
+      <Name>FinesSE.Outil.SoapUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FinesSE.Outil.VisualRegression\FinesSE.Outil.VisualRegression.csproj">
       <Project>{6F4588B6-FCF8-430B-A314-4A35DFE56AE5}</Project>
       <Name>FinesSE.Outil.VisualRegression</Name>
@@ -110,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Compile Include="SE.SoapUI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

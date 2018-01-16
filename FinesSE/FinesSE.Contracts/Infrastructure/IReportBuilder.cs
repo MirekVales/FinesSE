@@ -12,6 +12,8 @@ namespace FinesSE.Contracts.Infrastructure
 
         void SetTestInfo(Guid id, string name, string description, params string[] tags);
 
+        void SetTestTimeInfo(Guid id, DateTime startTime, DateTime endTime);
+
         void AppendScreenshot(Guid id, string path);
 
         void StartTest(Guid id, string name, string description = null);

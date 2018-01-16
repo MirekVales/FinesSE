@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F4CCDDC-E684-47A7-9AA3-608D6F330E5A}</ProjectGuid>
+    <ProjectGuid>{418241AA-A5FF-44F8-BDED-A9B36FE09677}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FinesSE.Outil.Reports</RootNamespace>
-    <AssemblyName>FinesSE.Outil.Reports</AssemblyName>
+    <RootNamespace>FinesSE.SoapUI</RootNamespace>
+    <AssemblyName>FinesSE.SoapUI</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,19 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EndTest.cs" />
-    <Compile Include="LogTestInfo.cs" />
-    <Compile Include="StartTest.cs" />
+    <Compile Include="SoapUIRunnerConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
       <Project>{BC108868-ED68-4A88-A363-4D17CD745717}</Project>
       <Name>FinesSE.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FinesSE.SoapUI\FinesSE.SoapUI.csproj">
-      <Project>{418241AA-A5FF-44F8-BDED-A9B36FE09677}</Project>
-      <Name>FinesSE.SoapUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
