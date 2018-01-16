@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunSoapUITests.cs" />
+    <Compile Include="VerifySoapUITests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">

@@ -10,13 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace FinesSE.Outil.Reports
+namespace FinesSE.Outil.SoapUI
 {
     public class RunSoapUITests : IStringAction
     {
         public IReportBuilder ReportBuilder { get; set; }
         public IConfigurationProvider Provider { get; set; }
         public ILog Log { get; set; }
+
+        public List<(string name, int msTaken, LogStatus status)> Results { get; private set; }
 
         [EntryPoint]
         public string Invoke(string pathToTests, string suiteName)
@@ -30,9 +32,9 @@ namespace FinesSE.Outil.Reports
             var start = DateTime.Now;
             var result = RunTest(startInfo);
 
-            var results = ParseTestCases(result).ToList();
+            Results = ParseTestCases(result).ToList();
 
-            foreach (var (name, timeTaken, status) in results)
+            foreach (var (name, timeTaken, status) in Results)
             {
                 var id = Guid.NewGuid();
                 ReportBuilder.StartTest(id, name);
@@ -40,7 +42,7 @@ namespace FinesSE.Outil.Reports
                 ReportBuilder.EndTest(id, status, $"{timeTaken} ms");
             }
 
-            return FormatResultMessage(results);
+            return FormatResultMessage(Results);
         }
 
         string FormatResultMessage(IEnumerable<(string name, int msTaken, LogStatus status)> results)
