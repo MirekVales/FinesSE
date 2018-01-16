@@ -63,3 +63,10 @@ VisualRegression:
     ScreenshotStoreReferenceVersionId: ref
     # An identifier of comparison screenshot
     ScreenshotStoreDiffVersionId: diff
+
+# Defines settings related to SoapUI test runner
+SoapUIRunnerConfiguration:
+    # A path to testrunner.bat
+    RunnerPath: ""
+    # A path to soapui-settings.xml
+    SettingsFilePath: ""

@@ -63,9 +63,13 @@ namespace FinesSE.Outil.SoapUI
 
         ProcessStartInfo GetStartInfo(SoapUIRunnerConfiguration configuration, string pathToTests, string suiteName)
         {
+            var settingsArgument = string.IsNullOrEmpty(configuration.SettingsFilePath)
+                ? ""
+                : $" -t \"{configuration.SettingsFilePath}\"";
+
             return new ProcessStartInfo()
             {
-                Arguments = $"-r -s \"{suiteName}\" \"{pathToTests}\" -I",
+                Arguments = $"-r -s \"{suiteName}\" \"{pathToTests}\" -I{settingsArgument}",
                 CreateNoWindow = true,
                 FileName = configuration.RunnerPath,
                 UseShellExecute = false,
