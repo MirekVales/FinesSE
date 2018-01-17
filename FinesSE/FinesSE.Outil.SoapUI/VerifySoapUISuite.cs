@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace FinesSE.Outil.SoapUI
 {
-    public class VerifySoapUITests : IVoidAction
+    public class VerifySoapUISuite : IVoidAction
     {
         public IKernel Kernel { get; set; }
 
         [EntryPoint]
         public void Invoke(string pathToTests, string suiteName)
         {
-            var runner = Kernel.Get<RunSoapUITests>("");
+            var runner = Kernel.Get<RunSoapUISuite>("");
             runner.Invoke(pathToTests, suiteName);
 
             var failed = runner.Results.Count(r => r.status == LogStatus.Fail);

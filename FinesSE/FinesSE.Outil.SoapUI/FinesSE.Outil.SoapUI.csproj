@@ -47,13 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RunSoapUITests.cs" />
-    <Compile Include="VerifySoapUITests.cs" />
+    <Compile Include="RunSoapUISuite.cs" />
+    <Compile Include="VerifySoapUISuite.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FinesSE.Contracts\FinesSE.Contracts.csproj">
       <Project>{BC108868-ED68-4A88-A363-4D17CD745717}</Project>
       <Name>FinesSE.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinesSE.Core\FinesSE.Core.csproj">
+      <Project>{243DBADA-3DFB-4A1A-B2FC-CF5E46FAE4A2}</Project>
+      <Name>FinesSE.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\FinesSE.SoapUI\FinesSE.SoapUI.csproj">
       <Project>{418241AA-A5FF-44F8-BDED-A9B36FE09677}</Project>

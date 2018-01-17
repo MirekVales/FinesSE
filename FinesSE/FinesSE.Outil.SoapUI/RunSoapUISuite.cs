@@ -1,5 +1,6 @@
 ﻿using FinesSE.Contracts.Infrastructure;
 using FinesSE.Contracts.Invokable;
+using FinesSE.Core;
 using FinesSE.SoapUI;
 using log4net;
 using System;
@@ -12,7 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace FinesSE.Outil.SoapUI
 {
-    public class RunSoapUITests : IStringAction
+    public class RunSoapUISuite : IStringAction
     {
         public IReportBuilder ReportBuilder { get; set; }
         public IConfigurationProvider Provider { get; set; }
@@ -27,7 +28,7 @@ namespace FinesSE.Outil.SoapUI
 
             ValidateConfiguration(configuration);
 
-            ProcessStartInfo startInfo = GetStartInfo(configuration, pathToTests, suiteName);
+            ProcessStartInfo startInfo = GetStartInfo(configuration, pathToTests.GetRootedPath(), suiteName);
 
             var start = DateTime.Now;
             var result = RunTest(startInfo);
@@ -38,6 +39,13 @@ namespace FinesSE.Outil.SoapUI
             {
                 var id = Guid.NewGuid();
                 ReportBuilder.StartTest(id, name);
+                ReportBuilder.SetTestInfo(
+                    id,
+                    name,
+                    "",
+                    "SoapUI",
+                    suiteName,
+                    Path.GetFileName(pathToTests));
                 ReportBuilder.SetTestTimeInfo(id, start, start.AddMilliseconds(timeTaken));
                 ReportBuilder.EndTest(id, status, $"{timeTaken} ms");
             }
@@ -57,21 +65,21 @@ namespace FinesSE.Outil.SoapUI
 
         void ValidateConfiguration(SoapUIRunnerConfiguration configuration)
         {
-            if (string.IsNullOrEmpty(configuration.RunnerPath) || !File.Exists(configuration.RunnerPath))
-                throw new Contracts.Exceptions.FileNotFoundException($"Runner not found at {configuration.RunnerPath}");
+            if (string.IsNullOrEmpty(configuration.RunnerPath) || !File.Exists(configuration.RunnerPath.GetRootedPath()))
+                throw new Contracts.Exceptions.FileNotFoundException($"Runner not found at {configuration.RunnerPath.GetRootedPath()}");
         }
 
         ProcessStartInfo GetStartInfo(SoapUIRunnerConfiguration configuration, string pathToTests, string suiteName)
         {
             var settingsArgument = string.IsNullOrEmpty(configuration.SettingsFilePath)
                 ? ""
-                : $" -t \"{configuration.SettingsFilePath}\"";
+                : $" -t \"{configuration.SettingsFilePath.GetRootedPath()}\"";
 
             return new ProcessStartInfo()
             {
                 Arguments = $"-r -s \"{suiteName}\" \"{pathToTests}\" -I{settingsArgument}",
                 CreateNoWindow = true,
-                FileName = configuration.RunnerPath,
+                FileName = configuration.RunnerPath.GetRootedPath(),
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true

@@ -4,10 +4,10 @@ namespace FinesSE.Bootstrapper
 {
     public partial class SE
     {
-        public string RunSoapUITests(string testFile, string suiteName)
-            => p.Invoke<RunSoapUITests>(testFile, suiteName);
+        public string RunSoapUISuite(string testFile, string suiteName)
+            => p.Invoke<RunSoapUISuite>(testFile, suiteName);
 
-        public void VerifySoapUITests(string testFile, string suiteName)
-            => p.InvokeVoid<VerifySoapUITests>(testFile, suiteName);
+        public void VerifySoapUISuite(string testFile, string suiteName)
+            => p.InvokeVoid<VerifySoapUISuite>(testFile, suiteName);
     }
 }
