@@ -67,6 +67,6 @@ VisualRegression:
 # Defines settings related to SoapUI test runner
 SoapUIRunnerConfiguration:
     # A path to testrunner.bat
-    RunnerPath: ""
+    RunnerPath: testrunner.bat
     # A path to soapui-settings.xml
-    SettingsFilePath: ""
+    SettingsFilePath: soapui-settings.xml
