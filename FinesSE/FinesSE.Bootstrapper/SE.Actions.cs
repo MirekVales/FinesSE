@@ -16,6 +16,9 @@ namespace FinesSE.Bootstrapper
         public void DoubleClick(string locator)
             => p.InvokeVoid<DoubleClick>(locator);
 
+        public string Count(string locator)
+            => p.Invoke<Count>(locator);
+
         public void Close()
             => kernel.Context.Dispose();
 
