@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using FinesSE.Contracts.Invokable;
+﻿using FinesSE.Contracts.Invokable;
 using FinesSE.Core.WebDriver;
 
 namespace FinesSE.Outil.Actions

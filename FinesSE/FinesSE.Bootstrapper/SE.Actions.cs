@@ -16,6 +16,9 @@ namespace FinesSE.Bootstrapper
         public void DoubleClick(string locator)
             => p.InvokeVoid<DoubleClick>(locator);
 
+        public void CaptureEntirePageScreenshot(string path)
+            => p.InvokeVoid<CaptureEntirePageScreenshot>(path);
+
         public string Count(string locator)
             => p.Invoke<Count>(locator);
 

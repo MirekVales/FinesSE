@@ -2,6 +2,7 @@
 using ImageMagick;
 using System;
 using System.Drawing;
+using System.IO;
 
 namespace FinesSE.Core.WebDriver
 {
@@ -67,6 +68,9 @@ namespace FinesSE.Core.WebDriver
                 return image.ToByteArray();
             }
         }
+
+        public void SaveScreenshot(string path)
+            => File.WriteAllBytes(path, TakeImage());
 
         void UpdateOffsetX(out int oldOffsetX, out int diffX)
         {
