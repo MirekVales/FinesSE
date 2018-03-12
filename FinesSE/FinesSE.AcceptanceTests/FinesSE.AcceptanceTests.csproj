@@ -54,6 +54,7 @@
     <Compile Include="LocatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualRegressionTest.cs" />
+    <Compile Include="WebDriverTest.cs" />
     <Compile Include="WorkflowTest.cs" />
   </ItemGroup>
   <ItemGroup>
