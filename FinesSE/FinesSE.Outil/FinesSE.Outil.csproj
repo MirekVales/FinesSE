@@ -75,6 +75,7 @@
     <Compile Include="Actions\Open.cs" />
     <Compile Include="Actions\Pause.cs" />
     <Compile Include="Actions\SetDefaultBrowserSize.cs" />
+    <Compile Include="Actions\SetPageLoadTimeout.cs" />
     <Compile Include="Actions\SetWindowSize.cs" />
     <Compile Include="Actions\SetZoom.cs" />
     <Compile Include="Actions\Type.cs" />

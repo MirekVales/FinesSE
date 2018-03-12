@@ -79,6 +79,9 @@ namespace FinesSE.Bootstrapper
         public void SetDefaultBrowserSize(string browserSizeName)
             => p.InvokeVoid<SetDefaultBrowserSize>(browserSizeName);
 
+        public void SetPageLoadTimeout(string pageLoadTimeout)
+            => p.InvokeVoid<SetPageLoadTimeout>(pageLoadTimeout);
+
         public void SetZoom(string zoomLevel)
             => p.InvokeVoid<SetZoom>(zoomLevel);
 
