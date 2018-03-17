@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Actions\Back.cs" />
     <Compile Include="Actions\CaptureEntirePageScreenshot.cs" />
+    <Compile Include="Actions\Clear.cs" />
     <Compile Include="Actions\Click.cs" />
     <Compile Include="Actions\ClickAt.cs" />
     <Compile Include="Actions\Count.cs" />

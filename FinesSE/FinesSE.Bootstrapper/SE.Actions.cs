@@ -7,6 +7,9 @@ namespace FinesSE.Bootstrapper
         public void Back()
             => p.InvokeVoid<Back>();
 
+        public void Clear(string locator)
+            => p.InvokeVoid<Clear>(locator);
+
         public void Click(string locator)
             => p.InvokeVoid<Click>(locator);
 
