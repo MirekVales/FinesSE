@@ -18,6 +18,7 @@ namespace FinesSE.Outil.SoapUI
         public IReportBuilder ReportBuilder { get; set; }
         public IConfigurationProvider Provider { get; set; }
         public ILog Log { get; set; }
+        public IExecutionContext Context { get; set; }
 
         public List<(string name, int msTaken, LogStatus status)> Results { get; private set; }
 
@@ -77,7 +78,7 @@ namespace FinesSE.Outil.SoapUI
 
             return new ProcessStartInfo()
             {
-                Arguments = $"-r -s \"{suiteName}\" \"{pathToTests}\" -I{settingsArgument}",
+                Arguments = $"-r -s \"{suiteName}\" \"{pathToTests}\" -I{settingsArgument} -a -A -f \"{Path.Combine(Context.TempDirectory, "SoapUIResults")}\" -F XML",
                 CreateNoWindow = true,
                 FileName = configuration.RunnerPath.GetRootedPath(),
                 UseShellExecute = false,

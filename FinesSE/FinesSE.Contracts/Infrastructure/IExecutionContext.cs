@@ -16,5 +16,7 @@ namespace FinesSE.Contracts.Infrastructure
 
         void AddWorkflowBranch(BranchType branchType);
         bool IsActionIgnored();
+
+        string TempDirectory { get; }
     }
 }

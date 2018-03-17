@@ -110,5 +110,8 @@ namespace FinesSE.Core
                     value
                     .Replace(",", NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)
                     .Replace(".", NumberFormatInfo.CurrentInfo.NumberDecimalSeparator));
+
+        public static string GetTemporaryDirectory(this string path)
+            => Path.Combine(Path.GetTempPath(), DateTime.Now.Millisecond.ToString());
     }
 }

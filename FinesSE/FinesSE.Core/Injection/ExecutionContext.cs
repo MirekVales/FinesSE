@@ -18,6 +18,8 @@ namespace FinesSE.Core.Injection
         public IEnumerable<WebDrivers> Drivers => drivers.Keys;
         public IInvoker Invoker { get; set; }
 
+        public string TempDirectory { get; }
+
         string topicId = "Default";
         readonly ILog log;
 
@@ -36,6 +38,11 @@ namespace FinesSE.Core.Injection
             dynamicInitializers = GetDynamicInitializers();
             drivers = new Dictionary<WebDrivers, IWebDriver>();
             currentBrowser = ConfigurationProvider.Get(CoreConfiguration.Default).DefaultBrowser;
+
+            var tempDirectory = "".GetTemporaryDirectory();
+            if (Directory.Exists(tempDirectory))
+                Directory.Delete(tempDirectory, true);
+            TempDirectory = Directory.CreateDirectory(tempDirectory).FullName;
         }
 
         readonly Stack<BranchType> branches = new Stack<BranchType>();
@@ -136,6 +143,16 @@ namespace FinesSE.Core.Injection
                 log.Debug($"Driver {driver.Value} disposed");
             }
             drivers.Clear();
+
+            try
+            {
+                log.Debug($"Temporary folder {TempDirectory} is about to be deleted");
+                Directory.Delete(TempDirectory, true);
+            }
+            catch (Exception e)
+            {
+                log.Debug($"Failed to delete temporary folder {TempDirectory} due {e.Message}");
+            }
         }
     }
 }
