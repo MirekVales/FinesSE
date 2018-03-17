@@ -55,6 +55,9 @@ namespace FinesSE.Bootstrapper
         public string GetCookieNamed(string name)
             => p.Invoke<GetCookieNamed>(name);
 
+        public string GetCssValue(string locator, string propertyName)
+            => p.Invoke<GetCssValue>(locator, propertyName);
+
         public string GetCurrentUrl()
             => p.Invoke<GetCurrentUrl>();
 

@@ -66,6 +66,7 @@
     <Compile Include="Actions\GetAttribute.cs" />
     <Compile Include="Actions\GetCookieNamed.cs" />
     <Compile Include="Actions\GetCookies.cs" />
+    <Compile Include="Actions\GetCssValue.cs" />
     <Compile Include="Actions\GetCurrentUrl.cs" />
     <Compile Include="Actions\GetPageSource.cs" />
     <Compile Include="Actions\GetTagName.cs" />
