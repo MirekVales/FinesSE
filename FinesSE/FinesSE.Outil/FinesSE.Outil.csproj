@@ -61,6 +61,7 @@
     <Compile Include="Actions\DoubleClick.cs" />
     <Compile Include="Actions\Execute.cs" />
     <Compile Include="Actions\Focus.cs" />
+    <Compile Include="Actions\Forward.cs" />
     <Compile Include="Actions\GetCookieNamed.cs" />
     <Compile Include="Actions\GetCookies.cs" />
     <Compile Include="Actions\GetCurrentUrl.cs" />
