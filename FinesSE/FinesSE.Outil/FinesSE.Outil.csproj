@@ -92,9 +92,11 @@
     <Compile Include="Actions\WindowFocus.cs" />
     <Compile Include="Actions\WaitForCondition.cs" />
     <Compile Include="Actions\WindowMaximize.cs" />
+    <Compile Include="Assertions\Contains.cs" />
     <Compile Include="Assertions\Equals.cs" />
     <Compile Include="Assertions\GreaterThan.cs" />
     <Compile Include="Assertions\GreaterThanOrEqual.cs" />
+    <Compile Include="Assertions\NotContains.cs" />
     <Compile Include="Assertions\NotEquals.cs" />
     <Compile Include="Assertions\SmallerThan.cs" />
     <Compile Include="Assertions\SmallerThanOrEqual.cs" />

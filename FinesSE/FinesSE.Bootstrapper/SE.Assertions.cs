@@ -4,6 +4,12 @@ namespace FinesSE.Bootstrapper
 {
     public partial class SE
     {
+        public void Contains(string needle, string haystack)
+            => p.InvokeVoid<Contains>(needle, haystack);
+
+        public void NotContains(string needle, string haystack)
+            => p.InvokeVoid<NotContains>(needle, haystack);
+
         public void VerifyEquality(string expected, string actual)
             => p.InvokeVoid<VerifyEquality>(expected, actual);
 
