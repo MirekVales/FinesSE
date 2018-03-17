@@ -63,6 +63,7 @@
     <Compile Include="Actions\GetCookieNamed.cs" />
     <Compile Include="Actions\GetCookies.cs" />
     <Compile Include="Actions\GetCurrentUrl.cs" />
+    <Compile Include="Actions\GetPageSource.cs" />
     <Compile Include="Actions\GetText.cs" />
     <Compile Include="Actions\GetTitle.cs" />
     <Compile Include="Actions\Highlight.cs" />
