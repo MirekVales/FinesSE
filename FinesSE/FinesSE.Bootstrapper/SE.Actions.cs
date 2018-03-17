@@ -4,6 +4,9 @@ namespace FinesSE.Bootstrapper
 {
     public partial class SE
     {
+        public void Back()
+            => p.InvokeVoid<Back>();
+
         public void Click(string locator)
             => p.InvokeVoid<Click>(locator);
 

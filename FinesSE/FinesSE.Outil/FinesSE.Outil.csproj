@@ -50,6 +50,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\Back.cs" />
     <Compile Include="Actions\CaptureEntirePageScreenshot.cs" />
     <Compile Include="Actions\Click.cs" />
     <Compile Include="Actions\ClickAt.cs" />
