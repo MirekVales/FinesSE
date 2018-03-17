@@ -46,6 +46,9 @@ namespace FinesSE.Bootstrapper
         public void Forward()
             => p.InvokeVoid<Forward>();
 
+        public string GetAttribute(string locator, string attributeName)
+            => p.Invoke<GetAttribute>(locator, attributeName);
+
         public string GetCookies()
             => p.Invoke<GetCookies>();
 
