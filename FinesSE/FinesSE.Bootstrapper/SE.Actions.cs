@@ -61,6 +61,9 @@ namespace FinesSE.Bootstrapper
         public string GetPageSource()
             => p.Invoke<GetPageSource>();
 
+        public string GetTagName(string locator)
+            => p.Invoke<GetTagName>(locator);
+
         public string GetText(string locator)
             => p.Invoke<GetText>(locator);
 
