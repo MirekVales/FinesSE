@@ -106,6 +106,9 @@ namespace FinesSE.Bootstrapper
         public void SetWindowSize(string width, string height)
             => p.InvokeVoid<SetWindowSize>(width, height);
 
+        public void Submit(string locator)
+            => p.InvokeVoid<Submit>(locator);
+
         public void Type(string locator, string value)
             => p.InvokeVoid<Type>(locator, value);
 

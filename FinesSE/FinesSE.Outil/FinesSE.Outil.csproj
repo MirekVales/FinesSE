@@ -84,6 +84,7 @@
     <Compile Include="Actions\SetPageLoadTimeout.cs" />
     <Compile Include="Actions\SetWindowSize.cs" />
     <Compile Include="Actions\SetZoom.cs" />
+    <Compile Include="Actions\Submit.cs" />
     <Compile Include="Actions\Type.cs" />
     <Compile Include="Actions\TypeKeys.cs" />
     <Compile Include="Actions\WindowFocus.cs" />
