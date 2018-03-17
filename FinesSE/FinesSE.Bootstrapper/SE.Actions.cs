@@ -46,6 +46,9 @@ namespace FinesSE.Bootstrapper
         public string GetText(string locator)
             => p.Invoke<GetText>(locator);
 
+        public string GetTitle()
+            => p.Invoke<GetTitle>();
+
         public void Highlight(string locator)
             => p.InvokeVoid<Highlight>(locator);
 
