@@ -100,6 +100,9 @@ namespace FinesSE.Bootstrapper
         public void Refresh()
             => p.InvokeVoid<Refresh>();
 
+        public void SavePageSource(string filePath)
+            => p.InvokeVoid<SavePageSource>(filePath);
+
         public void Select(string locator, string optionLocator)
             => p.InvokeVoid<Select>(locator, optionLocator);
 
