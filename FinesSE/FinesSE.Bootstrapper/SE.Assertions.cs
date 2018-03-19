@@ -28,6 +28,9 @@ namespace FinesSE.Bootstrapper
         public void GreaterThanOrEqual(string first, string second)
             => p.InvokeVoid<GreaterThanOrEqual>(first, second);
 
+        public void RegexMatches(string value, string regexPattern)
+            => p.InvokeVoid<RegexMatches>(value, regexPattern);
+
         public void SmallerThan(string first, string second)
             => p.InvokeVoid<SmallerThan>(first, second);
 
