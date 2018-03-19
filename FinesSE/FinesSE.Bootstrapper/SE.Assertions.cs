@@ -36,5 +36,8 @@ namespace FinesSE.Bootstrapper
 
         public void SmallerThanOrEqual(string first, string second)
             => p.InvokeVoid<SmallerThanOrEqual>(first, second);
+
+        public void XPathElementValueEquals(string xml, string xpath, string expected)
+            => p.InvokeVoid<XPathElementValueEquals>(xml, xpath, expected);
     }
 }
