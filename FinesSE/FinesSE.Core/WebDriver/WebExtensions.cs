@@ -118,9 +118,14 @@ namespace FinesSE.Core.WebDriver
             using (var timeout = new Timeoutable(modifiers.WaitForExistence))
                 while (!timeout.Timeouted)
                 {
-                    var elements = driver.FindElements(by);
-                    if (elements.Any())
-                        return elements;
+                    try
+                    {
+                        var elements = driver.FindElements(by);
+                        if (elements.Any())
+                            return elements;
+                    }
+                    catch(Exception)
+                    { }
                 }
 
             return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
