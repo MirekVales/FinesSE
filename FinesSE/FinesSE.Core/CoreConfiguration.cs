@@ -9,6 +9,7 @@ namespace FinesSE.Core
     {
         public WebDrivers DefaultBrowser { get; set; }
         public TimeSpan WaitForDocumentCompleteState { get; set; }
+        public TimeSpan ImplicitWait { get; set; }
         public bool LogToFile { get; set; }
         public string LogPath { get; set; }
         public string LogPattern { get; set; }
@@ -22,6 +23,7 @@ namespace FinesSE.Core
             {
                 DefaultBrowser = WebDrivers.Chrome,
                 WaitForDocumentCompleteState = TimeSpan.FromSeconds(1),
+                ImplicitWait = TimeSpan.Zero,
                 LogToFile = false,
                 LogPattern = "%date [%level] %message",
                 DefaultBrowserSize = new BrowserSize("Default", 1024, 768),

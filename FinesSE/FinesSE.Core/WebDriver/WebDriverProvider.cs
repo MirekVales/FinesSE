@@ -64,7 +64,7 @@ namespace FinesSE.Core.WebDriver
                 {
                     Log.Debug($"Activating web driver {driver}");
                     var activatedDriver = activator.Activate(configuration);
-                    SetDefaultSize(ref activatedDriver);
+                    SetConfiguredSettings(ref activatedDriver);
                     return activatedDriver;
                 }
 
@@ -75,9 +75,16 @@ namespace FinesSE.Core.WebDriver
             return null;
         }
 
-        void SetDefaultSize(ref IWebDriver driver)
+        void SetConfiguredSettings(ref IWebDriver driver)
         {
-            var size = configuration.Get(CoreConfiguration.Default).DefaultBrowserSize;
+            var coreConfiguration = configuration.Get(CoreConfiguration.Default);
+
+            driver
+                .Manage()
+                .Timeouts()
+                .ImplicitWait = coreConfiguration.ImplicitWait;
+
+            var size = coreConfiguration.DefaultBrowserSize;
             if (size == null)
                 return;
 
