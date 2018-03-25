@@ -64,6 +64,9 @@ namespace FinesSE.Bootstrapper
         public string GetElementSource(string locator)
             => p.Invoke<GetElementSource>(locator);
 
+        public string GetElementWidth(string locator)
+            => p.Invoke<GetElementWidth>(locator);
+
         public string GetPageSource()
             => p.Invoke<GetPageSource>();
 
