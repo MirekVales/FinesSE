@@ -118,6 +118,9 @@ namespace FinesSE.Bootstrapper
         public void SetDefaultBrowserSize(string browserSizeName)
             => p.InvokeVoid<SetDefaultBrowserSize>(browserSizeName);
 
+        public void SetImplicitWait(string msTimeout)
+            => p.InvokeVoid<SetImplicitWait>(msTimeout);
+
         public void SetPageLoadTimeout(string pageLoadTimeout)
             => p.InvokeVoid<SetPageLoadTimeout>(pageLoadTimeout);
 
