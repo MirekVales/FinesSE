@@ -96,8 +96,8 @@ namespace FinesSE.Core.Injection
         public void DisposeKernel()
         {
             coreLog.Debug($"Disposing kernel");
-
-            container.GetInstance<IProcessListStorage>().CleanList();
+            if (container.CanGetInstance(typeof(IProcessListStorage), ""))
+                container.GetInstance<IProcessListStorage>().CleanList();
             container.Dispose();
             appender?.Dispose();
         }
