@@ -68,6 +68,7 @@
     <Compile Include="Actions\GetCookies.cs" />
     <Compile Include="Actions\GetCssValue.cs" />
     <Compile Include="Actions\GetCurrentUrl.cs" />
+    <Compile Include="Actions\GetElementHeight.cs" />
     <Compile Include="Actions\GetElementSource.cs" />
     <Compile Include="Actions\GetElementWidth.cs" />
     <Compile Include="Actions\GetPageSource.cs" />
