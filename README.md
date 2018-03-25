@@ -8,7 +8,7 @@ The long-term vision is to provide a .NET based fixtures library that would cove
 
 ## Download
 
-[Get the latest version](https://github.com/MirekVales/FinesSE/releases)
+[Get the latest version 1.3.0](https://github.com/MirekVales/FinesSE/releases)
 
 ## Features
 
