@@ -61,6 +61,9 @@ namespace FinesSE.Bootstrapper
         public string GetCurrentUrl()
             => p.Invoke<GetCurrentUrl>();
 
+        public string GetElementSource(string locator)
+            => p.Invoke<GetElementSource>(locator);
+
         public string GetPageSource()
             => p.Invoke<GetPageSource>();
 
