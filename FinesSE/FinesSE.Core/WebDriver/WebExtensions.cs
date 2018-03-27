@@ -112,23 +112,7 @@ namespace FinesSE.Core.WebDriver
             By by,
             LocatorModifiers modifiers)
         {
-            if (!modifiers.WaitForExistence.HasValue)
-                return driver.FindElements(by);
-
-            using (var timeout = new Timeoutable(modifiers.WaitForExistence))
-                while (!timeout.Timeouted)
-                {
-                    try
-                    {
-                        var elements = driver.FindElements(by);
-                        if (elements.Any())
-                            return elements;
-                    }
-                    catch(Exception)
-                    { }
-                }
-
-            return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
+            return driver.FindElements(by);
         }
 
         public static void WaitForDocumentCompleteness(this IWebDriver driver, TimeSpan timeoutValue)

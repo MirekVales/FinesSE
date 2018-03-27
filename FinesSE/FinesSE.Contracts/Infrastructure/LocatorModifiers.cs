@@ -6,8 +6,6 @@ namespace FinesSE.Contracts.Infrastructure
 {
     public class LocatorModifiers
     {
-        public TimeSpan? WaitForExistence { get; private set; }
-
         public LocatorModifiers(string modifiers)
         {
             SetParsers();
@@ -19,9 +17,7 @@ namespace FinesSE.Contracts.Infrastructure
         private void SetParsers()
         {
             modifierParsers = new Dictionary<string, Action<string>>()
-            {
-                { @"(w)(\d+)", value => WaitForExistence = TimeSpan.FromMilliseconds(int.Parse(value)) }
-            };
+            { };
         }
 
         private void Parse(string modifiers)
