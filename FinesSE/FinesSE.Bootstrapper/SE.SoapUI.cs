@@ -4,8 +4,8 @@ namespace FinesSE.Bootstrapper
 {
     public partial class SE
     {
-        public string GetSoapUICaseResult(string suiteName, string caseName)
-            => p.Invoke<RunSoapUISuite>(suiteName, caseName);
+        public string GetSoapUICaseResponse(string suiteName, string caseName)
+            => p.Invoke<GetSoapUICaseResponse>(suiteName, caseName);
 
         public string RunSoapUISuite(string testFile, string suiteName)
             => p.Invoke<RunSoapUISuite>(testFile, suiteName);

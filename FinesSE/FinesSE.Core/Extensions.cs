@@ -113,5 +113,12 @@ namespace FinesSE.Core
 
         public static string GetTemporaryDirectory(this string path)
             => Path.Combine(Path.GetTempPath(), DateTime.Now.Millisecond.ToString());
+
+        public static string MakeFileNameSafe(this string path, char replacement = '_', params char[] extraForbiddenChars)
+        {
+            foreach (var @char in Path.GetInvalidFileNameChars().Concat(extraForbiddenChars))
+                path = path.Replace(@char, replacement);
+            return path;
+        }
     }
 }

@@ -78,7 +78,7 @@ namespace FinesSE.Outil.SoapUI
 
             return new ProcessStartInfo()
             {
-                Arguments = $"-r -s \"{suiteName}\" \"{pathToTests}\" -I{settingsArgument} -a -A -f \"{Path.Combine(Context.TempDirectory, "SoapUIResults")}\" -F XML",
+                Arguments = $"-r -s \"{suiteName}\" \"{pathToTests}\" -I{settingsArgument} -a -A -f \"{Path.Combine(Context.TempDirectory, "SoapUIResults")}\"",
                 CreateNoWindow = true,
                 FileName = configuration.RunnerPath.GetRootedPath(),
                 UseShellExecute = false,
@@ -100,20 +100,30 @@ namespace FinesSE.Outil.SoapUI
             }
         }
 
+        
+
         string RunTest(ProcessStartInfo startInfo)
         {
             Log.Debug($"Starting process {startInfo.FileName} {startInfo.Arguments}");
             using (var process = Process.Start(startInfo))
             {
-                var output = process.StandardOutput.ReadToEnd();
-                var errorOutput = process.StandardError.ReadToEnd();
+                var standardOutputData = new StringBuilder();
+                var standardErrorData = new StringBuilder();
 
+                process.OutputDataReceived += (sender, args) => standardOutputData.Append(args.Data);
+                process.ErrorDataReceived += (sender, args) => standardErrorData.Append(args.Data);
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+                
                 process.WaitForExit();
-                Log.Debug("Processed exited");
+                Log.Debug("Process exited");
 
-                return string.IsNullOrWhiteSpace(errorOutput)
-                    ? output
-                    : errorOutput;
+                var output = standardOutputData.ToString();
+                var errorOutput = standardErrorData.ToString();
+
+                return string.IsNullOrWhiteSpace(output)
+                    ? errorOutput
+                    : output;
             }
         }
     }
