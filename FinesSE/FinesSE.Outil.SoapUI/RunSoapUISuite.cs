@@ -100,8 +100,6 @@ namespace FinesSE.Outil.SoapUI
             }
         }
 
-        
-
         string RunTest(ProcessStartInfo startInfo)
         {
             Log.Debug($"Starting process {startInfo.FileName} {startInfo.Arguments}");
