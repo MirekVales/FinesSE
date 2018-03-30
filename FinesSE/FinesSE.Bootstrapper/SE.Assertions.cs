@@ -39,5 +39,8 @@ namespace FinesSE.Bootstrapper
 
         public void XPathElementValueEquals(string xml, string xpath, string expected)
             => p.InvokeVoid<XPathElementValueEquals>(xml, xpath, expected);
+
+        public void XPathElementValueNotEquals(string xml, string xpath, string expected)
+            => p.InvokeVoid<XPathElementValueNotEquals>(xml, xpath, expected);
     }
 }

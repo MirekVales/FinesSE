@@ -110,6 +110,7 @@
     <Compile Include="Assertions\VerifyEquality.cs" />
     <Compile Include="Assertions\VerifyText.cs" />
     <Compile Include="Assertions\XPathElementValueEquals.cs" />
+    <Compile Include="Assertions\XPathElementValueNotEquals.cs" />
     <Compile Include="IdTag.cs" />
     <Compile Include="Locators\Css.cs" />
     <Compile Include="Locators\Identifier.cs" />
