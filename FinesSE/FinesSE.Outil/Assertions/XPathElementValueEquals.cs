@@ -4,6 +4,7 @@ using FinesSE.Contracts.Invokable;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml;
 using System.Xml.XPath;
 
 namespace FinesSE.Outil.Assertions
@@ -19,11 +20,18 @@ namespace FinesSE.Outil.Assertions
         {
             using (var reader = new MemoryStream(Encoding.UTF8.GetBytes(xmlDocument)))
             {
-                var navigation = new XPathDocument(reader).CreateNavigator();
-                var value = navigation.SelectSingleNode(xpath).Value;
+                try
+                {
+                    var navigation = new XPathDocument(reader).CreateNavigator();
+                    var value = navigation.SelectSingleNode(xpath).Value;
 
-                if (value != expectedValue)
-                    throw new AssertionException(value, expectedValue, WebDrivers.Default);
+                    if (value != expectedValue)
+                        throw new AssertionException(value, expectedValue, WebDrivers.Default);
+                }
+                catch (XmlException e)
+                {
+                    throw new XmlParseException(xmlDocument, e.Message);
+                }
             }
         }
     }
