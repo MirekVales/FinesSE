@@ -95,6 +95,7 @@
     <Compile Include="Actions\Submit.cs" />
     <Compile Include="Actions\Type.cs" />
     <Compile Include="Actions\TypeKeys.cs" />
+    <Compile Include="Actions\TypeKeysLikeHuman.cs" />
     <Compile Include="Actions\WindowFocus.cs" />
     <Compile Include="Actions\WaitForCondition.cs" />
     <Compile Include="Actions\WindowMaximize.cs" />

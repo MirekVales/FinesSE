@@ -139,6 +139,9 @@ namespace FinesSE.Bootstrapper
         public void TypeKeys(string locator, string keys)
             => p.InvokeVoid<TypeKeys>(locator, keys);
 
+        public void TypeKeysLikeHuman(string locator, string keys)
+            => p.InvokeVoid<TypeKeysLikeHuman>(locator, keys);
+
         public void WaitForCondition(string javascriptCondition, string msTimeout)
             => p.InvokeVoid<WaitForCondition>(javascriptCondition, msTimeout);
 
