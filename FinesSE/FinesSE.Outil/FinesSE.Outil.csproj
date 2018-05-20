@@ -101,6 +101,7 @@
     <Compile Include="Actions\WindowMaximize.cs" />
     <Compile Include="Assertions\Contains.cs" />
     <Compile Include="Assertions\Equals.cs" />
+    <Compile Include="Assertions\Exists.cs" />
     <Compile Include="Assertions\GreaterThan.cs" />
     <Compile Include="Assertions\GreaterThanOrEqual.cs" />
     <Compile Include="Assertions\NotContains.cs" />

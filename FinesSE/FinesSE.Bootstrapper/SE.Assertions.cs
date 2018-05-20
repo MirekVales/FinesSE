@@ -7,6 +7,9 @@ namespace FinesSE.Bootstrapper
         public void Contains(string needle, string haystack)
             => p.InvokeVoid<Contains>(needle, haystack);
 
+        public void Exists(string locator)
+            => p.InvokeVoid<Exists>(locator);
+
         public void NotContains(string needle, string haystack)
             => p.InvokeVoid<NotContains>(needle, haystack);
 
