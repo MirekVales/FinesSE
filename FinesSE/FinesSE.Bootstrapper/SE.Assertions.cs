@@ -13,6 +13,9 @@ namespace FinesSE.Bootstrapper
         public void NotContains(string needle, string haystack)
             => p.InvokeVoid<NotContains>(needle, haystack);
 
+        public void NotExists(string locator)
+            => p.InvokeVoid<NotExists>(locator);
+
         public void VerifyEquality(string expected, string actual)
             => p.InvokeVoid<VerifyEquality>(expected, actual);
 
