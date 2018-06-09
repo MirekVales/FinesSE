@@ -1,4 +1,5 @@
-﻿using FinesSE.Launcher.Infrastructure;
+﻿using FinesSE.Core.Environment;
+using FinesSE.Launcher.Infrastructure;
 using System.IO;
 
 namespace FinesSE.Launcher
@@ -11,6 +12,9 @@ namespace FinesSE.Launcher
 
             if (!CommandLine.Parser.Default.ParseArgumentsStrict(args, startOptions))
                 throw new InvalidArgumentsException("Provided arguments are not valid");
+
+            if (startOptions.TerminateBrowserProcesses)
+                new ProcessListStorage().CleanList();
 
             CreateRunner()
                 .ExecuteAsync(new FileInfo(startOptions.InputFile), startOptions.TableFormat, startOptions.OutputFile)

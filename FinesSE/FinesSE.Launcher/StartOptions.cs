@@ -13,5 +13,8 @@ namespace FinesSE.Launcher
 
         [Option('e', "outputfile", Required = true, HelpText = "A path to an output file to be created")]
         public string OutputFile { get; set; }
+
+        [Option('r', "terminateBrowserProcesses", Required = false, HelpText = "Indicates whether the active processes should be terminated")]
+        public bool TerminateBrowserProcesses { get; set; }
     }
 }

@@ -20,6 +20,11 @@ namespace FinesSE.Core.Environment
 
         readonly CoreConfiguration configuration;
 
+        public ProcessListStorage()
+        {
+            configuration = CoreConfiguration.Default;
+        }
+
         public ProcessListStorage(IConfigurationProvider ConfigurationProvider)
         {
             configuration = ConfigurationProvider.Get(CoreConfiguration.Default);
