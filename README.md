@@ -1,4 +1,4 @@
-# FinesSE
+# :cherries: FinesSE
 
 Welcome to the "FinesSE" project where FitNesse meets Selenium. 
 
