@@ -3,11 +3,11 @@
 CoreConfiguration:
     # A default webdriver to use if no particular was chosen
     DefaultBrowser: Chrome
-    # A maximum amount of time the engine waits untill the current document state is 'Complete' 
+    # A maximum amount of time the engine waits until the current document state is 'Complete' 
     WaitForDocumentCompleteState: 00:00:01
     # A maximum amount of time the engine tries to locate an element before throwing an exception
     ImplicitWait: 00:00:00
-    # If enabled, the engine writes all info and debug infotmation into a log file 
+    # If enabled, the engine writes all info and debug information into a log file 
     LogToFile: true
     # A path to the log file
     LogPath: log.txt
