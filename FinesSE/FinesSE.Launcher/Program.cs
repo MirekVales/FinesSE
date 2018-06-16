@@ -16,6 +16,10 @@ namespace FinesSE.Launcher
             if (startOptions.TerminateBrowserProcesses)
                 new ProcessListStorage().CleanList();
 
+            if (string.IsNullOrWhiteSpace(startOptions.InputFile)
+                || string.IsNullOrWhiteSpace(startOptions.OutputFile))
+                return;
+
             CreateRunner()
                 .ExecuteAsync(new FileInfo(startOptions.InputFile), startOptions.TableFormat, startOptions.OutputFile)
                 .Wait();
