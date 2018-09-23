@@ -1,5 +1,6 @@
 ﻿using FinesSE.Core.Environment;
 using FinesSE.Launcher.Infrastructure;
+using System;
 using System.IO;
 
 namespace FinesSE.Launcher
@@ -14,7 +15,10 @@ namespace FinesSE.Launcher
                 throw new InvalidArgumentsException("Provided arguments are not valid");
 
             if (startOptions.TerminateBrowserProcesses)
-                new ProcessListStorage().CleanList();
+            {
+                var count = new ProcessListStorage().CleanList();
+                Console.WriteLine($"{count} processes closed");
+            }
 
             if (string.IsNullOrWhiteSpace(startOptions.InputFile)
                 || string.IsNullOrWhiteSpace(startOptions.OutputFile))

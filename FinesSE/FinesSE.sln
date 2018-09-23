@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.SoapUI", "FinesSE.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil.SoapUI", "FinesSE.Outil.SoapUI\FinesSE.Outil.SoapUI.csproj", "{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Outil.Soap", "FinesSE.Outil.Soap\FinesSE.Outil.Soap.csproj", "{CB9D4F2A-0737-45E1-B451-32455C13CFCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinesSE.Soap", "FinesSE.Soap\FinesSE.Soap.csproj", "{E69B2AE2-C97F-4A0C-8BB1-D2251E5AF7E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +109,14 @@ Global
 		{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3461D1E9-63C5-4CC8-B239-EC0CCAFFE20E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB9D4F2A-0737-45E1-B451-32455C13CFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB9D4F2A-0737-45E1-B451-32455C13CFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB9D4F2A-0737-45E1-B451-32455C13CFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB9D4F2A-0737-45E1-B451-32455C13CFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E69B2AE2-C97F-4A0C-8BB1-D2251E5AF7E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E69B2AE2-C97F-4A0C-8BB1-D2251E5AF7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E69B2AE2-C97F-4A0C-8BB1-D2251E5AF7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E69B2AE2-C97F-4A0C-8BB1-D2251E5AF7E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

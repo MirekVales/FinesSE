@@ -29,6 +29,8 @@ namespace FinesSE.Core.Injection
 
         Dictionary<WebDrivers, IEnumerable<WebDrivers>> dynamicInitializers;
 
+        public TypeSet ExecutionItems { get; }
+
         public ExecutionContext(ILog log, IWebDriverProvider driverProvider, IConfigurationProvider configurationProvider)
         {
             this.log = log;
@@ -38,6 +40,7 @@ namespace FinesSE.Core.Injection
             dynamicInitializers = GetDynamicInitializers();
             drivers = new Dictionary<WebDrivers, IWebDriver>();
             currentBrowser = ConfigurationProvider.Get(CoreConfiguration.Default).DefaultBrowser;
+            ExecutionItems = new TypeSet();
 
             var tempDirectory = "".GetTemporaryDirectory();
             if (Directory.Exists(tempDirectory))

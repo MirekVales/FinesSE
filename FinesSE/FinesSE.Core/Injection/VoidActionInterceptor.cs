@@ -20,7 +20,11 @@ namespace FinesSE.Core.Injection
 
         public object Invoke(IInvocationInfo invocationInfo)
         {
-            var typeName = invocationInfo.Method.GetGenericArgumentsName().First();
+            var typeName = invocationInfo
+                .Method
+                .GetGenericArgumentsName()
+                .First();
+
             var userFriendlyName = typeName.Split('.').Last();
             if (Kernel.CanGet<IVoidAction>(typeName))
             {

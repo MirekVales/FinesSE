@@ -85,6 +85,7 @@
     <Compile Include="Infrastructure\LocatorModifiers.cs" />
     <Compile Include="Infrastructure\BrowserSize.cs" />
     <Compile Include="Infrastructure\LogStatus.cs" />
+    <Compile Include="Infrastructure\TypeSet.cs" />
     <Compile Include="Invokable\EntryPointAttribute.cs" />
     <Compile Include="Invokable\IAction.cs" />
     <Compile Include="Invokable\IReportable.cs" />

@@ -1,4 +1,5 @@
 ﻿using FinesSE.Outil.Assertions;
+using FinesSE.Outil.Soap.Assertions;
 
 namespace FinesSE.Bootstrapper
 {
@@ -42,6 +43,18 @@ namespace FinesSE.Bootstrapper
 
         public void SmallerThanOrEqual(string first, string second)
             => p.InvokeVoid<SmallerThanOrEqual>(first, second);
+
+        public void Soap_CheckSensitiveInformationDisclosure()
+            => p.InvokeVoid<Soap_CheckSensitiveInformationDisclosure>();
+
+        public void Soap_DurationLessThan(string responseId, string duration)
+            => p.InvokeVoid<Soap_DurationLessThan>(responseId, duration);
+
+        public void Soap_XPathElementExists(string responseId, string xPathExpression)
+            => p.InvokeVoid<Soap_XPathElementExists>(responseId, xPathExpression);
+
+        public void Soap_XPathElementValueEquals(string responseId, string xPathExpression, string expectedValue)
+            => p.InvokeVoid<Soap_XPathElementValueEquals>(responseId, xPathExpression, expectedValue);
 
         public void XPathElementValueEquals(string xml, string xpath, string expected)
             => p.InvokeVoid<XPathElementValueEquals>(xml, xpath, expected);

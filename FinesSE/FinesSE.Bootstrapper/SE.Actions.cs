@@ -1,4 +1,5 @@
 ﻿using FinesSE.Outil.Actions;
+using FinesSE.Outil.Soap.Actions;
 
 namespace FinesSE.Bootstrapper
 {
@@ -129,6 +130,24 @@ namespace FinesSE.Bootstrapper
 
         public void SetWindowSize(string width, string height)
             => p.InvokeVoid<SetWindowSize>(width, height);
+
+        public string Soap_GetResponse(string responseId = null)
+            => p.Invoke<Soap_GetResponse>(responseId);
+
+        public string Soap_Send(string url, string envelopeId, string messageId)
+            => p.Invoke<Soap_Send>(url, envelopeId, messageId);
+
+        public void Soap_SetCredentials(string username, string passphrase, string domain = "")
+            => p.InvokeVoid<Soap_SetCredentials>(username, passphrase, domain);
+
+        public void Soap_SetEncoding(string encoding)
+            => p.InvokeVoid<Soap_SetEncoding>(encoding);
+
+        public void Soap_SetEnvelope(string envelopeId, string envelopeBody)
+            => p.InvokeVoid<Soap_SetEnvelope>(envelopeId, envelopeBody);
+
+        public void Soap_SetMessage(string messageId, string messageBody)
+            => p.InvokeVoid<Soap_SetMessage>(messageId, messageBody);
 
         public void Submit(string locator)
             => p.InvokeVoid<Submit>(locator);

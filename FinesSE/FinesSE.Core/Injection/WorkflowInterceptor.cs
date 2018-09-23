@@ -18,7 +18,11 @@ namespace FinesSE.Core.Injection
 
         public object Invoke(IInvocationInfo invocationInfo)
         {
-            var typeName = invocationInfo.Method.GetGenericArgumentsName().First();
+            var typeName = invocationInfo
+                .Method
+                .GetGenericArgumentsName()
+                .First();
+
             if (Kernel.CanGet<IWorkflowAction>(typeName))
             {
                 var action = Kernel.Get<IWorkflowAction>(typeName);

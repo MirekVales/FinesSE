@@ -37,11 +37,13 @@ namespace FinesSE.Core.Environment
             SaveToDisk(list);
         }
 
-        public void CleanList()
+        public int CleanList()
         {
             var list = LoadFromDisk();
             KillAllProcesses(list.Processes);
             SaveToDisk(list);
+
+            return list.Processes.Count();
         }
 
         void KillAllProcesses(IEnumerable<ChildProcess> processes)

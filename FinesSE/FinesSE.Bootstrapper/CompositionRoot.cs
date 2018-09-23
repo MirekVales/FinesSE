@@ -45,6 +45,7 @@ namespace FinesSE.Bootstrapper
 
             container.RegisterRequiredAssembly(directory, "FinesSE.Outil.Reports.dll");
             container.RegisterRequiredAssembly(directory, "FinesSE.Outil.SoapUI.dll");
+            container.RegisterRequiredAssembly(directory, "FinesSE.Outil.Soap.dll");
 
             container.RegisterFrom<ReportsCompositionRoot>();
         }

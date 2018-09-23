@@ -10,6 +10,7 @@ namespace FinesSE.Contracts.Infrastructure
         IWebDriver Driver { get; }
         IEnumerable<WebDrivers> Drivers { get; }
         IConfigurationProvider ConfigurationProvider { get; }
+        TypeSet ExecutionItems { get; }
 
         void SetTopicId(string id);
         void SetBrowser(WebDrivers drivers);
