@@ -41,6 +41,9 @@ See [Wiki documentation](https://github.com/MirekVales/FinesSE/wiki) for more de
 ### Generating Automation Reports
 - Allows to take all evaluated assertions and aggregate results into a pretty test report (using [ExtentReports](https://github.com/anshooarora/extentreports-csharp), an HTML test report generator)  
 
+### Soap Client Suite
+- An easy way to invoke Soap endpoints and make assertions on a response
+
 ### SoapUI Suites Runner
 - Execute SoapUI test suite
 
