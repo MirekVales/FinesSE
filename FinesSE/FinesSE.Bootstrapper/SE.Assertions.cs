@@ -47,19 +47,19 @@ namespace FinesSE.Bootstrapper
         public void Soap_CheckSensitiveInformationDisclosure()
             => p.InvokeVoid<Soap_CheckSensitiveInformationDisclosure>();
 
-        public void Soap_DurationLessThan(string responseId, string duration)
+        public void Soap_DurationLessThan(string duration, string responseId)
             => p.InvokeVoid<Soap_DurationLessThan>(responseId, duration);
 
-        public void Soap_ResponseContains(string responseId, string requestedPart)
+        public void Soap_ResponseContains(string requestedPart, string responseId)
             => p.InvokeVoid<Soap_ResponseContains>(responseId, requestedPart);
 
-        public void Soap_ResponseNotContains(string responseId, string requestedPart)
+        public void Soap_ResponseNotContains(string requestedPart, string responseId)
             => p.InvokeVoid<Soap_ResponseNotContains>(responseId, requestedPart);
 
-        public void Soap_XPathElementExists(string responseId, string xPathExpression)
+        public void Soap_XPathElementExists(string xPathExpression, string responseId)
             => p.InvokeVoid<Soap_XPathElementExists>(responseId, xPathExpression);
 
-        public void Soap_XPathElementValueEquals(string responseId, string xPathExpression, string expectedValue)
+        public void Soap_XPathElementValueEquals(string xPathExpression, string expectedValue, string responseId)
             => p.InvokeVoid<Soap_XPathElementValueEquals>(responseId, xPathExpression, expectedValue);
 
         public void XPathElementValueEquals(string xml, string xpath, string expected)

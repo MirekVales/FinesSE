@@ -149,10 +149,10 @@ namespace FinesSE.Bootstrapper
         public void Soap_SetEncoding(string encoding)
             => p.InvokeVoid<Soap_SetEncoding>(encoding);
 
-        public void Soap_SetEnvelope(string envelopeId, string envelopeBody)
+        public void Soap_SetEnvelope(string envelopeBody, string envelopeId)
             => p.InvokeVoid<Soap_SetEnvelope>(envelopeId, envelopeBody);
 
-        public void Soap_SetMessage(string messageId, string messageBody)
+        public void Soap_SetMessage(string messageBody, string messageId)
             => p.InvokeVoid<Soap_SetMessage>(messageId, messageBody);
 
         public void Submit(string locator)
