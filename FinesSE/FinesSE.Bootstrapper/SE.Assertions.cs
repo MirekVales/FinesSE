@@ -50,6 +50,12 @@ namespace FinesSE.Bootstrapper
         public void Soap_DurationLessThan(string responseId, string duration)
             => p.InvokeVoid<Soap_DurationLessThan>(responseId, duration);
 
+        public void Soap_ResponseContains(string responseId, string requestedPart)
+            => p.InvokeVoid<Soap_ResponseContains>(responseId, requestedPart);
+
+        public void Soap_ResponseNotContains(string responseId, string requestedPart)
+            => p.InvokeVoid<Soap_ResponseNotContains>(responseId, requestedPart);
+
         public void Soap_XPathElementExists(string responseId, string xPathExpression)
             => p.InvokeVoid<Soap_XPathElementExists>(responseId, xPathExpression);
 

@@ -2,29 +2,28 @@
 using FinesSE.Contracts.Exceptions;
 using FinesSE.Contracts.Invokable;
 using FinesSE.Soap.Infrastructure;
-using System;
 using System.Collections.Generic;
 
 namespace FinesSE.Outil.Soap.Assertions
 {
-    public class Soap_DurationLessThan : IVoidAction, IReportable
+    public class Soap_ResponseNotContains : IVoidAction, IReportable
     {
         public SoapClient SoapClient { get; set; }
 
-        public string Name => "Soap call duration is less than";
+        public string Name => "Soap response should not contain";
 
         public string Description { get; }
 
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string responseId, string maxDuration)
+        public void Invoke(string responseId, string requiredContent)
         {
-            var response = SoapClient.GetResponse(responseId);
-            if (response.Duration > TimeSpan.Parse(maxDuration))
+            var response = SoapClient.GetResponseContent(responseId);
+            if (response.ToString().Contains(requiredContent))
                 throw new AssertionException(
-                    $"Duration is smaller than {maxDuration}",
-                    $"Duration was {response.Duration}",
+                    $"Response should not contain {requiredContent}",
+                    $"Response contains",
                     WebDrivers.Default);
         }
     }

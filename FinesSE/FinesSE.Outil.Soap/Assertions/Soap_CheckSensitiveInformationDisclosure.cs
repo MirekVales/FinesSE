@@ -11,9 +11,7 @@ namespace FinesSE.Outil.Soap.Assertions
     public class Soap_CheckSensitiveInformationDisclosure : IVoidAction, IReportable
     {
         public SoapClient SoapClient { get; set; }
-
         public string Name => "Checks whether response does not contain sensitive information";
-
         public string Description { get; }
 
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };

@@ -10,6 +10,7 @@ namespace FinesSE.Soap.Infrastructure
     public class SoapClient : IDisposable
     {
         public string Encoding { get; private set; }
+        public string UserAgent { get; private set; }
 
         readonly Dictionary<string, SoapEnvelope> envelopes;
         readonly Dictionary<string, string> messages;
@@ -18,6 +19,8 @@ namespace FinesSE.Soap.Infrastructure
         string lastResponseId;
 
         NetworkCredential credentials;
+        readonly WebHeaderCollection headers;
+        Version version;
 
         public SoapClient()
         {
@@ -25,19 +28,34 @@ namespace FinesSE.Soap.Infrastructure
             messages = new Dictionary<string, string>();
             responses = new Dictionary<string, SoapResponse>();
             Encoding = "utf-8";
+
+            version = HttpVersion.Version11;
+            headers = new WebHeaderCollection
+            {
+                @"SOAP:Action"
+            };
         }
 
         public XDocument GetResponseContent(string responseId)
             => XDocument.Parse(GetResponse(responseId).Body);
 
         public SoapResponse GetResponse(string responseId)
-            => responses[responseId == null ? lastResponseId : responseId];
+            => responses[responseId ?? lastResponseId];
 
         public void SetCredentials(string username, string passphrase, string domain = null)
             => credentials = new NetworkCredential(username, passphrase, domain);
 
-        public void Set(string encoding)
+        public void SetEncoding(string encoding)
             => Encoding = encoding;
+
+        public void SetUserAgent(string userAgent)
+            => UserAgent = userAgent;
+
+        public void SetHttpVersion(Version version)
+            => this.version = version;
+
+        public void AddHeader(string name, string value)
+            => headers.Add(name, value);
 
         public void SetEnvelope(string envelopeId, string envelope)
             => envelopes[envelopeId] = new SoapEnvelope(envelopeId, envelope);
@@ -49,22 +67,53 @@ namespace FinesSE.Soap.Infrastructure
         {
             var request = CreateWebRequest(url);
             var data = envelopes[envelopeId].Get(messages[messageId]);
-            
+
             using (var stream = request.GetRequestStream())
                 data.Save(stream);
 
             var stopwatch = Stopwatch.StartNew();
-            using (var response = request.GetResponse())
+            try
             {
-                string content;
-                using (var rd = new StreamReader(response.GetResponseStream()))
-                    content = rd.ReadToEnd();
+                using (var response = request.GetResponse())
+                {
+                    string content;
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                        content = reader.ReadToEnd();
 
-                responses[messageId] = new SoapResponse(
-                    messageId,
-                    content,
-                    response.Headers,
-                    stopwatch.Elapsed);
+                    var statusCode = HttpStatusCode.OK;
+                    var statusDescription = "";
+                    if (response is HttpWebResponse httpWebResponse)
+                    {
+                        statusCode = httpWebResponse.StatusCode;
+                        statusDescription = httpWebResponse.StatusDescription;
+                    }
+
+                    responses[messageId] = new SoapResponse(
+                        messageId,
+                        content,
+                        response.Headers,
+                        stopwatch.Elapsed,
+                        statusCode,
+                        statusDescription);
+                }
+            }
+            catch (WebException exception)
+            {
+                if (exception.Response is HttpWebResponse response)
+                {
+                    HttpStatusCode statusCode = response.StatusCode;
+                    var statusDescription = response.StatusDescription;
+
+                    responses[messageId] = new SoapResponse(
+                        messageId,
+                        "",
+                        response.Headers,
+                        stopwatch.Elapsed,
+                        statusCode,
+                        statusDescription);
+                }
+                else
+                    throw exception;
             }
 
             lastResponseId = messageId;
@@ -75,10 +124,12 @@ namespace FinesSE.Soap.Infrastructure
         public HttpWebRequest CreateWebRequest(string url)
         {
             var webRequest = (HttpWebRequest)WebRequest.Create(url);
-            webRequest.Headers.Add(@"SOAP:Action");
+            webRequest.ProtocolVersion = version;
+            webRequest.Headers = headers;
             webRequest.ContentType = $"text/xml;charset=\"{Encoding}\"";
             webRequest.Accept = "text/xml";
             webRequest.Method = "POST";
+            webRequest.UserAgent = UserAgent;
             webRequest.Credentials = credentials;
             return webRequest;
         }

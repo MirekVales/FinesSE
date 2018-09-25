@@ -3,12 +3,12 @@ using FinesSE.Soap.Infrastructure;
 
 namespace FinesSE.Outil.Soap.Actions
 {
-    public class Soap_SetEncoding : IVoidAction
+    public class Soap_GetResponseCode : IStringAction
     {
         public SoapClient SoapClient { get; set; }
 
         [EntryPoint]
-        public void Invoke(string encoding)
-            => SoapClient.SetEncoding(encoding);
+        public string Invoke(string responseId = null)
+            => SoapClient.GetResponse(responseId).StatusCode.ToString();
     }
 }

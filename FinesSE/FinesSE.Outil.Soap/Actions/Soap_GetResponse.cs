@@ -8,7 +8,7 @@ namespace FinesSE.Outil.Soap.Actions
         public SoapClient SoapClient { get; set; }
 
         [EntryPoint]
-        public void Invoke(string responseId = null)
+        public string Invoke(string responseId = null)
             => SoapClient.GetResponseContent(responseId).ToString();
     }
 }

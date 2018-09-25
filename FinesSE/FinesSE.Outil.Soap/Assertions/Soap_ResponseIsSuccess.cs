@@ -2,16 +2,15 @@
 using FinesSE.Contracts.Exceptions;
 using FinesSE.Contracts.Invokable;
 using FinesSE.Soap.Infrastructure;
-using System;
 using System.Collections.Generic;
 
 namespace FinesSE.Outil.Soap.Assertions
 {
-    public class Soap_DurationLessThan : IVoidAction, IReportable
+    public class Soap_ResponseIsSuccess : IVoidAction, IReportable
     {
         public SoapClient SoapClient { get; set; }
 
-        public string Name => "Soap call duration is less than";
+        public string Name => "Soap response has a status code lower than 400";
 
         public string Description { get; }
 
@@ -21,10 +20,11 @@ namespace FinesSE.Outil.Soap.Assertions
         public void Invoke(string responseId, string maxDuration)
         {
             var response = SoapClient.GetResponse(responseId);
-            if (response.Duration > TimeSpan.Parse(maxDuration))
+            var statusCode = (int)response.StatusCode;
+            if (statusCode >= 400)
                 throw new AssertionException(
-                    $"Duration is smaller than {maxDuration}",
-                    $"Duration was {response.Duration}",
+                    $"Status code must be smaller than 400",
+                    $"Status code was {statusCode}",
                     WebDrivers.Default);
         }
     }
