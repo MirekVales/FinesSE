@@ -8,7 +8,7 @@ namespace FinesSE.Outil.Soap.Actions
         public SoapClient SoapClient { get; set; }
 
         [EntryPoint]
-        public void Invoke(string messageId, string message)
+        public void Invoke(string message, string messageId)
             => SoapClient.SetMessage(messageId, message);
     }
 }

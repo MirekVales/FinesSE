@@ -18,11 +18,11 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string responseId, params string[] statusCodes)
+        public void Invoke(string statusCodes, string responseId)
         {
             var response = SoapClient.GetResponse(responseId);
             var statusCode = ((int)response.StatusCode).ToString();
-            if (!statusCodes.Contains(statusCode))
+            if (!statusCodes.Split(',').Contains(statusCode))
                 throw new AssertionException(
                     $"Status code must equal {string.Join(",", statusCodes)}",
                     $"Status code was {statusCode}",

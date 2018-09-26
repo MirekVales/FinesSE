@@ -15,7 +15,7 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string responseId, string requiredContent)
+        public void Invoke(string requiredContent, string responseId)
         {
             var response = SoapClient.GetResponseContent(responseId);
             if (!response.ToString().Contains(requiredContent))

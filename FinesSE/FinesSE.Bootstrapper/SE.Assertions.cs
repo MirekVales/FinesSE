@@ -48,19 +48,19 @@ namespace FinesSE.Bootstrapper
             => p.InvokeVoid<Soap_CheckSensitiveInformationDisclosure>();
 
         public void Soap_DurationLessThan(string duration, string responseId)
-            => p.InvokeVoid<Soap_DurationLessThan>(responseId, duration);
+            => p.InvokeVoid<Soap_DurationLessThan>(duration, responseId);
 
         public void Soap_ResponseContains(string requestedPart, string responseId)
-            => p.InvokeVoid<Soap_ResponseContains>(responseId, requestedPart);
+            => p.InvokeVoid<Soap_ResponseContains>(requestedPart, responseId);
 
         public void Soap_ResponseNotContains(string requestedPart, string responseId)
-            => p.InvokeVoid<Soap_ResponseNotContains>(responseId, requestedPart);
+            => p.InvokeVoid<Soap_ResponseNotContains>(requestedPart, responseId);
 
         public void Soap_XPathElementExists(string xPathExpression, string responseId)
-            => p.InvokeVoid<Soap_XPathElementExists>(responseId, xPathExpression);
+            => p.InvokeVoid<Soap_XPathElementExists>(xPathExpression, responseId);
 
         public void Soap_XPathElementValueEquals(string xPathExpression, string expectedValue, string responseId)
-            => p.InvokeVoid<Soap_XPathElementValueEquals>(responseId, xPathExpression, expectedValue);
+            => p.InvokeVoid<Soap_XPathElementValueEquals>(xPathExpression, expectedValue, responseId);
 
         public void XPathElementValueEquals(string xml, string xpath, string expected)
             => p.InvokeVoid<XPathElementValueEquals>(xml, xpath, expected);
