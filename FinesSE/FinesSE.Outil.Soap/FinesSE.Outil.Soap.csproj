@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\Soap_GetResponseDuration.cs" />
-    <Compile Include="Actions\Soap_GetResponseCode.cs" />
+    <Compile Include="Actions\Soap_GetResponseStatusCode.cs" />
     <Compile Include="Actions\Soap_GetResponseSize.cs" />
     <Compile Include="Actions\Soap_Send.cs" />
     <Compile Include="Actions\Soap_AddHeader.cs" />

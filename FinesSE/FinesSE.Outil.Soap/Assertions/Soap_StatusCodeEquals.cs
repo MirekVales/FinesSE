@@ -18,7 +18,7 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string statusCodes, string responseId)
+        public void Invoke(string statusCodes, string responseId = null)
         {
             var response = SoapClient.GetResponse(responseId);
             var statusCode = ((int)response.StatusCode).ToString();

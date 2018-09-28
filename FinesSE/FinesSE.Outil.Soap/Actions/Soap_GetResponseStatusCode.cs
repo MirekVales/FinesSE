@@ -3,7 +3,7 @@ using FinesSE.Soap.Infrastructure;
 
 namespace FinesSE.Outil.Soap.Actions
 {
-    public class Soap_GetResponseCode : IStringAction
+    public class Soap_GetResponseStatusCode : IStringAction
     {
         public SoapClient SoapClient { get; set; }
 

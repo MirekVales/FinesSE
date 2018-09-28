@@ -17,7 +17,7 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory};
 
         [EntryPoint]
-        public void Invoke(string responseId = null, string xpathExpression = null, string expectedValue = null)
+        public void Invoke(string xpathExpression, string expectedValue, string responseId = null)
         {
             var response = SoapClient.GetResponseContent(responseId);
             var value = response.XPathSelectElement(xpathExpression).Descendants().First().Value;
