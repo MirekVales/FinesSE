@@ -36,8 +36,8 @@ namespace FinesSE.Soap.Infrastructure
             };
         }
 
-        public XDocument GetResponseContent(string responseId)
-            => XDocument.Parse(GetResponse(responseId).Body);
+        public string GetResponseContent(string responseId)
+            => GetResponse(responseId).Body;
 
         public SoapResponse GetResponse(string responseId)
             => responses[responseId ?? lastResponseId];
@@ -66,7 +66,7 @@ namespace FinesSE.Soap.Infrastructure
         public bool Invoke(string url, string envelopeId, string messageId)
         {
             var request = CreateWebRequest(url);
-            var data = envelopes[envelopeId].Get(messages[messageId]);
+            System.Xml.XmlDocument data = CreateData(envelopeId, messageId);
 
             using (var stream = request.GetRequestStream())
                 data.Save(stream);
@@ -120,6 +120,9 @@ namespace FinesSE.Soap.Infrastructure
 
             return true;
         }
+
+        public System.Xml.XmlDocument CreateData(string envelopeId, string messageId)
+            => envelopes[envelopeId].Get(messages[messageId]);
 
         public HttpWebRequest CreateWebRequest(string url)
         {

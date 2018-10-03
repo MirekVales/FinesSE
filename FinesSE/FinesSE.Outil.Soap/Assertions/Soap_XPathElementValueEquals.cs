@@ -4,6 +4,7 @@ using FinesSE.Contracts.Invokable;
 using FinesSE.Soap.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using System.Xml.XPath;
 
 namespace FinesSE.Outil.Soap.Assertions
@@ -19,7 +20,7 @@ namespace FinesSE.Outil.Soap.Assertions
         [EntryPoint]
         public void Invoke(string xpathExpression, string expectedValue, string responseId = null)
         {
-            var response = SoapClient.GetResponseContent(responseId);
+            var response = XDocument.Parse(SoapClient.GetResponseContent(responseId));
             var value = response.XPathSelectElement(xpathExpression).Descendants().First().Value;
 
             if (value != expectedValue)

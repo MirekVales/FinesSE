@@ -131,6 +131,9 @@ namespace FinesSE.Bootstrapper
         public void SetWindowSize(string width, string height)
             => p.InvokeVoid<SetWindowSize>(width, height);
 
+        public string Soap_GetMessage(string envelopeId, string messageId)
+            => p.Invoke<Soap_GetMessage>(envelopeId, messageId);
+
         public string Soap_GetResponse(string responseId = null)
             => p.Invoke<Soap_GetResponse>(responseId);
 

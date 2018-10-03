@@ -44,8 +44,8 @@ namespace FinesSE.Bootstrapper
         public void SmallerThanOrEqual(string first, string second)
             => p.InvokeVoid<SmallerThanOrEqual>(first, second);
 
-        public void Soap_CheckSensitiveInformationDisclosure()
-            => p.InvokeVoid<Soap_CheckSensitiveInformationDisclosure>();
+        public void Soap_CheckSensitiveInformationDisclosure(string responseId = null)
+            => p.InvokeVoid<Soap_CheckSensitiveInformationDisclosure>(responseId);
 
         public void Soap_DurationLessThan(string duration, string responseId = null)
             => p.InvokeVoid<Soap_DurationLessThan>(duration, responseId);
