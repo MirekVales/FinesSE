@@ -9,6 +9,11 @@ namespace FinesSE.Outil.Soap.Actions
 
         [EntryPoint]
         public string Invoke(string url, string envelopeId, string messageId)
-            => SoapClient.Invoke(url, envelopeId, messageId) + "";
+        {
+            if (string.IsNullOrWhiteSpace(messageId))
+                return SoapClient.Invoke(url, envelopeId) + "";
+            else
+                return SoapClient.Invoke(url, envelopeId, messageId) + "";
+        }
     }
 }

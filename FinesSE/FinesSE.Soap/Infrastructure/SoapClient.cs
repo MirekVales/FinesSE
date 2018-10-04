@@ -2,8 +2,8 @@
 using System.IO;
 using System.Net;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using System.Diagnostics;
+using System.Xml;
 
 namespace FinesSE.Soap.Infrastructure
 {
@@ -64,10 +64,19 @@ namespace FinesSE.Soap.Infrastructure
             => messages[messageId] = message;
 
         public bool Invoke(string url, string envelopeId, string messageId)
+            => Invoke(url, CreateData(envelopeId, messageId));
+
+        public bool Invoke(string url, string content)
+        {
+            var document = new XmlDocument();
+            document.Load(content);
+            return Invoke(url, document);
+        }
+
+        public bool Invoke(string url, XmlDocument data)
         {
             var request = CreateWebRequest(url);
-            System.Xml.XmlDocument data = CreateData(envelopeId, messageId);
-
+            
             using (var stream = request.GetRequestStream())
                 data.Save(stream);
 
