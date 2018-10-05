@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using FinesSE.Soap.Infrastructure.DummyData;
 using System.Xml;
 
 namespace FinesSE.Soap.Infrastructure
@@ -15,25 +14,18 @@ namespace FinesSE.Soap.Infrastructure
             Body = envelope;
         }
 
-        public XmlDocument Get(string message)
+        public XmlDocument Get(string message, IDummyDataProcessor dataProcessor)
         {
             var envelope = new XmlDocument();
-            envelope.LoadXml(ShapeMessage(Body, message));
+            envelope.LoadXml(ShapeMessage(Body, message, dataProcessor));
             return envelope;
         }
 
-        public string ShapeMessage(string body, string message)
+        public string ShapeMessage(string body, string message, IDummyDataProcessor dataProcessor)
         {
             var content = body.Replace("${=content}", message);
 
-            Match match;
-            while ((match = Regex.Match(content, @"\$\{=guid\}")).Success)
-            {
-                content = content.Remove(match.Index, match.Length);
-                content = content.Insert(match.Index, Guid.NewGuid().ToString());
-            }
-
-            return content;
+            return dataProcessor.ProcessMessage(content);
         }
     }
 }

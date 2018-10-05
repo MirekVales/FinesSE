@@ -4,6 +4,7 @@ using System.Net;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
+using FinesSE.Soap.Infrastructure.DummyData;
 
 namespace FinesSE.Soap.Infrastructure
 {
@@ -21,6 +22,8 @@ namespace FinesSE.Soap.Infrastructure
         NetworkCredential credentials;
         readonly WebHeaderCollection headers;
         Version version;
+
+        public IDummyDataProcessor DataProcessor { get; set; }
 
         public SoapClient()
         {
@@ -130,8 +133,8 @@ namespace FinesSE.Soap.Infrastructure
             return true;
         }
 
-        public System.Xml.XmlDocument CreateData(string envelopeId, string messageId)
-            => envelopes[envelopeId].Get(messages[messageId]);
+        public XmlDocument CreateData(string envelopeId, string messageId)
+            => envelopes[envelopeId].Get(messages[messageId], DataProcessor);
 
         public HttpWebRequest CreateWebRequest(string url)
         {
