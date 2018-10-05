@@ -134,16 +134,28 @@ namespace FinesSE.Bootstrapper
         public string Soap_GetMessage(string envelopeId, string messageId)
             => p.Invoke<Soap_GetMessage>(envelopeId, messageId);
 
-        public string Soap_GetResponse(string responseId = null)
+        public string Soap_GetResponse()
+            => p.Invoke<Soap_GetResponse>(null);
+
+        public string Soap_GetResponse(string responseId)
             => p.Invoke<Soap_GetResponse>(responseId);
 
-        public string Soap_GetResponseDuration(string responseId = null)
+        public string Soap_GetResponseDuration()
+            => p.Invoke<Soap_GetResponseDuration>(null);
+
+        public string Soap_GetResponseDuration(string responseId)
             => p.Invoke<Soap_GetResponseDuration>(responseId);
 
-        public string Soap_GetResponseStatusCode(string responseId = null)
+        public string Soap_GetResponseStatusCode()
+            => p.Invoke<Soap_GetResponseStatusCode>(null);
+
+        public string Soap_GetResponseStatusCode(string responseId)
             => p.Invoke<Soap_GetResponseStatusCode>(responseId);
 
-        public string Soap_GetResponseSize(string responseId = null)
+        public string Soap_GetResponseSize()
+            => p.Invoke<Soap_GetResponseSize>(null);
+
+        public string Soap_GetResponseSize(string responseId)
             => p.Invoke<Soap_GetResponseSize>(responseId);
 
         public string Soap_Send(string url, string content)
@@ -152,7 +164,10 @@ namespace FinesSE.Bootstrapper
         public string Soap_Send(string url, string envelopeId, string messageId)
             => p.Invoke<Soap_Send>(url, envelopeId, messageId);
 
-        public void Soap_SetCredentials(string username, string passphrase, string domain = "")
+        public void Soap_SetCredentials(string username, string passphrase)
+            => p.InvokeVoid<Soap_SetCredentials>(username, passphrase, null);
+
+        public void Soap_SetCredentials(string username, string passphrase, string domain)
             => p.InvokeVoid<Soap_SetCredentials>(username, passphrase, domain);
 
         public void Soap_SetEncoding(string encoding)

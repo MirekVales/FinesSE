@@ -9,7 +9,7 @@ using System.Xml.XPath;
 
 namespace FinesSE.Outil.Soap.Assertions
 {
-    public class Soap_XPathElementExists : IVoidAction, IReportable
+    public class Soap_XPathElementExists : IStringAction, IReportable
     {
         public SoapClient SoapClient { get; set; }
         public string Name => "Element can be found using XPath";
@@ -18,11 +18,11 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory};
 
         [EntryPoint]
-        public void Invoke(string xpathExpression, string responseId = null)
+        public string Invoke(string xpathExpression, string responseId = null)
         {
             var response = XDocument.Parse(SoapClient.GetResponseContent(responseId));
             if (response.XPathSelectElements(xpathExpression).Any())
-                return;
+                return "true";
 
             throw new AssertionException("Element exists", "Element does not exist", WebDrivers.Default);
         }

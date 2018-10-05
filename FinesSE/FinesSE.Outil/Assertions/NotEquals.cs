@@ -5,17 +5,19 @@ using System.Collections.Generic;
 
 namespace FinesSE.Outil.Assertions
 {
-    public class NotEquals : IVoidAction, IReportable
+    public class NotEquals : IStringAction, IReportable
     {
         public string Name { get; } = "Not Equals";
         public string Description { get; }
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string expected, string actual)
+        public string Invoke(string expected, string actual)
         {
             if (expected == actual)
                 throw new AssertionException("Different than " + expected, actual, WebDrivers.Default);
+
+            return "true";
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FinesSE.Outil.Soap.Assertions
 {
-    public class Soap_ResponseNotContains : IVoidAction, IReportable
+    public class Soap_ResponseNotContains : IStringAction, IReportable
     {
         public SoapClient SoapClient { get; set; }
 
@@ -17,7 +17,7 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string requiredContent, string responseId = null)
+        public string Invoke(string requiredContent, string responseId = null)
         {
             var response = SoapClient.GetResponseContent(responseId);
             if (response.ToString().Contains(requiredContent))
@@ -25,6 +25,8 @@ namespace FinesSE.Outil.Soap.Assertions
                     $"Response should not contain {requiredContent}",
                     $"Response contains",
                     WebDrivers.Default);
+
+            return "true";
         }
     }
 }

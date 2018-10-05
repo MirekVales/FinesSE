@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace FinesSE.Outil.SoapUI
 {
-    public class VerifySoapUISuite : IVoidAction
+    public class VerifySoapUISuite : IStringAction
     {
         public IKernel Kernel { get; set; }
 
         [EntryPoint]
-        public void Invoke(string pathToTests, string suiteName)
+        public string Invoke(string pathToTests, string suiteName)
         {
             var runner = Kernel.Get<RunSoapUISuite>("");
             runner.Invoke(pathToTests, suiteName);
@@ -22,6 +22,8 @@ namespace FinesSE.Outil.SoapUI
                     runner
                         .Results
                         .Count(r => r.status == LogStatus.Pass));
+
+            return "true";
         }
     }
 }

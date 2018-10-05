@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FinesSE.Outil.Soap.Assertions
 {
-    public class Soap_ResponseIsSuccess : IVoidAction, IReportable
+    public class Soap_ResponseIsSuccess : IStringAction, IReportable
     {
         public SoapClient SoapClient { get; set; }
 
@@ -17,7 +17,7 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string responseId = null)
+        public string Invoke(string responseId = null)
         {
             var response = SoapClient.GetResponse(responseId);
             var statusCode = (int)response.StatusCode;
@@ -26,6 +26,8 @@ namespace FinesSE.Outil.Soap.Assertions
                     $"Status code must be smaller than 400",
                     $"Status code was {statusCode}",
                     WebDrivers.Default);
+
+            return "true";
         }
     }
 }

@@ -64,16 +64,16 @@ namespace FinesSE.Soap.Infrastructure
             => messages[messageId] = message;
 
         public bool Invoke(string url, string envelopeId, string messageId)
-            => Invoke(url, CreateData(envelopeId, messageId));
+            => Invoke(url, CreateData(envelopeId, messageId), messageId);
 
         public bool Invoke(string url, string content)
         {
             var document = new XmlDocument();
             document.Load(content);
-            return Invoke(url, document);
+            return Invoke(url, document, lastResponseId);
         }
 
-        public bool Invoke(string url, XmlDocument data)
+        public bool Invoke(string url, XmlDocument data, string messageId)
         {
             var request = CreateWebRequest(url);
             

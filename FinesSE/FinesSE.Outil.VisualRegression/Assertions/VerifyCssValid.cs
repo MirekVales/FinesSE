@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace FinesSE.Outil.VisualRegression.Assertions
 {
-    public class VerifyCssValid : IVoidAction, IReportable
+    public class VerifyCssValid : IStringAction, IReportable
     {
         public IExecutionContext Context { get; set; }
         public ICssValidator Validator { get; set; }
@@ -22,7 +22,7 @@ namespace FinesSE.Outil.VisualRegression.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke()
+        public string Invoke()
         {
             foreach (var url in GetCssUrls())
             {
@@ -39,6 +39,8 @@ namespace FinesSE.Outil.VisualRegression.Assertions
                     using (var e = new CssValidationException(incidents))
                         Log.Fatal("CSS validation incidents found", e);
             }
+
+            return "true";
         }
 
         private string[] GetCssUrls()

@@ -23,8 +23,8 @@ namespace FinesSE.Bootstrapper
         public string TakeScreen(string locator)
             => p.Invoke<TakeScreen>(locator, null);
 
-        public void VerifyCssValid()
-            => p.InvokeVoid<VerifyCssValid>();
+        public string VerifyCssValid()
+            => p.Invoke<VerifyCssValid>();
 
         public object VerifyScreenDiff(string locator)
             => p.Invoke<VerifyScreenDiff>(locator, null);

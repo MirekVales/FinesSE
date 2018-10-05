@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace FinesSE.Outil.Soap.Assertions
 {
-    public class Soap_CheckSensitiveInformationDisclosure : IVoidAction, IReportable
+    public class Soap_CheckSensitiveInformationDisclosure : IStringAction, IReportable
     {
         public SoapClient SoapClient { get; set; }
         public string Name => "Checks whether response does not contain sensitive information";
@@ -17,7 +17,7 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string responseId = null)
+        public string Invoke(string responseId = null)
         {
             var response = SoapClient.GetResponse(responseId);
 
@@ -37,6 +37,8 @@ namespace FinesSE.Outil.Soap.Assertions
                     "Response should not contain sensitive information",
                     string.Join(Environment.NewLine, incidents),
                     WebDrivers.Default);
+
+            return "true";
         }
     }
 }

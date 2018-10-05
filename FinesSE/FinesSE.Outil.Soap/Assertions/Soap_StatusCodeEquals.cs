@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace FinesSE.Outil.Soap.Assertions
 {
-    public class Soap_StatusCodeEquals : IVoidAction, IReportable
+    public class Soap_StatusCodeEquals : IStringAction, IReportable
     {
         public SoapClient SoapClient { get; set; }
 
@@ -18,7 +18,7 @@ namespace FinesSE.Outil.Soap.Assertions
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(string statusCodes, string responseId = null)
+        public string Invoke(string statusCodes, string responseId = null)
         {
             var response = SoapClient.GetResponse(responseId);
             var statusCode = ((int)response.StatusCode).ToString();
@@ -27,6 +27,8 @@ namespace FinesSE.Outil.Soap.Assertions
                     $"Status code must equal {string.Join(",", statusCodes)}",
                     $"Status code was {statusCode}",
                     WebDrivers.Default);
+
+            return "true";
         }
     }
 }

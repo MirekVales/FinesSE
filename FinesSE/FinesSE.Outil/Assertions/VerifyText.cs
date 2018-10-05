@@ -7,18 +7,21 @@ using System.Collections.Generic;
 
 namespace FinesSE.Outil.Assertions
 {
-    public class VerifyText : IVoidAction, IReportable
+    public class VerifyText : IStringAction, IReportable
     {
         public string Name { get; } = "Verify Text";
         public string Description { get; }
         public IEnumerable<string> Category { get; } = new[] { IdTag.ReportableCategory };
 
         [EntryPoint]
-        public void Invoke(LocatedElements elements, string pattern)
-            => elements
-                .ConstraintCount(c => c > 0)
-                .Elements
-                .ForEach(e => VerifyElement(pattern, e));
+        public string Invoke(LocatedElements elements, string pattern)
+        {
+            elements
+                  .ConstraintCount(c => c > 0)
+                  .Elements
+                  .ForEach(e => VerifyElement(pattern, e));
+            return "true";
+        }
 
         void VerifyElement(string pattern, OpenQA.Selenium.IWebElement element)
         {
