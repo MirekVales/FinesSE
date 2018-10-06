@@ -65,6 +65,7 @@
     <Compile Include="Infrastructure\DummyData\Guid.cs" />
     <Compile Include="Infrastructure\DummyData\IDummyDataProcessor.cs" />
     <Compile Include="Infrastructure\DummyData\IDummyDataProvider.cs" />
+    <Compile Include="Contracts\ContentNotFoundException.cs" />
     <Compile Include="Infrastructure\SoapClient.cs" />
     <Compile Include="Infrastructure\SoapEnvelope.cs" />
     <Compile Include="Infrastructure\SoapResponse.cs" />

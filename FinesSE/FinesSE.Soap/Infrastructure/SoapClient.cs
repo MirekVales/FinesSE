@@ -2,9 +2,12 @@
 using System.IO;
 using System.Net;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using System.Diagnostics;
 using System.Xml;
 using FinesSE.Soap.Infrastructure.DummyData;
+using System.Collections.Generic;
+using FinesSE.Soap.Contracts;
 
 namespace FinesSE.Soap.Infrastructure
 {
@@ -33,17 +36,22 @@ namespace FinesSE.Soap.Infrastructure
             Encoding = "utf-8";
 
             version = HttpVersion.Version11;
-            headers = new WebHeaderCollection
-            {
-                @"SOAP:Action"
-            };
+            headers = new WebHeaderCollection();
         }
 
         public string GetResponseContent(string responseId)
             => GetResponse(responseId).Body;
 
         public SoapResponse GetResponse(string responseId)
-            => responses[responseId ?? lastResponseId];
+        {
+            var id = responseId
+                ?? lastResponseId
+                ?? throw new ContentNotFoundException("Not Specified");
+
+            if (!responses.ContainsKey(id))
+                throw new ContentNotFoundException(id);
+            return responses[id];
+        }
 
         public void SetCredentials(string username, string passphrase, string domain = null)
             => credentials = new NetworkCredential(username, passphrase, domain);
@@ -66,20 +74,21 @@ namespace FinesSE.Soap.Infrastructure
         public void SetMessage(string messageId, string message)
             => messages[messageId] = message;
 
-        public bool Invoke(string url, string envelopeId, string messageId)
-            => Invoke(url, CreateData(envelopeId, messageId), messageId);
+        public bool Invoke(string url, string soapAction, string envelopeId, string messageId)
+            => Invoke(url, soapAction, CreateData(envelopeId, messageId), messageId);
 
-        public bool Invoke(string url, string content)
+        public bool Invoke(string url, string soapAction, string content)
         {
             var document = new XmlDocument();
             document.Load(content);
-            return Invoke(url, document, lastResponseId);
+            return Invoke(url, soapAction, document, lastResponseId);
         }
 
-        public bool Invoke(string url, XmlDocument data, string messageId)
+        public bool Invoke(string url, string soapAction, XmlDocument data, string messageId)
         {
             var request = CreateWebRequest(url);
-            
+            request.Headers["SoapAction"] = soapAction;
+
             using (var stream = request.GetRequestStream())
                 data.Save(stream);
 
@@ -142,7 +151,7 @@ namespace FinesSE.Soap.Infrastructure
             webRequest.ProtocolVersion = version;
             webRequest.Headers = headers;
             webRequest.ContentType = $"text/xml;charset=\"{Encoding}\"";
-            webRequest.Accept = "text/xml";
+            webRequest.Accept = "gzip,deflate,text/xml";
             webRequest.Method = "POST";
             webRequest.UserAgent = UserAgent;
             webRequest.Credentials = credentials;

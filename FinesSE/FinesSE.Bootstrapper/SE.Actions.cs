@@ -158,11 +158,11 @@ namespace FinesSE.Bootstrapper
         public string Soap_GetResponseSize(string responseId)
             => p.Invoke<Soap_GetResponseSize>(responseId);
 
-        public string Soap_Send(string url, string content)
-            => p.Invoke<Soap_Send>(url, null, content);
+        public string Soap_Send(string url, string soapAction, string content)
+            => p.Invoke<Soap_Send>(url, soapAction, null, content);
         
-        public string Soap_Send(string url, string envelopeId, string messageId)
-            => p.Invoke<Soap_Send>(url, envelopeId, messageId);
+        public string Soap_Send(string url, string soapAction, string envelopeId, string messageId)
+            => p.Invoke<Soap_Send>(url, soapAction, envelopeId, messageId);
 
         public void Soap_SetCredentials(string username, string passphrase)
             => p.InvokeVoid<Soap_SetCredentials>(username, passphrase, null);
