@@ -24,7 +24,7 @@ namespace FinesSE.Soap.Infrastructure.DummyData
 
         public string ProcessMessage(string content)
         {
-            const string Pattern = @"\$=\{(.+?)\}(?!([\{, \}]))";
+            const string Pattern = @"\$=\{(.+?)\}((?!([\{, \}]))|((?!([\{,\}]|( [\{\}])))))";
             Match match;
             while ((match = Regex.Match(content, Pattern)).Success)
             {
