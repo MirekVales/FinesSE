@@ -53,8 +53,8 @@ namespace FinesSE.Bootstrapper
         public string Soap_ResponseIsSuccess(string responseId = null)
             => p.Invoke<Soap_ResponseIsSuccess>(responseId);
 
-        public bool Soap_ResponseContains(string requestedPart, string responseId)
-            => p.InvokeBool<Soap_ResponseContains>(requestedPart, responseId);
+        public string Soap_ResponseContains(string requestedPart, string responseId)
+            => p.Invoke<Soap_ResponseContains>(requestedPart, responseId);
 
         public string Soap_ResponseNotContains(string requestedPart, string responseId)
             => p.Invoke<Soap_ResponseNotContains>(requestedPart, responseId);
