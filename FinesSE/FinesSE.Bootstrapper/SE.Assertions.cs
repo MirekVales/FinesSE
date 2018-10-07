@@ -44,28 +44,28 @@ namespace FinesSE.Bootstrapper
         public string SmallerThanOrEqual(string first, string second)
             => p.Invoke<SmallerThanOrEqual>(first, second);
 
-        public string Soap_CheckSensitiveInformationDisclosure(string responseId = null)
+        public string Soap_CheckSensitiveInformationDisclosure(string responseId)
             => p.Invoke<Soap_CheckSensitiveInformationDisclosure>(responseId);
 
-        public string Soap_DurationLessThan(string duration, string responseId = null)
+        public string Soap_DurationLessThan(string duration, string responseId)
             => p.Invoke<Soap_DurationLessThan>(duration, responseId);
 
         public string Soap_ResponseIsSuccess(string responseId = null)
             => p.Invoke<Soap_ResponseIsSuccess>(responseId);
 
-        public string Soap_ResponseContains(string requestedPart, string responseId = null)
-            => p.Invoke<Soap_ResponseContains>(requestedPart, responseId);
+        public bool Soap_ResponseContains(string requestedPart, string responseId)
+            => p.InvokeBool<Soap_ResponseContains>(requestedPart, responseId);
 
-        public string Soap_ResponseNotContains(string requestedPart, string responseId = null)
+        public string Soap_ResponseNotContains(string requestedPart, string responseId)
             => p.Invoke<Soap_ResponseNotContains>(requestedPart, responseId);
 
-        public string Soap_StatusCodeEquals(string statusCode, string responseId = null)
+        public string Soap_StatusCodeEquals(string statusCode, string responseId)
             => p.Invoke<Soap_StatusCodeEquals>(statusCode, responseId);
 
-        public string Soap_XPathElementExists(string xPathExpression, string responseId = null)
+        public string Soap_XPathElementExists(string xPathExpression, string responseId)
             => p.Invoke<Soap_XPathElementExists>(xPathExpression, responseId);
 
-        public string Soap_XPathElementValueEquals(string xPathExpression, string expectedValue, string responseId = null)
+        public string Soap_XPathElementValueEquals(string xPathExpression, string expectedValue, string responseId)
             => p.Invoke<Soap_XPathElementValueEquals>(xPathExpression, expectedValue, responseId);
 
         public string XPathElementValueEquals(string xml, string xpath, string expected)
