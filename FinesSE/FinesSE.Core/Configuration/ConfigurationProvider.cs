@@ -60,7 +60,7 @@ namespace FinesSE.Core.Configuration
         }
 
         string configurationFile;
-        readonly Deserializer deserializer;
+        readonly IDeserializer deserializer;
         readonly ILog Log;
 
         const string CONFIGURATION_FILE_NAME = "Configuration.yml";
@@ -95,7 +95,7 @@ namespace FinesSE.Core.Configuration
             ConfigurationFound = true;
         }
 
-        Deserializer GetDeserializer()
+        IDeserializer GetDeserializer()
             => new DeserializerBuilder()
             .WithNamingConvention(new PascalCaseNamingConvention())
             .IgnoreUnmatchedProperties()
