@@ -134,7 +134,7 @@ namespace FinesSE.Soap.Infrastructure
                         statusDescription);
                 }
                 else
-                    throw exception;
+                    throw;
             }
 
             lastResponseId = messageId;

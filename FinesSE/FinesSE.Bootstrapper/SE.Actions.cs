@@ -146,6 +146,12 @@ namespace FinesSE.Bootstrapper
         public string Soap_GetResponseDuration(string responseId)
             => p.Invoke<Soap_GetResponseDuration>(responseId);
 
+        public string Soap_GetResponseLength()
+            => p.Invoke<Soap_GetResponseLength>(null);
+
+        public string Soap_GetResponseLength(string responseId)
+            => p.Invoke<Soap_GetResponseLength>(responseId);
+
         public string Soap_GetResponseStatusCode()
             => p.Invoke<Soap_GetResponseStatusCode>(null);
 
