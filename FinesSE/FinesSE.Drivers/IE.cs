@@ -36,7 +36,6 @@ namespace FinesSE.Drivers
                 BrowserAttachTimeout = configuration.BrowserAttachTimeout,
                 BrowserCommandLineArguments = configuration.BrowserCommandLineArguments,
                 ElementScrollBehavior = configuration.ElementScrollBehavior,
-                EnableFullPageScreenshot = configuration.EnableFullPageScreenshot,
                 EnableNativeEvents = configuration.EnableNativeEvents,
                 EnablePersistentHover = configuration.EnablePersistentHover,
                 EnsureCleanSession = configuration.EnsureCleanSession,
@@ -49,7 +48,6 @@ namespace FinesSE.Drivers
                 PageLoadStrategy = configuration.PageLoadStrategy,
                 Proxy = configuration.Proxy,
                 RequireWindowFocus = configuration.RequireWindowFocus,
-                UnexpectedAlertBehavior = configuration.UnexpectedAlertBehavior,
                 UsePerProcessProxy = configuration.UsePerProcessProxy
             };
 

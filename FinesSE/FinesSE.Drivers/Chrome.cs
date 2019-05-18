@@ -41,6 +41,8 @@ namespace FinesSE.Drivers
                 Proxy = configuration.Proxy
             };
 
+            options.AddArguments("--no-sandbox");
+
             configuration.SetAdditionalCapability(options);
 
             return options;
