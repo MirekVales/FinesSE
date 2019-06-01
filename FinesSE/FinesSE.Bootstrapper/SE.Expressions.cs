@@ -1,7 +1,7 @@
-﻿using FinesSE.Outil.Expressions;
-
-namespace FinesSE.Bootstrapper
+﻿namespace FinesSE.Bootstrapper
 {
+    using FinesSE.Outil.Expressions;
+
     public partial class SE
     {
         public string Do(string command)

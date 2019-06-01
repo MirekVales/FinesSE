@@ -1,8 +1,8 @@
-﻿using FinesSE.Outil.Assertions;
-using FinesSE.Outil.Soap.Assertions;
-
-namespace FinesSE.Bootstrapper
+﻿namespace FinesSE.Bootstrapper
 {
+    using FinesSE.Outil.Assertions;
+    using FinesSE.Outil.Soap.Assertions;
+
     public partial class SE
     {
         public string Contains(string needle, string haystack)

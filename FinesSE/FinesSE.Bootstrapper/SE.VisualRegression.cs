@@ -1,8 +1,8 @@
-﻿using FinesSE.Outil.VisualRegression.Actions;
-using FinesSE.Outil.VisualRegression.Assertions;
-
-namespace FinesSE.Bootstrapper
+﻿namespace FinesSE.Bootstrapper
 {
+    using FinesSE.Outil.VisualRegression.Actions;
+    using FinesSE.Outil.VisualRegression.Assertions;
+
     public partial class SE
     {
         public string GetScreenDiff(string locator)

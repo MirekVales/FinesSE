@@ -1,10 +1,10 @@
-﻿using FinesSE.Contracts.Infrastructure;
-using FinesSE.Core.Injection;
-using FinesSE.Outil.Actions;
-using System;
-
-namespace FinesSE.Bootstrapper
+﻿namespace FinesSE.Bootstrapper
 {
+    using FinesSE.Contracts.Infrastructure;
+    using FinesSE.Core.Injection;
+    using FinesSE.Outil.Actions;
+    using System;
+
     public partial class SE : IDisposable
     {
         readonly IKernel kernel;

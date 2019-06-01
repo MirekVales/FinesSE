@@ -1,20 +1,19 @@
-﻿using FinesSE.Contracts.Infrastructure;
-using FinesSE.Contracts.Invokable;
-using FinesSE.Core;
-using FinesSE.Core.Configuration;
-using FinesSE.Core.Environment;
-using FinesSE.Core.Injection;
-using FinesSE.Core.Parsing;
-using FinesSE.Core.WebDriver;
-using FinesSE.Expressions;
-using FinesSE.Reports;
-using FinesSE.VisualRegression;
-using LightInject;
-using System.IO;
-using System.Reflection;
-
-namespace FinesSE.Bootstrapper
+﻿namespace FinesSE.Bootstrapper
 {
+    using FinesSE.Contracts.Infrastructure;
+    using FinesSE.Core;
+    using FinesSE.Core.Configuration;
+    using FinesSE.Core.Environment;
+    using FinesSE.Core.Injection;
+    using FinesSE.Core.Parsing;
+    using FinesSE.Core.WebDriver;
+    using FinesSE.Expressions;
+    using FinesSE.Reports;
+    using FinesSE.VisualRegression;
+    using LightInject;
+    using System.IO;
+    using System.Reflection;
+
     public class CompositionRoot : ICompositionRoot
     {
         public void Compose(IServiceRegistry container)

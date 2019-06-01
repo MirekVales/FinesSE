@@ -1,8 +1,8 @@
-﻿using FinesSE.Outil.Actions;
-using FinesSE.Outil.Soap.Actions;
-
-namespace FinesSE.Bootstrapper
+﻿namespace FinesSE.Bootstrapper
 {
+    using FinesSE.Outil.Actions;
+    using FinesSE.Outil.Soap.Actions;
+
     public partial class SE
     {
         public void Back()

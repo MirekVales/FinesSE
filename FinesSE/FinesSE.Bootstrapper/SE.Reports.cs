@@ -1,7 +1,7 @@
-﻿using FinesSE.Outil.Reports;
-
-namespace FinesSE.Bootstrapper
+﻿namespace FinesSE.Bootstrapper
 {
+    using FinesSE.Outil.Reports;
+
     public partial class SE
     {
         public string StartTest(string name, string description)

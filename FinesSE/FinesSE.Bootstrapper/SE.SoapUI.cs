@@ -1,7 +1,7 @@
-﻿using FinesSE.Outil.SoapUI;
-
-namespace FinesSE.Bootstrapper
+﻿namespace FinesSE.Bootstrapper
 {
+    using FinesSE.Outil.SoapUI;
+
     public partial class SE
     {
         public string GetSoapUICaseRequest(string suiteName, string caseName)
